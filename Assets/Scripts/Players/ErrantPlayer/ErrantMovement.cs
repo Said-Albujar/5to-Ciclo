@@ -5,16 +5,16 @@ using UnityEngine;
 public class ErrantMovement : MonoBehaviour
 {
     [Header("Movement")]
+    public float actualSpeed;
     public float walkSpeed;
     public float runSpeed;
     public float groundDrag;
-    public bool hasStamina;
-    public bool isRunning;
+    [HideInInspector]public bool isRunning;
 
     [Header("GroundCheck")]
     public float playerHeight;
     public LayerMask ground;
-    bool grounded;
+    public bool grounded;
 
     public Transform orientation;
 
@@ -36,19 +36,8 @@ public class ErrantMovement : MonoBehaviour
         GroundCheck();
         SpeedControl();
         ErrantInput();
-        if (Input.GetKey(KeyCode.LeftShift) && hasStamina)
-        {
-            isRunning = true;
-        }
-        else
-        {
-            isRunning = false;   
-        }
-
-        if (grounded)
-            rb.drag = groundDrag;
-        else
-            rb.drag = 0;
+        Drag();
+        actualSpeed = rb.velocity.magnitude;
     }
     void FixedUpdate()
     {
@@ -65,6 +54,16 @@ public class ErrantMovement : MonoBehaviour
     {
         moveDir = orientation.forward * verInput + orientation.right * horInput;
 
+        if (Input.GetKey(KeyCode.LeftShift) && StaminaController.staminaActual >= 0 && StaminaController.canRun)
+        {
+            isRunning = true;
+
+        }
+        else
+        {
+            isRunning = false;
+        }
+
         switch (isRunning)
         {
             case true:
@@ -74,7 +73,10 @@ public class ErrantMovement : MonoBehaviour
                 rb.AddForce(moveDir.normalized * walkSpeed * 10f, ForceMode.Force);
                 break;
         }
-        
+
+
+
+
     }
 
     void GroundCheck()
@@ -103,5 +105,13 @@ public class ErrantMovement : MonoBehaviour
                 break;
         }
         
+    }
+
+    void Drag()
+    {
+        if (grounded)
+            rb.drag = groundDrag;
+        else
+            rb.drag = 0;
     }
 }
