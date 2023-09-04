@@ -80,6 +80,11 @@ public class StaminaController : MonoBehaviour
     {
         imageStamina.fillAmount = staminaActual / staminaMax;
 
+        if (value <= 0)
+            staminaGroup.alpha = 0;
+        else
+            staminaGroup.alpha = 1;
+
     }
 
     void Test()
