@@ -32,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
         cameraTransform = Camera.main.transform;
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
    
