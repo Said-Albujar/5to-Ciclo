@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class StaminaController : MonoBehaviour
 {
-    public ErrantMovement errantMovement;
+    public PlayerMovement errantMovement;
 
     [Header("Stamina Main Parameters")]
     public static float staminaActual;
@@ -26,7 +26,7 @@ public class StaminaController : MonoBehaviour
 
     private void Awake()
     {
-        errantMovement = GetComponent<ErrantMovement>();
+        errantMovement = GetComponent<PlayerMovement>();
     }
     void Start()
     {

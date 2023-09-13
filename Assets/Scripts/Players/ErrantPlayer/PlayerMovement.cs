@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ErrantMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
     public float actualSpeed;
     public float walkSpeed;
     public float runSpeed;
     public float groundDrag;
+    public float rotationSpeed;
     [HideInInspector]public bool isRunning;
 
     [Header("GroundCheck")]
@@ -24,8 +25,11 @@ public class ErrantMovement : MonoBehaviour
     Vector3 moveDir;
 
     Rigidbody rb;
+
+    Transform cameraTransform;
     void Start()
     {
+        cameraTransform = Camera.main.transform;
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
     }
@@ -42,6 +46,7 @@ public class ErrantMovement : MonoBehaviour
     void FixedUpdate()
     {
         MoveErrant();
+        RotatePlayer();
     }
 
     void ErrantInput()
@@ -52,7 +57,15 @@ public class ErrantMovement : MonoBehaviour
 
     void MoveErrant()
     {
-        moveDir = orientation.forward * verInput + orientation.right * horInput;
+        Vector3 forward = cameraTransform.forward;
+        forward.y = 0;
+        forward.Normalize();
+
+        Vector3 right = cameraTransform.right;
+        right.y = 0;
+        right.Normalize();
+
+        moveDir = forward * verInput + right * horInput;
 
         if (Input.GetKey(KeyCode.LeftShift) && StaminaController.staminaActual >= 0 && StaminaController.canRun)
         {
@@ -113,5 +126,15 @@ public class ErrantMovement : MonoBehaviour
             rb.drag = groundDrag;
         else
             rb.drag = 0;
+    }
+
+    void RotatePlayer()
+    {
+        if (moveDir != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(moveDir);
+
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+        }
     }
 }
