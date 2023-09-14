@@ -4,67 +4,36 @@ using UnityEngine;
 
 public class Swing : MonoBehaviour
 {
-    public Rigidbody rb;
-    public bool estaSiendoAgarrado = false;
-    private Vector3 posicionInicial;
-    private bool estaCerca = false;
-    private Transform jugador;
+    public GameObject ObjectToPickup;
+    public GameObject PickedObject;
+    public Transform InteractionZone;
 
-    public float distanciaMaxima = 2.0f;
-
-    private Vector3 offset;
-
-    private void Start()
+    void Update()
     {
-        rb = GetComponent<Rigidbody>();
-        rb.isKinematic = true;
-        posicionInicial = transform.position;
-
-        // Obtener la referencia al jugador (asume que el jugador tiene una etiqueta "Player")
-        jugador = GameObject.FindGameObjectWithTag("Player").transform;
-    }
-
-    private void Update()
-    {
-        // Verificar si el jugador está lo suficientemente cerca del objeto
-        float distanciaAlJugador = Vector3.Distance(transform.position, jugador.position);
-
-        if (distanciaAlJugador <= distanciaMaxima)
+        if(ObjectToPickup != null && ObjectToPickup.GetComponent<PickableObject>().IsPickable == true && PickedObject == null)
         {
-            estaCerca = true;
-
-            if (Input.GetKeyDown(KeyCode.E) && !estaSiendoAgarrado)
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                estaSiendoAgarrado = true;
-                rb.isKinematic = false;
+                PickedObject = ObjectToPickup;
+                PickedObject.GetComponent<PickableObject>().IsPickable = false;
+                PickedObject.transform.SetParent(InteractionZone);
+                PickedObject.transform.position = InteractionZone.position;
+                //PickedObject.GetComponent<Rigidbody>().useGravity = false;
+                PickedObject.GetComponent<Rigidbody>().isKinematic = true;
+            }
+        } 
 
-                // Calcular el desplazamiento entre la posición del objeto y la posición del puntero del mouse en el momento de agarrar
-                offset = transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, distanciaAlJugador));
+        else if (PickedObject != null)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                PickedObject = ObjectToPickup;
+                PickedObject.GetComponent<PickableObject>().IsPickable = true;
+                PickedObject.transform.SetParent(null);
+               // PickedObject.GetComponent<Rigidbody>().useGravity = true;
+                PickedObject.GetComponent<Rigidbody>().isKinematic = false;
+                PickedObject = null;
             }
         }
-        else
-        {
-            estaCerca = false;
-        }
-
-        if (estaSiendoAgarrado)
-        {
-            if (Input.GetKeyUp(KeyCode.E))
-            {
-                estaSiendoAgarrado = false;
-                rb.isKinematic = true;
-            }
-            else
-            {
-                // Obtener la posición del mouse en el mundo y ajustar la posición del objeto en consecuencia
-                Vector3 posicionMouseEnMundo = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, distanciaAlJugador));
-                rb.MovePosition(posicionMouseEnMundo + offset);
-            }
-        }
-    }
-
-    public void ReiniciarPosicion()
-    {
-        transform.position = posicionInicial;
     }
 }
