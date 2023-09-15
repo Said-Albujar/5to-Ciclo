@@ -31,7 +31,7 @@ public class Swing : MonoBehaviour
                 PickedObject.GetComponent<PickableObject>().IsPickable = true;
                 PickedObject.transform.SetParent(null);
                // PickedObject.GetComponent<Rigidbody>().useGravity = true;
-                PickedObject.GetComponent<Rigidbody>().isKinematic = false;
+                    PickedObject.GetComponent<Rigidbody>().isKinematic = false;
                 PickedObject = null;
             }
         }
