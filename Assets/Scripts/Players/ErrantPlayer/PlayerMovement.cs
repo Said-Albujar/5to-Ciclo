@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public float runSpeed;
     public float groundDrag;
     public float rotationSpeed;
-    [HideInInspector]public bool isRunning;
+    [HideInInspector] public bool isRunning;
 
     [Header("GroundCheck")]
     public float playerHeight;
@@ -27,6 +27,10 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody rb;
 
     Transform cameraTransform;
+    [Header("JumpPlayer")]
+    public float jumpForce;
+    public float cooldownJump;
+    public KeyCode jumpKey = KeyCode.Space;
     void Start()
     {
         cameraTransform = Camera.main.transform;
@@ -54,6 +58,16 @@ public class PlayerMovement : MonoBehaviour
     {
         horInput = Input.GetAxisRaw("Horizontal");
         verInput = Input.GetAxisRaw("Vertical");
+
+        if(Input.GetKeyDown(jumpKey)&& grounded)
+        {
+            Invoke(nameof(JumpPlayer), cooldownJump);
+            grounded = false;
+        }
+    }
+    void JumpPlayer()
+    {
+        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
     }
 
     void MoveErrant()
