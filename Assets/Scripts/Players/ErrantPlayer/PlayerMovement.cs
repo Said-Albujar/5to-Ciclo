@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -31,15 +32,25 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce;
     public float cooldownJump;
     public KeyCode jumpKey = KeyCode.Space;
+    [Header("Impulse")]
+    [SerializeField] GameObject stepRayUpper;
+    [SerializeField] GameObject stepRayLower;
+    [SerializeField] float stepHeight = 0.3f;
+    [SerializeField] float stepSmooth = 2f;
+    public float radius;
+    public RaycastHit hitUpper;
+    public RaycastHit hitLower;
     void Start()
     {
         cameraTransform = Camera.main.transform;
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         Cursor.lockState = CursorLockMode.Locked;
+        stepRayUpper.transform.position = new Vector3(stepRayUpper.transform.position.x, stepHeight, stepRayUpper.transform.position.z);
+
     }
 
-   
+
     void Update()
     {
         GroundCheck();
@@ -47,11 +58,13 @@ public class PlayerMovement : MonoBehaviour
         ErrantInput();
         Drag();
         actualSpeed = rb.velocity.magnitude;
+
     }
     void FixedUpdate()
     {
         MoveErrant();
         RotatePlayer();
+        ImpulseElevator();
     }
 
     void ErrantInput()
@@ -59,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
         horInput = Input.GetAxisRaw("Horizontal");
         verInput = Input.GetAxisRaw("Vertical");
 
-        if(Input.GetKeyDown(jumpKey)&& grounded)
+        if (Input.GetKeyDown(jumpKey) && grounded)
         {
             Invoke(nameof(JumpPlayer), cooldownJump);
             grounded = false;
@@ -111,6 +124,60 @@ public class PlayerMovement : MonoBehaviour
     {
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, ground);
     }
+    void ImpulseElevator()
+    {
+
+
+
+        RaycastHit hitLower;
+        if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(Vector3.forward), out hitLower, radius))
+        {                   
+            if(hitLower.collider.gameObject.CompareTag("Stairs"))
+            {
+                rb.position -= new Vector3(0f, -stepSmooth * Time.deltaTime, 0f);
+            }           
+        }
+       
+
+
+        /*RaycastHit hitLower45;
+        if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(1.5f, 0, 1), out hitLower45, 0.1f))
+        {
+
+            RaycastHit hitUpper45;
+            if (!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(1.5f, 0, 1), out hitUpper45, 0.2f))
+            {
+                if (hitLower45.collider.gameObject.CompareTag("Stairs"))
+                    rb.position -= new Vector3(0f, -stepSmooth * Time.deltaTime, 0f);
+            }
+        }
+
+        RaycastHit hitLowerMinus45;
+        if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(-1.5f, 0, 1), out hitLowerMinus45, 0.1f))
+        {
+
+            RaycastHit hitUpperMinus45;
+            if (!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(-1.5f, 0, 1), out hitUpperMinus45, 0.2f))
+            {
+                if (hitLowerMinus45.collider.gameObject.CompareTag("Stairs"))
+                    rb.position -= new Vector3(0f, -stepSmooth * Time.deltaTime, 0f);
+            }
+        }*/
+    }
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
 
     void SpeedControl()
     {
