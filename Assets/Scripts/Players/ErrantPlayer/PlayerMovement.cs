@@ -134,7 +134,15 @@ public class PlayerMovement : MonoBehaviour
         {                   
             if(hitLower.collider.gameObject.CompareTag("Stairs"))
             {
-                rb.position -= new Vector3(0f, -stepSmooth * Time.deltaTime, 0f);
+                if(horInput!=0 || verInput!=0)
+                {
+                    rb.position -= new Vector3(0f, -stepSmooth * Time.deltaTime, 0f);
+
+                }
+                else
+                {
+                    rb.transform.position = Vector3.zero;
+                }
             }           
         }
        
