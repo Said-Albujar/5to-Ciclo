@@ -1406,6 +1406,7 @@ GameObject:
   - component: {fileID: 8882789821007043988}
   - component: {fileID: 8882789821007043987}
   - component: {fileID: 8882789821007043986}
+  - component: {fileID: 4521564391557480569}
   m_Layer: 0
   m_Name: PlayerGroup
   m_TagString: Player
@@ -1591,6 +1592,18 @@ MonoBehaviour:
   ObjectToPickup: {fileID: 0}
   PickedObject: {fileID: 0}
   InteractionZone: {fileID: 0}
+--- !u!114 &4521564391557480569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3991831324008797251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4efdf84b06fbf604c975904580004740, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3991831324371036975
 GameObject:
   m_ObjectHideFlags: 0
