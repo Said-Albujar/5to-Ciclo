@@ -9,7 +9,7 @@ public class Flashlight : MonoBehaviour
     // This method is called when the scene loads.
     private void Update()
     {
-        if (Input.GetKeyDown("e"))
+        if (Input.GetKeyDown("q"))
         {
             if (flashlight.enabled == true)
             {

@@ -10,10 +10,10 @@ public class MovingPlatform : MonoBehaviour
     public bool moveForwardAndBack = true; // Permite movimiento hacia adelante y hacia atrás.
     public bool moveLeftAndRight = false;  // Permite movimiento lateral en el eje Z.
 
-    private Vector3 initialPoint;       // Posición inicial de la plataforma.
-    private Vector3 endPointX;          // Posición final de la plataforma en el eje X.
-    private Vector3 endPointZ;          // Posición final de la plataforma en el eje Z.
-    private Vector3 targetPoint;        // Punto objetivo de movimiento.
+    private Vector3 initialPoint;      
+    private Vector3 endPointX;         
+    private Vector3 endPointZ;          
+    private Vector3 targetPoint;        
 
     void Start()
     {
@@ -27,41 +27,27 @@ public class MovingPlatform : MonoBehaviour
     {
         if (moveForwardAndBack)
         {
-            // Calcula la dirección de movimiento en el eje X.
             Vector3 directionX = (targetPoint - transform.position).normalized;
-
-            // Calcula la nueva posición de la plataforma en el eje X.
             Vector3 newPositionX = transform.position + directionX * speed * Time.deltaTime;
-
-            // Comprueba si la plataforma ha llegado al punto objetivo en el eje X.
             if (Vector3.Distance(transform.position, targetPoint) <= 0.01f)
             {
-                // Cambia la dirección en el eje X.
                 targetPoint = (targetPoint == endPointX) ? initialPoint : endPointX;
             }
-
-            // Mueve la plataforma hacia la nueva posición en el eje X.
             transform.position = newPositionX;
         }
 
         if (moveLeftAndRight)
         {
-            // Calcula la dirección de movimiento en el eje Z.
             Vector3 directionZ = (endPointZ - transform.position).normalized;
 
-            // Calcula la nueva posición de la plataforma en el eje Z.
             Vector3 newPositionZ = transform.position + directionZ * speed * Time.deltaTime;
 
-            // Comprueba si la plataforma ha llegado al punto objetivo en el eje Z.
             if (Vector3.Distance(transform.position, endPointZ) <= 0.01f)
             {
-                // Cambia la dirección en el eje Z.
                 endPointZ = (endPointZ == (initialPoint + Vector3.forward * distanceZ)) ?
                     (initialPoint + Vector3.back * distanceZ) :
                     (initialPoint + Vector3.forward * distanceZ);
             }
-
-            // Mueve la plataforma hacia la nueva posición en el eje Z.
             transform.position = newPositionZ;
         }
     }

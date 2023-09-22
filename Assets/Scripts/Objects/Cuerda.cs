@@ -4,50 +4,34 @@ using UnityEngine;
 
 public class Cuerda : MonoBehaviour
 {
-    public GameObject[] objetosCuerda;
-    public GameObject objetoQueCae;
-    public string tijeraTag = "Tijera";
+    public GameObject chain;
+    public bool chainF;
 
-    private bool cuerdaRota = false;
-
-    void Update()
+    private void OnTriggerEnter(Collider collider)
     {
-        // Verificar si la cuerda está rota
-        if (!cuerdaRota)
+        if (collider.gameObject.tag == "scissors" && Input.GetKeyDown(KeyCode.E))
         {
-            foreach (GameObject cuerdaObjeto in objetosCuerda)
+            chain.SetActive(false);
+            chainF = true;
+        }
+    }
+
+    private void OnTriggerStay(Collider collider)
+    {
+        if (collider.gameObject.tag == "scissors")
+        {
+            // Solo se llama una vez
+            if (!chainF)
             {
-                // Comprobar si la cuerda ha colisionado con un objeto con la etiqueta "Tijera"
-                Collider collider = cuerdaObjeto.GetComponent<Collider>();
-                if (collider != null && collider.CompareTag(tijeraTag))
+                if (Input.GetKeyDown(KeyCode.E))
                 {
-                    RomperCuerda();
-                    return; // Terminar el bucle si se rompe una cuerda
+                    // Solo se llama si el objeto está activo
+                    if (gameObject.activeSelf)
+                    {
+                        Destroy(chain);
+                    }
                 }
             }
         }
     }
-
-    void RomperCuerda()
-    {
-        cuerdaRota = true;
-
-        // Desactivar la física de las cuerdas
-        foreach (GameObject cuerdaObjeto in objetosCuerda)
-        {
-            Rigidbody rb = cuerdaObjeto.GetComponent<Rigidbody>();
-            if (rb != null)
-            {
-                rb.isKinematic = true;
-            }
-        }
-
-        // Dejar caer el objeto que estaba sostenido por la cuerda
-        Rigidbody objetoCaeRb = objetoQueCae.GetComponent<Rigidbody>();
-        if (objetoCaeRb != null)
-        {
-            objetoCaeRb.isKinematic = false;
-        }
-    }
 }
-    
