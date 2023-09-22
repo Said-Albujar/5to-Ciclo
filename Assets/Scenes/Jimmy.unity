@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -609,6 +609,7 @@ MonoBehaviour:
   typeSelect: 1
   labelObject: {fileID: 928319600}
   KeyActiveLabel: 101
+  isLocked: 0
   anim: {fileID: 0}
   timeActive: 0
   objectActive: {fileID: 604798757}
@@ -824,6 +825,7 @@ MonoBehaviour:
   typeSelect: 0
   labelObject: {fileID: 0}
   KeyActiveLabel: 101
+  isLocked: 0
   anim: {fileID: 0}
   timeActive: 3
   objectActive: {fileID: 103880989}
@@ -1619,6 +1621,7 @@ MonoBehaviour:
   typeSelect: 1
   labelObject: {fileID: 1460534812}
   KeyActiveLabel: 101
+  isLocked: 0
   anim: {fileID: 0}
   timeActive: 0
   objectActive: {fileID: 1415335479}
@@ -1917,6 +1920,7 @@ MonoBehaviour:
   typeSelect: 0
   labelObject: {fileID: 0}
   KeyActiveLabel: 101
+  isLocked: 0
   anim: {fileID: 0}
   timeActive: 3
   objectActive: {fileID: 1398019115}
@@ -2005,11 +2009,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 146024447303822567, guid: 0b0befea8f7ddb546a06a4f64649108f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000017001136
+      value: -0.000000017001133
       objectReference: {fileID: 0}
     - target: {fileID: 146024447303822567, guid: 0b0befea8f7ddb546a06a4f64649108f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000026497164
+      value: 0.000000002649716
       objectReference: {fileID: 0}
     - target: {fileID: 146024447837779422, guid: 0b0befea8f7ddb546a06a4f64649108f, type: 3}
       propertyPath: m_LocalRotation.y
@@ -2021,11 +2025,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 146024449209902881, guid: 0b0befea8f7ddb546a06a4f64649108f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000019102911
+      value: 0.000000019102911
       objectReference: {fileID: 0}
     - target: {fileID: 146024449209902881, guid: 0b0befea8f7ddb546a06a4f64649108f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000022700581
+      value: -0.0000000022700581
       objectReference: {fileID: 0}
     - target: {fileID: 3991831325594375651, guid: 0b0befea8f7ddb546a06a4f64649108f, type: 3}
       propertyPath: m_TagString
@@ -2085,6 +2089,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b0befea8f7ddb546a06a4f64649108f, type: 3}
+--- !u!23 &146024448288798860 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3991831325594375653, guid: 0b0befea8f7ddb546a06a4f64649108f, type: 3}
+  m_PrefabInstance: {fileID: 146024448288798859}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &146024448288798861 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3991831324008797251, guid: 0b0befea8f7ddb546a06a4f64649108f, type: 3}
+  m_PrefabInstance: {fileID: 146024448288798859}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &146024448288798862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146024448288798861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d569bbb4cf9ecb6419ae1e6d95da5852, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Character: 0
+  HairdresserSkin: {fileID: 146024448288798860}
+  MinerSkin: {fileID: 146024448288798860}
+  EngineerSkin: {fileID: 146024448288798860}
 --- !u!1001 &8030980811527116102
 PrefabInstance:
   m_ObjectHideFlags: 0
