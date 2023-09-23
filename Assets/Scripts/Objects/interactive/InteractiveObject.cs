@@ -17,7 +17,7 @@ public class InteractiveObject : MonoBehaviour
     private bool isNear;
     private bool labelActive;
     public bool isLocked = false;
-
+    
     [Header("Button")]
     public Animator anim;
     public float timeActive;
@@ -27,9 +27,11 @@ public class InteractiveObject : MonoBehaviour
 
     [Header ("Function")]
     public GameObject objectActive;
+   
     
-    
-    
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -79,15 +81,21 @@ public class InteractiveObject : MonoBehaviour
                 case true:
                     RotateLabel(35);
                     if (objectActive.GetComponent<InteractiveDoor>())
+                    {
                         objectActive.GetComponent<InteractiveDoor>().open = true;
+                    }
+                   
                     else
                         objectActive.SetActive(true);
-                    
+
                     break;
                 case false:
                     RotateLabel(-35);
                     if (objectActive.GetComponent<InteractiveDoor>())
+                    {
                         objectActive.GetComponent<InteractiveDoor>().open = false;
+                    }
+            
                     else
                         objectActive.SetActive(false);
                     break;
@@ -102,7 +110,10 @@ public class InteractiveObject : MonoBehaviour
             if (timer <= 0)
             {
                 if (objectActive.GetComponent<InteractiveDoor>())
+                {
                     objectActive.GetComponent<InteractiveDoor>().open = false;
+
+                }
                 else
                     objectActive.SetActive(false);
                     
