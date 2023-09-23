@@ -9,15 +9,15 @@ public class ChangeCharacter : MonoBehaviour
     public float WaitTime = 5f;
 
     [Header("Hairdresser")]
-    public Renderer HairdresserSkin;
+    public GameObject HairdresserSkin;
     public bool IsHairdress;
 
     [Header("Miner")]
-    public Renderer MinerSkin;
+    public GameObject MinerSkin;
     public bool IsMiner;
 
     [Header("Engineer")]
-    public Renderer EngineerSkin;
+    public GameObject EngineerSkin;
     public bool IsEngineer;
 
     void Start()
@@ -61,8 +61,10 @@ public class ChangeCharacter : MonoBehaviour
     void ChangeToHair()
     {
         StartTimer();
-        HairdresserSkin.material.color = Color.red;
-       
+        HairdresserSkin.SetActive(true);
+        MinerSkin.SetActive(false);
+        EngineerSkin.SetActive(false);
+
         IsHairdress = true;
         IsMiner = false;
         IsEngineer = false;
@@ -71,7 +73,9 @@ public class ChangeCharacter : MonoBehaviour
     void ChangeToMiner()
     {
         StartTimer();
-        MinerSkin.material.color = Color.blue;
+        HairdresserSkin.SetActive(false);
+        MinerSkin.SetActive(true);
+        EngineerSkin.SetActive(false);
 
         IsHairdress = false;
         IsMiner = true;
@@ -80,7 +84,9 @@ public class ChangeCharacter : MonoBehaviour
     void ChangeToEngineer()
     {
         StartTimer();
-        EngineerSkin.material.color = Color.green;
+        HairdresserSkin.SetActive(false);
+        MinerSkin.SetActive(false);
+        EngineerSkin.SetActive(true);
 
         IsHairdress = false;
         IsMiner = false;

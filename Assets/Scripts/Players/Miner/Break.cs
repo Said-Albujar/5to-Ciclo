@@ -5,41 +5,33 @@ using UnityEngine;
 public class Break : MonoBehaviour
 {
     public bool CanBreak = false;
-    public string TagObj = "Player";
-    public Renderer Miner;
+    public ChangeCharacter Change;
+    public GameObject Rock;
+
 
 
     void Update()
     {
-        if (CanBreak && Input.GetKeyDown(KeyCode.F) && Miner.material.color == Color.blue)
+        if (CanBreak == true && Input.GetKeyDown(KeyCode.F) && Change.IsMiner == true)
         {
-            BreakMiner();
+            Destroy(Rock);
         }
     }
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(TagObj))
+        if (other.CompareTag("Miner"))
         {
             CanBreak = true;
+
         }
     }
 
     public void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag(TagObj))
+        if (other.CompareTag("Miner"))
         {
             CanBreak = false;
         }
     }
-
-    private void BreakMiner()
-    {
-        Renderer ObjRenderer = GetComponent<Renderer>();
-        if (ObjRenderer != null)
-        {
-            Destroy(gameObject);
-        }
-    }
-   
 }
