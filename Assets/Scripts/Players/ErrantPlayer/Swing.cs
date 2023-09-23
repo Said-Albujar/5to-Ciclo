@@ -7,7 +7,6 @@ public class Swing : MonoBehaviour
     public GameObject ObjectToPickup;
     public GameObject PickedObject;
     public Transform InteractionZone;
-
     void Update()
     {
         if(ObjectToPickup != null && ObjectToPickup.GetComponent<PickableObject>().IsPickable == true && PickedObject == null)
@@ -30,10 +29,17 @@ public class Swing : MonoBehaviour
                 PickedObject = ObjectToPickup;
                 PickedObject.GetComponent<PickableObject>().IsPickable = true;
                 PickedObject.transform.SetParent(null);
-               // PickedObject.GetComponent<Rigidbody>().useGravity = true;
-                    PickedObject.GetComponent<Rigidbody>().isKinematic = false;
+                // PickedObject.GetComponent<Rigidbody>().useGravity = true;
+                PickedObject.GetComponent<Rigidbody>().isKinematic = false;
                 PickedObject = null;
             }
         }
+
+        
+        
     }
+   
+
+
+
 }
