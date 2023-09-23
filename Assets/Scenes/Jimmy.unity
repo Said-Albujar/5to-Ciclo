@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1335,7 +1335,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1415335481}
   - component: {fileID: 1415335480}
-  - component: {fileID: 1415335482}
   m_Layer: 0
   m_Name: DoorLabel
   m_TagString: Untagged
@@ -1380,20 +1379,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1415335482
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1415335479}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bd2ba5b5f9ba59409202adf118106b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  anim: {fileID: 0}
-  open: 0
 --- !u!1 &1456126014
 GameObject:
   m_ObjectHideFlags: 0
@@ -2017,11 +2002,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 146024447837779422, guid: 0b0befea8f7ddb546a06a4f64649108f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000008523258
+      value: 0.000000008523259
       objectReference: {fileID: 0}
     - target: {fileID: 146024447837779422, guid: 0b0befea8f7ddb546a06a4f64649108f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000011700177
+      value: -0.0000000011700181
       objectReference: {fileID: 0}
     - target: {fileID: 146024449209902881, guid: 0b0befea8f7ddb546a06a4f64649108f, type: 3}
       propertyPath: m_LocalRotation.y
@@ -2111,10 +2096,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d569bbb4cf9ecb6419ae1e6d95da5852, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Character: 0
+  CanChange: 1
+  TimeLeft: 0
+  WaitTime: 5
   HairdresserSkin: {fileID: 146024448288798860}
+  IsHairdress: 0
   MinerSkin: {fileID: 146024448288798860}
+  IsMiner: 0
   EngineerSkin: {fileID: 146024448288798860}
+  IsEngineer: 0
 --- !u!1001 &8030980811527116102
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2156,11 +2146,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8030980813197340046, guid: b41e0021e17a49a4eb025c888e0589b3, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000017046519
+      value: 0.00000001704652
       objectReference: {fileID: 0}
     - target: {fileID: 8030980813197340046, guid: b41e0021e17a49a4eb025c888e0589b3, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000000002340036
+      value: -0.000000002340036
       objectReference: {fileID: 0}
     - target: {fileID: 8030980813197340046, guid: b41e0021e17a49a4eb025c888e0589b3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
