@@ -1,0 +1,42 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Puente : MonoBehaviour
+{
+    public bool openBridge;
+    public float rotationOpen;
+    public float rotationClose;
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if(openBridge)
+        {
+            if(transform.rotation.x!=0)
+            {
+                RotateLabel(rotationOpen);
+            }
+            
+        }
+        else
+        {
+            RotateLabel(rotationClose);
+        }
+    }
+    private void RotateLabel(float rotation)
+    {
+        Quaternion actualRotation = transform.rotation;
+
+        Quaternion rotationActive = Quaternion.Euler(rotation, 0, 0);
+
+        actualRotation = Quaternion.RotateTowards(actualRotation, rotationActive, 200 * Time.deltaTime);
+
+        transform.rotation = actualRotation;
+    }
+}

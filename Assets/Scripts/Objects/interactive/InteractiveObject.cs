@@ -80,9 +80,9 @@ public class InteractiveObject : MonoBehaviour
             {
                 case true:
                     RotateLabel(35);
-                    if (objectActive.GetComponent<InteractiveBridge>())
+                    if (objectActive.GetComponent<InteractiveDoor>())
                     {
-                        objectActive.GetComponent<InteractiveBridge>().open = true;
+                        objectActive.GetComponent<InteractiveDoor>().open = true;
                     }
                    
                     else
@@ -91,9 +91,9 @@ public class InteractiveObject : MonoBehaviour
                     break;
                 case false:
                     RotateLabel(-35);
-                    if (objectActive.GetComponent<InteractiveBridge>())
+                    if (objectActive.GetComponent<InteractiveDoor>())
                     {
-                        objectActive.GetComponent<InteractiveBridge>().open = false;
+                        objectActive.GetComponent<InteractiveDoor>().open = false;
                     }
             
                     else
@@ -109,9 +109,9 @@ public class InteractiveObject : MonoBehaviour
             timer -= Time.deltaTime;
             if (timer <= 0)
             {
-                if (objectActive.GetComponent<InteractiveBridge>())
+                if (objectActive.GetComponent<InteractiveDoor>())
                 {
-                    objectActive.GetComponent<InteractiveBridge>().open = false;
+                    objectActive.GetComponent<InteractiveDoor>().open = false;
 
                 }
                 else
@@ -140,8 +140,8 @@ public class InteractiveObject : MonoBehaviour
             if (other.CompareTag("Player") || other.CompareTag("Box"))
             {
 
-                if (objectActive.GetComponent<InteractiveBridge>())
-                    objectActive.GetComponent<InteractiveBridge>().open = true;
+                if (objectActive.GetComponent<InteractiveDoor>())
+                    objectActive.GetComponent<InteractiveDoor>().open = true;
                 else
                 {
                     if (!objectActive.activeSelf)

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Flashlight : MonoBehaviour
 {
-    public UnityEngine. Light flashlight;
+    public  Light flashlight;
 
     // This method is called when the scene loads.
     private void Update()

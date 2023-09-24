@@ -1,22 +1,46 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using UnityEngine;
 
 public class InteractivePalanca : MonoBehaviour
 {
+    public bool islocked;
+    public bool isMecanic;
+    public bool isNear;
     public GameObject labelObject;
-    public GameObject objectActive;
+    public List<Puente> puente;
+    public KeyCode keyActiveLabel;
     public bool labelActive;
-    public Type typeSelect;
-    public enum Type
-    {
-        Label,
-    }
+    public ChangeCharacter changeMecanic;
     private void Update()
     {
         LabelFunction();
+        if (Input.GetKeyDown(keyActiveLabel)&&!islocked&&isNear)
+        {
+            switch (labelActive)
+            {
+                case true:
+                    labelActive = false;
+                    break;
+                case false:
+                    labelActive = true;
+                    break;
+            }
+        }
+        if (changeMecanic.IsEngineer)
+        {
+            if (Input.GetKeyDown(KeyCode.E) &&islocked&&isNear)
+            {
+                islocked = false;
+
+            }
+
+
+        }
     }
+
     private void RotateLabel(float rotation)
     {
         Quaternion actualRotation = labelObject.transform.rotation;
@@ -29,32 +53,49 @@ public class InteractivePalanca : MonoBehaviour
     }
     private void LabelFunction()
     {
-        if (typeSelect == Type.Label)
-        {
+        
+        
             switch (labelActive)
             {
                 case true:
                     RotateLabel(35);
-                    if (objectActive.GetComponent<InteractiveBridge>())
-                    {
-                        objectActive.GetComponent<InteractiveBridge>().open = true;
-                    }
+                foreach (Puente item in puente)
+                {
+                    item.openBridge = true;
+                }
 
-                    else
-                        objectActive.SetActive(true);
+                break;
 
-                    break;
+                  
+
+                    
                 case false:
                     RotateLabel(-35);
-                    if (objectActive.GetComponent<InteractiveBridge>())
-                    {
-                        objectActive.GetComponent<InteractiveBridge>().open = false;
-                    }
+                foreach (Puente item in puente)
+                {
+                    item.openBridge = false;
+                }
 
-                    else
-                        objectActive.SetActive(false);
-                    break;
+                break;
             }
+        
+    }
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            isNear = true;
+
+
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            isNear = false;
+            
+
         }
     }
 }

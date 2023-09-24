@@ -5,10 +5,11 @@ using UnityEngine;
 public class PickableObject : MonoBehaviour
 {
     public bool IsPickable = true;
-
+    public InteractivePalanca interactivePalanca;
+    public string tagName;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "InteractionZone")
+        if (other.tag == tagName)
         {
             other.GetComponentInParent<Swing>().ObjectToPickup = this.gameObject;
         }
@@ -16,9 +17,17 @@ public class PickableObject : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.tag == "InteractionZone")
+        
+        if(other.tag == tagName)
         {
+
             other.GetComponentInParent<Swing>().ObjectToPickup = null;
         }
+        
+    }
+    private void OnDestroy()
+    {
+        if(interactivePalanca!=null)
+        interactivePalanca.islocked = false;
     }
 }
