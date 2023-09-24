@@ -18,11 +18,12 @@ public class Puente : MonoBehaviour
     {
         if(openBridge)
         {
-            if(transform.rotation.x!=0)
+            RotateLabel(rotationOpen);
+            /*if(transform.rotation.z!=0)
             {
-                RotateLabel(rotationOpen);
-            }
-            
+                
+            }*/
+
         }
         else
         {
@@ -33,7 +34,7 @@ public class Puente : MonoBehaviour
     {
         Quaternion actualRotation = transform.rotation;
 
-        Quaternion rotationActive = Quaternion.Euler(rotation, 0, 0);
+        Quaternion rotationActive = Quaternion.Euler(0, 0, rotation);
 
         actualRotation = Quaternion.RotateTowards(actualRotation, rotationActive, 200 * Time.deltaTime);
 

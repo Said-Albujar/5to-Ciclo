@@ -21,12 +21,12 @@ public class InteractiveObject : MonoBehaviour
     [Header("Button")]
     public Animator anim;
     public float timeActive;
-    private float timer;
+    private float timer;    
     private bool timerActive;
     bool buttonPressed;
 
     [Header ("Function")]
-    public GameObject objectActive;
+    public List<GameObject> objectActive;
    
     
 
@@ -80,24 +80,40 @@ public class InteractiveObject : MonoBehaviour
             {
                 case true:
                     RotateLabel(35);
-                    if (objectActive.GetComponent<InteractiveDoor>())
+                    if (objectActive[0].GetComponent<InteractiveDoor>())
                     {
-                        objectActive.GetComponent<InteractiveDoor>().open = true;
+                        foreach (GameObject item in objectActive)
+                        {
+                            item.GetComponent<InteractiveDoor>().open = true;
+                        } 
                     }
-                   
-                    else
-                        objectActive.SetActive(true);
+
+                    if (objectActive[0].GetComponent<MovingPlatform1>())
+                    {
+                        foreach (GameObject item in objectActive)
+                        {
+                            item.GetComponent<MovingPlatform1>().enabled = true;
+                        }    
+                    }
 
                     break;
                 case false:
                     RotateLabel(-35);
-                    if (objectActive.GetComponent<InteractiveDoor>())
+                    if (objectActive[0].GetComponent<InteractiveDoor>())
                     {
-                        objectActive.GetComponent<InteractiveDoor>().open = false;
+                        foreach (GameObject item in objectActive)
+                        {
+                            item.GetComponent<InteractiveDoor>().open = false;
+                        }
                     }
-            
-                    else
-                        objectActive.SetActive(false);
+
+                    if (objectActive[0].GetComponent<MovingPlatform1>())
+                    {
+                        foreach (GameObject item in objectActive)
+                        {
+                            item.GetComponent<MovingPlatform1>().enabled = false;
+                        }
+                    }
                     break;
             }
         }
@@ -109,14 +125,23 @@ public class InteractiveObject : MonoBehaviour
             timer -= Time.deltaTime;
             if (timer <= 0)
             {
-                if (objectActive.GetComponent<InteractiveDoor>())
+                if (objectActive[0].GetComponent<InteractiveDoor>())
                 {
-                    objectActive.GetComponent<InteractiveDoor>().open = false;
+                    foreach (GameObject item in objectActive)
+                    {
+                        item.GetComponent<InteractiveDoor>().open = false;
+                    }
 
                 }
-                else
-                    objectActive.SetActive(false);
-                    
+
+                if (objectActive[0].GetComponent<MovingPlatform1>())
+                {
+                    foreach (GameObject item in objectActive)
+                    {
+                        item.GetComponent<MovingPlatform1>().enabled = false;
+                    }
+                }
+
                 timerActive = false;
             }
         }
@@ -137,16 +162,22 @@ public class InteractiveObject : MonoBehaviour
     {
         if (typeSelect == Type.Button)
         {
-            if (other.CompareTag("Player") || other.CompareTag("Box"))
+            if (other.CompareTag("Hair") || other.CompareTag("Box") || other.CompareTag("Miner") || other.CompareTag("Engi"))
             {
 
-                if (objectActive.GetComponent<InteractiveDoor>())
-                    objectActive.GetComponent<InteractiveDoor>().open = true;
-                else
+                if (objectActive[0].GetComponent<InteractiveDoor>())
                 {
-                    if (!objectActive.activeSelf)
+                    foreach (GameObject item in objectActive)
                     {
-                        objectActive.SetActive(true);
+                        item.GetComponent<InteractiveDoor>().open = true;
+                    }
+                }
+
+                if (objectActive[0].GetComponent<MovingPlatform1>())
+                {
+                    foreach (GameObject item in objectActive)
+                    {
+                        item.GetComponent<MovingPlatform1>().enabled = true;
                     }
                 }
                 
@@ -158,7 +189,7 @@ public class InteractiveObject : MonoBehaviour
 
         if (typeSelect == Type.Label)
         {
-            if (other.CompareTag("Player"))
+            if (other.CompareTag("Hair") || other.CompareTag("Miner") || other.CompareTag("Engi"))
             {
                 isNear = true;
             }
@@ -170,7 +201,7 @@ public class InteractiveObject : MonoBehaviour
     {
         if (typeSelect == Type.Button)
         {
-            if (other.CompareTag("Player") || other.CompareTag("Box"))
+            if (other.CompareTag("Hair") || other.CompareTag("Box") || other.CompareTag("Miner") || other.CompareTag("Engi"))
             {
                 buttonPressed = false;
                 timer = timeActive;
@@ -180,7 +211,7 @@ public class InteractiveObject : MonoBehaviour
 
         if (typeSelect == Type.Label)
         {
-            if (other.CompareTag("Player"))
+            if (other.CompareTag("Hair") || other.CompareTag("Miner") || other.CompareTag("Engi"))
             {
                 isNear = false;
             }

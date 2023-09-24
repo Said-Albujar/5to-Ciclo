@@ -81,14 +81,14 @@ public class InteractivePalanca : MonoBehaviour
     }
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.CompareTag("Engi"))
+        if (collision.CompareTag("Hair") || collision.CompareTag("Miner") || collision.CompareTag("Engi"))
         {
             isNear = true;
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Engi"))
+        if (other.CompareTag("Hair") || other.CompareTag("Miner") || other.CompareTag("Engi"))
         {
             isNear = false;
         }
