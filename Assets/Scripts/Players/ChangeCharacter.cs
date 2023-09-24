@@ -14,17 +14,22 @@ public class ChangeCharacter : MonoBehaviour
 
     [Header("Miner")]
     public GameObject MinerSkin;
+    public GameObject MinerBody;
+    public bool isNearM;
     public bool IsMiner;
+    public bool HaveMiner;
 
     [Header("Engineer")]
     public GameObject EngineerSkin;
+    public GameObject EngineerBody;
+    public bool isNearE;
     public bool IsEngineer;
+    public bool HaveEngineer;
 
     void Start()
     {
         ChangeToHair();
-    }
-
+    }   
     
     void Update()
     {
@@ -35,12 +40,12 @@ public class ChangeCharacter : MonoBehaviour
                 ChangeToHair();
             }
 
-            if (Input.GetKeyDown(KeyCode.Alpha2))
+            if (Input.GetKeyDown(KeyCode.Alpha2) && HaveMiner)
             {
                 ChangeToMiner();
             }
 
-            if (Input.GetKeyDown(KeyCode.Alpha3))
+            if (Input.GetKeyDown(KeyCode.Alpha3) && HaveEngineer)
             {
                 ChangeToEngineer();
             }
@@ -56,6 +61,17 @@ public class ChangeCharacter : MonoBehaviour
             }
         }
 
+        if (isNearM && Input.GetKeyDown(KeyCode.F))
+        {
+            HaveMiner = true;
+            Destroy(MinerBody);
+        }
+
+        if (isNearE && Input.GetKeyDown(KeyCode.F))
+        {
+            HaveEngineer = true;
+            Destroy(EngineerBody);
+        }
     }
 
     void ChangeToHair()
@@ -92,11 +108,35 @@ public class ChangeCharacter : MonoBehaviour
         IsMiner = false;
         IsEngineer = true;
     }
-
     void StartTimer()
     {
         TimeLeft = WaitTime;
         CanChange = false;
     }
 
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("B_Miner"))
+        {
+            isNearM = true;
+        }
+
+        if (other.CompareTag("B_Engi"))
+        {
+            isNearE = true;
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("B_Miner"))
+        {
+            isNearM = false;
+        }
+
+        if (other.CompareTag("B_Engi"))
+        {
+            isNearE = false;
+        }
+    }
 }

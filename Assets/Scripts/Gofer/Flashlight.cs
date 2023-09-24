@@ -5,11 +5,17 @@ using UnityEngine;
 public class Flashlight : MonoBehaviour
 {
     public  Light flashlight;
+    public ChangeCharacter changeMecanic;
 
     // This method is called when the scene loads.
     private void Update()
     {
-        if (Input.GetKeyDown("q"))
+        if (changeMecanic.IsMiner == false)
+        {
+            flashlight.enabled = false;
+        }
+
+        if (changeMecanic.IsMiner && Input.GetKeyDown("q"))
         {
             if (flashlight.enabled == true)
             {
@@ -18,9 +24,7 @@ public class Flashlight : MonoBehaviour
             else if (flashlight.enabled == false)
             {
                 flashlight.enabled = true;
-            }    
-        }    
+            }
+        }
     }
-
-
 }

@@ -7,7 +7,6 @@ using UnityEngine;
 public class InteractivePalanca : MonoBehaviour
 {
     public bool islocked;
-    public bool isMecanic;
     public bool isNear;
     public GameObject labelObject;
     public List<Puente> puente;
@@ -17,7 +16,7 @@ public class InteractivePalanca : MonoBehaviour
     private void Update()
     {
         LabelFunction();
-        if (Input.GetKeyDown(keyActiveLabel)&&!islocked&&isNear)
+        if (Input.GetKeyDown(keyActiveLabel) && !islocked && isNear)
         {
             switch (labelActive)
             {
@@ -31,7 +30,7 @@ public class InteractivePalanca : MonoBehaviour
         }
         if (changeMecanic.IsEngineer)
         {
-            if (Input.GetKeyDown(KeyCode.E) &&islocked&&isNear)
+            if (Input.GetKeyDown(KeyCode.F) && islocked && isNear)
             {
                 islocked = false;
 
@@ -82,20 +81,16 @@ public class InteractivePalanca : MonoBehaviour
     }
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Engi"))
         {
             isNear = true;
-
-
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Engi"))
         {
             isNear = false;
-            
-
         }
     }
 }
