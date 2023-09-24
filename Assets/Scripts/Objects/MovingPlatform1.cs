@@ -22,11 +22,11 @@ public class MovingPlatform1 : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
 
         // Si la plataforma llega a uno de los puntos, cambia el objetivo al otro punto
-        if (transform.position == pointA.position)
+        if (Vector3.Distance(transform.position, pointA.position) < 0.01f)
         {
             target = pointB.position;
         }
-        else if (transform.position == pointB.position)
+        else if (Vector3.Distance(transform.position, pointB.position) < 0.01f)
         {
             target = pointA.position;
         }
