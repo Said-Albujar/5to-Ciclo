@@ -12,7 +12,7 @@ public class Break : MonoBehaviour
 
     void Update()
     {
-        if (CanBreak == true && Input.GetKeyDown(KeyCode.F) && Change.IsMiner == true)
+        if (CanBreak == true && Input.GetKeyDown(KeyCode.Mouse0) && Change.IsMiner == true)
         {
             Destroy(Rock);
         }

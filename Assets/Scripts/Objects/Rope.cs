@@ -18,7 +18,7 @@ public class Rope : MonoBehaviour
     }
     private void OnTriggerExit(Collider collider)
     {
-        if (changeMecanic.IsHairdress && Input.GetKeyDown(KeyCode.F))
+        if (changeMecanic.IsHairdress && Input.GetKeyDown(KeyCode.Mouse0))
         {
             chain.SetActive(false);
             chainF = true;
@@ -30,7 +30,7 @@ public class Rope : MonoBehaviour
         {
             if (!chainF)
             {
-                if (Input.GetKeyDown(KeyCode.F))
+                if (Input.GetKeyDown(KeyCode.Mouse0))
                 {
                     if (gameObject.activeSelf)
                     {

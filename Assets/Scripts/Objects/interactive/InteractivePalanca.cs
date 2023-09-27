@@ -13,6 +13,8 @@ public class InteractivePalanca : MonoBehaviour
     public KeyCode keyActiveLabel;
     public bool labelActive;
     public ChangeCharacter changeMecanic;
+
+    public Renderer render;
     private void Update()
     {
         LabelFunction();
@@ -28,20 +30,30 @@ public class InteractivePalanca : MonoBehaviour
                     break;
             }
         }
-        if(changeMecanic!=null)
+        if (changeMecanic.IsEngineer)
         {
-            if (changeMecanic.IsEngineer)
+            if (Input.GetKeyDown(KeyCode.F) && islocked && isNear)
             {
-                if (Input.GetKeyDown(KeyCode.F) && islocked && isNear)
-                {
-                    islocked = false;
-
-                }
-
+                islocked = false;
 
             }
+
+
         }
-        
+        /*if(changeMecanic!=null)
+        {
+            
+        }*/
+
+        if (islocked)
+        {
+            render.material.color = Color.red;
+        }
+        else
+        {
+            render.material.color = Color.green;
+        }
+
     }
 
     private void RotateLabel(float rotation)
