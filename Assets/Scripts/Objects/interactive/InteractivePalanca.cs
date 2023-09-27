@@ -30,16 +30,22 @@ public class InteractivePalanca : MonoBehaviour
                     break;
             }
         }
-        if (changeMecanic.IsEngineer)
+        if(changeMecanic!=null)
         {
-            if (Input.GetKeyDown(KeyCode.F) && islocked && isNear)
+            if (changeMecanic.IsEngineer)
             {
-                islocked = false;
+                if (Input.GetKeyDown(KeyCode.F) && islocked && isNear)
+                {
+                    islocked = false;
+
+                }
+
 
             }
-
-
         }
+        
+    
+        
         /*if(changeMecanic!=null)
         {
             
