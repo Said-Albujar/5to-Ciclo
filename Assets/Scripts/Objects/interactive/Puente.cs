@@ -34,7 +34,7 @@ public class Puente : MonoBehaviour
     {
         Quaternion actualRotation = transform.rotation;
 
-        Quaternion rotationActive = Quaternion.Euler(0, 0, rotation);
+        Quaternion rotationActive = Quaternion.Euler(rotation, 0, 0);
 
         actualRotation = Quaternion.RotateTowards(actualRotation, rotationActive, 200 * Time.deltaTime);
 
