@@ -1,70 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LoadScene : MonoBehaviour
 {
-    public bool pause=false;
-    public bool startPause;
-    [SerializeField]private GameObject panelPause;
-   
+    // Start is called before the first frame update
     public void LoadSceneByName(string nameLevel)
     {
         SceneManager.LoadScene(nameLevel);
     }
-    private void Start()
+    public void Exit()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        
-
+        Application.Quit();
     }
-    private void Update()
-    {
-        if (startPause)
-        {
-            pauseScene();
-        }
-    }
-    void pauseScene()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape) && !pause)
-        {
-
-
-            Time.timeScale = 0f;
-            panelPause.SetActive(true);
-            pause = true;
-            Cursor.lockState = CursorLockMode.None;
-
-
-
-        }
-        else if (Input.GetKeyDown(KeyCode.Escape) && pause)
-        {
-            Time.timeScale = 1f;
-            panelPause.SetActive(false);
-            pause = false;
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-
-
-
-        }
-
-    }
-    public void Reiniciar()
-    {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene("Mirko");
-        pause = false;
-    }
-    public void Restaurar()
-    {
-        Time.timeScale = 1f;
-        
-        panelPause.SetActive(false);
-        pause = false;
-    }
-   
 }
