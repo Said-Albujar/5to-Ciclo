@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2554,8 +2554,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openBridge: 0
-  rotationOpen: -180
-  rotationClose: 225
+  rotationOpenX: 0
+  rotationOpenY: 0
+  rotationOpenZ: 0
+  rotationCloseX: 0
+  rotationCloseY: 0
+  rotationCloseZ: 0
+  speedRotation: 0
 --- !u!1 &992538637
 GameObject:
   m_ObjectHideFlags: 0
@@ -2789,19 +2794,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 582983895883643432, guid: 0b0befea8f7ddb546a06a4f64649108f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000017001136
+      value: -0.000000017001133
       objectReference: {fileID: 0}
     - target: {fileID: 582983895883643432, guid: 0b0befea8f7ddb546a06a4f64649108f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000026497164
+      value: 0.000000002649716
       objectReference: {fileID: 0}
     - target: {fileID: 582983896125567470, guid: 0b0befea8f7ddb546a06a4f64649108f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000019102911
+      value: 0.000000019102911
       objectReference: {fileID: 0}
     - target: {fileID: 582983896125567470, guid: 0b0befea8f7ddb546a06a4f64649108f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000022700581
+      value: -0.0000000022700581
       objectReference: {fileID: 0}
     - target: {fileID: 725612484143863506, guid: 0b0befea8f7ddb546a06a4f64649108f, type: 3}
       propertyPath: WaitTime
@@ -3889,7 +3894,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1442085269}
-  m_LocalRotation: {x: -0.38268343, y: 0, z: 0, w: 0.92387956}
+  m_LocalRotation: {x: -0.27059805, y: 0.6532815, z: 0.27059805, w: 0.6532815}
   m_LocalPosition: {x: 10.020261, y: -0.21219993, z: 12.758114}
   m_LocalScale: {x: 9.222858, y: 0.39863, z: 16.310898}
   m_ConstrainProportionsScale: 0
@@ -3897,7 +3902,7 @@ Transform:
   - {fileID: 1599055392}
   m_Father: {fileID: 1155395624}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: -45, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -45, y: 90, z: 0}
 --- !u!114 &1442085271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3911,8 +3916,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openBridge: 0
-  rotationOpen: 0
-  rotationClose: -45
+  rotationOpenX: 0
+  rotationOpenY: 0
+  rotationOpenZ: 0
+  rotationCloseX: -45
+  rotationCloseY: 90
+  rotationCloseZ: 0
+  speedRotation: 100
 --- !u!1 &1444208903
 GameObject:
   m_ObjectHideFlags: 0
@@ -4304,6 +4314,7 @@ MonoBehaviour:
   rigidbodyPlayer: {fileID: 1628293060}
   colisionClimb: {fileID: 1168938003}
   radius: 0.62
+  elevator: 0
 --- !u!43 &1644710829
 Mesh:
   m_ObjectHideFlags: 0

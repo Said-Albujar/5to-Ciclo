@@ -5,8 +5,9 @@ using UnityEngine;
 public class Puente : MonoBehaviour
 {
     public bool openBridge;
-    public float rotationOpen;
-    public float rotationClose;
+    public float rotationOpenX,rotationOpenY,rotationOpenZ;
+    public float rotationCloseX,rotationCloseY,rotationCloseZ;
+    public float speedRotation;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +19,7 @@ public class Puente : MonoBehaviour
     {
         if(openBridge)
         {
-            RotateLabel(rotationOpen);
+            RotateLabel(rotationOpenX,rotationOpenY,rotationOpenZ);
             /*if(transform.rotation.z!=0)
             {
                 
@@ -27,16 +28,16 @@ public class Puente : MonoBehaviour
         }
         else
         {
-            RotateLabel(rotationClose);
+            RotateLabel(rotationCloseX,rotationCloseY,rotationCloseZ);
         }
     }
-    private void RotateLabel(float rotation)
+    private void RotateLabel(float rotationX,float rotationY,float rotationZ)
     {
         Quaternion actualRotation = transform.rotation;
 
-        Quaternion rotationActive = Quaternion.Euler(rotation, 0, 0);
+        Quaternion rotationActive = Quaternion.Euler(rotationX, rotationY, rotationZ);
 
-        actualRotation = Quaternion.RotateTowards(actualRotation, rotationActive, 100 * Time.deltaTime);
+        actualRotation = Quaternion.RotateTowards(actualRotation, rotationActive, speedRotation * Time.deltaTime);
 
         transform.rotation = actualRotation;
     }
