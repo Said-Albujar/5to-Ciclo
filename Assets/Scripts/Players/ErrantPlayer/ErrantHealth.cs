@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ErrantHealth : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class ErrantHealth : MonoBehaviour
     public Image[] hearts;
     public Sprite fullHeart;
     public Sprite emptyHeart;
+    public string SceneName;
 
     private void Update()
     {
@@ -20,7 +22,10 @@ public class ErrantHealth : MonoBehaviour
         }
 
         CheckHearts();
-        
+        if (health == 0)
+        {
+            SceneManager.LoadScene(SceneName);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -46,5 +51,7 @@ public class ErrantHealth : MonoBehaviour
             else
                 hearts[i].enabled = false;
         }
+
+        
     }
 }
