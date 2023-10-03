@@ -5,9 +5,14 @@ using UnityEngine;
 public class Puente : MonoBehaviour
 {
     public bool openBridge;
-    public float rotationOpenX,rotationOpenY,rotationOpenZ;
-    public float rotationCloseX,rotationCloseY,rotationCloseZ;
     public float speedRotation;
+    [Header("Rotations")]
+    public float rotationOpenX;
+    public float rotationOpenY;
+    public float rotationOpenZ;
+
+    public float rotationCloseX,rotationCloseY,rotationCloseZ;
+   
     // Start is called before the first frame update
     void Start()
     {
