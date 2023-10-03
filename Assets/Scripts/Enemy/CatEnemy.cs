@@ -11,7 +11,7 @@ public class CatEnemy : MonoBehaviour
     public NavMeshAgent navMeshAgent;
     public GameObject playerPosition;
     public bool patrullajeActive;
-    public bool rotate;
+    public bool rotate = true;
     [Header("Cono de vision")]
     public bool canSeePlayer;
     public Collider[] rangeChecks;
@@ -19,12 +19,13 @@ public class CatEnemy : MonoBehaviour
     public LayerMask targetMask;
     public LayerMask obstructionMask;
     public float angle;
-    public float time=0;
-    public float timer;
+    public bool rotating = true;
+    public float rotationTimer;
+    public float rotationMaxTimer;
     public float rotationEnemy;
     private void Update()
     {
-      
+        FieldOfViewCheck();
         if (canSeePlayer)
         {
             if (playerPosition != null)
@@ -40,39 +41,46 @@ public class CatEnemy : MonoBehaviour
             flipMove();
         }
     }
-    private void Start()
-    {
-        
-        StartCoroutine(FOVRoutine());
+   
 
-    }
     void flipMove()
     {
-        Quaternion currentRotation = transform.rotation;
         if (rotate)
         {
-            transform.rotation *= Quaternion.Euler(0f, rotationEnemy * Time.deltaTime, 0f);
+            if (rotating)
+            {
+                //rota
+                transform.rotation *= Quaternion.Euler(0f, rotationEnemy * Time.deltaTime, 0f);
+                rotationTimer += Time.deltaTime;
 
+                // Si el temporizador alcanza la duración deseada, detener la rotación
+                if (rotationTimer >= rotationMaxTimer)
+                {
+                    rotating = false;
+                    rotationTimer = 0f;
+                }
+
+            }
+            else
+            {
+                //detener la rotacion
+                rotationTimer += Time.deltaTime;
+
+                // Si el temporizador alcanza 2 segundos, reiniciar la rotación
+                if (rotationTimer >= rotationMaxTimer-1)
+                {
+                    rotating = true;
+                    rotationTimer = 0f;
+                }
+            }
         }
-        else
-        {
-            //transform.rotation = Quaternion.Euler(0f, currentRotation, 0f);
-
-        }
+       
+    
     }
-
-    IEnumerator FOVRoutine()
-    {
-
-
-
-        flipMove();
-        yield return new WaitForSeconds(timer);
-        
-
-        StartCoroutine(FOVRoutine());
-        
-    }
+  
+    
+   
+   
     void FieldOfViewCheck()
     {
 
