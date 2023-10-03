@@ -1,86 +1,82 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Enemy : MonoBehaviour
+public class CatEnemy : MonoBehaviour
 {
+    // Start is called before the first frame update
     [Header("Movement")]
     public NavMeshAgent navMeshAgent;
     public GameObject playerPosition;
-    public bool patrullajeActivo = true;
-    public float speedPlayerChange;
-    public int nextStep=0;
-    public List<Transform> positionPoint;
-    public float distanceMin;
+    public bool patrullajeActive;
+    public bool rotate;
     [Header("Cono de vision")]
-    public float radius;
-    public float angle;
-    public LayerMask targeMask;
-    public LayerMask obstructionMask;
     public bool canSeePlayer;
-    public float time;
     public Collider[] rangeChecks;
-    // Start is called before the first frame update
-    private void Awake()
-    {
-        navMeshAgent = GetComponent<NavMeshAgent>();
-    }
-    private void Start()
-    {
-
-        StartCoroutine(FOVRoutine());
-        
-    }
-
-
-
+    public float radius;
+    public LayerMask targetMask;
+    public LayerMask obstructionMask;
+    public float angle;
+    public float time=0;
+    public float timer;
+    public float rotationEnemy;
     private void Update()
     {
-
+      
         if (canSeePlayer)
         {
             if (playerPosition != null)
             {
                 navMeshAgent.SetDestination(playerPosition.transform.position);
-                navMeshAgent.speed = speedPlayerChange;
-                patrullajeActivo = false;
+                patrullajeActive = false;
             }
 
         }
         else
         {
-            patrullajeActivo = true;
-            MoveRandom();
-            navMeshAgent.speed = 2f;
+            patrullajeActive = false;
+            flipMove();
         }
     }
-    void MoveRandom()
+    private void Start()
     {
-        navMeshAgent.SetDestination(positionPoint[nextStep].position);
-        if (Vector3.Distance(transform.position, positionPoint[nextStep].position)<distanceMin)
+        
+        StartCoroutine(FOVRoutine());
+
+    }
+    void flipMove()
+    {
+        Quaternion currentRotation = transform.rotation;
+        if (rotate)
         {
-            nextStep++;
-            if(nextStep>=positionPoint.Count)
-            {
-                nextStep = 0;
-            }
+            transform.rotation *= Quaternion.Euler(0f, rotationEnemy * Time.deltaTime, 0f);
+
+        }
+        else
+        {
+            //transform.rotation = Quaternion.Euler(0f, currentRotation, 0f);
+
         }
     }
-   
-   
+
     IEnumerator FOVRoutine()
     {
-        while (true)
-        {
-            yield return new WaitForSeconds(time);
-            FieldOfViewCheck();
-        }
+
+
+
+        flipMove();
+        yield return new WaitForSeconds(timer);
+        
+
+        StartCoroutine(FOVRoutine());
+        
     }
     void FieldOfViewCheck()
     {
 
-        rangeChecks = Physics.OverlapSphere(transform.position, radius, targeMask);
+        rangeChecks = Physics.OverlapSphere(transform.position, radius, targetMask);
         if (rangeChecks.Length != 0)
         {
             Transform target = rangeChecks[0].transform;

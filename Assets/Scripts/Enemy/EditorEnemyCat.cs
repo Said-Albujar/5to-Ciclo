@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(Enemy))]
-
-public class EditorEnemy : Editor
+[CustomEditor(typeof(CatEnemy))]
+public class EditorEnemyCat : Editor
 {
     private void OnSceneGUI()
     {
-        Enemy fov = (Enemy)target;
+        CatEnemy fov = (CatEnemy)target;
         Handles.color = Color.white;
         Handles.DrawWireArc(fov.transform.position, Vector3.up, Vector3.forward, 360, fov.radius);
 
@@ -38,3 +37,7 @@ public class EditorEnemy : Editor
         return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
     }
 }
+
+
+   
+
