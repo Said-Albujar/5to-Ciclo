@@ -6,19 +6,26 @@ using UnityEngine;
 
 public class InteractivePalanca : MonoBehaviour
 {
-    public bool islocked;
+    public bool isLocked;
     public bool isNear;
     public GameObject labelObject;
     public List<Puente> puente;
     public KeyCode keyActiveLabel;
     public bool labelActive;
     public ChangeCharacter changeMecanic;
-
     public Renderer render;
+
+    public bool isBroken = false;
+    public bool canBroke = false;
+
+    private void Awake()
+    {
+        changeMecanic = FindObjectOfType<ChangeCharacter>();
+    }
     private void Update()
     {
         LabelFunction();
-        if (Input.GetKeyDown(keyActiveLabel) && !islocked && isNear)
+        if (Input.GetKeyDown(keyActiveLabel) && !isLocked && isNear && !isBroken)
         {
             switch (labelActive)
             {
@@ -34,28 +41,24 @@ public class InteractivePalanca : MonoBehaviour
         {
             if (changeMecanic.IsEngineer)
             {
-                if (Input.GetKeyDown(KeyCode.F) && islocked && isNear)
+                if (Input.GetKeyDown(KeyCode.F) && isLocked && !isBroken && isNear)
                 {
-                    islocked = false;
+                    isLocked = false;
 
                 }
-
+                if (Input.GetKeyDown(KeyCode.G) && !isBroken && canBroke && isNear) //Si no esta roto y puede romperse, se rompera
+                {
+                    isBroken = true;
+                }
 
             }
         }
-        
-    
-        
-        /*if(changeMecanic!=null)
-        {
-            
-        }*/
 
-        if (islocked)
+        if (isLocked || isBroken)
         {
             render.material.color = Color.red;
         }
-        else
+        else if (!isLocked && !isBroken)
         {
             render.material.color = Color.green;
         }
@@ -74,31 +77,39 @@ public class InteractivePalanca : MonoBehaviour
     }
     private void LabelFunction()
     {
-        
-        
+        if (!isBroken)
+        {
             switch (labelActive)
             {
                 case true:
                     RotateLabel(35);
-                foreach (Puente item in puente)
-                {
-                    item.openBridge = true;
-                }
+                    foreach (Puente item in puente)
+                    {
+                        item.openBridge = true;
+                    }
 
-                break;
+                    break;
 
-                  
-
-                    
                 case false:
                     RotateLabel(-35);
-                foreach (Puente item in puente)
-                {
-                    item.openBridge = false;
-                }
+                    foreach (Puente item in puente)
+                    {
+                        item.openBridge = false;
+                    }
 
-                break;
+                    break;
             }
+        }
+        else
+        {
+            foreach (Puente item in puente)
+            {
+                item.openBridge = false;
+            }
+        }
+            
+        
+           
         
     }
     private void OnTriggerEnter(Collider collision)

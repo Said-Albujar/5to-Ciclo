@@ -16,7 +16,6 @@ public class InteractiveObject : MonoBehaviour
     public KeyCode KeyActiveLabel = KeyCode.E;
     private bool isNear;
     private bool labelActive;
-    public bool isLocked = false;
     
     [Header("Button")]
     public Animator anim;
@@ -27,20 +26,18 @@ public class InteractiveObject : MonoBehaviour
 
     [Header ("Function")]
     public List<GameObject> objectActive;
-   
-    
 
+    public Renderer render;
+    public ChangeCharacter changeMecanic;
 
-
+    public bool isLocked = false;
+    public bool isBroken = false;
+    public bool canBroke = false;
     // Start is called before the first frame update
     void Start()
     {
         if (typeSelect == Type.Button)
-        {
             anim = GetComponent<Animator>();
-        }
-
-        
         
     }
 
@@ -49,12 +46,11 @@ public class InteractiveObject : MonoBehaviour
     {
         ActivateTimerButton();
         LabelFunction();
-        if (typeSelect == Type.Button)
-        {
-            anim.SetBool("isPressed", buttonPressed);
-        }
 
-        if (typeSelect == Type.Label && isNear && !isLocked)
+        if (typeSelect == Type.Button)
+            anim.SetBool("isPressed", buttonPressed);
+
+        if (typeSelect == Type.Label && isNear && !isLocked && !isBroken)
         {
             if (Input.GetKeyDown(KeyActiveLabel))
             {
@@ -70,52 +66,55 @@ public class InteractiveObject : MonoBehaviour
             }
         }
 
+        if (changeMecanic != null)
+        {
+            if (changeMecanic.IsEngineer)
+            {
+                if (Input.GetKeyDown(KeyCode.F) && isLocked && !isBroken && isNear) // desbloquea el mecanismo si este no esta roto y se encuentra cerca
+                {
+                    isLocked = false;
+                }
+                if (Input.GetKeyDown(KeyCode.G) && !isBroken && canBroke && isNear) //Si no esta roto y puede romperse, se rompera
+                {
+                    isBroken = true;
+                }
+            }
+        }
+
+        if (isLocked || isBroken)
+        {
+            render.material.color = Color.red;
+        }
+        else if(!isLocked && !isBroken)
+        {
+            render.material.color = Color.green;
+        }
     }
 
     private void LabelFunction()
     {
         if (typeSelect == Type.Label)
         {
-            switch (labelActive)
+            if (!isBroken)
             {
-                case true:
-                    RotateLabel(35);
-                    if (objectActive[0].GetComponent<InteractiveDoor>())
-                    {
-                        foreach (GameObject item in objectActive)
-                        {
-                            item.GetComponent<InteractiveDoor>().open = true;
-                        } 
-                    }
+                switch (labelActive)
+                {
+                    case true:
+                        RotateLabel(35);
 
-                    if (objectActive[0].GetComponent<MovingPlatform1>())
-                    {
-                        foreach (GameObject item in objectActive)
-                        {
-                            item.GetComponent<MovingPlatform1>().enabled = true;
-                        }    
-                    }
+                        UseFunction(true);
 
-                    break;
-                case false:
-                    RotateLabel(-35);
-                    if (objectActive[0].GetComponent<InteractiveDoor>())
-                    {
-                        foreach (GameObject item in objectActive)
-                        {
-                            item.GetComponent<InteractiveDoor>().open = false;
-                        }
-                    }
+                        break;
+                    case false:
+                        RotateLabel(-35);
 
-                    if (objectActive[0].GetComponent<MovingPlatform1>())
-                    {
-                        foreach (GameObject item in objectActive)
-                        {
-                            item.GetComponent<MovingPlatform1>().enabled = false;
-                        }
-                    }
-                    break;
+                        UseFunction(false);
+                        break;
+                }
             }
+            else
+                UseFunction(false);
+
         }
     }
     private void ActivateTimerButton()
@@ -125,22 +124,7 @@ public class InteractiveObject : MonoBehaviour
             timer -= Time.deltaTime;
             if (timer <= 0)
             {
-                if (objectActive[0].GetComponent<InteractiveDoor>())
-                {
-                    foreach (GameObject item in objectActive)
-                    {
-                        item.GetComponent<InteractiveDoor>().open = false;
-                    }
-
-                }
-
-                if (objectActive[0].GetComponent<MovingPlatform1>())
-                {
-                    foreach (GameObject item in objectActive)
-                    {
-                        item.GetComponent<MovingPlatform1>().enabled = false;
-                    }
-                }
+                UseFunction(false);
 
                 timerActive = false;
             }
@@ -165,22 +149,8 @@ public class InteractiveObject : MonoBehaviour
             if (other.CompareTag("Hair") || other.CompareTag("Box") || other.CompareTag("Miner") || other.CompareTag("Engi"))
             {
 
-                if (objectActive[0].GetComponent<InteractiveDoor>())
-                {
-                    foreach (GameObject item in objectActive)
-                    {
-                        item.GetComponent<InteractiveDoor>().open = true;
-                    }
-                }
+                UseFunction(true);
 
-                if (objectActive[0].GetComponent<MovingPlatform1>())
-                {
-                    foreach (GameObject item in objectActive)
-                    {
-                        item.GetComponent<MovingPlatform1>().enabled = true;
-                    }
-                }
-                
                 buttonPressed = true;
             }
 
@@ -214,6 +184,38 @@ public class InteractiveObject : MonoBehaviour
             if (other.CompareTag("Hair") || other.CompareTag("Miner") || other.CompareTag("Engi"))
             {
                 isNear = false;
+            }
+        }
+    }
+
+    private void UseFunction(bool active) //Activa o desactiva el mecanismo que se este utilizando
+    {
+        if (!isBroken) // si no esta roto hara la función
+        {
+            FunctionDoor(active);
+            FunctionMovePlatform(active);
+        }
+        
+    }
+
+    private void FunctionDoor(bool active)
+    {
+        if (objectActive[0].GetComponent<InteractiveDoor>()) // Busca primero si el objeto a usar es una puerta
+        {
+            foreach (GameObject item in objectActive)
+            {
+                item.GetComponent<InteractiveDoor>().open = active;
+            }
+        }
+    }
+
+    private void FunctionMovePlatform(bool active)
+    {
+        if (objectActive[0].GetComponent<MovingPlatform1>()) // Busca primero si el objeto a usar es una plataforma movible
+        {
+            foreach (GameObject item in objectActive)
+            {
+                item.GetComponent<MovingPlatform1>().enabled = active;
             }
         }
     }
