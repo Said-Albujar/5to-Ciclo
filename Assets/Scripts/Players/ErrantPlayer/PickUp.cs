@@ -6,7 +6,13 @@ public class PickUp : MonoBehaviour
 {
     public GameObject HandPoint;
     private GameObject PickedObject = null;
-
+    [Header("Wall")]
+    public GameObject wall;
+    public bool fallWall;
+    private void Start()
+    {
+        wall.GetComponent<Rigidbody>().isKinematic = true;
+    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))
@@ -15,6 +21,16 @@ public class PickUp : MonoBehaviour
             PickedObject.GetComponent <Rigidbody>().isKinematic = false;
             PickedObject.gameObject.transform.SetParent(null);
             PickedObject = null;
+        }
+        if(fallWall)
+        {
+            if(Input.GetKeyDown(KeyCode.F))
+            {
+             
+                wall.GetComponent<Rigidbody>().useGravity = true;
+                wall.GetComponent<Rigidbody>().isKinematic = false;
+            }
+         
         }
     }
 
@@ -30,6 +46,18 @@ public class PickUp : MonoBehaviour
                 other.gameObject.transform.SetParent(HandPoint.gameObject.transform);
                 PickedObject = other.gameObject;
             }
+        }
+
+        if (other.gameObject.CompareTag("Wall"))
+        {
+            fallWall = true;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Wall"))
+        {
+            fallWall = false;
         }
     }
 }

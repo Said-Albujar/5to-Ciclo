@@ -28,6 +28,7 @@ public class CatEnemy : MonoBehaviour
         FieldOfViewCheck();
         if (canSeePlayer)
         {
+            //El enemigo sigue al jugador en su rango
             if (playerPosition != null)
             {
                 navMeshAgent.SetDestination(playerPosition.transform.position);
@@ -37,6 +38,7 @@ public class CatEnemy : MonoBehaviour
         }
         else
         {
+            //El enemigo ya no sigue al jugador
             patrullajeActive = false;
             flipMove();
         }
@@ -83,7 +85,7 @@ public class CatEnemy : MonoBehaviour
    
     void FieldOfViewCheck()
     {
-
+        //El cono de vision 
         rangeChecks = Physics.OverlapSphere(transform.position, radius, targetMask);
         if (rangeChecks.Length != 0)
         {

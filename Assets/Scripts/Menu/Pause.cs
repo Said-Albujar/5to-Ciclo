@@ -5,15 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class Pause : MonoBehaviour
 {
-    public bool pause=false;
+    public bool pause = false;
     public bool startPause;
-    [SerializeField]private GameObject panelPause;
-   
-   
+    [SerializeField] private GameObject panelPause;
+
+
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        
+
 
     }
     private void Update()
@@ -59,9 +59,15 @@ public class Pause : MonoBehaviour
     public void Restaurar()
     {
         Time.timeScale = 1f;
-        
+
         panelPause.SetActive(false);
         pause = false;
     }
+    public void ExitMenu()
+    {
+        SceneManager.LoadScene("Menu");
+
+    }
+   
    
 }
