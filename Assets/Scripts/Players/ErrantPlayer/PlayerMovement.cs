@@ -26,12 +26,20 @@ public class PlayerMovement : MonoBehaviour
     Vector3 moveDir;
 
     Rigidbody rb;
-
     Transform cameraTransform;
     [Header("JumpPlayer")]
     public float jumpForce;
     public float cooldownJump;
     public KeyCode jumpKey = KeyCode.Space;
+
+    [Header("Crouch")]
+    public bool isCrouching;
+    public float standHeight;
+    public float standY;
+    public float crouchHeight;
+    public float CrouchY;
+    public CapsuleCollider[] capsuleColliders;
+
     [Header("Impulse")]
     [SerializeField] GameObject stepRayUpper;
     [SerializeField] GameObject stepRayLower;
@@ -40,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
     public float radius;
     public RaycastHit hitUpper;
     public RaycastHit hitLower;
+
     void Start()
     {
         cameraTransform = Camera.main.transform;
@@ -72,10 +81,31 @@ public class PlayerMovement : MonoBehaviour
         horInput = Input.GetAxisRaw("Horizontal");
         verInput = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetKeyDown(jumpKey) && grounded)
+        if (Input.GetKeyDown(jumpKey) && grounded && !isCrouching)
         {
             Invoke(nameof(JumpPlayer), cooldownJump);
             grounded = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftControl) && grounded) 
+        {
+            switch (isCrouching)
+            {
+                case true:
+                    if (!PlayerHeadCheck.headCheck) //Si hay algo encima del player, no se podra levantar
+                    {
+                        isCrouching = false;
+                        Crouch();
+                    }
+                    break;
+                case false:
+                    {
+                        isCrouching = true;
+                        Crouch();
+                    }
+                    
+                    break;
+            }
         }
     }
     void JumpPlayer()
@@ -83,6 +113,36 @@ public class PlayerMovement : MonoBehaviour
         rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
     }
 
+    void Crouch()
+    {
+        if (isCrouching)
+        {
+            gameObject.transform.localScale = new Vector3(transform.localScale.x, 0.5f, transform.localScale.z);
+            gameObject.transform.localPosition = new Vector3(transform.localPosition.x, -1.25f, transform.localPosition.z);
+
+            //La parte comentada se usara cuando usemos un modelo 3d con animaciones
+
+            //foreach (var item in capsuleColliders)  
+            //{
+            //    item.height = crouchHeight;
+            //    item.center = new Vector3(item.center.x, CrouchY, item.center.z);
+            //}
+
+        }
+        else
+        {
+            gameObject.transform.localScale = new Vector3(transform.localScale.x, 1, transform.localScale.z);
+
+            //La parte comentada se usara cuando usemos un modelo 3d con animaciones
+
+            //foreach (var item in capsuleColliders)
+            //{
+            //    item.height = standHeight;
+            //    item.center = new Vector3(item.center.x, standY, item.center.z);
+            //}
+
+        }
+    }
     void MoveErrant()
     {
         Vector3 forward = cameraTransform.forward;
@@ -124,17 +184,16 @@ public class PlayerMovement : MonoBehaviour
     {
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, ground);
     }
+
+
     void ImpulseElevator()
     {
-
-
-
         RaycastHit hitLower;
         if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(Vector3.forward), out hitLower, radius))
-        {                   
-            if(hitLower.collider.gameObject.CompareTag("Stairs"))
+        {
+            if (hitLower.collider.gameObject.CompareTag("Stairs"))
             {
-                if(horInput!=0 || verInput!=0)
+                if (horInput != 0 || verInput != 0)
                 {
                     rb.position -= new Vector3(0f, -stepSmooth * Time.deltaTime, 0f);
 
@@ -143,49 +202,9 @@ public class PlayerMovement : MonoBehaviour
                 {
                     rb.transform.position = Vector3.zero;
                 }
-            }           
-        }
-       
-
-
-        /*RaycastHit hitLower45;
-        if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(1.5f, 0, 1), out hitLower45, 0.1f))
-        {
-
-            RaycastHit hitUpper45;
-            if (!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(1.5f, 0, 1), out hitUpper45, 0.2f))
-            {
-                if (hitLower45.collider.gameObject.CompareTag("Stairs"))
-                    rb.position -= new Vector3(0f, -stepSmooth * Time.deltaTime, 0f);
             }
         }
-
-        RaycastHit hitLowerMinus45;
-        if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(-1.5f, 0, 1), out hitLowerMinus45, 0.1f))
-        {
-
-            RaycastHit hitUpperMinus45;
-            if (!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(-1.5f, 0, 1), out hitUpperMinus45, 0.2f))
-            {
-                if (hitLowerMinus45.collider.gameObject.CompareTag("Stairs"))
-                    rb.position -= new Vector3(0f, -stepSmooth * Time.deltaTime, 0f);
-            }
-        }*/
     }
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
 
     void SpeedControl()
     {
@@ -207,7 +226,7 @@ public class PlayerMovement : MonoBehaviour
                 }
                 break;
         }
-        
+
     }
 
     void Drag()
@@ -227,4 +246,5 @@ public class PlayerMovement : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
         }
     }
+    
 }
