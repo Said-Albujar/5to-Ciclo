@@ -33,12 +33,15 @@ public class InteractiveObject : MonoBehaviour
     public bool isLocked = false;
     public bool isBroken = false;
     public bool canBroke = false;
-    // Start is called before the first frame update
+    private void Awake()
+    {
+        changeMecanic = FindObjectOfType<ChangeCharacter>();
+        render = GetComponent<Renderer>();
+    }
     void Start()
     {
         if (typeSelect == Type.Button)
             anim = GetComponent<Animator>();
-        
     }
 
     // Update is called once per frame
@@ -83,11 +86,19 @@ public class InteractiveObject : MonoBehaviour
 
         if (isLocked || isBroken)
         {
-            render.material.color = Color.red;
+            if (render != null)
+            {
+                render.material.color = Color.red;
+            }
+                
         }
         else if(!isLocked && !isBroken)
         {
-            render.material.color = Color.green;
+            if (render!=null)
+            {
+                render.material.color = Color.green;
+            }
+            
         }
     }
 
@@ -113,7 +124,10 @@ public class InteractiveObject : MonoBehaviour
                 }
             }
             else
+            {
                 UseFunction(false);
+            }
+                
 
         }
     }
@@ -190,11 +204,8 @@ public class InteractiveObject : MonoBehaviour
 
     private void UseFunction(bool active) //Activa o desactiva el mecanismo que se este utilizando
     {
-        if (!isBroken) // si no esta roto hara la función
-        {
             FunctionDoor(active);
             FunctionMovePlatform(active);
-        }
         
     }
 
