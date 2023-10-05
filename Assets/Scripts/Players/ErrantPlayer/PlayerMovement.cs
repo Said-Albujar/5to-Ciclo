@@ -126,7 +126,6 @@ public class PlayerMovement : MonoBehaviour
         if (isCrouching)
         {
             gameObject.transform.localScale = new Vector3(transform.localScale.x, 0.5f, transform.localScale.z);
-            gameObject.transform.localPosition = new Vector3(transform.localPosition.x, -1.25f, transform.localPosition.z);
 
             //La parte comentada se usara cuando usemos un modelo 3d con animaciones
 
