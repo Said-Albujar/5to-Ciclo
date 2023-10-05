@@ -12,7 +12,8 @@ public class PlayerMovement : MonoBehaviour
     public float groundDrag;
     public float rotationSpeed;
     [HideInInspector] public bool isRunning;
-
+    public bool turn;
+    public FallHairdresser fall;
     [Header("GroundCheck")]
     public float playerHeight;
     public LayerMask ground;
@@ -65,14 +66,21 @@ public class PlayerMovement : MonoBehaviour
         GroundCheck();
         SpeedControl();
         ErrantInput();
+       
+
+        
         Drag();
+        
         actualSpeed = rb.velocity.magnitude;
 
     }
     void FixedUpdate()
     {
         MoveErrant();
-        RotatePlayer();
+        if (turn)
+        {
+            RotatePlayer();
+        }
         ImpulseElevator();
     }
 
@@ -231,10 +239,19 @@ public class PlayerMovement : MonoBehaviour
 
     void Drag()
     {
-        if (grounded)
+
+        
+        if(grounded)
+        {
+            rb.constraints &= ~RigidbodyConstraints.FreezePositionX;
+            turn = true;
             rb.drag = groundDrag;
-        else
+        }
+        else if(!grounded&&!fall.fall)
+        {
             rb.drag = 0;
+        }
+           
     }
 
     void RotatePlayer()
