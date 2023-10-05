@@ -26,6 +26,13 @@ public class ChangeCharacter : MonoBehaviour
     public bool IsEngineer;
     public bool HaveEngineer;
 
+    [Header("Engineer")]
+    public GameObject MatadorSkin;
+    public GameObject MatadorBody;
+    public bool isNearT;
+    public bool IsMatador;
+    public bool HaveMatador;
+
     void Start()
     {
         ChangeToHair();
@@ -48,6 +55,10 @@ public class ChangeCharacter : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Alpha3) && HaveEngineer)
             {
                 ChangeToEngineer();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha4) && HaveMatador)
+            {
+                ChangeToMatador();
             }
         }
         
@@ -72,6 +83,11 @@ public class ChangeCharacter : MonoBehaviour
             HaveEngineer = true;
             Destroy(EngineerBody);
         }
+        if(isNearT && Input.GetKeyDown(KeyCode.F))
+        {
+            HaveMatador = true;
+            Destroy(MatadorBody);
+        }
     }
 
     void ChangeToHair()
@@ -80,10 +96,13 @@ public class ChangeCharacter : MonoBehaviour
         HairdresserSkin.SetActive(true);
         MinerSkin.SetActive(false);
         EngineerSkin.SetActive(false);
+        MatadorSkin.SetActive(false);
 
         IsHairdress = true;
         IsMiner = false;
         IsEngineer = false;
+        IsMatador = false;
+
     }
 
     void ChangeToMiner()
@@ -92,10 +111,13 @@ public class ChangeCharacter : MonoBehaviour
         HairdresserSkin.SetActive(false);
         MinerSkin.SetActive(true);
         EngineerSkin.SetActive(false);
+        MatadorSkin.SetActive(false);
 
         IsHairdress = false;
         IsMiner = true;
         IsEngineer = false;
+        IsMatador = false;
+
     }
     void ChangeToEngineer()
     {
@@ -103,10 +125,26 @@ public class ChangeCharacter : MonoBehaviour
         HairdresserSkin.SetActive(false);
         MinerSkin.SetActive(false);
         EngineerSkin.SetActive(true);
+        MatadorSkin.SetActive(false);
 
         IsHairdress = false;
         IsMiner = false;
         IsEngineer = true;
+        IsMatador = false;
+    }
+
+    void ChangeToMatador()
+    {
+        StartTimer();
+        HairdresserSkin.SetActive(false);
+        MinerSkin.SetActive(false);
+        EngineerSkin.SetActive(false);
+        MatadorSkin.SetActive(true);
+
+        IsHairdress = false;
+        IsMiner = false;
+        IsEngineer = false;
+        IsMatador = true;
     }
     void StartTimer()
     {
@@ -125,6 +163,11 @@ public class ChangeCharacter : MonoBehaviour
         {
             isNearE = true;
         }
+
+        if (other.CompareTag("B_Mata"))
+        {
+            isNearT = true;
+        }
     }
 
     public void OnTriggerExit(Collider other)
@@ -137,6 +180,11 @@ public class ChangeCharacter : MonoBehaviour
         if (other.CompareTag("B_Engi"))
         {
             isNearE = false;
+        }
+
+        if (other.CompareTag("B_Mata"))
+        {
+            isNearT = false;
         }
     }
 }
