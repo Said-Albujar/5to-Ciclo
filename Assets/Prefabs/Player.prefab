@@ -2144,6 +2144,8 @@ GameObject:
   - component: {fileID: 8167250379779558235}
   - component: {fileID: 3796031382567589558}
   - component: {fileID: 725612484143863506}
+  - component: {fileID: 8486683020397253380}
+  - component: {fileID: 1520055032372574760}
   m_Layer: 0
   m_Name: PlayerGroup
   m_TagString: Player
@@ -2210,6 +2212,8 @@ MonoBehaviour:
   groundDrag: 4
   rotationSpeed: 6
   isRunning: 0
+  turn: 1
+  fall: {fileID: 8486683020397253380}
   playerHeight: 2
   ground:
     serializedVersion: 2
@@ -2338,6 +2342,40 @@ MonoBehaviour:
   isNearE: 0
   IsEngineer: 0
   HaveEngineer: 0
+--- !u!114 &8486683020397253380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4428219056850043532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7a76b6f672c5294fbd3cb9032ffbded, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fall: 0
+  rb2d: {fileID: 4428219056850043533}
+  fallPlayer: 10
+  player: {fileID: 4428219056850043531}
+  radius: 0.78
+  wallMask:
+    serializedVersion: 2
+    m_Bits: 256
+--- !u!114 &1520055032372574760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4428219056850043532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3012fb2311031bb4d96bed5856bf4c62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactableCanvas: {fileID: 0}
+  objectToDeactivate: {fileID: 9046019173314730521}
 --- !u!1 &5074394296052960187
 GameObject:
   m_ObjectHideFlags: 0
@@ -5519,8 +5557,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HandPoint: {fileID: 6001628478461185286}
-  wall: {fileID: 0}
-  fallWall: 0
 --- !u!1 &8167250378708927004
 GameObject:
   m_ObjectHideFlags: 0
