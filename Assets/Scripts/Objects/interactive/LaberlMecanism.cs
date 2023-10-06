@@ -5,6 +5,7 @@ using UnityEngine;
 public class LaberlMecanism : Mecanism
 {
     public GameObject labelObject;
+    public Renderer render;
     public KeyCode KeyActiveLabel = KeyCode.E;
     [SerializeField] private bool isLocked = false;
     [SerializeField] private bool isBroken = false;
@@ -20,6 +21,16 @@ public class LaberlMecanism : Mecanism
         ReadInputs();
         ChangeRenderer();
         LabelUse();
+
+
+        if (isLocked || isBroken)
+        {
+            render.material.color = Color.red;
+        }
+        else if (!isLocked && !isBroken)
+        {
+            render.material.color = Color.green;
+        }
     }
 
     public override void UseFunction(bool active)
