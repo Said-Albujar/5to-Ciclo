@@ -7,9 +7,8 @@ public class Pause : MonoBehaviour
 {
     public bool pause = false;
     public bool startPause;
-    public string SceneName;
     [SerializeField] private GameObject panelPause;
-
+    public string sceneName;
 
     private void Start()
     {
@@ -54,7 +53,7 @@ public class Pause : MonoBehaviour
     public void Reiniciar()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneName);
+        SceneManager.LoadScene(sceneName);
         pause = false;
     }
     public void Restaurar()
@@ -66,7 +65,7 @@ public class Pause : MonoBehaviour
     }
     public void ExitMenu()
     {
-        SceneManager.LoadScene("Menu");
+        Application.Quit();
 
     }
    

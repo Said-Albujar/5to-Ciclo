@@ -34,7 +34,7 @@ RectTransform:
   - {fileID: 582983896803515038}
   - {fileID: 582983896685110349}
   m_Father: {fileID: 582983896552062030}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -172,7 +172,7 @@ RectTransform:
   - {fileID: 582983897021588438}
   - {fileID: 582983896117865961}
   m_Father: {fileID: 582983896552062030}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -835,9 +835,9 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7099546907942008801}
   - {fileID: 582983895507322656}
   - {fileID: 582983895087056163}
+  - {fileID: 7099546907942008801}
   m_Father: {fileID: 3719202617651630711}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2038,9 +2038,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2012814869071485906}
-        m_TargetAssemblyTypeName: LoadScene, Assembly-CSharp
-        m_MethodName: LoadSceneByName
-        m_Mode: 5
+        m_TargetAssemblyTypeName: Pause, Assembly-CSharp
+        m_MethodName: ExitMenu
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -6801,7 +6801,7 @@ RectTransform:
   m_Children:
   - {fileID: 6182189501620367928}
   m_Father: {fileID: 582983896552062030}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -6883,5 +6883,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pause: 0
   startPause: 1
-  SceneName: 
   panelPause: {fileID: 2856552839389026956}
+  sceneName: 

@@ -205,10 +205,6 @@ public class PlayerMovement : MonoBehaviour
                     rb.position -= new Vector3(0f, -stepSmooth * Time.deltaTime, 0f);
 
                 }
-                else
-                {
-                    rb.transform.position = Vector3.zero;
-                }
             }
         }
     }
