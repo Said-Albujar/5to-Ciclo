@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
+using UnityEditor;
 
 public class Climb : MonoBehaviour
 {
@@ -10,6 +12,12 @@ public class Climb : MonoBehaviour
     public GameObject colisionClimb;
     public float radius;
     public float elevator;
+    [Header("ClimbWalls")]
+    public bool enPared = false;
+    public GameObject point;
+    public float speed;
+    public float time;
+
     // Update is called once per frame
     void Update()
     {
@@ -35,9 +43,40 @@ public class Climb : MonoBehaviour
            
         }
     }
-    private void OnDrawGizmos()
+    
+
+    IEnumerator ClimbAction()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawRay(positionClimb.transform.position, positionClimb.transform.TransformDirection(Vector3.forward) * radius);
+
+        if (enPared)
+        {
+            rigidbodyPlayer.useGravity = false;
+            transform.position = Vector3.MoveTowards(transform.position, point.transform.position, speed * Time.deltaTime);
+            yield return new WaitForSeconds(1f);
+
+
+
+        }
+        else
+        {
+            rigidbodyPlayer.useGravity = true;
+        }
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("Hold"))
+        {
+            enPared = true;
+            StartCoroutine(ClimbAction());
+        }
+
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Hold"))
+        {
+            enPared = false;
+            StartCoroutine(ClimbAction());
+        }
     }
 }
