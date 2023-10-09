@@ -205,10 +205,6 @@ public class PlayerMovement : MonoBehaviour
                     rb.position -= new Vector3(0f, -stepSmooth * Time.deltaTime, 0f);
 
                 }
-                else
-                {
-                    rb.transform.position = Vector3.zero;
-                }
             }
         }
     }
@@ -238,8 +234,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Drag()
     {
-
-        
         if(grounded)
         {
             rb.constraints &= ~RigidbodyConstraints.FreezePositionX;
@@ -249,8 +243,7 @@ public class PlayerMovement : MonoBehaviour
         else if(!grounded&&!fall.fall)
         {
             rb.drag = 0;
-        }
-           
+        } 
     }
 
     void RotatePlayer()
