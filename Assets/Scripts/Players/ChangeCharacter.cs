@@ -33,6 +33,13 @@ public class ChangeCharacter : MonoBehaviour
     public bool IsMatador;
     public bool HaveMatador;
 
+    [Header("CharacterChangeUI")]
+    public GameObject characterHair;
+    public GameObject characterMiner;
+    public GameObject characterEngineer;
+    public GameObject characterbullfighter;
+
+
     void Start()
     {
         ChangeToHair();
@@ -93,6 +100,10 @@ public class ChangeCharacter : MonoBehaviour
     void ChangeToHair()
     {
         StartTimer();
+        characterHair.SetActive(true);
+        characterMiner.SetActive(false);
+        characterEngineer.SetActive(false);
+        characterbullfighter.SetActive(false);
         HairdresserSkin.SetActive(true);
         MinerSkin.SetActive(false);
         EngineerSkin.SetActive(false);
@@ -108,6 +119,10 @@ public class ChangeCharacter : MonoBehaviour
     void ChangeToMiner()
     {
         StartTimer();
+        characterMiner.SetActive(true);
+        characterHair.SetActive(false);
+        characterEngineer.SetActive(false);
+        characterbullfighter.SetActive(false);
         HairdresserSkin.SetActive(false);
         MinerSkin.SetActive(true);
         EngineerSkin.SetActive(false);
@@ -122,6 +137,10 @@ public class ChangeCharacter : MonoBehaviour
     void ChangeToEngineer()
     {
         StartTimer();
+        characterEngineer.SetActive(true);
+        characterMiner.SetActive(false);
+        characterHair.SetActive(false); 
+        characterbullfighter.SetActive(false);
         HairdresserSkin.SetActive(false);
         MinerSkin.SetActive(false);
         EngineerSkin.SetActive(true);
@@ -136,6 +155,10 @@ public class ChangeCharacter : MonoBehaviour
     void ChangeToMatador()
     {
         StartTimer();
+        characterbullfighter.SetActive(true);
+        characterEngineer.SetActive(false);
+        characterHair.SetActive(false);
+        characterMiner.SetActive(false);
         HairdresserSkin.SetActive(false);
         MinerSkin.SetActive(false);
         EngineerSkin.SetActive(false);
