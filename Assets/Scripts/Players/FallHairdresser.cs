@@ -30,11 +30,11 @@ public class FallHairdresser : MonoBehaviour
             rb2d.drag = 0f;
         }
     }
-    private void OnDrawGizmos()
+    /*private void OnDrawGizmos()
     {
         Gizmos.color = Color.black;
         Gizmos.DrawRay(transform.position, transform.forward * radius);
-    }
+    }*/
 
     private void OnCollisionStay(Collision collision)
     {

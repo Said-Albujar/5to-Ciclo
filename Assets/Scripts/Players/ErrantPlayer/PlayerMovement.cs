@@ -50,6 +50,12 @@ public class PlayerMovement : MonoBehaviour
     public RaycastHit hitUpper;
     public RaycastHit hitLower;
 
+    [Header("Fall crash")]
+    public float fuerzaCaida;
+    public float radiusDrop;
+    public LayerMask maskCaida;
+    public bool wall;
+
     void Start()
     {
         cameraTransform = Camera.main.transform;
@@ -66,9 +72,10 @@ public class PlayerMovement : MonoBehaviour
         GroundCheck();
         SpeedControl();
         ErrantInput();
-       
+        FallWall();
 
-        
+
+
         Drag();
         
         actualSpeed = rb.velocity.magnitude;
@@ -82,6 +89,19 @@ public class PlayerMovement : MonoBehaviour
             RotatePlayer();
         }
         ImpulseElevator();
+    }
+    void FallWall()
+    {
+        wall = Physics.Raycast(transform.position, transform.forward, radiusDrop, maskCaida);
+        if (wall)
+        {
+            rb.AddForce(Vector3.down * fuerzaCaida, ForceMode.Force);
+        }
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(transform.position, transform.forward * radiusDrop);
     }
 
     void ErrantInput()
