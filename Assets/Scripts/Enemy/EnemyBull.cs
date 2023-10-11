@@ -10,6 +10,9 @@ public class EnemyBull : MonoBehaviour
     public Transform objetivo; // Objeto a seguir, configurado desde el Inspector.
     private NavMeshAgent agente;
     private bool enRango = false;
+    public float distans = 1;
+    public float time = 10;
+    private float timer;
 
     private void Start()
     {
@@ -39,10 +42,18 @@ public class EnemyBull : MonoBehaviour
             {
                 enRango = false;
             }
+
+            if(distanciaAlObjetivo  <=distans)
+            {
+               agente.SetDestination(transform.position);
+            }
+            timer -= Time.deltaTime;
         }
-        if (enRango)
+        if (enRango && timer<= 0)
         {
+            timer = time;
             agente.SetDestination(objetivo.position);
+
         }
     }
 }
