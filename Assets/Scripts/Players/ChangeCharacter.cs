@@ -43,6 +43,10 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
     public Vector3 positionVFX;
     public Quaternion rotationVFX;
     public bool execute;
+    public bool alpha1Pressed = false;
+    public bool alpha2Pressed = false;
+    public bool alpha3Pressed = false;
+    public bool alpha4Pressed = false;
     void Start()
     {
         ChangeToHair();
@@ -52,54 +56,57 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
     
     void Update()
     {
-        
+
         if (CanChange)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1)&& !execute)
+            if (Input.GetKeyDown(KeyCode.Alpha1) && !execute && !alpha1Pressed)
             {
-
+                alpha1Pressed = true; // Marcar que Alpha1 ha sido presionada.
+                alpha2Pressed = false;
+                alpha3Pressed = false;
+                alpha4Pressed = false;
                 GameObject obj = Instantiate(VFXchangeCharacter, transform.position + positionVFX, transform.rotation * rotationVFX);
                 obj.transform.SetParent(transform);
                 Destroy(obj, 1.4f);
                 ChangeToHair();
-               
             }
 
-            if (Input.GetKeyDown(KeyCode.Alpha2) && HaveMiner&&!execute)
+            if (Input.GetKeyDown(KeyCode.Alpha2) && HaveMiner && !execute && !alpha2Pressed)
             {
-
-
+                alpha2Pressed = true; // Marcar que Alpha2 ha sido presionada.
+                alpha1Pressed = false;
+                alpha3Pressed = false;
+                alpha4Pressed = false;
                 GameObject obj = Instantiate(VFXchangeCharacter, transform.position + positionVFX, transform.rotation * rotationVFX);
                 obj.transform.SetParent(transform);
                 Destroy(obj, 1.4f);
-
                 ChangeToMiner();
-               
             }
 
-            if (Input.GetKeyDown(KeyCode.Alpha3) && HaveEngineer&&!execute)
+            if (Input.GetKeyDown(KeyCode.Alpha3) && HaveEngineer && !execute && !alpha3Pressed)
             {
-
-
+                alpha3Pressed = true; // Marcar que Alpha3 ha sido presionada.
+                alpha2Pressed = false;
+                alpha1Pressed = false;
+                alpha4Pressed = false;
                 GameObject obj = Instantiate(VFXchangeCharacter, transform.position + positionVFX, transform.rotation * rotationVFX);
                 obj.transform.SetParent(transform);
                 Destroy(obj, 1.4f);
-
                 ChangeToEngineer();
-                
             }
-            if (Input.GetKeyDown(KeyCode.Alpha4) && HaveMatador&&!execute)
-            {
 
+            if (Input.GetKeyDown(KeyCode.Alpha4) && HaveMatador && !execute && !alpha4Pressed)
+            {
+                alpha4Pressed = true; // Marcar que Alpha4 ha sido presionada.
+                alpha3Pressed = false;
+                alpha1Pressed = false;
+                alpha2Pressed = false;
                 GameObject obj = Instantiate(VFXchangeCharacter, transform.position + positionVFX, transform.rotation * rotationVFX);
                 obj.transform.SetParent(transform);
                 Destroy(obj, 1.4f);
-
                 ChangeToMatador();
-               
             }
         }
-        
         else
         {
             TimeLeft -= Time.deltaTime;
