@@ -25,8 +25,8 @@ public class DataPersistenceManager : MonoBehaviour
     private void Start()
     {
         this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
-        NewGame();
         this.dataPersistenceObjects = FindAllDataPersistenceObjects();
+        LoadGame();
     }
 
     public void NewGame()

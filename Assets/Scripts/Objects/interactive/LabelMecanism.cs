@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LaberlMecanism : Mecanism
+public class LabelMecanism : Mecanism
 {
     public GameObject labelObject;
     public KeyCode KeyActiveLabel = KeyCode.E;
