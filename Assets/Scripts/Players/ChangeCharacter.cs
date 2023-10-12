@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class ChangeCharacter : MonoBehaviour
+public class ChangeCharacter : MonoBehaviour, IDataPersistence
 {
     public bool CanChange = true;
     public float TimeLeft = 0f;
@@ -213,5 +213,19 @@ public class ChangeCharacter : MonoBehaviour
         {
             isNearT = false;
         }
+    }
+
+    public void LoadData(GameData data)
+    {
+        this.HaveMiner = data.haveMiner;
+        this.HaveEngineer = data.haveEngineer;
+        this.HaveMatador = data.haveBullfighter;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.haveMiner = this.HaveMiner;
+        data.haveEngineer = this.HaveEngineer;
+        data.haveBullfighter = this.HaveMatador;
     }
 }

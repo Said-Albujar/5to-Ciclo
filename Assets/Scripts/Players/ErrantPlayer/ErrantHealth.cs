@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class ErrantHealth : MonoBehaviour
+public class ErrantHealth : MonoBehaviour/*, IDataPersistence*/
 {
     public int health;
     public int maxHearts;
@@ -53,5 +53,17 @@ public class ErrantHealth : MonoBehaviour
         }
 
         
+    }
+
+    public void LoadData(GameData data)
+    {
+        this.health = data.health;
+        this.maxHearts = data.maxHearts;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.health = this.health;
+        data.maxHearts = this.maxHearts;
     }
 }
