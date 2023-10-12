@@ -93,15 +93,39 @@ public class PlayerMovement : MonoBehaviour
     void FallWall()
     {
         wall = Physics.Raycast(transform.position, transform.forward, radiusDrop, maskCaida);
-        if (wall)
+        /*if (wall&&!grounded)
         {
             rb.AddForce(Vector3.down * fuerzaCaida, ForceMode.Force);
+        }*/
+
+        if (wall && transform.position.y > 1f && !grounded)
+        {
+            rb.AddForce(Vector3.down * fuerzaCaida, ForceMode.Force);
+
         }
+        else if (wall && grounded)
+        {
+            Jump();
+        }
+        else if (wall && verInput != 0)
+        {
+            rb.AddForce(Vector3.down * fuerzaCaida, ForceMode.Force); 
+        }
+
+
     }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawRay(transform.position, transform.forward * radiusDrop);
+    }
+    void Jump()
+    {
+        if (Input.GetKeyDown(jumpKey) && grounded && !isCrouching)
+        {
+            Invoke(nameof(JumpPlayer), cooldownJump);
+            grounded = false;
+        }
     }
 
     void ErrantInput()
@@ -109,11 +133,7 @@ public class PlayerMovement : MonoBehaviour
         horInput = Input.GetAxisRaw("Horizontal");
         verInput = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetKeyDown(jumpKey) && grounded && !isCrouching)
-        {
-            Invoke(nameof(JumpPlayer), cooldownJump);
-            grounded = false;
-        }
+        Jump();
 
         if (Input.GetKeyDown(KeyCode.LeftControl) && grounded) 
         {
