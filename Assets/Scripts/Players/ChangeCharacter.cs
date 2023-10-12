@@ -39,34 +39,64 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
     public GameObject characterEngineer;
     public GameObject characterbullfighter;
     public Color[] color;
-
+    public GameObject VFXchangeCharacter;
+    public Vector3 positionVFX;
+    public Quaternion rotationVFX;
+    public bool execute;
     void Start()
     {
         ChangeToHair();
         characterHair.SetActive(true);
+        
     }   
     
     void Update()
     {
+        
         if (CanChange)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
+            if (Input.GetKeyDown(KeyCode.Alpha1)&& !execute)
             {
+
+                GameObject obj = Instantiate(VFXchangeCharacter, transform.position + positionVFX, transform.rotation * rotationVFX);
+                obj.transform.SetParent(transform);
+                Destroy(obj, 1.4f);
                 ChangeToHair();
+               
             }
 
-            if (Input.GetKeyDown(KeyCode.Alpha2) && HaveMiner)
+            if (Input.GetKeyDown(KeyCode.Alpha2) && HaveMiner&&!execute)
             {
+
+
+                GameObject obj = Instantiate(VFXchangeCharacter, transform.position + positionVFX, transform.rotation * rotationVFX);
+                obj.transform.SetParent(transform);
+                Destroy(obj, 1.4f);
+
                 ChangeToMiner();
+               
             }
 
-            if (Input.GetKeyDown(KeyCode.Alpha3) && HaveEngineer)
+            if (Input.GetKeyDown(KeyCode.Alpha3) && HaveEngineer&&!execute)
             {
+
+
+                GameObject obj = Instantiate(VFXchangeCharacter, transform.position + positionVFX, transform.rotation * rotationVFX);
+                obj.transform.SetParent(transform);
+                Destroy(obj, 1.4f);
+
                 ChangeToEngineer();
+                
             }
-            if (Input.GetKeyDown(KeyCode.Alpha4) && HaveMatador)
+            if (Input.GetKeyDown(KeyCode.Alpha4) && HaveMatador&&!execute)
             {
+
+                GameObject obj = Instantiate(VFXchangeCharacter, transform.position + positionVFX, transform.rotation * rotationVFX);
+                obj.transform.SetParent(transform);
+                Destroy(obj, 1.4f);
+
                 ChangeToMatador();
+               
             }
         }
         
@@ -77,13 +107,13 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
             if (TimeLeft <= 0f)
             {
                 CanChange = true;
+             
             }
         }
 
         if (isNearM && Input.GetKeyDown(KeyCode.F))
         {
             HaveMiner = true;
-            characterMiner.SetActive(true);
             
             Destroy(MinerBody);
         }
@@ -91,16 +121,16 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
         if (isNearE && Input.GetKeyDown(KeyCode.F))
         {
             HaveEngineer = true;
-            characterEngineer.SetActive(true);
             
+        
 
             Destroy(EngineerBody);
         }
         if(isNearT && Input.GetKeyDown(KeyCode.F))
         {
             HaveMatador = true;
-            characterbullfighter.SetActive(true);
             
+          
             Destroy(MatadorBody);
         }
     }
@@ -114,7 +144,7 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
         MinerSkin.SetActive(false);
         EngineerSkin.SetActive(false);
         MatadorSkin.SetActive(false);
-
+       
         IsHairdress = true;
         IsMiner = false;
         IsEngineer = false;
@@ -125,6 +155,7 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
     void ChangeToMiner()
     {
         StartTimer();
+
        
 
         HairdresserSkin.SetActive(false);
@@ -141,6 +172,7 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
     void ChangeToEngineer()
     {
         StartTimer();
+
        
 
         HairdresserSkin.SetActive(false);
@@ -158,6 +190,7 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
     {
         StartTimer();
        
+
         HairdresserSkin.SetActive(false);
         MinerSkin.SetActive(false);
         EngineerSkin.SetActive(false);
@@ -172,6 +205,8 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
     {
         TimeLeft = WaitTime;
         CanChange = false;
+        /*GameObject obj = Instantiate(VFXchangeCharacter, transform.position + positionVFX, transform.rotation * rotationVFX);
+        obj.transform.SetParent(transform);*/
     }
 
     public void OnTriggerEnter(Collider other)

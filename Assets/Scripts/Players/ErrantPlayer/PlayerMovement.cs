@@ -55,7 +55,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public float radiusDrop;
     public LayerMask maskCaida;
     public bool wall;
-
+    public bool keyCheck;
     void Start()
     {
         cameraTransform = Camera.main.transform;
@@ -93,24 +93,18 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     void FallWall()
     {
         wall = Physics.Raycast(transform.position, transform.forward, radiusDrop, maskCaida);
-        /*if (wall&&!grounded)
+        if(wall&&rb.drag==0)
         {
-            rb.AddForce(Vector3.down * fuerzaCaida, ForceMode.Force);
-        }*/
+            //rb.AddForce(Vector3.down * fuerzaCaida);
+            verInput = 0;
+        }
+        if (rb.drag==4&&wall)
+        {
+            wall = false;
+            verInput = Input.GetAxis("Vertical");
+        }
 
-        if (wall && transform.position.y > 1f && !grounded)
-        {
-            rb.AddForce(Vector3.down * fuerzaCaida, ForceMode.Force);
 
-        }
-        else if (wall && grounded)
-        {
-            Jump();
-        }
-        else if (wall && verInput != 0)
-        {
-            rb.AddForce(Vector3.down * fuerzaCaida, ForceMode.Force); 
-        }
 
 
     }
@@ -130,8 +124,11 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     void ErrantInput()
     {
-        horInput = Input.GetAxisRaw("Horizontal");
+     
+        
+        horInput = Input.GetAxisRaw("Horizontal");       
         verInput = Input.GetAxisRaw("Vertical");
+
 
         Jump();
 
