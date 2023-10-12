@@ -7,6 +7,7 @@ public class Break : MonoBehaviour
     public bool CanBreak = false;
     public ChangeCharacter Change;
     public GameObject Rock;
+    public GameObject brokenVfx;
 
 
 
@@ -15,6 +16,7 @@ public class Break : MonoBehaviour
         if (CanBreak == true && Input.GetKeyDown(KeyCode.Mouse0) && Change.IsMiner == true)
         {
             Destroy(Rock);
+            Instantiate(brokenVfx, transform.position, Quaternion.identity);
         }
     }
 

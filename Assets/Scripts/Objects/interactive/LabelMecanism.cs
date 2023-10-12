@@ -10,6 +10,9 @@ public class LabelMecanism : Mecanism
     [SerializeField] private bool isBroken = false;
     [SerializeField] private bool canBroke = false;
 
+    public ParticleSystem brokeVfx;
+    public ParticleSystem fixVfx;
+
     public bool isNear;
     private bool labelActive;
 
@@ -22,13 +25,16 @@ public class LabelMecanism : Mecanism
         LabelUse();
 
 
-        if (isLocked || isBroken && render != null)
+        if (isLocked || isBroken)
         {
-            render.material.color = Color.red;
+            if (render != null)
+                render.material.color = Color.red;
+            
         }
-        else if (!isLocked && !isBroken && render != null)
+        else if (!isLocked && !isBroken)
         {
-            render.material.color = Color.green;
+            if (render != null)
+                render.material.color = Color.green;
         }
     }
 
@@ -122,6 +128,14 @@ public class LabelMecanism : Mecanism
                     break;
             }
         }
+        else if (Input.GetKeyDown(KeyActiveLabel) && isNear && isBroken)
+        {
+            if (brokeVfx != null)
+                brokeVfx.Play();
+            else
+                Debug.Log("Referencia nula en brokeVfx");
+            
+        }
 
         if (changeCharacter != null)
         {
@@ -130,10 +144,19 @@ public class LabelMecanism : Mecanism
                 if (Input.GetKeyDown(KeyCode.F) && isLocked && !isBroken && isNear) // desbloquea el mecanismo si este no esta roto y se encuentra cerca
                 {
                     isLocked = false;
+                    if (fixVfx!=null)
+                        fixVfx.Play();
+                    else
+                        Debug.Log("Referencia nula en fixVfx");
+
                 }
                 if (Input.GetKeyDown(KeyCode.G) && !isBroken && canBroke && isNear) //Si no esta roto y puede romperse, se rompera
                 {
                     isBroken = true;
+                    if (brokeVfx != null)
+                        brokeVfx.Play();
+                    else
+                        Debug.Log("Referencia nula en brokeVfx");
                 }
             }
         }
