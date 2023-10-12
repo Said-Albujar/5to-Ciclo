@@ -43,6 +43,7 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
     void Start()
     {
         ChangeToHair();
+        characterHair.SetActive(true);
     }   
     
     void Update()
@@ -82,17 +83,24 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
         if (isNearM && Input.GetKeyDown(KeyCode.F))
         {
             HaveMiner = true;
+            characterMiner.SetActive(true);
+            
             Destroy(MinerBody);
         }
 
         if (isNearE && Input.GetKeyDown(KeyCode.F))
         {
             HaveEngineer = true;
+            characterEngineer.SetActive(true);
+            
+
             Destroy(EngineerBody);
         }
         if(isNearT && Input.GetKeyDown(KeyCode.F))
         {
             HaveMatador = true;
+            characterbullfighter.SetActive(true);
+            
             Destroy(MatadorBody);
         }
     }
@@ -100,10 +108,7 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
     void ChangeToHair()
     {
         StartTimer();
-        characterHair.GetComponent<Image>().color = Color.red;
-        characterMiner.GetComponent<Image>().color = color[0];
-        characterEngineer.GetComponent<Image>().color = color[1];
-        characterbullfighter.GetComponent<Image>().color = color[2];
+        
 
         HairdresserSkin.SetActive(true);
         MinerSkin.SetActive(false);
@@ -120,10 +125,7 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
     void ChangeToMiner()
     {
         StartTimer();
-        characterMiner.GetComponent<Image>().color = Color.blue;
-        characterHair.GetComponent<Image>().color = color[3];
-        characterEngineer.GetComponent<Image>().color = color[1];
-        characterbullfighter.GetComponent<Image>().color = color[2];
+       
 
         HairdresserSkin.SetActive(false);
         MinerSkin.SetActive(true);
@@ -139,10 +141,7 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
     void ChangeToEngineer()
     {
         StartTimer();
-        characterEngineer.GetComponent<Image>().color = Color.green;
-        characterHair.GetComponent<Image>().color = color[3];
-        characterMiner.GetComponent<Image>().color = color[0];
-        characterbullfighter.GetComponent<Image>().color = color[2];
+       
 
         HairdresserSkin.SetActive(false);
         MinerSkin.SetActive(false);
@@ -158,11 +157,7 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
     void ChangeToMatador()
     {
         StartTimer();
-        characterbullfighter.GetComponent<Image>().color = Color.black;
-        characterHair.GetComponent<Image>().color = color[3];
-        characterMiner.GetComponent<Image>().color = color[0];
-        characterEngineer.GetComponent<Image>().color = color[1];
-
+       
         HairdresserSkin.SetActive(false);
         MinerSkin.SetActive(false);
         EngineerSkin.SetActive(false);
