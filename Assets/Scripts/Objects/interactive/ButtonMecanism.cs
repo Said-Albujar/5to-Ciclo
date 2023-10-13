@@ -67,7 +67,7 @@ public class ButtonMecanism : Mecanism
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Hair") || other.CompareTag("Box") || other.CompareTag("Miner") || other.CompareTag("Engi"))
+        if (other.CompareTag("Hair") || other.CompareTag("Box") || other.CompareTag("Miner") || other.CompareTag("Engi") || other.CompareTag("Mata"))
         {
             UseFunction(true);
             buttonPressed = true;
@@ -76,7 +76,7 @@ public class ButtonMecanism : Mecanism
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Hair") || other.CompareTag("Box") || other.CompareTag("Miner") || other.CompareTag("Engi"))
+        if (other.CompareTag("Hair") || other.CompareTag("Box") || other.CompareTag("Miner") || other.CompareTag("Engi") || other.CompareTag("Mata"))
         {
             buttonPressed = false;
             timer = timeActive;
