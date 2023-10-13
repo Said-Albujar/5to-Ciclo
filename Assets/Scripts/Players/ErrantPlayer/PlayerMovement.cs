@@ -72,7 +72,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         GroundCheck();
         SpeedControl();
         ErrantInput();
-        FallWall();
+        
 
 
 
@@ -90,29 +90,9 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         }
         ImpulseElevator();
     }
-    void FallWall()
-    {
-        wall = Physics.Raycast(transform.position, transform.forward, radiusDrop, maskCaida);
-        if(wall&&rb.drag==0)
-        {
-            //rb.AddForce(Vector3.down * fuerzaCaida);
-            verInput = 0;
-        }
-        if (rb.drag==4&&wall)
-        {
-            wall = false;
-            verInput = Input.GetAxis("Vertical");
-        }
+   
 
-
-
-
-    }
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawRay(transform.position, transform.forward * radiusDrop);
-    }
+  
     void Jump()
     {
         if (Input.GetKeyDown(jumpKey) && grounded && !isCrouching)
@@ -226,7 +206,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     void GroundCheck()
     {
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, ground);
+        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.1f, ground);
     }
 
 
