@@ -11,6 +11,7 @@ public class EnemyWitcher : MonoBehaviour
     public bool patrullajeActivo = true;
     public float speedPlayerChange;
     public Animator animator;
+
     [Header("Cono de vision")]
     public float radius;
     public float angle;
@@ -19,7 +20,9 @@ public class EnemyWitcher : MonoBehaviour
     public bool canSeePlayer;
     public float time;
     public Collider[] rangeChecks;
-    public bool atack;
+
+    [Header("Ataque")]
+    public bool attack;
 
     private void Start()
     {
@@ -28,16 +31,16 @@ public class EnemyWitcher : MonoBehaviour
     private void Update()
     {
 
-        if (canSeePlayer && !atack)
+        if (canSeePlayer && !attack)
         {
             if (playerPosition != null)
             {
-                navMeshAgent.SetDestination(playerPosition.transform.position);
-                navMeshAgent.speed = speedPlayerChange;
-                patrullajeActivo = false;
-                animator.SetBool("walk", true);
-            }
 
+                    navMeshAgent.SetDestination(playerPosition.transform.position);
+                    navMeshAgent.speed = speedPlayerChange;
+                    patrullajeActivo = false;
+                    animator.SetBool("walk", true);
+            }
         }
         else
         {
@@ -79,5 +82,25 @@ public class EnemyWitcher : MonoBehaviour
         }
         else if (canSeePlayer)
             canSeePlayer = false;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Hair") || other.CompareTag("Miner") || other.CompareTag("Engi") || other.CompareTag("Mata"))
+        {
+            attack = true;
+            animator.SetBool("walk", false);
+            animator.SetBool("attack", true);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Hair") || other.CompareTag("Miner") || other.CompareTag("Engi") || other.CompareTag("Mata"))
+        {
+            attack = false;
+            animator.SetBool("walk", true);
+            animator.SetBool("attack", false);
+        }
     }
 }

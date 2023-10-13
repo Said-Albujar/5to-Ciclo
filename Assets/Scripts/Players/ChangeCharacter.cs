@@ -26,7 +26,7 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
     public bool IsEngineer;
     public bool HaveEngineer;
 
-    [Header("Engineer")]
+    [Header("Matador")]
     public GameObject MatadorSkin;
     public GameObject MatadorBody;
     public bool isNearT;

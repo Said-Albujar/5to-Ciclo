@@ -174,7 +174,7 @@ public class LabelMecanism : Mecanism
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Hair") || other.CompareTag("Miner") || other.CompareTag("Engi"))
+        if (other.CompareTag("Hair") || other.CompareTag("Miner") || other.CompareTag("Engi") || other.CompareTag("Mata"))
         {
             isNear = true;
         }
@@ -182,7 +182,7 @@ public class LabelMecanism : Mecanism
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Hair") || other.CompareTag("Miner") || other.CompareTag("Engi"))
+        if (other.CompareTag("Hair") || other.CompareTag("Miner") || other.CompareTag("Engi") || other.CompareTag("Mata"))
         {
             isNear = false;
         }
