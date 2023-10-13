@@ -10,6 +10,7 @@ public class EnemyWitcher : MonoBehaviour
     public GameObject playerPosition;
     public bool patrullajeActivo = true;
     public float speedPlayerChange;
+    public Animator animator;
     [Header("Cono de vision")]
     public float radius;
     public float angle;
@@ -18,6 +19,7 @@ public class EnemyWitcher : MonoBehaviour
     public bool canSeePlayer;
     public float time;
     public Collider[] rangeChecks;
+    public bool atack;
 
     private void Start()
     {
@@ -26,13 +28,14 @@ public class EnemyWitcher : MonoBehaviour
     private void Update()
     {
 
-        if (canSeePlayer)
+        if (canSeePlayer && !atack)
         {
             if (playerPosition != null)
             {
                 navMeshAgent.SetDestination(playerPosition.transform.position);
                 navMeshAgent.speed = speedPlayerChange;
                 patrullajeActivo = false;
+                animator.SetBool("walk", true);
             }
 
         }
@@ -40,6 +43,7 @@ public class EnemyWitcher : MonoBehaviour
         {
             patrullajeActivo = true;
             navMeshAgent.speed = 2f;
+            animator.SetBool("walk", false);
         }
     }
     IEnumerator FOVRoutine()
@@ -65,7 +69,6 @@ public class EnemyWitcher : MonoBehaviour
                 if (!Physics.Raycast(transform.position, directionTarget, distanceToTarget, obstructionMask))
                 {
                     canSeePlayer = true;
-
                 }
 
                 else
