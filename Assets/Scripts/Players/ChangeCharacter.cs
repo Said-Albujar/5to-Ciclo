@@ -140,6 +140,22 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
           
             Destroy(MatadorBody);
         }
+
+
+        if (HaveMiner)
+        {
+            characterMiner.SetActive(true);
+        }
+
+        if (HaveEngineer)
+        {
+            characterEngineer.SetActive(true);
+        }
+
+        if (HaveMatador)
+        {
+            characterbullfighter.SetActive(true);
+        }
     }
 
     void ChangeToHair()
