@@ -6,83 +6,78 @@ using UnityEngine.UI;
 
 public class DIalogue : MonoBehaviour
 {
-    public TextMeshProUGUI dialoqueText;
-    public GameObject boxDialogue;
-    public string[] lines;
-    public float speed;
-    int index;
+    public GameObject dialogueIcon;
+    public GameObject dialoguePanelText;
+    [SerializeField,TextArea(4,6)] private string[] dialogueTextBox;
+    public TextMeshProUGUI textDialogue;
     public bool dialogueExist;
+    public bool dialogueStart;
+    int index;
     // Start is called before the first frame update
     void Start()
     {
-        boxDialogue.SetActive(false);
-        dialoqueText.text = string.Empty;
+      
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (dialogueExist)
+        if(dialogueExist&&Input.GetKeyDown(KeyCode.F))
         {
-            if (Input.GetKeyDown(KeyCode.F))
+            if(!dialogueStart)
             {
-                if(dialoqueText.text==lines[index])
-                {
-                    NextDialogue();
-                }
-                else
-                {
-                    boxDialogue.SetActive(true);
-                    StartDialogue();
-                    StopAllCoroutines();
-                    dialoqueText.text = lines[index];
-                }
-            
+                StartDialogue();
 
             }
-        }
-        else
-        {
-            boxDialogue.SetActive(false);
-
+            else if(textDialogue.text==dialogueTextBox[index])
+            {
+                NextDialogue();
+            }
+            else
+            {
+                StopAllCoroutines();
+                textDialogue.text = dialogueTextBox[index];
+            }
         }
     }
-    public void StartDialogue()
+    private IEnumerator CountLineText()
     {
+        textDialogue.text = string.Empty;
+        foreach(char character in dialogueTextBox[index])
+        {
+            textDialogue.text += character;
+            yield return new WaitForSeconds(0.05f);
+        }
+    }
+    void StartDialogue()
+    {
+        dialogueStart = true;
+        dialoguePanelText.SetActive(true);
+        dialogueIcon.SetActive(false);
         index = 0;
-        StartCoroutine(ShowLine());
-    }
-    IEnumerator ShowLine()
-    {
-        foreach(char letter in lines[index])
-        {
-            dialoqueText.text += letter;
-            yield return new WaitForSeconds(speed);
-        }
+        StartCoroutine(CountLineText());
     }
     private void NextDialogue()
     {
-        if(index<lines.Length-1)
+        index++;
+        if (index < dialogueTextBox.Length)
         {
-            index++;
-            dialoqueText.text = string.Empty;
-            StartCoroutine(ShowLine());
-
+            StartCoroutine(CountLineText());
         }
         else
         {
-            boxDialogue.SetActive(false);
-
+            dialogueStart = false;
+            dialoguePanelText.SetActive(false);
+            dialogueIcon.SetActive(true);
         }
     }
-  
-  
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.CompareTag("Detected"))
         {
             dialogueExist = true;
+            dialogueIcon.SetActive(true);
         }
      
     }
@@ -91,6 +86,9 @@ public class DIalogue : MonoBehaviour
         if (other.gameObject.CompareTag("Detected"))
         {
             dialogueExist = false;
+            dialogueIcon.SetActive(false);
+            dialoguePanelText.SetActive(false);
+
         }
     }
 }
