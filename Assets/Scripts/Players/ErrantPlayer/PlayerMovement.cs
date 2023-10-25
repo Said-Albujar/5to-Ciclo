@@ -251,16 +251,16 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     void Drag()
     {
-        if(grounded)
+        if (grounded)
         {
             rb.constraints &= ~RigidbodyConstraints.FreezePositionX;
             turn = true;
             rb.drag = groundDrag;
         }
-        else if(!grounded&&!fall.fall)
+        else if (!grounded && !fall.fall)
         {
             rb.drag = 0;
-        } 
+        }
     }
 
     void RotatePlayer()
