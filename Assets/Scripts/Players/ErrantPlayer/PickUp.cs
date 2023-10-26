@@ -5,36 +5,45 @@ using UnityEngine;
 public class PickUp : MonoBehaviour
 {
     public GameObject HandPoint;
-    private GameObject PickedObject = null;
+    public GameObject PickedObject = null;
+    private bool canPickUp;
   
     
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) && PickedObject !=null)
         {
             PickedObject.GetComponent<Rigidbody>().useGravity = true;
             PickedObject.GetComponent <Rigidbody>().isKinematic = false;
             PickedObject.gameObject.transform.SetParent(null);
             PickedObject = null;
         }
-       
+
+        if (Input.GetKeyDown(KeyCode.E) && PickedObject !=null)
+        {
+
+            PickedObject.GetComponent<Rigidbody>().useGravity = false;
+            PickedObject.GetComponent<Rigidbody>().isKinematic = true;
+            PickedObject.gameObject.transform.SetParent(this.gameObject.transform);
+            PickedObject.transform.position = HandPoint.transform.position;
+        }
+
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.CompareTag("Box"))
+        if (other.gameObject.CompareTag("Box") && PickedObject == null)
         {
-            if(Input.GetKeyDown(KeyCode.E) && PickedObject == null)
-            {
-                other.GetComponent<Rigidbody>().useGravity = false;
-                other.GetComponent<Rigidbody>().isKinematic = true;
-                other.transform.position = HandPoint.transform.position;
-                other.gameObject.transform.SetParent(HandPoint.gameObject.transform);
-                PickedObject = other.gameObject;
-            }
+            PickedObject = other.gameObject;
         }
-
-       
     }
- 
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Box") && PickedObject)
+        {
+            PickedObject = null;
+        }
+    }
+
 }
