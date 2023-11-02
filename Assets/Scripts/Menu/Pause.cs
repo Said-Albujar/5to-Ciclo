@@ -56,13 +56,6 @@ public class Pause : MonoBehaviour
         SceneManager.LoadScene("Mirko");
         pause = false;
     }
-    public void Restaurar()
-    {
-        Time.timeScale = 1f;
-
-        panelPause.SetActive(false);
-        pause = false;
-    }
     public void ExitMenu()
     {
         SceneManager.LoadScene("Menu");

@@ -55,6 +55,7 @@ public class Sensibility : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        bool inPause = GameManager.instance.inPause;
 
         if (!CinemachineFreeLookGeneral)
         {
@@ -65,7 +66,14 @@ public class Sensibility : MonoBehaviour
             CinemachineFreeLookGeneral.m_XAxis.m_MaxSpeed = sliderX.value * 0.8f;
         }
 
-        EnableCamera();
+        if (inPause)
+        {
+            DisableCamera();
+        }
+        else
+        {
+            EnableCamera();
+        }
 
     }
 
@@ -98,6 +106,13 @@ public class Sensibility : MonoBehaviour
         CinemachineFreeLookGeneral.m_XAxis.m_MaxSpeed = sliderX.value * 0.8f;
     }
 
+    public void DisableCamera()
+    {
+        CinemachineFreeLookGeneral.m_YAxis.m_MaxSpeed = 0;
+        CinemachineFreeLookGeneral.m_XAxis.m_MaxSpeed = 0;
+
+
+    }
 
     public void ShowValue()
     {
@@ -111,4 +126,6 @@ public class Sensibility : MonoBehaviour
         float sliderPercentAim = (distanceFromMinAim / sliderRangeY);
         textValueY.text = sliderPercentAim.ToString("F2");
     }
+
+
 }
