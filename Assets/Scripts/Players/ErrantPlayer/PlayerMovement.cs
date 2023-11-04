@@ -41,7 +41,6 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public float crouchHeight;
     public float CrouchY;
     public CapsuleCollider[] capsuleColliders;
-
     [Header("Impulse")]
     [SerializeField] GameObject stepRayUpper;
     [SerializeField] GameObject stepRayLower;
@@ -150,6 +149,8 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         if (isCrouching)
         {
             gameObject.transform.localScale = new Vector3(transform.localScale.x, 0.5f, transform.localScale.z);
+           
+
 
             //La parte comentada se usara cuando usemos un modelo 3d con animaciones
 
@@ -163,6 +164,9 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         else
         {
             gameObject.transform.localScale = new Vector3(transform.localScale.x, 1, transform.localScale.z);
+
+           
+
 
             //La parte comentada se usara cuando usemos un modelo 3d con animaciones
 
