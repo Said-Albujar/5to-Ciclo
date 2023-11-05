@@ -16,7 +16,7 @@ public class MovingPlatform1 : MonoBehaviour
         target = pointB.position;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         // Mueve la plataforma hacia el objetivo
         transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
