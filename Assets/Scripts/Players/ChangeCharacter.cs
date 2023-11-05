@@ -10,7 +10,10 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
 
     [Header("Hairdresser")]
     public GameObject HairdresserSkin;
+    public GameObject HairdresserBody;
+    public bool isNearH;
     public bool IsHairdress;
+    public bool HaveHairdress;
 
     [Header("Miner")]
     public GameObject MinerSkin;
@@ -26,19 +29,10 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
     public bool IsEngineer;
     public bool HaveEngineer;
 
-    [Header("Matador")]
-    public GameObject MatadorSkin;
-    public GameObject MatadorBody;
-    public bool isNearT;
-    public bool IsMatador;
-    public bool HaveMatador;
-
     [Header("CharacterChangeUI")]
     public GameObject characterHair;
     public GameObject characterMiner;
     public GameObject characterEngineer;
-    public GameObject characterbullfighter;
-    public Color[] color;
     public GameObject VFXchangeCharacter;
     public Vector3 positionVFX;
     public Quaternion rotationVFX;
@@ -46,25 +40,23 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
     public bool alpha1Pressed = false;
     public bool alpha2Pressed = false;
     public bool alpha3Pressed = false;
-    public bool alpha4Pressed = false;
+
     void Start()
     {
-        ChangeToHair();
-        characterHair.SetActive(true);
-        
-    }   
-    
+        /* ChangeToHair();
+         characterHair.SetActive(true);*/
+    }
+
     void Update()
     {
 
         if (CanChange)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1) && !execute && !alpha1Pressed)
+            if (Input.GetKeyDown(KeyCode.Alpha1) && HaveHairdress && !execute && !alpha1Pressed)
             {
                 alpha1Pressed = true; // Marcar que Alpha1 ha sido presionada.
                 alpha2Pressed = false;
                 alpha3Pressed = false;
-                alpha4Pressed = false;
                 GameObject obj = Instantiate(VFXchangeCharacter, transform.position + positionVFX, transform.rotation * rotationVFX);
                 obj.transform.SetParent(transform);
                 Destroy(obj, 1.4f);
@@ -76,7 +68,6 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
                 alpha2Pressed = true; // Marcar que Alpha2 ha sido presionada.
                 alpha1Pressed = false;
                 alpha3Pressed = false;
-                alpha4Pressed = false;
                 GameObject obj = Instantiate(VFXchangeCharacter, transform.position + positionVFX, transform.rotation * rotationVFX);
                 obj.transform.SetParent(transform);
                 Destroy(obj, 1.4f);
@@ -88,23 +79,10 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
                 alpha3Pressed = true; // Marcar que Alpha3 ha sido presionada.
                 alpha2Pressed = false;
                 alpha1Pressed = false;
-                alpha4Pressed = false;
                 GameObject obj = Instantiate(VFXchangeCharacter, transform.position + positionVFX, transform.rotation * rotationVFX);
                 obj.transform.SetParent(transform);
                 Destroy(obj, 1.4f);
                 ChangeToEngineer();
-            }
-
-            if (Input.GetKeyDown(KeyCode.Alpha4) && HaveMatador && !execute && !alpha4Pressed)
-            {
-                alpha4Pressed = true; // Marcar que Alpha4 ha sido presionada.
-                alpha3Pressed = false;
-                alpha1Pressed = false;
-                alpha2Pressed = false;
-                GameObject obj = Instantiate(VFXchangeCharacter, transform.position + positionVFX, transform.rotation * rotationVFX);
-                obj.transform.SetParent(transform);
-                Destroy(obj, 1.4f);
-                ChangeToMatador();
             }
         }
         else
@@ -114,33 +92,29 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
             if (TimeLeft <= 0f)
             {
                 CanChange = true;
-             
+
             }
         }
 
         if (isNearM && Input.GetKeyDown(KeyCode.F))
         {
             HaveMiner = true;
-            
+
             Destroy(MinerBody);
         }
 
         if (isNearE && Input.GetKeyDown(KeyCode.F))
         {
             HaveEngineer = true;
-            
-        
 
             Destroy(EngineerBody);
         }
-        if(isNearT && Input.GetKeyDown(KeyCode.F))
+        if (isNearH && Input.GetKeyDown(KeyCode.F))
         {
-            HaveMatador = true;
-            
-          
-            Destroy(MatadorBody);
-        }
+            HaveHairdress = true;
 
+            Destroy(HairdresserBody);
+        }
 
         if (HaveMiner)
         {
@@ -152,78 +126,50 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
             characterEngineer.SetActive(true);
         }
 
-        if (HaveMatador)
+        if (HaveHairdress)
         {
-            characterbullfighter.SetActive(true);
+            characterHair.SetActive(true);
         }
     }
 
     void ChangeToHair()
     {
         StartTimer();
-        
 
         HairdresserSkin.SetActive(true);
         MinerSkin.SetActive(false);
         EngineerSkin.SetActive(false);
-        MatadorSkin.SetActive(false);
-       
+
         IsHairdress = true;
         IsMiner = false;
         IsEngineer = false;
-        IsMatador = false;
-
     }
 
     void ChangeToMiner()
     {
         StartTimer();
 
-       
-
         HairdresserSkin.SetActive(false);
         MinerSkin.SetActive(true);
         EngineerSkin.SetActive(false);
-        MatadorSkin.SetActive(false);
 
         IsHairdress = false;
         IsMiner = true;
         IsEngineer = false;
-        IsMatador = false;
-
     }
     void ChangeToEngineer()
     {
         StartTimer();
 
-       
-
         HairdresserSkin.SetActive(false);
         MinerSkin.SetActive(false);
         EngineerSkin.SetActive(true);
-        MatadorSkin.SetActive(false);
 
         IsHairdress = false;
         IsMiner = false;
         IsEngineer = true;
-        IsMatador = false;
     }
 
-    void ChangeToMatador()
-    {
-        StartTimer();
-       
-
-        HairdresserSkin.SetActive(false);
-        MinerSkin.SetActive(false);
-        EngineerSkin.SetActive(false);
-        MatadorSkin.SetActive(true);
-
-        IsHairdress = false;
-        IsMiner = false;
-        IsEngineer = false;
-        IsMatador = true;
-    }
     void StartTimer()
     {
         TimeLeft = WaitTime;
@@ -244,9 +190,9 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
             isNearE = true;
         }
 
-        if (other.CompareTag("B_Mata"))
+        if (other.CompareTag("B_Hair"))
         {
-            isNearT = true;
+            isNearH = true;
         }
     }
 
@@ -262,9 +208,9 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
             isNearE = false;
         }
 
-        if (other.CompareTag("B_Mata"))
+        if (other.CompareTag("B_Hair"))
         {
-            isNearT = false;
+            isNearH = false;
         }
     }
 
@@ -272,13 +218,13 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
     {
         this.HaveMiner = data.haveMiner;
         this.HaveEngineer = data.haveEngineer;
-        this.HaveMatador = data.haveBullfighter;
+        this.HaveHairdress = data.haveHairdress;
     }
 
     public void SaveData(ref GameData data)
     {
         data.haveMiner = this.HaveMiner;
         data.haveEngineer = this.HaveEngineer;
-        data.haveBullfighter = this.HaveMatador;
+        data.haveHairdress = this.HaveHairdress;
     }
 }

@@ -8,7 +8,7 @@ public class GameData
     public Vector3 playerPosition;
     public int health;
     public int maxHearts;
-    public bool haveMiner, haveEngineer, haveBullfighter;
+    public bool haveMiner, haveEngineer, haveHairdress;
 
     //los valores definidos aqui, se usaran por defecto en caso no haya datos guardados-
     public GameData()
@@ -17,6 +17,6 @@ public class GameData
         this.maxHearts = 3;
         this.haveMiner = false;
         this.haveEngineer = false;
-        this.haveBullfighter = false;
+        this.haveHairdress = false;
     }
 }

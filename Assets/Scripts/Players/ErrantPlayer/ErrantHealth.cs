@@ -21,7 +21,7 @@ public class ErrantHealth : MonoBehaviour/*, IDataPersistence*/
             health = maxHearts;
         }
 
-        CheckHearts();
+        // CheckHearts();
         if (health == 0)
         {
             SceneManager.LoadScene(SceneName);
@@ -36,24 +36,24 @@ public class ErrantHealth : MonoBehaviour/*, IDataPersistence*/
         }
     }
 
-    void CheckHearts()
-    {
-        for (int i = 0; i < hearts.Length; i++)
-        {
-            if (i < health)
-                hearts[i].sprite = fullHeart;
-            else
-                hearts[i].sprite = emptyHeart;
+    /* void CheckHearts()
+     {
+         for (int i = 0; i < hearts.Length; i++)
+         {
+             if (i < health)
+                 hearts[i].sprite = fullHeart;
+             else
+                 hearts[i].sprite = emptyHeart;
 
 
-            if (i < maxHearts)
-                hearts[i].enabled = true;
-            else
-                hearts[i].enabled = false;
-        }
+             if (i < maxHearts)
+                 hearts[i].enabled = true;
+             else
+                 hearts[i].enabled = false;
+         }
 
-        
-    }
+
+     }*/
 
     public void LoadData(GameData data)
     {
