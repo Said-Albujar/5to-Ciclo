@@ -74,19 +74,19 @@ public class DIalogue : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("Detected"))
+        if(other.gameObject.layer==LayerMask.NameToLayer("TargetPlayer"))
         {
             dialogueExist = true;
-            dialogueIcon.SetActive(true);
+            dialogueIcon.SetActive(false);
         }
      
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Detected"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("TargetPlayer"))
         {
             dialogueExist = false;
-            dialogueIcon.SetActive(false);
+            dialogueIcon.SetActive(true);
             dialoguePanelText.SetActive(false);
 
         }

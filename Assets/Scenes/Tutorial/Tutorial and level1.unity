@@ -6734,6 +6734,83 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1001 &993175014
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5353845503955413384, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
+      propertyPath: m_Name
+      value: Npc (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7256949265224581830, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
+      propertyPath: textDialogue
+      value: 
+      objectReference: {fileID: 8235389013352144022}
+    - target: {fileID: 7256949265224581830, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
+      propertyPath: dialoguePanelText
+      value: 
+      objectReference: {fileID: 6537781674850024925}
+    - target: {fileID: 7256949265224581830, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
+      propertyPath: dialogueTextBox.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7256949265224581830, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
+      propertyPath: dialogueTextBox.Array.data[0]
+      value: 'hola '
+      objectReference: {fileID: 0}
+    - target: {fileID: 7256949265224581830, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
+      propertyPath: dialogueTextBox.Array.data[1]
+      value: yo estoy bien
+      objectReference: {fileID: 0}
+    - target: {fileID: 7988945445457959577, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7988945445457959577, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -387.8353
+      objectReference: {fileID: 0}
+    - target: {fileID: 7988945445457959577, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 22.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 7988945445457959577, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -216.23405
+      objectReference: {fileID: 0}
+    - target: {fileID: 7988945445457959577, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7988945445457959577, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7988945445457959577, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7988945445457959577, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7988945445457959577, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7988945445457959577, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7988945445457959577, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
 --- !u!1 &997569150
 GameObject:
   m_ObjectHideFlags: 0
@@ -12620,6 +12697,26 @@ PrefabInstance:
     - target: {fileID: 5353845503955413384, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
       propertyPath: m_Name
       value: Npc
+      objectReference: {fileID: 0}
+    - target: {fileID: 7256949265224581830, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
+      propertyPath: textDialogue
+      value: 
+      objectReference: {fileID: 8235389013352144022}
+    - target: {fileID: 7256949265224581830, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
+      propertyPath: dialoguePanelText
+      value: 
+      objectReference: {fileID: 6537781674850024925}
+    - target: {fileID: 7256949265224581830, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
+      propertyPath: dialogueTextBox.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7256949265224581830, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
+      propertyPath: dialogueTextBox.Array.data[0]
+      value: hola como estas
+      objectReference: {fileID: 0}
+    - target: {fileID: 7256949265224581830, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
+      propertyPath: dialogueTextBox.Array.data[1]
+      value: yo estoy bien
       objectReference: {fileID: 0}
     - target: {fileID: 7988945445457959577, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
       propertyPath: m_RootOrder

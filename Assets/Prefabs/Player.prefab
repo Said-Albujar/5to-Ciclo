@@ -116,7 +116,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 582983895283098391}
-  m_LocalRotation: {x: 0.013714668, y: 0.70119387, z: -0.013492982, w: 0.7127111}
+  m_LocalRotation: {x: 0.018409608, y: 1e-45, z: -0, w: 0.99983054}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -256,7 +256,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 582983895690513973}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 27.601204, y: 3.2599983, z: -0.3366089}
+  m_LocalPosition: {x: 36.6, y: 3.2599983, z: -9.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -424,7 +424,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 582983895883643438}
-  m_LocalRotation: {x: 0.026676243, y: 0.7008325, z: -0.026245102, w: 0.7123437}
+  m_LocalRotation: {x: 0.036592986, y: -0.000000017429604, z: 6.3822864e-10, w: 0.9993303}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -578,7 +578,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 582983896125567468}
-  m_LocalRotation: {x: 0.00078279787, y: 0.7013233, z: -0.0007700867, w: 0.7128426}
+  m_LocalRotation: {x: 0.00026819794, y: -0.0000000017532328, z: 4.702135e-13, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4075,7 +4075,6 @@ MonoBehaviour:
   rotationSpeed: 6
   isRunning: 0
   turn: 1
-  fall: {fileID: 8486683020397253380}
   playerHeight: 2
   ground:
     serializedVersion: 2
@@ -4201,7 +4200,10 @@ MonoBehaviour:
   TimeLeft: 0
   WaitTime: 1.5
   HairdresserSkin: {fileID: 7646657851310683586}
+  HairdresserBody: {fileID: 0}
+  isNearH: 0
   IsHairdress: 0
+  HaveHairdress: 0
   MinerSkin: {fileID: 7646657851870279926}
   MinerBody: {fileID: 0}
   isNearM: 0
@@ -4212,20 +4214,9 @@ MonoBehaviour:
   isNearE: 0
   IsEngineer: 0
   HaveEngineer: 1
-  MatadorSkin: {fileID: 4050128730548015054}
-  MatadorBody: {fileID: 0}
-  isNearT: 0
-  IsMatador: 0
-  HaveMatador: 1
   characterHair: {fileID: 8888962354833150333}
   characterMiner: {fileID: 8655105594332548590}
   characterEngineer: {fileID: 4309856204533264152}
-  characterbullfighter: {fileID: 2495421140128920922}
-  color:
-  - {r: 0, g: 0, b: 1, a: 0.3529412}
-  - {r: 0.16216493, g: 1, b: 0, a: 0.3529412}
-  - {r: 0, g: 0, b: 0, a: 0.3529412}
-  - {r: 1, g: 0, b: 0, a: 0.3529412}
   VFXchangeCharacter: {fileID: 100006, guid: 60bc526f4be1e044ab9e46340b82ffb3, type: 3}
   positionVFX: {x: 0, y: -0.96, z: 0}
   rotationVFX: {x: 0.70710677, y: 0, z: 0, w: -0.70710677}
@@ -4233,7 +4224,6 @@ MonoBehaviour:
   alpha1Pressed: 0
   alpha2Pressed: 0
   alpha3Pressed: 0
-  alpha4Pressed: 0
 --- !u!114 &8486683020397253380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4275,7 +4265,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4428219056850043532}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e7a0dbe4f19d91941b561e90cde567ce, type: 3}
   m_Name: 
