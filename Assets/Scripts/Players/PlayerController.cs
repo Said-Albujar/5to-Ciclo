@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private Rigidbody playerRigidbody;
     private Transform originalParent; // Almacenar el padre original del jugador
 
     void Start()
     {
-        playerRigidbody = GetComponent<Rigidbody>();
         originalParent = transform.parent; // Almacenar el padre original al inicio
     }
 
