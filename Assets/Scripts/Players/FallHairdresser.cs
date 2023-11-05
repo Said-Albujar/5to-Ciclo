@@ -22,8 +22,6 @@ public class FallHairdresser : MonoBehaviour
             rb2d.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezeRotation;
             rb2d.drag = fallPlayer;
         }
-            
-
         else
         {
            

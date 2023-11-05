@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public float rotationSpeed;
     [HideInInspector] public bool isRunning;
     public bool turn;
-    public FallHairdresser fall;
+   // public FallHairdresser fall;
     [Header("GroundCheck")]
     public float playerHeight;
     public LayerMask ground;
@@ -270,7 +270,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             turn = true;
             rb.drag = groundDrag;
         }
-        else if (!grounded && !fall.fall)
+        else if (!grounded /*&& !fall.fall*/)
         {
             rb.drag = 0;
         }
