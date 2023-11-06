@@ -10,10 +10,9 @@ public class Break : MonoBehaviour
     public GameObject brokenVfx;
 
 
-
     void Update()
     {
-        if (CanBreak == true && Input.GetKeyDown(KeyCode.Mouse0) && Change.IsMiner == true)
+        if (CanBreak == true && Input.GetKeyDown(KeyCode.F) && Change.IsMiner == true)
         {
             Destroy(Rock);
             Instantiate(brokenVfx, transform.position, Quaternion.identity);

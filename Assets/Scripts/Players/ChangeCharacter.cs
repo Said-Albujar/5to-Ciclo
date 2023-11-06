@@ -52,7 +52,7 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
 
         if (CanChange)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1) && HaveHairdress && !execute && !alpha1Pressed)
+            if (Input.GetKeyDown(KeyCode.Alpha3) && HaveHairdress && !execute && !alpha1Pressed)
             {
                 alpha1Pressed = true; // Marcar que Alpha1 ha sido presionada.
                 alpha2Pressed = false;
@@ -74,7 +74,7 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
                 ChangeToMiner();
             }
 
-            if (Input.GetKeyDown(KeyCode.Alpha3) && HaveEngineer && !execute && !alpha3Pressed)
+            if (Input.GetKeyDown(KeyCode.Alpha1) && HaveEngineer && !execute && !alpha3Pressed)
             {
                 alpha3Pressed = true; // Marcar que Alpha3 ha sido presionada.
                 alpha2Pressed = false;
@@ -99,20 +99,20 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
         if (isNearM && Input.GetKeyDown(KeyCode.F))
         {
             HaveMiner = true;
-
+            ChangeToMiner();
             Destroy(MinerBody);
         }
 
         if (isNearE && Input.GetKeyDown(KeyCode.F))
         {
             HaveEngineer = true;
-
+            ChangeToEngineer();
             Destroy(EngineerBody);
         }
         if (isNearH && Input.GetKeyDown(KeyCode.F))
         {
             HaveHairdress = true;
-
+            ChangeToHair();
             Destroy(HairdresserBody);
         }
 

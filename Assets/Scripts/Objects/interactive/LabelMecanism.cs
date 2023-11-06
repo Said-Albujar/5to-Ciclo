@@ -5,6 +5,7 @@ using UnityEngine;
 public class LabelMecanism : Mecanism
 {
     public GameObject labelObject;
+    public Renderer renderskin;
     public KeyCode KeyActiveLabel = KeyCode.E;
     [SerializeField] private bool isLocked = false;
     [SerializeField] private bool isBroken = false;
@@ -21,20 +22,20 @@ public class LabelMecanism : Mecanism
     void Update()
     {
         ReadInputs();
-        ChangeRenderer();
+        Changerenderskiner();
         LabelUse();
 
 
         if (isLocked || isBroken)
         {
-            if (render != null)
-                render.material.color = Color.red;
+            if (renderskin != null)
+                renderskin.material.color = Color.red;
             
         }
         else if (!isLocked && !isBroken)
         {
-            if (render != null)
-                render.material.color = Color.green;
+            if (renderskin != null)
+                renderskin.material.color = Color.green;
         }
     }
 
@@ -94,21 +95,21 @@ public class LabelMecanism : Mecanism
         }
     }
 
-    private void ChangeRenderer()
+    private void Changerenderskiner()
     {
         if (isLocked || isBroken)
         {
-            if (render != null)
+            if (renderskin != null)
             {
-                render.material.color = Color.red;
+                renderskin.material.color = Color.red;
             }
 
         }
         else if (!isLocked && !isBroken)
         {
-            if (render != null)
+            if (renderskin != null)
             {
-                render.material.color = Color.green;
+                renderskin.material.color = Color.green;
             }
 
         }
