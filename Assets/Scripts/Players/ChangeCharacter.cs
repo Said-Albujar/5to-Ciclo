@@ -98,6 +98,7 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
 
         if (isNearM && Input.GetKeyDown(KeyCode.F))
         {
+            isNearM = false;
             HaveMiner = true;
             ChangeToMiner();
             Destroy(MinerBody);
@@ -105,12 +106,14 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
 
         if (isNearE && Input.GetKeyDown(KeyCode.F))
         {
+            isNearE = false;
             HaveEngineer = true;
             ChangeToEngineer();
             Destroy(EngineerBody);
         }
         if (isNearH && Input.GetKeyDown(KeyCode.F))
         {
+            isNearH = false;
             HaveHairdress = true;
             ChangeToHair();
             Destroy(HairdresserBody);

@@ -145,6 +145,7 @@ public class LabelMecanism : Mecanism
                 if (Input.GetKeyDown(KeyCode.F) && isLocked && !isBroken && isNear) // desbloquea el mecanismo si este no esta roto y se encuentra cerca
                 {
                     isLocked = false;
+                    labelActive = true;
                     if (fixVfx!=null)
                         fixVfx.Play();
                     else
@@ -154,6 +155,7 @@ public class LabelMecanism : Mecanism
                 if (Input.GetKeyDown(KeyCode.G) && !isBroken && canBroke && isNear) //Si no esta roto y puede romperse, se rompera
                 {
                     isBroken = true;
+                    labelActive = true;
                     if (brokeVfx != null)
                         brokeVfx.Play();
                     else
