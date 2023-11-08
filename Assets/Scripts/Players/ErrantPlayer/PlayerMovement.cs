@@ -41,6 +41,8 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public float crouchHeight;
     public float CrouchY;
     public CapsuleCollider[] capsuleColliders;
+    public bool hold = true;
+
     [Header("Impulse")]
     [SerializeField] GameObject stepRayUpper;
     [SerializeField] GameObject stepRayLower;
@@ -116,26 +118,18 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
         Jump();
 
-        if (Input.GetKeyDown(KeyCode.LeftControl) && grounded) 
+        switch (hold)
         {
-            switch (isCrouching)
-            {
-                case true:
-                    if (!PlayerHeadCheck.headCheck) //Si hay algo encima del player, no se podra levantar
-                    {
-                        isCrouching = false;
-                        Crouch();
-                    }
-                    break;
-                case false:
-                    {
-                        isCrouching = true;
-                        Crouch();
-                    }
-                    
-                    break;
-            }
+            case true:
+                HoldCrouch();
+                break;
+            case false:
+                PressCrouch();
+                break;
         }
+
+
+
     }
     void JumpPlayer()
     {
@@ -302,13 +296,58 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         JumpPlayer();
     }
 
+    private void HoldCrouch()
+    {
+        if (Input.GetKey(KeyCode.LeftControl) && grounded)
+        {
+            if (!isCrouching)
+            {
+                isCrouching = true;
+                Crouch();
+            }
+        }
+        else
+        {
+            if (isCrouching && !PlayerHeadCheck.headCheck)
+            {
+                isCrouching = false;
+                Crouch();
+            }
+        }
+    }
+
+    private void PressCrouch()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftControl) && grounded)
+        {
+            switch (isCrouching)
+            {
+                case true:
+                    if (!PlayerHeadCheck.headCheck) //Si hay algo encima del player, no se podra levantar
+                    {
+                        isCrouching = false;
+                        Crouch();
+                    }
+                    break;
+                case false:
+                    {
+                        isCrouching = true;
+                        Crouch();
+                    }
+
+                    break;
+            }
+        }
+    }
     public void LoadData(GameData data)
     {
         this.transform.position = data.playerPosition;
+        this.hold = data.hold;
     }
 
     public void SaveData(ref GameData data)
     {
         data.playerPosition = this.transform.position;
+        data.hold = this.hold;
     }
 }

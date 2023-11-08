@@ -6,16 +6,14 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    public PlayerMovement playerMovement;
     [SerializeField] private GameObject panelPause;
     [SerializeField] private GameObject panelOptions;
     [SerializeField] private string sceneName;
     public bool inPause;
 
-    private void Start()
+    private void Awake()
     {
-        Scene currentScene = SceneManager.GetActiveScene();
-        sceneName = currentScene.name;
-
         if (instance == null)
         {
             instance = this;
@@ -25,6 +23,12 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+    private void Start()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        sceneName = currentScene.name;
+
     }
     void Update()
     {
@@ -106,4 +110,5 @@ public class GameManager : MonoBehaviour
         Unpause();
         SceneManager.LoadScene("Menu");
     }
+
 }
