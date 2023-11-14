@@ -34,6 +34,11 @@ public class ButtonMecanism : Mecanism
                 timerActive = false;
             }
         }
+        if (!timerActive && !buttonPressed)
+        {
+            UseFunction(false);
+        }
+
     }
     public override void UseFunction(bool active)
     {
