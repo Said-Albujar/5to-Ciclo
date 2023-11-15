@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1320,15 +1320,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8030980813197340046, guid: b41e0021e17a49a4eb025c888e0589b3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 28.28
+      value: 36.6
       objectReference: {fileID: 0}
     - target: {fileID: 8030980813197340046, guid: b41e0021e17a49a4eb025c888e0589b3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.4300001
+      value: 4.0299983
       objectReference: {fileID: 0}
     - target: {fileID: 8030980813197340046, guid: b41e0021e17a49a4eb025c888e0589b3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.5900002
+      value: -9.19
       objectReference: {fileID: 0}
     - target: {fileID: 8030980813197340046, guid: b41e0021e17a49a4eb025c888e0589b3, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1336,7 +1336,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8030980813197340046, guid: b41e0021e17a49a4eb025c888e0589b3, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.018409627
+      value: 0.018409608
       objectReference: {fileID: 0}
     - target: {fileID: 8030980813197340046, guid: b41e0021e17a49a4eb025c888e0589b3, type: 3}
       propertyPath: m_LocalRotation.y
@@ -2267,20 +2267,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b62c22f7ed8bd946939bc35b88ab985, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrolSpeed: 5
-  chaseSpeed: 4
-  patrolRadius: 10
-  chaseRadius: 5
-  lightDisableTime: 30
-  patrolPoints:
+  playerPosition: {fileID: 177373444471209293}
+  navMeshAgent: {fileID: 1200660010}
+  destinyPoints:
   - {fileID: 709948236}
   - {fileID: 427833558}
   - {fileID: 1724051922}
   - {fileID: 1302756127}
-  player: {fileID: 177373444471209293}
-  flashlight: {fileID: 1943570401}
-  maxLightDistance: 10
-  flashlightDetectionPoint: {fileID: 208423193}
+  patrolActive: 0
+  speedPlayerChange: 5
+  direction: {x: 0, y: 0, z: 0}
+  timer: 3
+  speed: 0
+  canSeePlayer: 0
+  radius: 7
+  angle: 94
+  targeMask:
+    serializedVersion: 2
+    m_Bits: 64
+  obstructionMask:
+    serializedVersion: 2
+    m_Bits: 128
+  time: 0.2
+  rangeChecks: []
+  detecteEnemyLight: 0
+  timerStop: 0
+  maxTimerStop: 0.3
+  changeWait: 1
+  state: 0
 --- !u!136 &1200660006
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -4039,11 +4053,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5178918932584313810, guid: 0b0befea8f7ddb546a06a4f64649108f, type: 3}
   m_PrefabInstance: {fileID: 605677527309020062}
   m_PrefabAsset: {fileID: 0}
---- !u!108 &1943570401 stripped
-Light:
-  m_CorrespondingSourceObject: {fileID: 4351244738879985930, guid: 0b0befea8f7ddb546a06a4f64649108f, type: 3}
-  m_PrefabInstance: {fileID: 605677527309020062}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2007631580
 GameObject:
   m_ObjectHideFlags: 0
@@ -4558,11 +4567,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 582983895283098385, guid: 0b0befea8f7ddb546a06a4f64649108f, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.018409621
+      value: 0.018409608
       objectReference: {fileID: 0}
     - target: {fileID: 582983895283098385, guid: 0b0befea8f7ddb546a06a4f64649108f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 1e-45
       objectReference: {fileID: 0}
     - target: {fileID: 582983895283098385, guid: 0b0befea8f7ddb546a06a4f64649108f, type: 3}
       propertyPath: m_LocalRotation.z
@@ -4574,15 +4583,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 582983895883643432, guid: 0b0befea8f7ddb546a06a4f64649108f, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.036592975
+      value: 0.036592964
       objectReference: {fileID: 0}
     - target: {fileID: 582983895883643432, guid: 0b0befea8f7ddb546a06a4f64649108f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.00000001706157
+      value: -0.00000001706157
       objectReference: {fileID: 0}
     - target: {fileID: 582983895883643432, guid: 0b0befea8f7ddb546a06a4f64649108f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -6.2475214e-10
+      value: 6.247519e-10
       objectReference: {fileID: 0}
     - target: {fileID: 582983896125567470, guid: 0b0befea8f7ddb546a06a4f64649108f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4590,15 +4599,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 582983896125567470, guid: 0b0befea8f7ddb546a06a4f64649108f, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.0002682157
+      value: 0.00026820126
       objectReference: {fileID: 0}
     - target: {fileID: 582983896125567470, guid: 0b0befea8f7ddb546a06a4f64649108f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.0000000010642554
+      value: -0.00000000175316
       objectReference: {fileID: 0}
     - target: {fileID: 582983896125567470, guid: 0b0befea8f7ddb546a06a4f64649108f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -2.8545008e-13
+      value: 4.701998e-13
       objectReference: {fileID: 0}
     - target: {fileID: 725612484143863506, guid: 0b0befea8f7ddb546a06a4f64649108f, type: 3}
       propertyPath: WaitTime
