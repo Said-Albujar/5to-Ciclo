@@ -4,41 +4,45 @@ using UnityEngine;
 
 public class Rope : MonoBehaviour
 {
-    public GameObject chain;
-    public bool chainF;
+    public List<GameObject> chainList;
     public ChangeCharacter changeMecanic;
+    public bool isInsideCollider = false;
 
-    private void OnTriggerEnter(Collider collider)
+    public GameObject Plataforma;
+
+    void Update()
     {
-        if (changeMecanic.IsHairdress && collider.gameObject.tag == "Hair" && Input.GetKeyDown(KeyCode.F))
+        if (changeMecanic.IsHairdress && isInsideCollider)
         {
-            chain.SetActive(false);
-            chainF = true;
-        }
-    }
-    private void OnTriggerExit(Collider collider)
-    {
-        if (changeMecanic.IsHairdress && Input.GetKeyDown(KeyCode.F))
-        {
-            chain.SetActive(false);
-            chainF = true;
-        }
-    }
-    private void OnTriggerStay(Collider collider)
-    {
-        if (changeMecanic.IsHairdress)
-        {
-            if (!chainF)
+            if (Input.GetKeyDown(KeyCode.F))
             {
-                if (Input.GetKeyDown(KeyCode.F))
-                {
-                    if (gameObject.activeSelf)
-                    {
-                        Destroy(chain);
-                    }
-                }
+                DeactivateChain();
             }
         }
     }
+    private void OnTriggerEnter(Collider collider)
+    {
+        if (changeMecanic.IsHairdress && collider.gameObject.tag == "Hair")
+        {
+            isInsideCollider = true;
+        }
+    }
 
+    private void OnTriggerExit(Collider collider)
+    {
+        if (changeMecanic.IsHairdress)
+        {
+            isInsideCollider = false;
+        }
+    }
+
+    private void DeactivateChain()
+    {
+        foreach (GameObject chain in chainList)
+        {
+            chain.SetActive(false);
+        }
+        Vector3 force = new Vector3(0,-5,0);
+        Plataforma.GetComponent<Rigidbody>().AddForce(force, ForceMode.Impulse);
+    }
 }

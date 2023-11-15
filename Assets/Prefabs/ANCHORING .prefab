@@ -470,7 +470,7 @@ GameObject:
   - component: {fileID: 7675224153720770192}
   - component: {fileID: 7675224153720770222}
   - component: {fileID: 7675224153720770193}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -563,14 +563,14 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7675224153720770223}
   serializedVersion: 2
-  m_Mass: 2
+  m_Mass: 3
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 120
-  m_CollisionDetection: 0
+  m_Interpolate: 1
+  m_Constraints: 80
+  m_CollisionDetection: 2
 --- !u!59 &7675224153720770193
 HingeJoint:
   m_ObjectHideFlags: 0
@@ -818,9 +818,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c6bfa6c237393f4faa01e9008f551c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chain: {fileID: 7675224153788490580}
-  chainF: 0
+  chainList:
+  - {fileID: 7675224153788490580}
+  - {fileID: 7675224152183134241}
+  - {fileID: 7675224153553230994}
+  - {fileID: 7675224153510004747}
   changeMecanic: {fileID: 0}
+  isInsideCollider: 0
+  Plataforma: {fileID: 7675224153720770223}
 --- !u!1 &7675224153986851839
 GameObject:
   m_ObjectHideFlags: 0
