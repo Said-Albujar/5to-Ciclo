@@ -47,6 +47,7 @@ public class MinerEnemy : MonoBehaviour
 
     void Start()
     {
+
         StartCoroutine(FOVRoutine());
     }
 
@@ -109,21 +110,44 @@ public class MinerEnemy : MonoBehaviour
     {
         navMeshAgent.isStopped = false;
     }
+    void RandomDirection()
+    {
+        float timer = 3f;
+        float moveX = UnityEngine.Random.Range(-1f, 1f); // Genera un valor aleatorio en el eje x
+        float moveZ = UnityEngine.Random.Range(-1f, 1f); // Genera un valor aleatorio en el eje z
+        timer -= Time.deltaTime;
+        if(timer<=3f)
+        {
+            direction = new Vector3(moveX, 0f, 0f);
+            
+
+        }
+        if(timer<=1.5f)
+        {
+            direction = new Vector3(0f, 0f, moveZ);
+
+        }
+
+
+    }
 
     void RandomMove()
     {
 
-        direction = new Vector3(UnityEngine.Random.Range(-5f, 5f), 0f, UnityEngine.Random.Range(-5f, 5f)).normalized;
 
 
         timer -= Time.deltaTime;
         if (timer >= 0f)
         {
+            
+            RandomDirection();
+            
             navMeshAgent.SetDestination(transform.position + direction);
         }
         else if (timer <= 0f)
         {
             state = EnemyState.patrol;
+
             timer = 3f;
         }
 
