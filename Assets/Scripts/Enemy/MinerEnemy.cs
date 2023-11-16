@@ -50,7 +50,7 @@ public class MinerEnemy : MonoBehaviour
 
     void Start()
     {
-        //DataPersistenceManager.instance.OnLoad += LoadEnemy;
+        DataPersistenceManager.instance.OnLoad += LoadEnemy;
         StartCoroutine(FOVRoutine());
     }
 

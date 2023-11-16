@@ -35,7 +35,7 @@ public class Enemy : MonoBehaviour
     }
     private void Start()
     {
-        //DataPersistenceManager.instance.OnLoad += LoadEnemy;
+        DataPersistenceManager.instance.OnLoad += LoadEnemy;
         StartCoroutine(FOVRoutine());
         
     }

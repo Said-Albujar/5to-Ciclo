@@ -14,7 +14,7 @@ public class DataPersistenceManager : MonoBehaviour
     private List<IDataPersistence> dataPersistenceObjects;
     private FileDataHandler dataHandler;
 
-    //public event Action OnLoad = () => { };
+    public event Action OnLoad = () => { };
 
     private void Awake()
     {
@@ -51,7 +51,7 @@ public class DataPersistenceManager : MonoBehaviour
         {
             dataPersistenceObj.LoadData(gameData);
         }
-        //OnLoad?.Invoke();
+        OnLoad?.Invoke();
     }
 
     public void SaveGame()
