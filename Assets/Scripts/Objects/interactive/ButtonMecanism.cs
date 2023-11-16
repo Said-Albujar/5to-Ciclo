@@ -42,7 +42,7 @@ public class ButtonMecanism : Mecanism
     }
     public override void UseFunction(bool active)
     {
-        if (scriptToActive.Count > 0)
+        if (scriptToActive.Count > 0 && scriptToActive[0] != null)
         {
             if (scriptToActive[0].GetComponent<InteractiveDoor>()) // Busca primero si el objeto a usar es una puerta
             {

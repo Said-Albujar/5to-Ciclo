@@ -30,6 +30,8 @@ public class MinerEnemy : MonoBehaviour
     [HideInInspector] public float timerStop;
     public float maxTimerStop;
     public bool changeWait;
+
+    private Vector3 firstPos;
     public enum EnemyState
     {
         patrol,
@@ -43,11 +45,12 @@ public class MinerEnemy : MonoBehaviour
     private void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
+        firstPos = transform.position;
     }
 
     void Start()
     {
-
+        //DataPersistenceManager.instance.OnLoad += LoadEnemy;
         StartCoroutine(FOVRoutine());
     }
 
@@ -213,5 +216,12 @@ public class MinerEnemy : MonoBehaviour
         }
         else if (canSeePlayer)
             canSeePlayer = false;
+    }
+
+    void LoadEnemy()
+    {
+        if (canSeePlayer == true)
+            canSeePlayer = false;
+        transform.position = firstPos;
     }
 }
