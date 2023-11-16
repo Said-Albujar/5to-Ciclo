@@ -16,7 +16,7 @@ public class DIalogue : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        dialogueIcon.SetActive(false);
+       // dialogueIcon.SetActive(false);
     }
 
     // Update is called once per frame
@@ -76,7 +76,7 @@ public class DIalogue : MonoBehaviour
         if(other.gameObject.layer==LayerMask.NameToLayer("TargetPlayer"))
         {
             dialogueExist = true;
-            dialogueIcon.SetActive(true);
+            dialogueIcon.SetActive(false);
         }
      
     }
@@ -85,7 +85,7 @@ public class DIalogue : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("TargetPlayer"))
         {
             dialogueExist = false;
-            dialogueIcon.SetActive(false);
+            dialogueIcon.SetActive(true);
             dialoguePanelText.SetActive(false);
 
         }
