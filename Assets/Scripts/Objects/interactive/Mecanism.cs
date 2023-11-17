@@ -14,6 +14,6 @@ public abstract class Mecanism : MonoBehaviour
         render = GetComponent<Renderer>();
         changeCharacter = FindObjectOfType<ChangeCharacter>();
     }
-    public abstract void UseFunction(bool active);
+    public abstract void UseFunction(bool active, float time);
 
 }

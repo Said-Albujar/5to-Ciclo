@@ -4,17 +4,33 @@ using UnityEngine;
 
 public class InteractiveDoor : MonoBehaviour
 {
-    public Animator anim;
-    public bool open;
-    // Start is called before the first frame update
-    void Start()
-    {
-        anim = GetComponent<Animator>();
-    }
+    public bool openDoor;
+    public float speedRotation;
+    [Header("Rotations")]
+    public float rotationOpenX;
+    public float rotationOpenY;
+    public float rotationOpenZ;
 
-    // Update is called once per frame
+    public float rotationCloseX, rotationCloseY, rotationCloseZ;
     void Update()
     {
-        anim.SetBool("Open", open);
+        if (openDoor)
+        {
+            Rotate(rotationOpenX, rotationOpenY, rotationOpenZ);
+        }
+        else
+        {
+            Rotate(rotationCloseX, rotationCloseY, rotationCloseZ);
+        }
+    }
+    private void Rotate(float rotationX, float rotationY, float rotationZ)
+    {
+        Quaternion actualRotation = transform.rotation;
+
+        Quaternion rotationActive = Quaternion.Euler(rotationX, rotationY, rotationZ);
+
+        actualRotation = Quaternion.RotateTowards(actualRotation, rotationActive, speedRotation * Time.deltaTime);
+
+        transform.rotation = actualRotation;
     }
 }

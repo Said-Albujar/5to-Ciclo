@@ -39,7 +39,7 @@ public class LabelMecanism : Mecanism
         }
     }
 
-    public override void UseFunction(bool active)
+    public override void UseFunction(bool active, float time)
     {
         if (scriptToActive.Count>0)
         {
@@ -47,7 +47,7 @@ public class LabelMecanism : Mecanism
             {
                 foreach (GameObject item in scriptToActive)
                 {
-                    item.GetComponent<InteractiveDoor>().open = active;
+                    item.GetComponent<InteractiveDoor>().openDoor = active;
                 }
             }
             else if (scriptToActive[0].GetComponent<MovingPlatform1>()) // Busca primero si el objeto a usar es una plataforma movible
@@ -79,19 +79,19 @@ public class LabelMecanism : Mecanism
                 case true:
                     RotateLabel(35);
 
-                    UseFunction(true);
+                    UseFunction(true,0);
 
                     break;
                 case false:
                     RotateLabel(-35);
 
-                    UseFunction(false);
+                    UseFunction(false,1);
                     break;
             }
         }
         else
         {
-            UseFunction(false);
+            UseFunction(false,1);
         }
     }
 
@@ -189,5 +189,19 @@ public class LabelMecanism : Mecanism
         {
             isNear = false;
         }
+    }
+    IEnumerator Inactive(GameObject item, bool active, float time)
+    {
+        yield return new WaitForSeconds(time);
+        if (scriptToActive[0].GetComponent<InteractiveDoor>())
+        {
+            //  yield return new WaitForSeconds(time);
+            item.GetComponent<InteractiveDoor>().enabled = active;
+        }
+        if (scriptToActive[0].GetComponent<Puente>())
+        {
+            item.GetComponent<InteractiveDoor>().enabled = active;
+        }
+
     }
 }

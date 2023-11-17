@@ -45,7 +45,7 @@ public class NumericKeypadUI : MonoBehaviour
                     // Cambiar el estado de apertura de la puerta a "true"
                     if (interactiveDoor != null)
                     {
-                        interactiveDoor.open = true;
+                        interactiveDoor.openDoor = true;
                     }
 
                     resultText.text = "Contraseña correcta";
