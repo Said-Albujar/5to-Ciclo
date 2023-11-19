@@ -38,7 +38,7 @@ public class PlayerClimb : MonoBehaviour
 
     private void DetectBorder()
     {
-        inBorder = Physics.Raycast(raycastCenterStart.position, raycastCenterStart.forward, .1f, solidMask) && !Physics.Raycast(raycastUpStart.position, raycastUpStart.forward, .1f, solidMask);
+        inBorder = Physics.Raycast(raycastCenterStart.position, raycastCenterStart.forward, .1f, solidMask, QueryTriggerInteraction.Ignore) && !Physics.Raycast(raycastUpStart.position, raycastUpStart.forward, .1f, solidMask, QueryTriggerInteraction.Ignore);
 
         if(inBorder)
         {
