@@ -146,6 +146,7 @@ public class LabelMecanism : Mecanism
                 {
                     isLocked = false;
                     labelActive = true;
+                    AudioManager.Instance.PlaySFX("FixLabel");
                     if (fixVfx!=null)
                         fixVfx.Play();
                     else

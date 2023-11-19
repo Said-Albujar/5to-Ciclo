@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class ErrantHealth : MonoBehaviour, IDataPersistence
+public class PlayerHealth : MonoBehaviour, IDataPersistence
 {
     public int health;
     public int maxHearts;
@@ -13,6 +13,7 @@ public class ErrantHealth : MonoBehaviour, IDataPersistence
     public Sprite fullHeart;
     public Sprite emptyHeart;
     public string SceneName;
+    private bool once;
 
     private void Update()
     {
@@ -24,6 +25,10 @@ public class ErrantHealth : MonoBehaviour, IDataPersistence
         // CheckHearts();
         if (health == 0)
         {
+            if (!once)
+            {
+                AudioManager.Instance.PlaySFX("Dead");
+            }
             DataPersistenceManager.instance.LoadGame();
         }
     }

@@ -40,7 +40,6 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public float standY;
     public float crouchHeight;
     public float CrouchY;
-    public CapsuleCollider[] capsuleColliders;
     public bool hold = true;
 
     [Header("Impulse")]
@@ -104,6 +103,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         if (Input.GetKeyDown(jumpKey) && grounded && !isCrouching)
         {
             Invoke(nameof(JumpPlayer), cooldownJump);
+            AudioManager.Instance.PlaySFX("Jump");
             grounded = false;
         }
     }

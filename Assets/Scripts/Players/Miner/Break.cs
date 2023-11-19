@@ -14,6 +14,7 @@ public class Break : MonoBehaviour
     {
         if (CanBreak == true && Input.GetKeyDown(KeyCode.F) && Change.IsMiner == true)
         {
+            AudioManager.Instance.PlaySFX("DestroyRock");
             Destroy(Rock);
             Instantiate(brokenVfx, transform.position, Quaternion.identity);
         }

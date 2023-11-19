@@ -18,6 +18,7 @@ public class Flashlight : MonoBehaviour
 
         if (changeMecanic.IsMiner && Input.GetKeyDown("q"))
         {
+            AudioManager.Instance.PlaySFX("Lantern");
             if (flashlight.enabled == true)
             {
                 IsOn = false;
