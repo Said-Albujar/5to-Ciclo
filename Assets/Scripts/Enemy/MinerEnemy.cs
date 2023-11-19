@@ -29,9 +29,6 @@ public class MinerEnemy : MonoBehaviour
     private Vector3 newDirection;
 
     private Vector3 firstPos;
-    public bool detecteEnemyLight;
-    public float maxTimerStop;
-    [HideInInspector] public float timerStop;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -78,29 +75,8 @@ public class MinerEnemy : MonoBehaviour
             Patrol();
             navMeshAgent.speed = 4f;
         }
-        if (detecteEnemyLight)
-        {
-            timerStop += Time.deltaTime;
-            if (timerStop >= maxTimerStop)
-            {
-                detecteEnemyLight = false;
-            }
-            StopMove();
-        }
-        else
-        {
-            ResumeMove();
-        }
 
 
-    }
-    void StopMove()
-    {
-        navMeshAgent.isStopped = true;
-    }
-    void ResumeMove()
-    {
-        navMeshAgent.isStopped = false;
     }
     void Patrol()
     {
