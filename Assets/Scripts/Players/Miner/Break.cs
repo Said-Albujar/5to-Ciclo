@@ -9,7 +9,10 @@ public class Break : MonoBehaviour
     public GameObject Rock;
     public GameObject brokenVfx;
 
-
+    void Start()
+    {
+        Change = FindObjectOfType<ChangeCharacter>();
+    }
     void Update()
     {
         if (CanBreak == true && Input.GetKeyDown(KeyCode.F) && Change.IsMiner == true)
