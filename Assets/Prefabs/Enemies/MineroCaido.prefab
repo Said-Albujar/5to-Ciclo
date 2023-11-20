@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7157299090701244676}
   - component: {fileID: 7157299090701244680}
   - component: {fileID: 7157299090701244681}
-  - component: {fileID: 7157299090701244686}
+  - component: {fileID: 5118454207082786229}
   m_Layer: 0
   m_Name: MineroCaido
   m_TagString: Untagged
@@ -88,7 +88,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &7157299090701244686
+--- !u!114 &5118454207082786229
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -97,35 +97,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 7157299090701244678}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 529ce79d8925965459903c46ccddbc8c, type: 3}
+  m_Script: {fileID: 11500000, guid: 8b62c22f7ed8bd946939bc35b88ab985, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   navMeshAgent: {fileID: 0}
   playerPosition: {fileID: 0}
   patrullajeActivo: 1
-  speedPlayerChange: 4
+  speedPlayerChange: 0
   nextStep: 0
-  positionPoint:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  distanceMin: 1
-  radius: 6
-  angle: 119.65
+  positionPoint: []
+  distanceMin: 0
+  radius: 0
+  angle: 0
   targeMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   obstructionMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   canSeePlayer: 0
   rangeChecks: []
   once: 0
   timer: 0
-  detecteEnemyLight: 0
-  maxTimerStop: 0
-  timerStop: 0
 --- !u!1 &8574551792825975822
 GameObject:
   m_ObjectHideFlags: 0

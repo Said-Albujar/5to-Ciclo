@@ -27,7 +27,9 @@ public class MinerEnemy : MonoBehaviour
     public bool once;
     public float timer;
     private Vector3 newDirection;
-
+    public bool detecteEnemyLight;
+    [HideInInspector] public float timerStop;
+    public float maxTimerStop;
     private Vector3 firstPos;
     // Start is called before the first frame update
     private void Awake()
@@ -47,6 +49,19 @@ public class MinerEnemy : MonoBehaviour
 
     private void Update()
     {
+        if (detecteEnemyLight)
+        {
+            timerStop += Time.deltaTime;
+            if (timerStop >= maxTimerStop)
+            {
+                detecteEnemyLight = false;
+            }
+            StopMove();
+        }
+        else
+        {
+            ResumeMove();
+        }
         if (canSeePlayer)
         {
             if (playerPosition != null)
@@ -155,5 +170,13 @@ public class MinerEnemy : MonoBehaviour
         if (once == true)
             once = false;
         transform.position = firstPos;
+    }
+    void StopMove()
+    {
+        navMeshAgent.isStopped = true;
+    }
+    void ResumeMove()
+    {
+        navMeshAgent.isStopped = false;
     }
 }

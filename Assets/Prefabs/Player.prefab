@@ -1484,7 +1484,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1798669024196336036}
-  m_LocalRotation: {x: 0.019262822, y: 0.0726928, z: -0.0014042065, w: 0.99716735}
+  m_LocalRotation: {x: 0.013010004, y: 0.7073978, z: -0.013025077, w: 0.7065759}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1564,7 +1564,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1798669024332084358}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.3013346, y: 0.66000056, z: -8.905418}
+  m_LocalPosition: {x: -8.999992, y: 0.65999925, z: 0.010463715}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1732,7 +1732,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1798669024675823773}
-  m_LocalRotation: {x: 0.037397604, y: 0.07265519, z: -0.0027262175, w: 0.996652}
+  m_LocalRotation: {x: 0.025860097, y: 0.7070439, z: -0.02589012, w: 0.70622236}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1810,7 +1810,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1798669024971819871}
-  m_LocalRotation: {x: 0.0011695891, y: 0.072706275, z: -0.00008522251, w: 0.9973527}
+  m_LocalRotation: {x: 0.00018954928, y: 0.7075177, z: -0.00018970862, w: 0.70669556}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2963,9 +2963,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adaba920c8109f748b24ebb733408170, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flashlight: {fileID: 3207602214568551353}
-  changeMecanic: {fileID: 1941314792603790433}
-  IsOn: 0
+  lightActive: {fileID: 0}
+  flashLight: {fileID: 0}
+  rb: {fileID: 0}
+  speed: 0
 --- !u!114 &2616377387453705221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7576,6 +7577,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6286528536670652769}
   - component: {fileID: 3207602214568551353}
+  - component: {fileID: 1318306133433345039}
   m_Layer: 6
   m_Name: Light
   m_TagString: Untagged
@@ -7660,6 +7662,29 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &1318306133433345039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7503166439821747838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cd680052edb3e04db03b2b396ea3763, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canSeeEnemy: 0
+  radius: 7.1
+  angle: 59.24
+  targeMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  obstructionMask:
+    serializedVersion: 2
+    m_Bits: 0
+  time: 0
+  rangeChecks: []
 --- !u!1 &7564947447355012957
 GameObject:
   m_ObjectHideFlags: 0

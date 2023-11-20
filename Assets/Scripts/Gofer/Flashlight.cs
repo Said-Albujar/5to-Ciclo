@@ -4,31 +4,35 @@ using UnityEngine;
 
 public class Flashlight : MonoBehaviour
 {
-    public  Light flashlight;
-    public ChangeCharacter changeMecanic;
-    public bool IsOn;
-
-    // This method is called when the scene loads.
-    private void Update()
+    public PlayerLight lightActive;
+    public GameObject flashLight;
+    public Rigidbody rb;
+    public float speed;
+    // Start is called before the first frame update
+    void Start()
     {
-        if (changeMecanic.IsMiner == false)
-        {
-            flashlight.enabled = false;
-        }
 
-        if (changeMecanic.IsMiner && Input.GetKeyDown("q"))
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+       
+        if (Input.GetKeyDown(KeyCode.G))
         {
-            AudioManager.Instance.PlaySFX("Lantern");
-            if (flashlight.enabled == true)
+            if (lightActive.enabled)
             {
-                IsOn = false;
-                flashlight.enabled = false;
+                lightActive.enabled = false;
+                flashLight.SetActive(false);
+
             }
-            else if (flashlight.enabled == false)
+            else
             {
-                IsOn = true;
-                flashlight.enabled = true;
+                lightActive.enabled = true;
+                flashLight.SetActive(true);
+
             }
+
         }
     }
 }
