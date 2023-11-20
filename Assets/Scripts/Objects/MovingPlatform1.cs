@@ -34,18 +34,18 @@ public class MovingPlatform1 : MonoBehaviour
 
     // Activar cuando se tenga plataformas con escala 1,1,1
 
-    //private void OnCollisionEnter(Collision collision)  
-    //{
-    //    if (collision.gameObject.CompareTag("Box"))
-    //    {
-    //        collision.gameObject.transform.SetParent(transform);
-    //    }
-    //}
-    //private void OnCollisionExit(Collision collision)
-    //{
-    //    if (collision.gameObject.CompareTag("Box"))
-    //    {
-    //        collision.gameObject.transform.SetParent(null);
-    //    }
-    //}
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Box"))
+        {
+            collision.gameObject.transform.SetParent(transform);
+        }
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Box"))
+        {
+            collision.gameObject.transform.SetParent(null);
+        }
+    }
 }
