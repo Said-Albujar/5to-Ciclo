@@ -115,6 +115,28 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         horInput = Input.GetAxisRaw("Horizontal");       
         verInput = Input.GetAxisRaw("Vertical");
 
+        if(horInput!=0 ||verInput!=0)
+        {
+            if(!AudioManager.Instance.sfxSource.isPlaying)
+            {
+                AudioManager.Instance.PlaySFX("caminar");
+
+            }
+           
+          
+
+        }
+        else
+        {
+            if (AudioManager.Instance.sfxSource.isPlaying)
+            {
+                AudioManager.Instance.StopSFX();
+
+            }
+
+        }
+
+
 
         Jump();
 
