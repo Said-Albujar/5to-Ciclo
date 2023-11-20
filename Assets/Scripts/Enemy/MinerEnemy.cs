@@ -8,47 +8,58 @@ using UnityEngine.AI;
 
 public class MinerEnemy : MonoBehaviour
 {
-    [Header("Movement")]
+    public Transform playerPosition;
     public NavMeshAgent navMeshAgent;
-    public GameObject playerPosition;
-    public bool patrullajeActivo = true;
+    private int indexActualDestiny = 0;
+    public Transform[] destinyPoints;
+    public bool patrolActive;
     public float speedPlayerChange;
-    public int nextStep = 0;
-    public List<Transform> positionPoint;
-    public float distanceMin;
-    [Header("Cono de vision")]
+    public Vector3 direction;
+    public float timer;
+    public float speed;
+
+    [Header("FOV")]
+    public bool canSeePlayer;
     public float radius;
     public float angle;
     public LayerMask targeMask;
     public LayerMask obstructionMask;
-    public bool canSeePlayer;
-    private float time;
+    public float time;
     public Collider[] rangeChecks;
-    public bool once;
-    public float timer;
-    private Vector3 newDirection;
     public bool detecteEnemyLight;
     [HideInInspector] public float timerStop;
     public float maxTimerStop;
-    private Vector3 firstPos;
-    // Start is called before the first frame update
+    public bool changeWait;
+    public enum EnemyState
+    {
+        patrol,
+        wait,
+        chase,
+    }
+    public EnemyState state;
+
+
+
     private void Awake()
     {
-        firstPos = transform.position;
         navMeshAgent = GetComponent<NavMeshAgent>();
-        playerPosition = FindObjectOfType<PlayerMovement>().gameObject;
     }
-    private void Start()
+
+    void Start()
     {
-        DataPersistenceManager.instance.OnLoad += LoadEnemy;
         StartCoroutine(FOVRoutine());
-
     }
 
-
-
-    private void Update()
+    // Update is called once per frame
+    void Update()
     {
+
+        if (state == EnemyState.chase && !canSeePlayer)
+        {
+
+            RandomMove();
+        }
+
         if (detecteEnemyLight)
         {
             timerStop += Time.deltaTime;
@@ -62,70 +73,82 @@ public class MinerEnemy : MonoBehaviour
         {
             ResumeMove();
         }
+
+        //
         if (canSeePlayer)
         {
+
             if (playerPosition != null)
             {
+                state = EnemyState.chase;
                 navMeshAgent.SetDestination(playerPosition.transform.position);
                 navMeshAgent.speed = speedPlayerChange;
-                patrullajeActivo = false;
-                once = true;
-                timer = 0f;
+                patrolActive = false;
             }
-            else
+
+        }
+        if (!canSeePlayer && state == EnemyState.patrol)
+        {
+
+            if (!navMeshAgent.pathPending && navMeshAgent.remainingDistance < 0.1f)
             {
-                Debug.Log("Referencia nula en playerPosition");
+                patrolActive = true;
+                state = EnemyState.patrol;
+                SetNextDestiny();
             }
-
         }
 
-        if (!canSeePlayer && once == true)
-        {
-            RandomMove();
-        }
-
-        if (!canSeePlayer && once == false)
-        {
-            patrullajeActivo = true;
-            Patrol();
-            navMeshAgent.speed = 4f;
-        }
 
 
     }
-    void Patrol()
+    void StopMove()
     {
-        navMeshAgent.SetDestination(positionPoint[nextStep].position);
-        if (Vector3.Distance(transform.position, positionPoint[nextStep].position) < distanceMin)
-        {
-            nextStep++;
-            if (nextStep >= positionPoint.Count)
-            {
-                nextStep = 0;
-            }
-        }
+        navMeshAgent.isStopped = true;
+    }
+    void ResumeMove()
+    {
+        navMeshAgent.isStopped = false;
     }
 
     void RandomMove()
     {
-        timer += Time.deltaTime;
-        if (timer <= 3f)
+
+        direction = new Vector3(UnityEngine.Random.Range(-10f, 10f), 0f, UnityEngine.Random.Range(-10f, 10f));
+
+
+        timer -= Time.deltaTime;
+        if (timer >= 0f)
         {
-            if (!navMeshAgent.pathPending && navMeshAgent.remainingDistance < 0.1f)
-            {
-                newDirection = new Vector3(UnityEngine.Random.Range(-5f, 5f), 0f, UnityEngine.Random.Range(-5f, 5f));
-                navMeshAgent.SetDestination(transform.position + newDirection);
-            }
+            navMeshAgent.SetDestination(transform.position + direction);
         }
-        else
+        else if (timer <= 0f)
         {
-            once = false;
-            timer = 0f;
+            state = EnemyState.patrol;
+            timer = 3f;
         }
 
+
+
+        /*direction = new Vector3(Random.Range(-10f, 10f), 0f, Random.Range(-10f, 10f));
+        navMeshAgent.SetDestination(transform.position + direction);
+        if (timer >= 3f)
+        {
+            state = EnemyState.patrol;
+        }
+
+     }*/
     }
 
 
+    void SetNextDestiny()
+    {
+
+        if (destinyPoints.Length == 0)
+            return;
+
+        navMeshAgent.destination = destinyPoints[indexActualDestiny].position;
+        indexActualDestiny = (indexActualDestiny + 1) % destinyPoints.Length;
+    }
 
     IEnumerator FOVRoutine()
     {
@@ -154,29 +177,17 @@ public class MinerEnemy : MonoBehaviour
                 }
 
                 else
+
                     canSeePlayer = false;
+
+
+
+
             }
             else
                 canSeePlayer = false;
         }
         else if (canSeePlayer)
             canSeePlayer = false;
-    }
-
-    void LoadEnemy()
-    {
-        if (canSeePlayer == true)
-            canSeePlayer = false;
-        if (once == true)
-            once = false;
-        transform.position = firstPos;
-    }
-    void StopMove()
-    {
-        navMeshAgent.isStopped = true;
-    }
-    void ResumeMove()
-    {
-        navMeshAgent.isStopped = false;
     }
 }

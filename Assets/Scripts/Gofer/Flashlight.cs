@@ -7,7 +7,6 @@ public class Flashlight : MonoBehaviour
     public PlayerLight lightActive;
     public GameObject flashLight;
     public Rigidbody rb;
-    public float speed;
     // Start is called before the first frame update
     void Start()
     {
