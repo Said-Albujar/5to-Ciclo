@@ -7,9 +7,11 @@ public class Rope : MonoBehaviour
     public List<GameObject> chainList;
     public ChangeCharacter changeMecanic;
     public bool isInsideCollider = false;
-
     public GameObject Plataforma;
 
+    //Se cambio el fixed por update ya que daba demasiados problemas a la hora de cortar
+    //Se añandio un bool que detecta la collider, si no esta dentro del colider no se destruye la cuerda.
+    //Se añadio una lista,los objetos dentro de la lista se destruyen(cadenas).
     void Update()
     {
         if (changeMecanic.IsHairdress && isInsideCollider)
