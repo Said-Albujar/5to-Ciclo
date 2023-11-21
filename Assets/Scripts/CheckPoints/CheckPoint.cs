@@ -8,6 +8,7 @@ public class CheckPoint : MonoBehaviour
     {
         if (other.CompareTag("Hair") || other.CompareTag("Miner") || other.CompareTag("Engi"))
             {
+            AudioManager.Instance.PlaySFX("Checkpoint");
             DataPersistenceManager.instance.SaveGame();
             Destroy(this.gameObject);
         }
