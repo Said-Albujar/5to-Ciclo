@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public float runSpeed;
     public float groundDrag;
     public float rotationSpeed;
-    [HideInInspector] public bool isRunning;
+    [SerializeField] public bool isRunning;
     public bool turn;
    // public FallHairdresser fall;
     [Header("GroundCheck")]
@@ -110,31 +110,38 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     void ErrantInput()
     {
-     
-        
-        horInput = Input.GetAxisRaw("Horizontal");       
+
+
+        horInput = Input.GetAxisRaw("Horizontal");
         verInput = Input.GetAxisRaw("Vertical");
 
-        if(horInput!=0 ||verInput!=0)
+        if(moveDir.magnitude>0)
         {
-            if(!AudioManager.Instance.sfxSource.isPlaying)
+            if(!isRunning&&grounded)
             {
-                AudioManager.Instance.PlaySFX("caminar");
-
+                if (!AudioManager.Instance.sfxSource.isPlaying)
+                {
+                    AudioManager.Instance.PlaySFX("caminar");
+                }
             }
-           
+            else if(isRunning && grounded)
+            {
+                if (!AudioManager.Instance.sfxSource.isPlaying)
+                {
+                    AudioManager.Instance.PlaySFX("correr");
+                }
+            }
           
-
         }
         else
         {
-            if (AudioManager.Instance.sfxSource.isPlaying)
-            {
+            
                 AudioManager.Instance.StopSFX();
-
-            }
-
+            
         }
+
+
+
 
 
 
@@ -207,26 +214,34 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         right.Normalize();
 
         moveDir = forward * verInput + right * horInput;
-
-        if (Input.GetKey(KeyCode.LeftShift) && StaminaController.staminaActual >= 0 && StaminaController.canRun)
+      
+        
+        if (Input.GetKey(KeyCode.LeftShift) && StaminaController.staminaActual >= 0 && StaminaController.canRun&&moveDir.magnitude>0)
         {
+            
             isRunning = true;
+           
+
 
         }
         else
         {
             isRunning = false;
+           
+
         }
 
         switch (isRunning)
         {
             case true:
                 rb.AddForce(moveDir.normalized * runSpeed * 10f, ForceMode.Force);
+               
                 break;
             case false:
                 rb.AddForce(moveDir.normalized * walkSpeed * 10f, ForceMode.Force);
+               
                 break;
-        }
+        } 
 
 
 
@@ -263,6 +278,8 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             case true:
                 if (flatVel.magnitude > runSpeed)
                 {
+                   
+
                     Vector3 limitedVel = flatVel.normalized * runSpeed;
                     rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
                 }
@@ -270,6 +287,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             case false:
                 if (flatVel.magnitude > walkSpeed)
                 {
+                  
                     Vector3 limitedVel = flatVel.normalized * walkSpeed;
                     rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
                 }
