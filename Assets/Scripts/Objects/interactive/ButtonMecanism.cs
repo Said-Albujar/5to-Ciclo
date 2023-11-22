@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +9,11 @@ public class ButtonMecanism : Mecanism
     public float timeActive;
     private float timer;
     private bool timerActive;
-    bool buttonPressed;
+    public bool buttonPressed;
+    public bool haveMoreButtons;
+    public ButtonMecanism[] otherButtons;
+
+    private float timerButtPress = 0.25f;
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -21,6 +26,7 @@ public class ButtonMecanism : Mecanism
         }
         
         ActivateTimerButton();
+        DesactButtonPressed();
     }
     private void ActivateTimerButton()
     {
@@ -29,27 +35,49 @@ public class ButtonMecanism : Mecanism
             timer -= Time.deltaTime;
             if (timer <= 0)
             {
-                UseFunction(false,1);
+                UseFunction(false);
 
                 timerActive = false;
             }
         }
         if (!timerActive && !buttonPressed)
         {
-            UseFunction(false,1);
+            UseFunction(false);
         }
 
     }
-    public override void UseFunction(bool active,float time)
+    public override void UseFunction(bool active)
     {
         if (scriptToActive.Count > 0 && scriptToActive[0] != null)
         {
             if (scriptToActive[0].GetComponent<InteractiveDoor>()) // Busca primero si el objeto a usar es una puerta
             {
-                foreach (GameObject item in scriptToActive)
+                if (haveMoreButtons)
                 {
-                    item.GetComponent<InteractiveDoor>().openDoor = active;
-                    StartCoroutine(Inactive(item, active,time));
+                    foreach (ButtonMecanism button in otherButtons)
+                    {
+                        if (otherButtons.All(b => b.buttonPressed))
+                        {
+                            foreach (GameObject item in scriptToActive)
+                            {
+                                item.GetComponent<InteractiveDoor>().openDoor = active;
+                            }
+                        }
+                        else
+                        {
+                            foreach (GameObject item in scriptToActive)
+                            {
+                                item.GetComponent<InteractiveDoor>().openDoor = false;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    foreach (GameObject item in scriptToActive)
+                    {
+                        item.GetComponent<InteractiveDoor>().openDoor = active;
+                    }
                 }
             }
             else if (scriptToActive[0].GetComponent<MovingPlatform1>()) // Busca primero si el objeto a usar es una plataforma movible
@@ -64,19 +92,30 @@ public class ButtonMecanism : Mecanism
                 foreach (GameObject item in scriptToActive)
                 {
                     item.GetComponent<Puente>().openBridge = active;
-                    StartCoroutine(Inactive(item, active, time));
                 }
             }
             else
                 Debug.LogError("No se adjunto un gameobject con script valido en scriptActive");
         }
     }
+
+    private void DesactButtonPressed()
+    {
+        timerButtPress -= Time.deltaTime;
+        {
+            if (timerButtPress <= 0)
+            {
+                buttonPressed = false;
+            }
+        }
+    }
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Hair") || other.CompareTag("Box") || other.CompareTag("Miner") || other.CompareTag("Engi") || other.CompareTag("Mata"))
         {
-            UseFunction(true,0);
+            UseFunction(true);
             buttonPressed = true;
+            timerButtPress= 0.25f;
         }
     }
 
@@ -88,19 +127,5 @@ public class ButtonMecanism : Mecanism
             timer = timeActive;
             timerActive = true;
         }
-    }
-    IEnumerator Inactive(GameObject item, bool active, float time)
-    {
-        yield return new WaitForSeconds(time);
-        if (scriptToActive[0].GetComponent<InteractiveDoor>())
-        {
-            //  yield return new WaitForSeconds(time);
-            item.GetComponent<InteractiveDoor>().enabled = active;
-        }
-        if (scriptToActive[0].GetComponent<Puente>())
-        {
-            item.GetComponent<InteractiveDoor>().enabled = active;
-        }
-
     }
 }

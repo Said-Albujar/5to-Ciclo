@@ -39,7 +39,7 @@ public class LabelMecanism : Mecanism
         }
     }
 
-    public override void UseFunction(bool active, float time)
+    public override void UseFunction(bool active)
     {
         if (scriptToActive.Count>0)
         {
@@ -79,19 +79,19 @@ public class LabelMecanism : Mecanism
                 case true:
                     RotateLabel(35);
 
-                    UseFunction(true,0);
+                    UseFunction(true);
 
                     break;
                 case false:
                     RotateLabel(-35);
 
-                    UseFunction(false,1);
+                    UseFunction(false);
                     break;
             }
         }
         else
         {
-            UseFunction(false,1);
+            UseFunction(false);
         }
     }
 

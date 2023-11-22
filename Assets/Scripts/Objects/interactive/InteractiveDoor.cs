@@ -17,6 +17,7 @@ public class InteractiveDoor : MonoBehaviour
     {
         if (openDoor)
         {
+            speedRotation = 90f;
             Rotate(rotationOpenX, rotationOpenY, rotationOpenZ);
             if(!wasOpen)
             {
@@ -26,6 +27,7 @@ public class InteractiveDoor : MonoBehaviour
         }
         else
         {
+            speedRotation = 300f;
             Rotate(rotationCloseX, rotationCloseY, rotationCloseZ);
             if (wasOpen)
             {
