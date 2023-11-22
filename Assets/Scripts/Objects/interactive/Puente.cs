@@ -10,7 +10,7 @@ public class Puente : MonoBehaviour
     public float rotationOpenX;
     public float rotationOpenY;
     public float rotationOpenZ;
-
+    private bool wasOpen;
     public float rotationCloseX,rotationCloseY,rotationCloseZ;
    
     // Start is called before the first frame update
@@ -25,16 +25,23 @@ public class Puente : MonoBehaviour
         if(openBridge)
         {
             RotateLabel(rotationOpenX,rotationOpenY,rotationOpenZ);
-            /*if(transform.rotation.z!=0)
+            if (!wasOpen)
             {
-                
-            }*/
+                AudioManager.Instance.PlaySFX("abrirPuente");
+
+            }
 
         }
         else
         {
             RotateLabel(rotationCloseX,rotationCloseY,rotationCloseZ);
+            if (wasOpen)
+            {
+                AudioManager.Instance.PlaySFX("cerrar");
+
+            }
         }
+        wasOpen = openBridge;
     }
     private void RotateLabel(float rotationX,float rotationY,float rotationZ)
     {
