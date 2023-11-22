@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public float runSpeed;
     public float groundDrag;
     public float rotationSpeed;
-    [HideInInspector] public bool isRunning;
+    [SerializeField] public bool isRunning;
     public bool turn;
    // public FallHairdresser fall;
     [Header("GroundCheck")]
@@ -73,11 +73,8 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         GroundCheck();
         SpeedControl();
         ErrantInput();
+        
 
-        if (grounded)
-        {
-            PlayerClimb.inBorderStatic = false;
-        }
 
 
         Drag();
@@ -87,21 +84,17 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     }
     void FixedUpdate()
     {
-        if (grounded || PlayerClimb.inBorderStatic)
-        {
-            MoveErrant();
-        }
-        
-
+        MoveErrant();
         if (turn)
         {
+            
             RotatePlayer();
         }
         ImpulseElevator();
 
         rb.useGravity = !freeze;
     }
-     
+   
 
   
     void Jump()
@@ -115,34 +108,34 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             grounded = false;
         }
     }
+    void PlayWalkingSound()
+    {
+        if (!AudioManager.Instance.sfxSource.isPlaying)
+        {
+            AudioManager.Instance.PlaySFX("caminar");
+        }
+    }
 
+    void PlayRunningSound()
+    {
+        if (!AudioManager.Instance.sfxSource.isPlaying)
+        {
+            AudioManager.Instance.PlaySFX("correr");
+        }
+    }
+   
     void ErrantInput()
     {
-     
-        
-        horInput = Input.GetAxisRaw("Horizontal");       
+
+
+        horInput = Input.GetAxisRaw("Horizontal");
         verInput = Input.GetAxisRaw("Vertical");
 
-        if(horInput!=0 ||verInput!=0)
-        {
-            if(!AudioManager.Instance.sfxSource.isPlaying)
-            {
-                AudioManager.Instance.PlaySFX("caminar");
+       
 
-            }
-           
-          
 
-        }
-        else
-        {
-            if (AudioManager.Instance.sfxSource.isPlaying)
-            {
-                AudioManager.Instance.StopSFX();
 
-            }
 
-        }
 
 
 
@@ -165,7 +158,6 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     {
         rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
     }
-
 
     void Crouch()
     {
@@ -216,26 +208,36 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         right.Normalize();
 
         moveDir = forward * verInput + right * horInput;
-
-        if (Input.GetKey(KeyCode.LeftShift) && StaminaController.staminaActual >= 0 && StaminaController.canRun)
+      
+        /*if(verInput!=0 ||horInput!=0&&!isRunning)
         {
+            //PlayWalkingSound();
+        }*/
+        
+        if (Input.GetKey(KeyCode.LeftShift) && StaminaController.staminaActual >= 0 && StaminaController.canRun&&moveDir.magnitude>0)
+        {
+            
             isRunning = true;
+            //PlayRunningSound();
+
 
         }
         else
         {
             isRunning = false;
+
         }
 
         switch (isRunning)
         {
             case true:
                 rb.AddForce(moveDir.normalized * runSpeed * 10f, ForceMode.Force);
+
                 break;
             case false:
                 rb.AddForce(moveDir.normalized * walkSpeed * 10f, ForceMode.Force);
                 break;
-        }
+        } 
 
 
 
@@ -272,6 +274,8 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             case true:
                 if (flatVel.magnitude > runSpeed)
                 {
+                   
+
                     Vector3 limitedVel = flatVel.normalized * runSpeed;
                     rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
                 }
@@ -279,6 +283,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             case false:
                 if (flatVel.magnitude > walkSpeed)
                 {
+                  
                     Vector3 limitedVel = flatVel.normalized * walkSpeed;
                     rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
                 }
