@@ -11,6 +11,7 @@ public class PlayerClimb : MonoBehaviour
     public Transform raycastCenterStart;
     public Transform raycastUpStart;
     [SerializeField] bool inBorder;
+    public static bool inBorderStatic;
 
     [Header("Border Action")]
     public float borderCooldown;
@@ -56,6 +57,7 @@ public class PlayerClimb : MonoBehaviour
 
         if (verticalInput > 0f)
         {
+            inBorderStatic = true;
             pm.TriggerJump();
         }
     }
