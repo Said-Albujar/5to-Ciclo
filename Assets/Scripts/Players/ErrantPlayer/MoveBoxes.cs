@@ -40,6 +40,7 @@ public class MoveBoxes : MonoBehaviour
     {
         if(Input.GetKeyDown(moveBoxKey))
         {
+
             moveBox = true;
         } else if(Input.GetKeyUp(moveBoxKey))
         { 
@@ -57,6 +58,9 @@ public class MoveBoxes : MonoBehaviour
             {
                 if(boxHit.collider.gameObject.CompareTag(boxTag))
                 {
+
+                    AudioManager.Instance.PlaySFX("mover");
+
                     boxObj = boxHit.collider.gameObject;
                 }
             }

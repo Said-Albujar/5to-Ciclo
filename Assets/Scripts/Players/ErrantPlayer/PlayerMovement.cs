@@ -84,9 +84,13 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     }
     void FixedUpdate()
     {
-        MoveErrant();
+        if(grounded)
+        {
+            MoveErrant();
+        }
         if (turn)
         {
+            
             RotatePlayer();
         }
         ImpulseElevator();
@@ -107,7 +111,22 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             grounded = false;
         }
     }
+    void PlayWalkingSound()
+    {
+        if (!AudioManager.Instance.sfxSource.isPlaying)
+        {
+            AudioManager.Instance.PlaySFX("caminar");
+        }
+    }
 
+    void PlayRunningSound()
+    {
+        if (!AudioManager.Instance.sfxSource.isPlaying)
+        {
+            AudioManager.Instance.PlaySFX("correr");
+        }
+    }
+   
     void ErrantInput()
     {
 
@@ -115,30 +134,8 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         horInput = Input.GetAxisRaw("Horizontal");
         verInput = Input.GetAxisRaw("Vertical");
 
-        if(moveDir.magnitude>0)
-        {
-            if(!isRunning&&grounded)
-            {
-                if (!AudioManager.Instance.sfxSource.isPlaying)
-                {
-                    AudioManager.Instance.PlaySFX("caminar");
-                }
-            }
-            else if(isRunning && grounded)
-            {
-                if (!AudioManager.Instance.sfxSource.isPlaying)
-                {
-                    AudioManager.Instance.PlaySFX("correr");
-                }
-            }
-          
-        }
-        else
-        {
-            
-                AudioManager.Instance.StopSFX();
-            
-        }
+       
+
 
 
 
@@ -215,19 +212,22 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
         moveDir = forward * verInput + right * horInput;
       
+        /*if(verInput!=0 ||horInput!=0&&!isRunning)
+        {
+            //PlayWalkingSound();
+        }*/
         
         if (Input.GetKey(KeyCode.LeftShift) && StaminaController.staminaActual >= 0 && StaminaController.canRun&&moveDir.magnitude>0)
         {
             
             isRunning = true;
-           
+            //PlayRunningSound();
 
 
         }
         else
         {
             isRunning = false;
-           
 
         }
 
@@ -235,11 +235,10 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         {
             case true:
                 rb.AddForce(moveDir.normalized * runSpeed * 10f, ForceMode.Force);
-               
+
                 break;
             case false:
                 rb.AddForce(moveDir.normalized * walkSpeed * 10f, ForceMode.Force);
-               
                 break;
         } 
 

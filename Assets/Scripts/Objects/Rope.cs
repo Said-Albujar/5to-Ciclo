@@ -14,10 +14,16 @@ public class Rope : MonoBehaviour
     //Se añadio una lista,los objetos dentro de la lista se destruyen(cadenas).
     void Update()
     {
+        
+
+        
+
         if (changeMecanic.IsHairdress && isInsideCollider)
         {
             if (Input.GetKeyDown(KeyCode.F))
             {
+                
+                Debug.Log("SonidoCortar");
                 DeactivateChain();
             }
         }
@@ -43,6 +49,10 @@ public class Rope : MonoBehaviour
         foreach (GameObject chain in chainList)
         {
             chain.SetActive(false);
+            
+            AudioManager.Instance.PlaySFX("cortar");
+
+            
         }
         Vector3 force = new Vector3(0,-5,0);
         Plataforma.GetComponent<Rigidbody>().AddForce(force, ForceMode.Impulse);
