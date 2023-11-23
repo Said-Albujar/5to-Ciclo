@@ -1,0 +1,67 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerAnimationController : MonoBehaviour
+{
+    public PlayerMovement playerMovement;
+    public Animator anim;
+
+    void Awake()
+    {
+        playerMovement = FindObjectOfType<PlayerMovement>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        anim.speed = 1;
+        anim.SetBool("jumped", playerMovement.isJump);
+        anim.SetBool("isRunning", playerMovement.isRunning);
+        anim.SetBool("isCrouching", playerMovement.isCrouching);
+
+
+        MoveAnim();
+        JumpAnim();
+        anim.SetBool("grounded", playerMovement.grounded);
+    }
+
+
+
+    private void MoveAnim()
+    {
+        if (playerMovement.actualSpeed <= 0.1f)
+        {
+            anim.SetFloat("Move", 0f);
+        }
+        else
+        {
+            anim.SetFloat("Move", playerMovement.actualSpeed);
+        }
+
+    }
+
+
+    private void JumpAnim()
+    {
+        if (playerMovement.grounded)
+        {
+            if (Input.GetKeyDown(KeyCode.Space) && !playerMovement.isCrouching)
+            {
+                anim.SetBool("jumped", true);
+            }
+            anim.SetBool("grounded", true);
+        }
+
+        else
+        {
+            Falling();
+        }
+    }
+
+    private void Falling()
+    {
+        anim.SetBool("grounded", false);
+        anim.SetBool("jumped", false);
+    }
+}

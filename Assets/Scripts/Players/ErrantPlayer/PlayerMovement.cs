@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour, IDataPersistence
 {
+    public CapsuleCollider cap;
     [Header("Movement")]
     public float actualSpeed;
     public float walkSpeed;
@@ -33,6 +34,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public float jumpForce;
     public float cooldownJump;
     public KeyCode jumpKey = KeyCode.Space;
+    public bool isJump;
 
     [Header("Crouch")]
     public bool isCrouching;
@@ -81,6 +83,12 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         
         actualSpeed = rb.velocity.magnitude;
 
+
+        if (grounded)
+        {
+            isJump = false;
+        }
+
     }
     void FixedUpdate()
     {
@@ -106,6 +114,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             Invoke(nameof(JumpPlayer), cooldownJump);
             AudioManager.Instance.PlaySFX("Jump");
             grounded = false;
+            isJump = true;
         }
     }
     void PlayWalkingSound()
@@ -165,33 +174,28 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
         if (isCrouching)
         {
-            gameObject.transform.localScale = new Vector3(transform.localScale.x, 0.5f, transform.localScale.z);
-           
+            //gameObject.transform.localScale = new Vector3(transform.localScale.x, 0.5f, transform.localScale.z);
 
 
             //La parte comentada se usara cuando usemos un modelo 3d con animaciones
 
-            //foreach (var item in capsuleColliders)  
-            //{
-            //    item.height = crouchHeight;
-            //    item.center = new Vector3(item.center.x, CrouchY, item.center.z);
-            //}
+
+            cap.height = crouchHeight;
+            cap.center = new Vector3(cap.center.x, CrouchY, cap.center.z);
 
         }
         else
         {
-            gameObject.transform.localScale = new Vector3(transform.localScale.x, 1, transform.localScale.z);
+            //gameObject.transform.localScale = new Vector3(transform.localScale.x, 1, transform.localScale.z);
 
-           
+
 
 
             //La parte comentada se usara cuando usemos un modelo 3d con animaciones
 
-            //foreach (var item in capsuleColliders)
-            //{
-            //    item.height = standHeight;
-            //    item.center = new Vector3(item.center.x, standY, item.center.z);
-            //}
+
+            cap.height = standHeight;
+            cap.center = new Vector3(cap.center.x, standY, cap.center.z);
 
         }
     }
