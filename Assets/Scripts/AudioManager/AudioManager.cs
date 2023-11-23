@@ -228,6 +228,11 @@ public class AudioManager : MonoBehaviour
         return musicSource.clip == s.clip && musicSource.isPlaying;
     }
 
+    public void PlayStepSound()
+    {
+        PlaySFX("Steps");
+    }
+
     //private IEnumerator Fade(AudioSource audioSource)
     //{
     //    float timeToFade = 0.25f;
