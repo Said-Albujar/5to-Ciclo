@@ -39,7 +39,7 @@ public class PickUp : MonoBehaviour
 
         
 
-        if (Input.GetKeyDown(KeyCode.R) && PickedObject != null && !canPickUp)
+        if (Input.GetKeyDown(KeyCode.E) && PickedObject != null && !canPickUp)
         {
             PickedObject.AddComponent<Rigidbody>();
             PickedObject.GetComponent<Rigidbody>().useGravity = true;
