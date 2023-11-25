@@ -44,28 +44,28 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public float CrouchY;
     public bool hold = true;
 
-    [Header("Impulse")]
-    [SerializeField] GameObject stepRayUpper;
-    [SerializeField] GameObject stepRayLower;
-    [SerializeField] float stepHeight = 0.3f;
-    [SerializeField] float stepSmooth = 2f;
-    public float radius;
-    public RaycastHit hitUpper;
-    public RaycastHit hitLower;
+    //[Header("Impulse")]
+    //[SerializeField] GameObject stepRayUpper;
+    //[SerializeField] GameObject stepRayLower;
+    //[SerializeField] float stepHeight = 0.3f;
+    //[SerializeField] float stepSmooth = 2f;
+    //public float radius;
+    //public RaycastHit hitUpper;
+    //public RaycastHit hitLower;
 
-    [Header("Fall crash")]
-    public float fuerzaCaida;
-    public float radiusDrop;
-    public LayerMask maskCaida;
-    public bool wall;
-    public bool keyCheck;
+    //[Header("Fall crash")]
+    //public float fuerzaCaida;
+    //public float radiusDrop;
+    //public LayerMask maskCaida;
+    //public bool wall;
+    //public bool keyCheck;
     void Start()
     {
         cameraTransform = Camera.main.transform;
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         Cursor.lockState = CursorLockMode.Locked;
-        stepRayUpper.transform.position = new Vector3(stepRayUpper.transform.position.x, stepHeight, stepRayUpper.transform.position.z);
+       // stepRayUpper.transform.position = new Vector3(stepRayUpper.transform.position.x, stepHeight, stepRayUpper.transform.position.z);
 
     }
 
@@ -98,7 +98,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             
             RotatePlayer();
         }
-        ImpulseElevator();
+        //ImpulseElevator();
 
         rb.useGravity = !freeze;
     }
@@ -141,12 +141,6 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         verInput = Input.GetAxisRaw("Vertical");
 
        
-
-
-
-
-
-
 
         Jump();
 
@@ -254,21 +248,21 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     }
 
 
-    void ImpulseElevator()
-    {
-        RaycastHit hitLower;
-        if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(Vector3.forward), out hitLower, radius))
-        {
-            if (hitLower.collider.gameObject.CompareTag("Stairs"))
-            {
-                if (horInput != 0 || verInput != 0)
-                {
-                    rb.position -= new Vector3(0f, -stepSmooth * Time.deltaTime, 0f);
+    //void ImpulseElevator()
+    //{
+    //    RaycastHit hitLower;
+    //    if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(Vector3.forward), out hitLower, radius))
+    //    {
+    //        if (hitLower.collider.gameObject.CompareTag("Stairs"))
+    //        {
+    //            if (horInput != 0 || verInput != 0)
+    //            {
+    //                rb.position -= new Vector3(0f, -stepSmooth * Time.deltaTime, 0f);
 
-                }
-            }
-        }
-    }
+    //            }
+    //        }
+    //    }
+    //}
 
     void SpeedControl()
     {
