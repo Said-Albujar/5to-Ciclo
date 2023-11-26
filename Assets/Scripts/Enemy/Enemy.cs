@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour
     public LayerMask targeMask;
     public LayerMask obstructionMask;
     public bool canSeePlayer;
+    private bool onceShout;
     private float time;
     public Collider[] rangeChecks;
     public bool once;
@@ -29,6 +30,8 @@ public class Enemy : MonoBehaviour
     public bool detecteEnemyLight;
     public float maxTimerStop;
     [HideInInspector] public float timerStop;
+    EnemyAudioManager enemyAudioManager;
+    float timerSound;
 
     // Start is called before the first frame update
     private void Awake()
@@ -36,6 +39,7 @@ public class Enemy : MonoBehaviour
         firstPos = transform.position;
         navMeshAgent = GetComponent<NavMeshAgent>();
         playerPosition = FindObjectOfType<PlayerMovement>().gameObject;
+        enemyAudioManager = GetComponent<EnemyAudioManager>();
     }
     private void Start()
     {
@@ -57,6 +61,11 @@ public class Enemy : MonoBehaviour
                 patrullajeActivo = false;
                 once = true;
                 timer = 0f;
+                if (!onceShout)
+                {
+                    enemyAudioManager.DetecPlayer();
+                    onceShout = true;
+                }
             }
             else
             {
@@ -90,6 +99,8 @@ public class Enemy : MonoBehaviour
         {
             ResumeMove();
         }
+
+        TimerDetecSound();
 
 
     }
@@ -133,7 +144,19 @@ public class Enemy : MonoBehaviour
 
     }
         
-
+    private void TimerDetecSound()
+    {
+        if (onceShout && !canSeePlayer)
+        {
+            timerSound += Time.deltaTime;
+            if (timer>=0.25f)
+            {
+                onceShout = false;
+                timerSound = 0f;
+            }
+        }
+        
+    }
 
     IEnumerator FOVRoutine()
     {

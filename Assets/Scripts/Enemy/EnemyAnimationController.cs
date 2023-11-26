@@ -7,7 +7,7 @@ public class EnemyAnimationController : MonoBehaviour
 {
     NavMeshAgent agent;
     public Animator anim;
-    public Enemy enemy;
+    Enemy enemy;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
