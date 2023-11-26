@@ -12,6 +12,8 @@ public class ButtonMecanism : Mecanism
     public bool buttonPressed;
     public bool haveMoreButtons;
     public ButtonMecanism[] otherButtons;
+    private bool oncePress;
+    float timerSound;
 
     private float timerButtPress = 0.25f;
     void Start()
@@ -45,6 +47,12 @@ public class ButtonMecanism : Mecanism
             UseFunction(false);
         }
 
+        if (buttonPressed && !oncePress)
+        {
+            AudioManager.Instance.PlaySFX("ButtonOn");
+            oncePress = true;
+        }
+        TimerSound();
     }
     public override void UseFunction(bool active)
     {
@@ -99,6 +107,18 @@ public class ButtonMecanism : Mecanism
         }
     }
 
+    private void TimerSound()
+    {
+        if (oncePress && !buttonPressed)
+        {
+            timerSound += Time.deltaTime;
+            if (timer >= 0.25f)
+            {
+                oncePress = false;
+                timerSound = 0f;
+            }
+        }
+    }
     private void DesactButtonPressed()
     {
         timerButtPress -= Time.deltaTime;
@@ -126,6 +146,8 @@ public class ButtonMecanism : Mecanism
             buttonPressed = false;
             timer = timeActive;
             timerActive = true;
+            oncePress = false;
+            AudioManager.Instance.PlaySFX("ButtonOff");
         }
     }
 }
