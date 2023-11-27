@@ -27270,11 +27270,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8030980813197340046, guid: b41e0021e17a49a4eb025c888e0589b3, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.008829104
+      value: 0.008829033
       objectReference: {fileID: 0}
     - target: {fileID: 8030980813197340046, guid: b41e0021e17a49a4eb025c888e0589b3, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.00016636099
+      value: -0.00016635962
       objectReference: {fileID: 0}
     - target: {fileID: 8030980813197340046, guid: b41e0021e17a49a4eb025c888e0589b3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -35386,7 +35386,6 @@ GameObject:
   - component: {fileID: 899269326}
   - component: {fileID: 899269325}
   - component: {fileID: 899269324}
-  - component: {fileID: 899269323}
   m_Layer: 3
   m_Name: Cube (7)
   m_TagString: Untagged
@@ -35409,19 +35408,6 @@ Transform:
   m_Father: {fileID: 767344399}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &899269323
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 899269321}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05f21a61d94a16d458267fc150fd2049, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nombreDeLaNuevaEscena: Victory
 --- !u!64 &899269324
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -41141,6 +41127,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1029316100}
   - component: {fileID: 1029316099}
+  - component: {fileID: 1029316101}
   m_Layer: 0
   m_Name: Final
   m_TagString: Untagged
@@ -41176,6 +41163,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1029316101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1029316098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05f21a61d94a16d458267fc150fd2049, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nombreDeLaNuevaEscena: Victory
 --- !u!43 &1029970101
 Mesh:
   m_ObjectHideFlags: 0
@@ -91742,11 +91742,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3484012453954007619, guid: 0b0befea8f7ddb546a06a4f64649108f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.072577916
+      value: 0.07257789
       objectReference: {fileID: 0}
     - target: {fileID: 3484012453954007619, guid: 0b0befea8f7ddb546a06a4f64649108f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.001367501
+      value: -0.0013675003
       objectReference: {fileID: 0}
     - target: {fileID: 3484012453992694960, guid: 0b0befea8f7ddb546a06a4f64649108f, type: 3}
       propertyPath: m_IsActive
@@ -91826,15 +91826,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3484012454301576958, guid: 0b0befea8f7ddb546a06a4f64649108f, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.0006958625
+      value: 0.00069586287
       objectReference: {fileID: 0}
     - target: {fileID: 3484012454301576958, guid: 0b0befea8f7ddb546a06a4f64649108f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.07259074
+      value: 0.072590776
       objectReference: {fileID: 0}
     - target: {fileID: 3484012454301576958, guid: 0b0befea8f7ddb546a06a4f64649108f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000050607137
+      value: -0.000050607185
       objectReference: {fileID: 0}
     - target: {fileID: 3484012454331165428, guid: 0b0befea8f7ddb546a06a4f64649108f, type: 3}
       propertyPath: m_AnchorMax.y
