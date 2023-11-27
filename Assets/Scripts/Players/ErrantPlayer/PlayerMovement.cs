@@ -61,6 +61,11 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     //public bool keyCheck;
     void Start()
     {
+        if (MusicScene.Instance != null)
+        {
+            Destroy(MusicScene.Instance.gameObject);
+
+        }
         cameraTransform = Camera.main.transform;
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;

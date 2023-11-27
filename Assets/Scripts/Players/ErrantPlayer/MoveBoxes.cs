@@ -59,7 +59,7 @@ public class MoveBoxes : MonoBehaviour
                 if(boxHit.collider.gameObject.CompareTag(boxTag))
                 {
 
-                    AudioManager.Instance.PlaySFX("mover");
+                    //AudioManager.Instance.PlaySFX("mover");
 
                     boxObj = boxHit.collider.gameObject;
                 }

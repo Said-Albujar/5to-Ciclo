@@ -10,8 +10,9 @@ public class PassWordUI : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.gameObject.layer==LayerMask.NameToLayer("TargetPlayer"))
         {
+            Debug.Log("asdasdasasd");
             // Cambiar a la nueva escena
             SceneManager.LoadScene(nombreDeLaNuevaEscena);
         }
