@@ -131,11 +131,18 @@ public class ButtonMecanism : Mecanism
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Hair") || other.CompareTag("Box") || other.CompareTag("Miner") || other.CompareTag("Engi") || other.CompareTag("Mata"))
+        if (other.CompareTag("Hair") || other.CompareTag("Miner") || other.CompareTag("Engi") || other.CompareTag("Mata"))
         {
             UseFunction(true);
             buttonPressed = true;
             timerButtPress= 0.25f;
+            
+        }
+        if (other.CompareTag("Box") && other.transform.parent == null)
+        {
+            UseFunction(true);
+            buttonPressed = true;
+            timerButtPress = 0.25f;
         }
     }
 
