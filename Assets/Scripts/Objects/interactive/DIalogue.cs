@@ -13,6 +13,9 @@ public class DIalogue : MonoBehaviour
     public bool dialogueExist;
     public bool dialogueStart;
     int index;
+
+    public bool HavePass;
+    public GameObject PassText;
     // Start is called before the first frame update
     void Start()
     {
@@ -56,6 +59,11 @@ public class DIalogue : MonoBehaviour
         dialogueIcon.SetActive(false);
         index = 0;
         StartCoroutine(CountLineText());
+
+        if (HavePass)
+        {
+            PassText.SetActive(true);
+        }
     }
     private void NextDialogue()
     {
