@@ -8,6 +8,9 @@ using UnityEngine.AI;
 
 public class MinerEnemy : MonoBehaviour
 {
+    public float timerSound;
+    
+    public MineroAudioManager AudioMinerDetected;
     public Transform playerPosition;
     public NavMeshAgent navMeshAgent;
     private int indexActualDestiny = 0;
@@ -17,7 +20,7 @@ public class MinerEnemy : MonoBehaviour
     public Vector3 direction;
     public float timer;
     public float speed;
-
+    public bool onceShout;
     [Header("FOV")]
     public bool canSeePlayer;
     public float radius;
@@ -48,12 +51,13 @@ public class MinerEnemy : MonoBehaviour
     void Start()
     {
         StartCoroutine(FOVRoutine());
+        AudioMinerDetected = GetComponent<MineroAudioManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        TimerDetecSound();
         if (state == EnemyState.chase && !canSeePlayer)
         {
 
@@ -84,6 +88,12 @@ public class MinerEnemy : MonoBehaviour
                 navMeshAgent.SetDestination(playerPosition.transform.position);
                 navMeshAgent.speed = speedPlayerChange;
                 patrolActive = false;
+                
+                if (!onceShout)
+                {
+                    AudioMinerDetected.DetecPlayer();
+                    onceShout = true;
+                }
             }
 
         }
@@ -138,7 +148,19 @@ public class MinerEnemy : MonoBehaviour
 
      }*/
     }
+    private void TimerDetecSound()
+    {
+        if (onceShout && !canSeePlayer)
+        {
+            timerSound += Time.deltaTime;
+            if (timer >= 0.25f)
+            {
+                onceShout = false;
+                timerSound = 0f;
+            }
+        }
 
+    }
 
     void SetNextDestiny()
     {
