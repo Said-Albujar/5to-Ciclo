@@ -258,7 +258,8 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     void GroundCheck()
     {
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.1f, ground);
+        float radius = 0.25f;
+        grounded = Physics.SphereCast(transform.position, radius, Vector3.down, out RaycastHit hitInfo, playerHeight * 0.5f + 0.1f, ground);
     }
 
 
