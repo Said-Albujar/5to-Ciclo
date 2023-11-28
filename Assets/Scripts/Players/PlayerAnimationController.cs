@@ -15,15 +15,19 @@ public class PlayerAnimationController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        anim.speed = 1;
-        anim.SetBool("jumped", playerMovement.isJump);
-        anim.SetBool("isRunning", playerMovement.isRunning);
-        anim.SetBool("isCrouching", playerMovement.isCrouching);
+        if(!GameManager.instance.inPause)
+        {
+            anim.speed = 1;
+            anim.SetBool("jumped", playerMovement.isJump);
+            anim.SetBool("isRunning", playerMovement.isRunning);
+            anim.SetBool("isCrouching", playerMovement.isCrouching);
 
 
-        MoveAnim();
-        JumpAnim();
-        anim.SetBool("grounded", playerMovement.grounded);
+            MoveAnim();
+            JumpAnim();
+            anim.SetBool("grounded", playerMovement.grounded);
+        }
+       
     }
 
 

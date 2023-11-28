@@ -161,7 +161,7 @@ MonoBehaviour:
   playerHeight: 2
   ground:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 264
   grounded: 0
   orientation: {fileID: 3484012453698032838}
   jumpForce: 13
@@ -3880,7 +3880,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3484012454007639311
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6377,6 +6377,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fileName: data.game
+  gameData:
+    playerPosition: {x: 0, y: 0, z: 0}
+    health: 1
+    maxHearts: 1
+    haveMiner: 0
+    haveEngineer: 0
+    haveHairdress: 0
+    hold: 0
 --- !u!1 &3484012454571140560
 GameObject:
   m_ObjectHideFlags: 0

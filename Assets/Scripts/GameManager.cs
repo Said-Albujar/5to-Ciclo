@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.IO;
 
 public class GameManager : MonoBehaviour
 {
@@ -89,7 +90,19 @@ public class GameManager : MonoBehaviour
     public void Restart()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(sceneName);
+        if(File.Exists(string.Concat(Application.persistentDataPath, "/data.game")))
+        {
+            panelPause.SetActive(false);
+            HideCursor();
+            Debug.Log("Entro");
+            DataPersistenceManager.instance.LoadGame();
+
+        }
+        else
+        {
+            SceneManager.LoadScene(sceneName);
+            Debug.Log("Inicio");
+        }
         inPause = false;
     }
     public void Restaurar()

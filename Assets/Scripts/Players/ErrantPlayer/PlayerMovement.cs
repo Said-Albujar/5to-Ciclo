@@ -123,7 +123,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     {
         if (freeze) return;
 
-        if (Input.GetKeyDown(jumpKey) && grounded && !isCrouching)
+        if (Input.GetKeyDown(jumpKey) && grounded && !isCrouching&&!GameManager.instance.inPause)
         {
             Invoke(nameof(JumpPlayer), cooldownJump);
             AudioManager.Instance.PlaySFX("Jump");
