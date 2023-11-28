@@ -27,6 +27,7 @@ public class DIalogue : MonoBehaviour
     {
         if(dialogueExist&&Input.GetKeyDown(KeyCode.E))
         {
+            AudioManager.Instance.PlaySFX("Dialogue");
             if(!dialogueStart)
             {
                 StartDialogue();
