@@ -8,7 +8,7 @@ public class Pause : MonoBehaviour
     public bool pause = false;
     public bool startPause;
     [SerializeField] private GameObject panelPause;
-
+    public GameObject playerComponent;
 
     private void Start()
     {
@@ -30,6 +30,8 @@ public class Pause : MonoBehaviour
 
 
             Time.timeScale = 0f;
+            Debug.Log("Pausa");
+            playerComponent.GetComponent<PlayerMovement>().enabled = false;
             panelPause.SetActive(true);
             pause = true;
             Cursor.lockState = CursorLockMode.None;
@@ -40,6 +42,8 @@ public class Pause : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Escape) && pause)
         {
             Time.timeScale = 1f;
+            playerComponent.GetComponent<PlayerMovement>().enabled = true;
+
             panelPause.SetActive(false);
             pause = false;
             Cursor.lockState = CursorLockMode.Locked;

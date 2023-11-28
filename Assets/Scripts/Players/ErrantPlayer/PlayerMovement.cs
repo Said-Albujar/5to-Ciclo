@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public float crouchHeight;
     public float CrouchY;
     public bool hold = true;
-
+    public static PlayerMovement Instance;
     //[Header("Impulse")]
     //[SerializeField] GameObject stepRayUpper;
     //[SerializeField] GameObject stepRayLower;
@@ -59,6 +59,10 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     //public LayerMask maskCaida;
     //public bool wall;
     //public bool keyCheck;
+    void Awake()
+    {
+        Instance = this;
+    }
     void Start()
     {
         if (MusicScene.Instance != null)
@@ -92,15 +96,20 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         if (grounded)
         {
             isJump = false;
+
         }
 
     }
     void FixedUpdate()
     {
-        MoveErrant();
+        
+        //MoveErrant();
+
+        
         if (turn)
         {
-            
+            MoveErrant();
+
             RotatePlayer();
         }
         //ImpulseElevator();
