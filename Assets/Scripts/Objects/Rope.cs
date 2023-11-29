@@ -12,6 +12,11 @@ public class Rope : MonoBehaviour
     //Se cambio el fixed por update ya que daba demasiados problemas a la hora de cortar
     //Se añandio un bool que detecta la collider, si no esta dentro del colider no se destruye la cuerda.
     //Se añadio una lista,los objetos dentro de la lista se destruyen(cadenas).
+
+    private void Start()
+    {
+        changeMecanic = FindObjectOfType<ChangeCharacter>();
+    }
     void Update()
     {
         

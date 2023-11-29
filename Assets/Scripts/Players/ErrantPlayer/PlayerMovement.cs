@@ -16,12 +16,11 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public bool turn;
     // public FallHairdresser fall;
     [Header("GroundCheck")]
+    public Transform groundCheck;
     public float playerHeight;
     public LayerMask ground;
     public bool grounded;
     bool freeze;
-
-    public Transform orientation;
 
     float horInput;
     float verInput;
@@ -103,14 +102,14 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 rb.isKinematic = true;
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    anim.SetBool("llegar", true);
+                    anim.Play("ClimbUp");
                     anim.SetBool("inBorder", false);
                     currentstate = state.climbMoving;
                 }
                 break;
 
             case state.climbMoving:
-                transform.position += Vector3.up * Time.deltaTime*2f+transform.forward*0.5f*Time.deltaTime;
+                transform.position += Vector3.up * Time.deltaTime * 2f + transform.forward * 0.8f * Time.deltaTime;
                 break;
 
             default:
@@ -136,27 +135,28 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     {
         rb.isKinematic = false;
         currentstate = state.idle;
-        anim.SetBool("llegar", false);
     }
     void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
        
-        Gizmos.DrawLine(transform.position, transform.forward * radius + transform.position);
+        Gizmos.DrawLine(groundCheck.position, groundCheck.forward * radius + groundCheck.position);
         Gizmos.color = Color.green;
-        Gizmos.DrawLine(transform.position + (Vector3.up * 1), transform.forward * radius + transform.position+(Vector3.up*1));
+        Gizmos.DrawLine(groundCheck.position + (Vector3.up * 0.5f), groundCheck.forward * radius + groundCheck.position+(Vector3.up* 0.5f));
 
     }
     void CheckBorder()
     {
-        bool blueLine = Physics.Raycast(transform.position, transform.forward, radius, layerBorder);
-        bool greenLine = Physics.Raycast(transform.position + (Vector3.up * 1), transform.forward, radius, layerBorder);
-        if (blueLine&&!greenLine)
+        if (!grounded)
         {
-            currentstate = state.climbIdle;
-            anim.SetBool("inBorder", true);
+            bool blueLine = Physics.Raycast(groundCheck.position, groundCheck.forward, radius, layerBorder);
+            bool greenLine = Physics.Raycast(groundCheck.position + (Vector3.up * 0.4f), groundCheck.forward, radius, layerBorder);
+            if (blueLine && !greenLine)
+            {
+                currentstate = state.climbIdle;
+                anim.SetBool("inBorder", true);
+            }
         }
-
     }
     void FixedUpdate()
     {
@@ -334,7 +334,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     void GroundCheck()
     {
         float radius = 0.25f;
-        grounded = Physics.SphereCast(transform.position, radius, Vector3.down, out RaycastHit hitInfo, playerHeight * 0.5f + 0.1f, ground);
+        grounded = Physics.SphereCast(groundCheck.position, radius, Vector3.down, out RaycastHit hitInfo, playerHeight * 0.5f + 0.1f, ground);
     }
 
 
