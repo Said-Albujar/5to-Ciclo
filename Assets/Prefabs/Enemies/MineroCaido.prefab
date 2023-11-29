@@ -96,6 +96,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b62c22f7ed8bd946939bc35b88ab985, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timerSound: 0
+  AudioMinerDetected: {fileID: 0}
   playerPosition: {fileID: 0}
   navMeshAgent: {fileID: 809292336424941373}
   destinyPoints:
@@ -104,10 +106,11 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   patrolActive: 0
-  speedPlayerChange: 5
+  speedPlayerChange: 10
   direction: {x: 0, y: 0, z: 0}
   timer: 0.2
-  speed: 3
+  speed: 7
+  onceShout: 0
   canSeePlayer: 0
   radius: 5
   angle: 94
@@ -134,7 +137,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 7
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
