@@ -4,16 +4,11 @@ using UnityEngine;
 
 public class TriggerSounds : MonoBehaviour
 {
+    public PlayerMovement playerState;
     // Start is called before the first frame update
-    void Start()
+    public void FinichClimb()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        playerState.finishClimb();
     }
     public void StepSound()
     {

@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public float rotationSpeed;
     [SerializeField] public bool isRunning;
     public bool turn;
-   // public FallHairdresser fall;
+    // public FallHairdresser fall;
     [Header("GroundCheck")]
     public float playerHeight;
     public LayerMask ground;
@@ -59,6 +59,19 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     //public LayerMask maskCaida;
     //public bool wall;
     //public bool keyCheck;
+
+    public enum state
+    {
+        idle,
+        moving,
+        jumping,
+        climbIdle,
+        climbMoving
+    }
+    public state currentstate;
+    public LayerMask layerBorder;
+    public Animator anim;
+    public float radius;
     void Awake()
     {
         Instance = this;
@@ -74,47 +87,109 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         Cursor.lockState = CursorLockMode.Locked;
-       // stepRayUpper.transform.position = new Vector3(stepRayUpper.transform.position.x, stepHeight, stepRayUpper.transform.position.z);
+        // stepRayUpper.transform.position = new Vector3(stepRayUpper.transform.position.x, stepHeight, stepRayUpper.transform.position.z);
 
     }
 
 
     void Update()
     {
-        GroundCheck();
-        SpeedControl();
-        ErrantInput();
-        
 
-
-
-        Drag();
-        
-        actualSpeed = rb.velocity.magnitude;
-
-
-        if (grounded)
+        switch (currentstate)
         {
-            isJump = false;
 
+            case state.climbIdle:
+                rb.velocity = Vector3.zero;
+                rb.isKinematic = true;
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    anim.SetBool("llegar", true);
+                    anim.SetBool("inBorder", false);
+                    currentstate = state.climbMoving;
+                }
+                break;
+
+            case state.climbMoving:
+                transform.position += Vector3.up * Time.deltaTime*2f+transform.forward*0.5f*Time.deltaTime;
+                break;
+
+            default:
+                GroundCheck();
+                SpeedControl();
+                ErrantInput();
+                CheckBorder();
+                Drag();
+                actualSpeed = rb.velocity.magnitude;
+                if (grounded)
+                {
+                    isJump = false;
+
+                }
+                break;
+        }
+
+
+
+
+    }
+    public void finishClimb()
+    {
+        rb.isKinematic = false;
+        currentstate = state.idle;
+        anim.SetBool("llegar", false);
+    }
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+       
+        Gizmos.DrawLine(transform.position, transform.forward * radius + transform.position);
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(transform.position + (Vector3.up * 1), transform.forward * radius + transform.position+(Vector3.up*1));
+
+    }
+    void CheckBorder()
+    {
+        bool blueLine = Physics.Raycast(transform.position, transform.forward, radius, layerBorder);
+        bool greenLine = Physics.Raycast(transform.position + (Vector3.up * 1), transform.forward, radius, layerBorder);
+        if (blueLine&&!greenLine)
+        {
+            currentstate = state.climbIdle;
+            anim.SetBool("inBorder", true);
         }
 
     }
     void FixedUpdate()
     {
-        
+        switch (currentstate)
+        {
+
+            case state.climbIdle:
+                
+
+                break;
+
+            case state.climbMoving:
+
+                break;
+
+            default:
+                if (turn)
+                {
+                    MoveErrant();
+
+                    RotatePlayer();
+                }
+                //ImpulseElevator();
+
+                rb.useGravity = !freeze;
+                break;
+        }
+
+
         //MoveErrant();
 
-        
-        if (turn)
-        {
-            MoveErrant();
 
-            RotatePlayer();
-        }
-        //ImpulseElevator();
-
-        rb.useGravity = !freeze;
+       
     }
    
 

@@ -4,74 +4,35 @@ using UnityEngine;
 
 public class MoveBoxes : MonoBehaviour
 {
-    PlayerMovement pm;
-    Rigidbody rb;
-
-    [Header("Input")]
-    public KeyCode moveBoxKey;
-    bool moveBox;
-
-    [Header("Box Detection")]
-    public LayerMask solidMask;
-    public string boxTag;
-    public float handForwardDistance;
-    public Transform handPosition;
-    private GameObject boxObj;
-
-    void Start()
+    public float radius;
+    public Transform posRaycast;
+    public bool inBox;
+    //public GameObject box;
+    private void Start()
     {
-        pm = GetComponent<PlayerMovement>();
-        rb = GetComponent<Rigidbody>();
+        
     }
-
-    void Update()
+    private void Update()
     {
-        GetInput();
-    }
+        RaycastHit hit;
+         inBox = Physics.Raycast(posRaycast.transform.position, posRaycast.forward, out hit, radius);
 
-    private void FixedUpdate()
-    {
-        GetBox();
-
-        MoveBox();
-    }
-
-    private void GetInput()
-    {
-        if(Input.GetKeyDown(moveBoxKey))
+        if(hit.collider.gameObject.CompareTag("BigBox"))
         {
+            Debug.Log("col");
+            inBox = true;
+            hit.collider.gameObject.GetComponent<Rigidbody>().mass = 2;
+            hit.collider.gameObject.GetComponent<Rigidbody>().isKinematic = false;
 
-            moveBox = true;
-        } else if(Input.GetKeyUp(moveBoxKey))
-        { 
-            moveBox = false;
         }
-    }
-
-    private void GetBox()
-    {
-        if (moveBox)
+        else
         {
-            RaycastHit boxHit;
+            inBox = false;
 
-            if(Physics.Raycast(handPosition.position, handPosition.forward, out boxHit, handForwardDistance, solidMask))
-            {
-                if(boxHit.collider.gameObject.CompareTag(boxTag))
-                {
+            Debug.Log("noCol");
 
-                    //AudioManager.Instance.PlaySFX("mover");
-
-                    boxObj = boxHit.collider.gameObject;
-                }
-            }
         }
-        else boxObj = null;
-    }
 
-    private void MoveBox()
-    {
-        if (boxObj == null || !moveBox) return;
 
-        boxObj.GetComponent<Rigidbody>().velocity = rb.velocity;
     }
 }

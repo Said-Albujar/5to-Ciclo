@@ -6,7 +6,7 @@ public class PlayerAnimationController : MonoBehaviour
 {
     public PlayerMovement playerMovement;
     public Animator anim;
-
+   
     void Awake()
     {
         playerMovement = FindObjectOfType<PlayerMovement>();
