@@ -8,7 +8,7 @@ public class TriggerSounds : MonoBehaviour
     // Start is called before the first frame update
     public void FinichClimb()
     {
-        playerState.finishClimb();
+        playerState.FinishClimb();
     }
     public void StepSound()
     {

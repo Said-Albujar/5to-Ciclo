@@ -6,6 +6,17 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour, IDataPersistence
 {
     public CapsuleCollider cap;
+    public static PlayerMovement Instance;
+    public enum state
+    {
+        idle,
+        moving,
+        jumping,
+        climbIdle,
+        climbMoving
+    }
+    public state currentstate;
+
     [Header("Movement")]
     public float actualSpeed;
     public float walkSpeed;
@@ -14,21 +25,19 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public float rotationSpeed;
     [SerializeField] public bool isRunning;
     public bool turn;
-    // public FallHairdresser fall;
+
     [Header("GroundCheck")]
     public Transform groundCheck;
     public float playerHeight;
     public LayerMask ground;
     public bool grounded;
     bool freeze;
-
     float horInput;
     float verInput;
-
     Vector3 moveDir;
-
     Rigidbody rb;
     Transform cameraTransform;
+
     [Header("JumpPlayer")]
     public float jumpForce;
     public float cooldownJump;
@@ -42,68 +51,36 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public float crouchHeight;
     public float CrouchY;
     public bool hold = true;
-    public static PlayerMovement Instance;
-    //[Header("Impulse")]
-    //[SerializeField] GameObject stepRayUpper;
-    //[SerializeField] GameObject stepRayLower;
-    //[SerializeField] float stepHeight = 0.3f;
-    //[SerializeField] float stepSmooth = 2f;
-    //public float radius;
-    //public RaycastHit hitUpper;
-    //public RaycastHit hitLower;
 
-    //[Header("Fall crash")]
-    //public float fuerzaCaida;
-    //public float radiusDrop;
-    //public LayerMask maskCaida;
-    //public bool wall;
-    //public bool keyCheck;
-
-    public enum state
-    {
-        idle,
-        moving,
-        jumping,
-        climbIdle,
-        climbMoving
-    }
-    public state currentstate;
+    [Header("Climb")]
     public LayerMask layerBorder;
-    public Animator anim;
     public float radius;
+
     void Awake()
     {
         Instance = this;
     }
+
     void Start()
     {
         if (MusicScene.Instance != null)
         {
             Destroy(MusicScene.Instance.gameObject);
-
         }
         cameraTransform = Camera.main.transform;
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         Cursor.lockState = CursorLockMode.Locked;
-        // stepRayUpper.transform.position = new Vector3(stepRayUpper.transform.position.x, stepHeight, stepRayUpper.transform.position.z);
-
     }
-
-
     void Update()
     {
-
         switch (currentstate)
         {
-
             case state.climbIdle:
                 rb.velocity = Vector3.zero;
                 rb.isKinematic = true;
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    anim.Play("ClimbUp");
-                    anim.SetBool("inBorder", false);
                     currentstate = state.climbMoving;
                 }
                 break;
@@ -113,65 +90,19 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 break;
 
             default:
-                GroundCheck();
-                SpeedControl();
-                ErrantInput();
-                CheckBorder();
-                Drag();
-                actualSpeed = rb.velocity.magnitude;
-                if (grounded)
-                {
-                    isJump = false;
-
-                }
+                NormalMovement();
                 break;
         }
-
-
-
-
     }
-    public void finishClimb()
-    {
-        rb.isKinematic = false;
-        currentstate = state.idle;
-    }
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.blue;
-       
-        Gizmos.DrawLine(groundCheck.position, groundCheck.forward * radius + groundCheck.position);
-        Gizmos.color = Color.green;
-        Gizmos.DrawLine(groundCheck.position + (Vector3.up * 0.5f), groundCheck.forward * radius + groundCheck.position+(Vector3.up* 0.5f));
 
-    }
-    void CheckBorder()
-    {
-        if (!grounded)
-        {
-            bool blueLine = Physics.Raycast(groundCheck.position, groundCheck.forward, radius, layerBorder);
-            bool greenLine = Physics.Raycast(groundCheck.position + (Vector3.up * 0.4f), groundCheck.forward, radius, layerBorder);
-            if (blueLine && !greenLine)
-            {
-                currentstate = state.climbIdle;
-                anim.SetBool("inBorder", true);
-            }
-        }
-    }
     void FixedUpdate()
     {
         switch (currentstate)
         {
-
             case state.climbIdle:
-                
-
                 break;
-
             case state.climbMoving:
-
                 break;
-
             default:
                 if (turn)
                 {
@@ -179,21 +110,10 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
                     RotatePlayer();
                 }
-                //ImpulseElevator();
-
                 rb.useGravity = !freeze;
                 break;
-        }
-
-
-        //MoveErrant();
-
-
-       
+        }    
     }
-   
-
-  
     void Jump()
     {
         if (freeze) return;
@@ -206,31 +126,10 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             isJump = true;
         }
     }
-    void PlayWalkingSound()
-    {
-        if (!AudioManager.Instance.sfxSource.isPlaying)
-        {
-            AudioManager.Instance.PlaySFX("caminar");
-        }
-    }
-
-    void PlayRunningSound()
-    {
-        if (!AudioManager.Instance.sfxSource.isPlaying)
-        {
-            AudioManager.Instance.PlaySFX("correr");
-        }
-    }
-   
     void ErrantInput()
     {
-
-
         horInput = Input.GetAxisRaw("Horizontal");
         verInput = Input.GetAxisRaw("Vertical");
-
-       
-
         Jump();
 
         switch (hold)
@@ -242,9 +141,6 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 PressCrouch();
                 break;
         }
-
-
-
     }
     void JumpPlayer()
     {
@@ -257,29 +153,13 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
         if (isCrouching)
         {
-            //gameObject.transform.localScale = new Vector3(transform.localScale.x, 0.5f, transform.localScale.z);
-
-
-            //La parte comentada se usara cuando usemos un modelo 3d con animaciones
-
-
             cap.height = crouchHeight;
             cap.center = new Vector3(cap.center.x, CrouchY, cap.center.z);
-
         }
         else
         {
-            //gameObject.transform.localScale = new Vector3(transform.localScale.x, 1, transform.localScale.z);
-
-
-
-
-            //La parte comentada se usara cuando usemos un modelo 3d con animaciones
-
-
             cap.height = standHeight;
             cap.center = new Vector3(cap.center.x, standY, cap.center.z);
-
         }
     }
     void MoveErrant()
@@ -296,23 +176,13 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
         moveDir = forward * verInput + right * horInput;
       
-        /*if(verInput!=0 ||horInput!=0&&!isRunning)
-        {
-            //PlayWalkingSound();
-        }*/
-        
         if (Input.GetKey(KeyCode.LeftShift) && StaminaController.staminaActual >= 0 && StaminaController.canRun&&moveDir.magnitude>0)
         {
-            
             isRunning = true;
-            //PlayRunningSound();
-
-
         }
         else
         {
             isRunning = false;
-
         }
 
         switch (isRunning)
@@ -325,10 +195,6 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 rb.AddForce(moveDir.normalized * walkSpeed * 10f, ForceMode.Force);
                 break;
         } 
-
-
-
-
     }
 
     void GroundCheck()
@@ -336,23 +202,6 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         float radius = 0.25f;
         grounded = Physics.SphereCast(groundCheck.position, radius, Vector3.down, out RaycastHit hitInfo, playerHeight * 0.5f + 0.1f, ground);
     }
-
-
-    //void ImpulseElevator()
-    //{
-    //    RaycastHit hitLower;
-    //    if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(Vector3.forward), out hitLower, radius))
-    //    {
-    //        if (hitLower.collider.gameObject.CompareTag("Stairs"))
-    //        {
-    //            if (horInput != 0 || verInput != 0)
-    //            {
-    //                rb.position -= new Vector3(0f, -stepSmooth * Time.deltaTime, 0f);
-
-    //            }
-    //        }
-    //    }
-    //}
 
     void SpeedControl()
     {
@@ -377,7 +226,6 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 }
                 break;
         }
-
     }
 
     void Drag()
@@ -388,7 +236,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             turn = true;
             rb.drag = groundDrag;
         }
-        else if (!grounded /*&& !fall.fall*/)
+        else if (!grounded)
         {
             rb.drag = 0;
         }
@@ -399,7 +247,6 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         if (moveDir != Vector3.zero)
         {
             Quaternion targetRotation = Quaternion.LookRotation(moveDir);
-
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
         }
     }
@@ -413,11 +260,6 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     {
         this.freeze = freeze;
         if(freeze) rb.velocity = Vector3.zero;
-    }
-
-    public void TriggerJump()
-    {
-        JumpPlayer();
     }
 
     private void HoldCrouch()
@@ -458,10 +300,46 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                         isCrouching = true;
                         Crouch();
                     }
-
                     break;
             }
         }
+    }
+    public void FinishClimb()
+    {
+        rb.isKinematic = false;
+        currentstate = state.idle;
+    }
+    void CheckBorder()
+    {
+        if (!grounded)
+        {
+            bool blueLine = Physics.Raycast(groundCheck.position, groundCheck.forward, radius, layerBorder);
+            bool greenLine = Physics.Raycast(groundCheck.position + (Vector3.up * 0.4f), groundCheck.forward, radius, layerBorder);
+            if (blueLine && !greenLine)
+            {
+                currentstate = state.climbIdle;
+            }
+        }
+    }
+
+    private void NormalMovement()
+    {
+        GroundCheck();
+        SpeedControl();
+        ErrantInput();
+        CheckBorder();
+        Drag();
+        actualSpeed = rb.velocity.magnitude;
+        if (grounded)
+            isJump = false;
+    }
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(groundCheck.position, groundCheck.forward * radius + groundCheck.position);
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(groundCheck.position + (Vector3.up * 0.5f), groundCheck.forward * radius + groundCheck.position + (Vector3.up * 0.5f));
     }
     public void LoadData(GameData data)
     {

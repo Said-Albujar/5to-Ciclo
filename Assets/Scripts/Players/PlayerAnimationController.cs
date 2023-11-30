@@ -26,6 +26,13 @@ public class PlayerAnimationController : MonoBehaviour
             MoveAnim();
             JumpAnim();
             anim.SetBool("grounded", playerMovement.grounded);
+            anim.SetBool("inBorder", playerMovement.currentstate == PlayerMovement.state.climbIdle);
+
+            if (playerMovement.currentstate == PlayerMovement.state.climbIdle && Input.GetKeyDown(KeyCode.Space))
+            {
+                anim.Play("ClimbUp");
+                anim.SetBool("inBorder", false);
+            }
         }
        
     }
@@ -67,5 +74,10 @@ public class PlayerAnimationController : MonoBehaviour
     {
         anim.SetBool("grounded", false);
         anim.SetBool("jumped", false);
+    }
+
+    public void StepSound()
+    {
+        AudioManager.Instance.PlaySFX("Steps");
     }
 }
