@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7114695892784488254}
   - component: {fileID: 7114695892784488255}
   - component: {fileID: 7114695892784488248}
+  - component: {fileID: 3923420426405389372}
   m_Layer: 0
   m_Name: Rock
   m_TagString: Untagged
@@ -114,3 +115,19 @@ MonoBehaviour:
   Change: {fileID: 0}
   Rock: {fileID: 7114695892784488250}
   brokenVfx: {fileID: 3694974448249702592, guid: c3a69a3eb4552ea41b05d4b6ab590dad, type: 3}
+--- !u!208 &3923420426405389372
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7114695892784488250}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
