@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     {
         Scene currentScene = SceneManager.GetActiveScene();
         sceneName = currentScene.name;
+        
 
     }
     void Update()

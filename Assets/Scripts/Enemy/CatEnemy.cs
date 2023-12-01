@@ -23,8 +23,14 @@ public class CatEnemy : MonoBehaviour
     public float rotationTimer;
     public float rotationMaxTimer;
     public float rotationEnemy;
+    public Transform posCurrent;
+    private void Start()
+    {
+        transform.position = posCurrent.position;
+    }
     private void Update()
     {
+ 
         FieldOfViewCheck();
         if (canSeePlayer)
         {
@@ -32,15 +38,24 @@ public class CatEnemy : MonoBehaviour
             if (playerPosition != null)
             {
                 navMeshAgent.SetDestination(playerPosition.transform.position);
-                patrullajeActive = false;
+                flipMove();
             }
 
         }
         else
         {
             //El enemigo ya no sigue al jugador
-            patrullajeActive = false;
-            flipMove();
+            navMeshAgent.SetDestination(posCurrent.position);
+            if(!navMeshAgent.hasPath)
+            {
+                flipMove();
+              
+
+            }
+
+
+
+
         }
     }
    
