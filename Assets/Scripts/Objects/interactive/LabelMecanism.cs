@@ -29,13 +29,13 @@ public class LabelMecanism : Mecanism
         if (isLocked || isBroken)
         {
             if (renderskin != null)
-                renderskin.material.color = Color.red;
+                renderskin.material.color = Color.green;
             
         }
         else if (!isLocked && !isBroken)
         {
             if (renderskin != null)
-                renderskin.material.color = Color.green;
+                renderskin.material.color = Color.yellow;
         }
     }
 
