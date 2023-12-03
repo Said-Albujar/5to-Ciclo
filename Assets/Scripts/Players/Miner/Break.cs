@@ -7,6 +7,9 @@ public class Break : MonoBehaviour
     public bool CanBreak = false;
     public ChangeCharacter Change;
     public GameObject Rock;
+    [SerializeField] GameObject pointsPrefab;
+    [SerializeField] int RockValueInPoints;
+    bool spawnedPoints = false;
     public GameObject brokenVfx;
 
     void Start()
@@ -17,9 +20,11 @@ public class Break : MonoBehaviour
     {
         if (CanBreak == true && Input.GetKeyDown(KeyCode.F) && Change.IsMiner == true)
         {
+            if (!spawnedPoints) SpawnPoints();
             AudioManager.Instance.PlaySFX("DestroyRock");
             Destroy(Rock);
             Instantiate(brokenVfx, transform.position, Quaternion.identity);
+         
         }
     }
 
@@ -38,5 +43,15 @@ public class Break : MonoBehaviour
         {
             CanBreak = false;
         }
+    }
+
+    void SpawnPoints()
+    {
+
+        for (int i = 0; i < Mathf.FloorToInt(RockValueInPoints); i++)
+        {
+            Instantiate(pointsPrefab, transform.position, Quaternion.identity);
+        }
+        spawnedPoints = true;
     }
 }

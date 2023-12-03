@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class StaminaController : MonoBehaviour
 {
     public PlayerMovement errantMovement;
+    public RecolectarObjeto recolectar;
+
 
     [Header("Stamina Main Parameters")]
     public static float staminaActual;
@@ -27,6 +29,7 @@ public class StaminaController : MonoBehaviour
     private void Awake()
     {
         errantMovement = GetComponent<PlayerMovement>();
+        recolectar = GetComponent<RecolectarObjeto>();  
     }
     void Start()
     {
@@ -61,6 +64,14 @@ public class StaminaController : MonoBehaviour
         }
 
         IsRunning();
+
+        if(recolectar.botonPresionado == true)
+        {
+            staminaMax = 100;
+            staminaRegen = 30f;
+            
+        }
+
     }
 
     public void IsRunning()
