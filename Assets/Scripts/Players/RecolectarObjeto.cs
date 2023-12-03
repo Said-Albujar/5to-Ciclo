@@ -13,6 +13,8 @@ public class RecolectarObjeto : MonoBehaviour
     public int monedasNecesarias = 100;
     public bool botonPresionado = false;
 
+    public GameObject buttonVfxPrefab;
+
     private void Start()
     {
         ActualizarContadorTexto();
@@ -32,6 +34,7 @@ public class RecolectarObjeto : MonoBehaviour
             ActualizarContadorTexto();
             other.gameObject.SetActive(false);
             ActualizarEstadoBoton();
+            InstanstiateVFX();
         }
     }
 
@@ -68,5 +71,15 @@ public class RecolectarObjeto : MonoBehaviour
         contador -= monedasNecesarias;
         ActualizarEstadoBoton();
         
+    }
+
+    private void InstanstiateVFX()
+    {
+        Vector3 currentPosition = transform.position;
+
+        float offset = 1.3f;
+        currentPosition.y += offset;
+
+        Instantiate(buttonVfxPrefab, currentPosition, Quaternion.identity);
     }
 }
