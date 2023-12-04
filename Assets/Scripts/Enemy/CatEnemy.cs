@@ -24,6 +24,7 @@ public class CatEnemy : MonoBehaviour
     public float rotationMaxTimer;
     public float rotationEnemy;
     public Transform posCurrent;
+    public CatEnemyAnimation catAnimator;
     private void Start()
     {
         transform.position = posCurrent.position;
@@ -38,6 +39,9 @@ public class CatEnemy : MonoBehaviour
             if (playerPosition != null)
             {
                 navMeshAgent.SetDestination(playerPosition.transform.position);
+                rotating = false;
+                navMeshAgent.speed = 20f;
+                
                 flipMove();
             }
 
@@ -46,10 +50,11 @@ public class CatEnemy : MonoBehaviour
         {
             //El enemigo ya no sigue al jugador
             navMeshAgent.SetDestination(posCurrent.position);
+            
+            navMeshAgent.speed = 10f;
             if(!navMeshAgent.hasPath)
             {
                 flipMove();
-              
 
             }
 
@@ -73,20 +78,25 @@ public class CatEnemy : MonoBehaviour
                 // Si el temporizador alcanza la duración deseada, detener la rotación
                 if (rotationTimer >= rotationMaxTimer)
                 {
+
                     rotating = false;
+
                     rotationTimer = 0f;
+
                 }
 
             }
             else
             {
                 //detener la rotacion
+
                 rotationTimer += Time.deltaTime;
 
                 // Si el temporizador alcanza 2 segundos, reiniciar la rotación
                 if (rotationTimer >= rotationMaxTimer-1)
                 {
                     rotating = true;
+
                     rotationTimer = 0f;
                 }
             }
