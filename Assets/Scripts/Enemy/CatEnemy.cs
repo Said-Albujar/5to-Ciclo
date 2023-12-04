@@ -75,13 +75,13 @@ public class CatEnemy : MonoBehaviour
                 //rota
                 transform.rotation *= Quaternion.Euler(0f, rotationEnemy * Time.deltaTime, 0f);
                 rotationTimer += Time.deltaTime;
+                catAnimator.anim.SetBool("spin", true);
 
                 // Si el temporizador alcanza la duración deseada, detener la rotación
                 if (rotationTimer >= rotationMaxTimer)
                 {
 
                     rotating = false;
-                   // catAnimator.anim.SetBool("spin", !rotating);
 
                     rotationTimer = 0f;
 
@@ -93,6 +93,7 @@ public class CatEnemy : MonoBehaviour
                 //detener la rotacion
 
                 rotationTimer += Time.deltaTime;
+                catAnimator.anim.SetBool("spin", false);
 
                 // Si el temporizador alcanza 2 segundos, reiniciar la rotación
                 if (rotationTimer >= rotationMaxTimer-1)
