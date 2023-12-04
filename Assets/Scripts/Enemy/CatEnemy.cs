@@ -50,7 +50,8 @@ public class CatEnemy : MonoBehaviour
         {
             //El enemigo ya no sigue al jugador
             navMeshAgent.SetDestination(posCurrent.position);
-            
+            catAnimator.anim.SetBool("run", false);
+
             navMeshAgent.speed = 10f;
             if(!navMeshAgent.hasPath)
             {
@@ -80,6 +81,7 @@ public class CatEnemy : MonoBehaviour
                 {
 
                     rotating = false;
+                   // catAnimator.anim.SetBool("spin", !rotating);
 
                     rotationTimer = 0f;
 
@@ -96,6 +98,7 @@ public class CatEnemy : MonoBehaviour
                 if (rotationTimer >= rotationMaxTimer-1)
                 {
                     rotating = true;
+                    //catAnimator.anim.SetBool("spin", rotating);
 
                     rotationTimer = 0f;
                 }

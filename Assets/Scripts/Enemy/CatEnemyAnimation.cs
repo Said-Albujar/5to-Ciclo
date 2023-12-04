@@ -16,7 +16,7 @@ public class CatEnemyAnimation : MonoBehaviour
 
     void Update()
     {
-        if(agent.hasPath&&cat.canSeePlayer)
+        if(agent.hasPath&&cat.canSeePlayer&&!cat.rotating)
         {
             anim.SetBool("run", true);
 
@@ -28,9 +28,12 @@ public class CatEnemyAnimation : MonoBehaviour
 
         }
 
+       
+
+
         anim.SetBool("spin", cat.rotating);
-        //anim.SetBool("spin", !cat.rotating&&);
-     
+        anim.SetBool("spin", !cat.rotating&&!agent.hasPath&&!cat.canSeePlayer);
+
 
 
 
