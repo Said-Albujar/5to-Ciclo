@@ -9,7 +9,7 @@ using UnityEngine.AI;
 public class MinerEnemy : MonoBehaviour
 {
     public float timerSound;
-    
+
     public EnemyAudioManager AudioMinerDetected;
     public Transform playerPosition;
     public NavMeshAgent navMeshAgent;
@@ -35,7 +35,10 @@ public class MinerEnemy : MonoBehaviour
     public bool changeWait;
     public MinerAnimationController minerAnimation;
     bool once;
-    Vector3 firstPos;
+    private Vector3 firstPos;
+    private Vector3 firstPosModel;
+    private Vector3 firstRotation;
+    public Transform transformModel;
     public enum EnemyState
     {
         patrol,
@@ -55,6 +58,8 @@ public class MinerEnemy : MonoBehaviour
     {
         DataPersistenceManager.instance.OnLoad += LoadEnemy;
         firstPos = transform.position;
+        firstRotation = transform.rotation.eulerAngles;
+        firstPosModel = new Vector3(0f, transformModel.localPosition.y, 0f);
         StartCoroutine(FOVRoutine());
        
     }
@@ -187,9 +192,19 @@ public class MinerEnemy : MonoBehaviour
         if (once == true)
             once = false;
         transform.position = firstPos;
+        transform.rotation = Quaternion.Euler(firstRotation);
         timer = 3f;
-        navMeshAgent.ResetPath();
+        //navMeshAgent.destination = Vector3.zero;
+        //navMeshAgent.ResetPath();
+        //transformModel.localPosition = firstPosModel;
+        //navMeshAgent.isStopped = true;
+        //navMeshAgent.speed = 0f;
+        //navMeshAgent.Stop();
+        navMeshAgent.enabled = false;
 
+        //Reiniciar posición, resetear ruta, etc
+
+        navMeshAgent.enabled = true;
     }
     void FieldOfViewCheck()
     {

@@ -23,46 +23,53 @@ public class CatEnemy : MonoBehaviour
     public float rotationTimer;
     public float rotationMaxTimer;
     public float rotationEnemy;
-    public Transform posCurrent;
     public CatEnemyAnimation catAnimator;
+    public bool once;
+    private float time = 0.2f;
+
+    private Vector3 firstPos;
+    private Vector3 firstRotation;
+    private Vector3 firstPosModel;
+    public Transform transformModel;
     private void Start()
     {
-        transform.position = posCurrent.position;
+        firstPos = transform.position;
+        firstRotation = transform.rotation.eulerAngles;
+        firstPosModel = new Vector3(0f, transformModel.localPosition.y, 0f);
+        DataPersistenceManager.instance.OnLoad += LoadEnemy;
+        StartCoroutine(FOVRoutine());
     }
     private void Update()
     {
- 
-        FieldOfViewCheck();
         if (canSeePlayer)
         {
+            rotationTimer = 0f;
+            navMeshAgent.isStopped = false;
             //El enemigo sigue al jugador en su rango
             if (playerPosition != null)
             {
-                navMeshAgent.SetDestination(playerPosition.transform.position);
+                navMeshAgent.SetDestination(playerPosition.transform.localPosition);
                 rotating = false;
                 navMeshAgent.speed = 20f;
-                
-                flipMove();
+                once = true;
             }
 
         }
-        else
+        if (!canSeePlayer && once)
         {
-            //El enemigo ya no sigue al jugador
-            navMeshAgent.SetDestination(posCurrent.position);
-            //catAnimator.anim.SetBool("run", false);
-
-            navMeshAgent.speed = 10f;
-            if(!navMeshAgent.hasPath)
+            navMeshAgent.SetDestination(firstPos);
+            if (!navMeshAgent.pathPending && navMeshAgent.remainingDistance < 0.1f)
             {
-                flipMove();
-
+                once = false;
             }
-
-
-
-
         }
+
+        if (!canSeePlayer && !once)
+        {
+            flipMove();
+            navMeshAgent.isStopped = true ;
+        }
+        
     }
    
 
@@ -73,18 +80,15 @@ public class CatEnemy : MonoBehaviour
             if (rotating)
             {
                 //rota
-                transform.rotation *= Quaternion.Euler(0f, rotationEnemy * Time.deltaTime, 0f);
+                transform.rotation *= Quaternion.Euler(0f, (transform.rotation.y + rotationEnemy) * Time.deltaTime, 0f);
                 rotationTimer += Time.deltaTime;
                 catAnimator.anim.SetBool("spin", true);
 
                 // Si el temporizador alcanza la duración deseada, detener la rotación
                 if (rotationTimer >= rotationMaxTimer)
                 {
-
-                    rotating = false;
-
                     rotationTimer = 0f;
-
+                    rotating = false;
                 }
 
             }
@@ -138,5 +142,37 @@ public class CatEnemy : MonoBehaviour
         }
         else if (canSeePlayer)
             canSeePlayer = false;
+    }
+
+    IEnumerator FOVRoutine()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(time);
+            FieldOfViewCheck();
+        }
+    }
+
+    void LoadEnemy()
+    {
+        if (canSeePlayer == true)
+            canSeePlayer = false;
+        if (once == true)
+            once = false;
+        transform.position = firstPos;
+        transform.rotation = Quaternion.Euler(firstRotation);
+        rotationTimer = 0f;
+        rotating = true;
+        transformModel.localPosition = firstPosModel;
+        //navMeshAgent.destination = Vector3.zero;
+        //navMeshAgent.ResetPath();
+        //navMeshAgent.isStopped = true;
+        //navMeshAgent.speed = 0f;
+        navMeshAgent.enabled = false;
+
+        //Reiniciar posición, resetear ruta, etc
+
+        navMeshAgent.enabled = true;
+
     }
 }

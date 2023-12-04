@@ -414,6 +414,7 @@ MonoBehaviour:
   maxTimerStop: 0.3
   changeWait: 1
   minerAnimation: {fileID: 6600436847950419986}
+  transformModel: {fileID: 8526647163869827139}
   state: 0
 --- !u!195 &809292336424941373
 NavMeshAgent:
@@ -555,13 +556,13 @@ Rigidbody:
   m_GameObject: {fileID: 2592147178093749010}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Drag: 5
+  m_AngularDrag: 5
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Interpolate: 1
+  m_Constraints: 112
+  m_CollisionDetection: 1
 --- !u!1 &2662968603799700259
 GameObject:
   m_ObjectHideFlags: 0

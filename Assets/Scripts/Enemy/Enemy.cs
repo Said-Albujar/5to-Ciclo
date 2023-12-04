@@ -27,6 +27,9 @@ public class Enemy : MonoBehaviour
     private Vector3 newDirection;
 
     private Vector3 firstPos;
+    private Vector3 firstRotation;
+    private Vector3 firstPosModel;
+    public Transform transformModel;
     public bool detecteEnemyLight;
     public float maxTimerStop;
     [HideInInspector] public float timerStop;
@@ -37,6 +40,7 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         firstPos = transform.position;
+        firstRotation = transform.rotation.eulerAngles;
         navMeshAgent = GetComponent<NavMeshAgent>();
         playerPosition = FindObjectOfType<PlayerMovement>().gameObject;
         enemyAudioManager = GetComponent<EnemyAudioManager>();
@@ -45,7 +49,7 @@ public class Enemy : MonoBehaviour
     {
         DataPersistenceManager.instance.OnLoad += LoadEnemy;
         StartCoroutine(FOVRoutine());
-        
+        firstPosModel = new Vector3(0f, transformModel.localPosition.y, 0f);
     }
 
 
@@ -201,5 +205,18 @@ public class Enemy : MonoBehaviour
         if (once == true)
             once = false;
         transform.position = firstPos;
+        transform.rotation = Quaternion.Euler(firstRotation);
+        timer = 3f;
+        //navMeshAgent.destination = Vector3.zero;
+        //navMeshAgent.ResetPath();
+        //transformModel.localPosition = firstPosModel;
+        //navMeshAgent.isStopped = true;
+        //navMeshAgent.speed = 0f;
+        //navMeshAgent.Stop();
+        navMeshAgent.enabled = false;
+
+        //Reiniciar posición, resetear ruta, etc
+
+        navMeshAgent.enabled = true;
     }
 }
