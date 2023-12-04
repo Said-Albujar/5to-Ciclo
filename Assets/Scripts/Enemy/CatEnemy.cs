@@ -50,7 +50,7 @@ public class CatEnemy : MonoBehaviour
         {
             //El enemigo ya no sigue al jugador
             navMeshAgent.SetDestination(posCurrent.position);
-            catAnimator.anim.SetBool("run", false);
+            //catAnimator.anim.SetBool("run", false);
 
             navMeshAgent.speed = 10f;
             if(!navMeshAgent.hasPath)
