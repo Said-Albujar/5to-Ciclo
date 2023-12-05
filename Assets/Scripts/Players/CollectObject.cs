@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class RecolectarObjeto : MonoBehaviour
+public class CollectObject : MonoBehaviour
 {
     public TextMeshProUGUI contadorTexto;
     public int contador = 0;

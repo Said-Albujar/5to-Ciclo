@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class StaminaController : MonoBehaviour
 {
     public PlayerMovement errantMovement;
-    public RecolectarObjeto recolectar;
+    public CollectObject recolectar;
 
 
     [Header("Stamina Main Parameters")]
@@ -29,7 +29,7 @@ public class StaminaController : MonoBehaviour
     private void Awake()
     {
         errantMovement = GetComponent<PlayerMovement>();
-        recolectar = GetComponent<RecolectarObjeto>();  
+        recolectar = GetComponent<CollectObject>();  
     }
     void Start()
     {
