@@ -37,6 +37,7 @@ public class CatEnemy : MonoBehaviour
         firstRotation = transform.rotation.eulerAngles;
         firstPosModel = new Vector3(0f, transformModel.localPosition.y, 0f);
         DataPersistenceManager.instance.OnLoad += LoadEnemy;
+
         StartCoroutine(FOVRoutine());
     }
     private void Update()
@@ -48,6 +49,7 @@ public class CatEnemy : MonoBehaviour
             //El enemigo sigue al jugador en su rango
             if (playerPosition != null)
             {
+                //catAnimator.anim.SetBool("run", true);
                 navMeshAgent.SetDestination(playerPosition.transform.localPosition);
                 rotating = false;
                 navMeshAgent.speed = 20f;
@@ -57,6 +59,8 @@ public class CatEnemy : MonoBehaviour
         }
         if (!canSeePlayer && once)
         {
+            catAnimator.anim.SetBool("run", false);
+
             navMeshAgent.SetDestination(firstPos);
             if (!navMeshAgent.pathPending && navMeshAgent.remainingDistance < 0.1f)
             {
@@ -82,7 +86,6 @@ public class CatEnemy : MonoBehaviour
                 //rota
                 transform.rotation *= Quaternion.Euler(0f, (transform.rotation.y + rotationEnemy) * Time.deltaTime, 0f);
                 rotationTimer += Time.deltaTime;
-                catAnimator.anim.SetBool("spin", true);
 
                 // Si el temporizador alcanza la duración deseada, detener la rotación
                 if (rotationTimer >= rotationMaxTimer)
@@ -97,7 +100,6 @@ public class CatEnemy : MonoBehaviour
                 //detener la rotacion
 
                 rotationTimer += Time.deltaTime;
-                catAnimator.anim.SetBool("spin", false);
 
                 // Si el temporizador alcanza 2 segundos, reiniciar la rotación
                 if (rotationTimer >= rotationMaxTimer-1)
@@ -155,12 +157,16 @@ public class CatEnemy : MonoBehaviour
 
     void LoadEnemy()
     {
+        catAnimator.anim.SetBool("spin", true);
         if (canSeePlayer == true)
             canSeePlayer = false;
+
         if (once == true)
             once = false;
+
         transform.position = firstPos;
         transform.rotation = Quaternion.Euler(firstRotation);
+
         rotationTimer = 0f;
         rotating = true;
         transformModel.localPosition = firstPosModel;
