@@ -37,8 +37,7 @@ public class EnemyAudioManager : MonoBehaviour
 
         else
         {
-            audioSource.clip = s.clip;
-            audioSource.Play();
+            audioSource.PlayOneShot(s.clip);
         }
     }
 

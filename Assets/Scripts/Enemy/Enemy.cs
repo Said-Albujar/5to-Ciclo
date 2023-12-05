@@ -153,7 +153,7 @@ public class Enemy : MonoBehaviour
         if (onceShout && !canSeePlayer)
         {
             timerSound += Time.deltaTime;
-            if (timer>=0.25f)
+            if (timerSound >= 0.25f)
             {
                 onceShout = false;
                 timerSound = 0f;

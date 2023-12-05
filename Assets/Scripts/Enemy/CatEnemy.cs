@@ -32,8 +32,8 @@ public class CatEnemy : MonoBehaviour
     private Vector3 firstPosModel;
     public Transform transformModel;
 
-    bool onceShout;
-    float timerSound;
+    public bool onceShout;
+    public float timerSound;
     float timer;
     EnemyAudioManager enemyAudioManager;
 
@@ -201,7 +201,7 @@ public class CatEnemy : MonoBehaviour
         if (onceShout && !canSeePlayer)
         {
             timerSound += Time.deltaTime;
-            if (timer >= 0.25f)
+            if (timerSound >= 0.25f)
             {
                 onceShout = false;
                 timerSound = 0f;
