@@ -33,6 +33,7 @@ public class RecolectarObjeto : MonoBehaviour
             contador++;
             ActualizarContadorTexto();
             other.gameObject.SetActive(false);
+            AudioManager.Instance.PlaySFX("Coins");
             ActualizarEstadoBoton();
             InstanstiateVFX();
         }
