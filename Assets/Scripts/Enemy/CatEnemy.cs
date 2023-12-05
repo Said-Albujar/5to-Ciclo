@@ -31,8 +31,15 @@ public class CatEnemy : MonoBehaviour
     private Vector3 firstRotation;
     private Vector3 firstPosModel;
     public Transform transformModel;
+
+    bool onceShout;
+    float timerSound;
+    float timer;
+    EnemyAudioManager enemyAudioManager;
+
     private void Start()
     {
+        enemyAudioManager = GetComponent<EnemyAudioManager>();
         firstPos = transform.position;
         firstRotation = transform.rotation.eulerAngles;
         firstPosModel = new Vector3(0f, transformModel.localPosition.y, 0f);
@@ -54,6 +61,13 @@ public class CatEnemy : MonoBehaviour
                 rotating = false;
                 navMeshAgent.speed = 20f;
                 once = true;
+
+                timer = 0f;
+                if (!onceShout)
+                {
+                    enemyAudioManager.DetecPlayer();
+                    onceShout = true;
+                }
             }
 
         }
@@ -73,7 +87,7 @@ public class CatEnemy : MonoBehaviour
             flipMove();
             navMeshAgent.isStopped = true ;
         }
-        
+        TimerDetecSound();
     }
    
 
@@ -180,5 +194,18 @@ public class CatEnemy : MonoBehaviour
 
         navMeshAgent.enabled = true;
 
+    }
+
+    private void TimerDetecSound()
+    {
+        if (onceShout && !canSeePlayer)
+        {
+            timerSound += Time.deltaTime;
+            if (timer >= 0.25f)
+            {
+                onceShout = false;
+                timerSound = 0f;
+            }
+        }
     }
 }
