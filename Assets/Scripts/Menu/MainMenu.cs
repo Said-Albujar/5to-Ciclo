@@ -7,6 +7,7 @@ public class MainMenu : MonoBehaviour
 {
     public GameObject mainMenuPanel;
     public Animator anim;
+    [SerializeField] private string sceneName;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +18,10 @@ public class MainMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.anyKeyDown)
+        Scene currentScene = SceneManager.GetActiveScene();
+        sceneName = currentScene.name;
+
+        if (Input.anyKeyDown && sceneName == "Menu")
         {
             anim.SetBool("pressEnter", true);
         }
