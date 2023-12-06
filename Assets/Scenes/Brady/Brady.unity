@@ -4038,9 +4038,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adaba920c8109f748b24ebb733408170, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flashlight: {fileID: 1432142054}
-  changeMecanic: {fileID: 0}
-  IsOn: 0
+  lightActive: {fileID: 0}
+  flashLight: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!1 &1528891599
 GameObject:
   m_ObjectHideFlags: 0
@@ -6050,6 +6050,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6823984601043139134, guid: b6f2a9335c34d244382c3b261e939e6b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6f2a9335c34d244382c3b261e939e6b, type: 3}
 --- !u!1001 &7675224153839053553
@@ -6059,6 +6063,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7675224153720770195, guid: 107f99fa7ca343344aec62cd4c08b658, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
     - target: {fileID: 7675224153952795342, guid: 107f99fa7ca343344aec62cd4c08b658, type: 3}
       propertyPath: changeMecanic
       value: 

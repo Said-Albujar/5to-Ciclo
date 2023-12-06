@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17446938, g: 0.21014026, b: 0.2544524, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3033,11 +3033,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6761354903757891104, guid: 1667a810ea2cb554cab0990c7836dbb4, type: 3}
   m_PrefabInstance: {fileID: 217212918}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &217212920 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6761354904559890784, guid: 1667a810ea2cb554cab0990c7836dbb4, type: 3}
-  m_PrefabInstance: {fileID: 217212918}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &224227150
 GameObject:
   m_ObjectHideFlags: 0
@@ -3461,6 +3456,8 @@ MonoBehaviour:
   textDialogue: {fileID: 485303022}
   dialogueExist: 0
   dialogueStart: 0
+  HavePass: 0
+  PassText: {fileID: 0}
 --- !u!65 &260241422
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3494,7 +3491,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5167,7 +5164,7 @@ Transform:
   - {fileID: 1323478074}
   - {fileID: 1537779706}
   m_Father: {fileID: 719927061}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: -88.692, z: 0}
 --- !u!1 &427013351
 GameObject:
@@ -7082,7 +7079,7 @@ PrefabInstance:
     - target: {fileID: 4587825852713872052, guid: 26d44f610d0b6fb4c821b00a0c1f1f5b, type: 3}
       propertyPath: scriptToActive.Array.data[0]
       value: 
-      objectReference: {fileID: 1632505529}
+      objectReference: {fileID: 0}
     - target: {fileID: 4587825852713872058, guid: 26d44f610d0b6fb4c821b00a0c1f1f5b, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -7978,10 +7975,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 155395510}
-  - {fileID: 665474654}
   - {fileID: 408796317}
-  - {fileID: 1304835289}
+  - {fileID: 665474654}
   - {fileID: 1698059355}
+  - {fileID: 1304835289}
   - {fileID: 52022992}
   - {fileID: 147310329}
   - {fileID: 1615392659}
@@ -8177,7 +8174,7 @@ PrefabInstance:
     - target: {fileID: 4587825852713872052, guid: 26d44f610d0b6fb4c821b00a0c1f1f5b, type: 3}
       propertyPath: scriptToActive.Array.data[0]
       value: 
-      objectReference: {fileID: 217212920}
+      objectReference: {fileID: 0}
     - target: {fileID: 4587825852713872058, guid: 26d44f610d0b6fb4c821b00a0c1f1f5b, type: 3}
       propertyPath: m_RootOrder
       value: 19
@@ -11438,7 +11435,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -18443,7 +18441,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -18506,7 +18504,7 @@ PrefabInstance:
     - target: {fileID: 6528492813394119321, guid: 8a680d50dfe01f7459d28833875cf163, type: 3}
       propertyPath: scriptToActive.Array.data[0]
       value: 
-      objectReference: {fileID: 2062189754}
+      objectReference: {fileID: 0}
     - target: {fileID: 8935313541678982608, guid: 8a680d50dfe01f7459d28833875cf163, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -20281,6 +20279,8 @@ MonoBehaviour:
   textDialogue: {fileID: 485303022}
   dialogueExist: 0
   dialogueStart: 0
+  HavePass: 0
+  PassText: {fileID: 0}
 --- !u!65 &1608864621
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20314,7 +20314,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -20441,11 +20441,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1615392658}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1632505529 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6761354904559890784, guid: 1667a810ea2cb554cab0990c7836dbb4, type: 3}
-  m_PrefabInstance: {fileID: 250239853}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1641982241 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6761354903757891104, guid: 1667a810ea2cb554cab0990c7836dbb4, type: 3}
@@ -20513,7 +20508,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -20862,7 +20858,7 @@ Transform:
   - {fileID: 1933197519}
   - {fileID: 1513553852}
   m_Father: {fileID: 719927061}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: -88.692, z: 0}
 --- !u!43 &1715321365
 Mesh:
@@ -21512,7 +21508,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -21667,7 +21664,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -22161,6 +22159,8 @@ MonoBehaviour:
   textDialogue: {fileID: 485303022}
   dialogueExist: 0
   dialogueStart: 0
+  HavePass: 0
+  PassText: {fileID: 0}
 --- !u!65 &1798537628
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22194,7 +22194,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -23282,7 +23282,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -24657,6 +24657,8 @@ MonoBehaviour:
   textDialogue: {fileID: 485303022}
   dialogueExist: 0
   dialogueStart: 0
+  HavePass: 0
+  PassText: {fileID: 0}
 --- !u!65 &2033666093
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24690,7 +24692,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -25360,11 +25362,6 @@ Transform:
   m_Father: {fileID: 1891634859}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2062189754 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6761354904559890784, guid: 1667a810ea2cb554cab0990c7836dbb4, type: 3}
-  m_PrefabInstance: {fileID: 1983704106}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2066131828
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28862,6 +28859,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactableCanvas: {fileID: 0}
   objectToDeactivate: {fileID: 9046019174661349862}
+  cinemachineBrain: {fileID: 0}
 --- !u!224 &1561670052331191420
 RectTransform:
   m_ObjectHideFlags: 0
@@ -30231,13 +30229,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 102e8322358b33540b717925d137c127, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveBoxKey: 304
-  solidMask:
+  radius: 0
+  posRaycast: {fileID: 0}
+  box: []
+  inBox: 0
+  fuerzaEmpuje: 10
+  layerBox:
     serializedVersion: 2
-    m_Bits: 392
-  boxTag: Box
-  handForwardDistance: 0.5
-  handPosition: {fileID: 2448431956560185093}
+    m_Bits: 0
 --- !u!222 &3624420311589197799
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -30733,6 +30732,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e1ad21b98166a54294fa073dcb6c9bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cap: {fileID: 0}
+  currentstate: 0
   actualSpeed: 0
   walkSpeed: 6
   runSpeed: 9
@@ -30740,37 +30741,26 @@ MonoBehaviour:
   rotationSpeed: 6
   isRunning: 0
   turn: 1
+  groundCheck: {fileID: 0}
   playerHeight: 2
   ground:
     serializedVersion: 2
     m_Bits: 8
   grounded: 0
-  orientation: {fileID: 4428219057741858334}
   jumpForce: 12
   cooldownJump: 0.1
   jumpKey: 32
+  isJump: 0
   isCrouching: 0
   standHeight: 2
   standY: 0
   crouchHeight: 1
   CrouchY: -0.5
-  capsuleColliders:
-  - {fileID: 7646657849989320254}
-  - {fileID: 7646657850507133706}
-  - {fileID: 7646657850870678528}
   hold: 1
-  stepRayUpper: {fileID: 8167250378840550987}
-  stepRayLower: {fileID: 8167250380063586787}
-  stepHeight: 0.1
-  stepSmooth: 4.17
-  radius: 0.3
-  fuerzaCaida: 2
-  radiusDrop: 1
-  maskCaida:
+  layerBorder:
     serializedVersion: 2
-    m_Bits: 128
-  wall: 0
-  keyCheck: 1
+    m_Bits: 0
+  radius: 0.3
 --- !u!4 &4428219057651218805
 Transform:
   m_ObjectHideFlags: 0
@@ -30836,6 +30826,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   errantMovement: {fileID: 4428219057651218804}
+  recolectar: {fileID: 0}
   staminaMax: 50
   regenTimer: 0
   staminaNeedle: 25
@@ -31427,7 +31418,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -32589,6 +32580,8 @@ MonoBehaviour:
   textDialogue: {fileID: 485303022}
   dialogueExist: 0
   dialogueStart: 0
+  HavePass: 0
+  PassText: {fileID: 0}
 --- !u!114 &7280830368174256233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33333,7 +33326,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -33699,7 +33692,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -34468,7 +34461,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -34714,7 +34707,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -34782,7 +34775,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -34900,7 +34893,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -35590,9 +35583,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adaba920c8109f748b24ebb733408170, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flashlight: {fileID: 4351244739664241397}
-  changeMecanic: {fileID: 725612484919569709}
-  IsOn: 0
+  lightActive: {fileID: 0}
+  flashLight: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!65 &8167250379885880548
 BoxCollider:
   m_ObjectHideFlags: 0

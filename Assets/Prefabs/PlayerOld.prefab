@@ -151,6 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cap: {fileID: 9012444785177754845}
+  currentstate: 0
   actualSpeed: 0
   walkSpeed: 6
   runSpeed: 9
@@ -158,12 +159,12 @@ MonoBehaviour:
   rotationSpeed: 6
   isRunning: 0
   turn: 1
+  groundCheck: {fileID: 0}
   playerHeight: 2
   ground:
     serializedVersion: 2
     m_Bits: 264
   grounded: 0
-  orientation: {fileID: 3484012453698032838}
   jumpForce: 13
   cooldownJump: 0.1
   jumpKey: 32
@@ -174,11 +175,9 @@ MonoBehaviour:
   crouchHeight: 1.246365
   CrouchY: 0.5504
   hold: 1
-  currentstate: 0
   layerBorder:
     serializedVersion: 2
     m_Bits: 0
-  anim: {fileID: 0}
   radius: 0
 --- !u!114 &949559249513704133
 MonoBehaviour:
@@ -193,6 +192,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   errantMovement: {fileID: 949559249513704141}
+  recolectar: {fileID: 0}
   staminaMax: 50
   regenTimer: 0
   staminaNeedle: 25
@@ -313,6 +313,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactableCanvas: {fileID: 0}
   objectToDeactivate: {fileID: 3484012454507162357}
+  cinemachineBrain: {fileID: 0}
 --- !u!114 &949559249513704131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -327,6 +328,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 0
   posRaycast: {fileID: 0}
+  box: []
+  inBox: 0
+  fuerzaEmpuje: 10
+  layerBox:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &949559249513704140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -339,13 +346,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a554bab6901c6274f910d2027083b752, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  solidMask:
-    serializedVersion: 2
-    m_Bits: 392
-  raycastCenterStart: {fileID: 3484012453815607340}
-  raycastUpStart: {fileID: 3484012453717415300}
-  inBorder: 0
-  borderCooldown: 1
 --- !u!114 &8340274229523856552
 MonoBehaviour:
   m_ObjectHideFlags: 0

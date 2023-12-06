@@ -1720,6 +1720,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cap: {fileID: 7344303953942986738}
+  currentstate: 0
   actualSpeed: 0
   walkSpeed: 6
   runSpeed: 9
@@ -1743,11 +1744,9 @@ MonoBehaviour:
   crouchHeight: 1.246365
   CrouchY: 0.5504
   hold: 1
-  currentstate: 0
   layerBorder:
     serializedVersion: 2
     m_Bits: 2312
-  anim: {fileID: 7344303953942986739}
   radius: 0.49
 --- !u!114 &7344303953942986747
 MonoBehaviour:
@@ -1762,6 +1761,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   errantMovement: {fileID: 0}
+  recolectar: {fileID: 0}
   staminaMax: 50
   regenTimer: 0
   staminaNeedle: 25
