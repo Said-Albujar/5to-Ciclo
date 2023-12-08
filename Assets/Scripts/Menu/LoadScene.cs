@@ -6,12 +6,15 @@ using UnityEngine.SceneManagement;
 
 public class LoadScene : MonoBehaviour
 {
-    public void LoadSceneByName(string nameLevel)
+    public MainMenu menuPanel;
+    
+    public void ButtonMenuActive()
     {
-        SceneManager.LoadScene(nameLevel);
+        menuPanel.panelCredits.SetActive(false);
     }
-    public void Exit()
+    public void loadScene(string sceneName)
     {
-        Application.Quit();
+        SceneManager.LoadScene(sceneName);
     }
+
 }

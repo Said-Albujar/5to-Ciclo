@@ -6,13 +6,16 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public GameObject mainMenuPanel;
-    public Animator anim;
+    public Animator anim,anim2;
     [SerializeField] private string sceneName;
+    public GameObject panelCredits;
     // Start is called before the first frame update
     void Start()
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        panelCredits.SetActive(false);
+
     }
 
     // Update is called once per frame
@@ -31,14 +34,23 @@ public class MainMenu : MonoBehaviour
     {
         anim.SetBool("start", true);
     }
+    public void ButtonCredists()
+    {
+        panelCredits.SetActive(true);
+    }
+    public void ButtonMenu()
+    {
+        //panelCredits.SetActive(false);
+        anim2.SetBool("menu", true);
+
+
+    }
+
     public void ButtonExitGame()
     {
         Application.Quit();
         Debug.Log("Exit");
     }
 
-    public void LoadScene(string sceneName)
-    {
-        SceneManager.LoadScene(sceneName);
-    }
+  
 }
