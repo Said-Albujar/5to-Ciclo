@@ -23,8 +23,9 @@ public class Break : MonoBehaviour
             if (!spawnedPoints) SpawnPoints();
             AudioManager.Instance.PlaySFX("DestroyRock");
             Destroy(Rock);
-            Instantiate(brokenVfx, transform.position, Quaternion.identity);
-         
+            InstantiateVFX();
+
+
         }
     }
 
@@ -53,5 +54,14 @@ public class Break : MonoBehaviour
             Instantiate(pointsPrefab, transform.position, Quaternion.identity);
         }
         spawnedPoints = true;
+    }
+    void InstantiateVFX()
+    {
+        Vector3 currentPosition = transform.position;
+
+        float offset = 1.5f;
+        currentPosition.y += offset;
+
+        Instantiate(brokenVfx, currentPosition, Quaternion.identity);
     }
 }
