@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public GameObject mainMenuPanel;
-    public Animator anim,anim2;
+    public Animator anim;
     [SerializeField] private string sceneName;
     public GameObject panelCredits;
     // Start is called before the first frame update
@@ -37,13 +37,6 @@ public class MainMenu : MonoBehaviour
     public void ButtonCredists()
     {
         panelCredits.SetActive(true);
-    }
-    public void ButtonMenu()
-    {
-        //panelCredits.SetActive(false);
-        anim2.SetBool("menu", true);
-
-
     }
 
     public void ButtonExitGame()

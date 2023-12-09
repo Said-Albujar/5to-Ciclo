@@ -13,6 +13,8 @@ public class UIPriority : MonoBehaviour
     void Start()
     {
         currentCamera.Priority++;
+        Cursor.lockState = CursorLockMode.None;
+
     }
 
     public void UpdateCamera(CinemachineVirtualCamera target)

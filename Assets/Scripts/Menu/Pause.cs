@@ -29,7 +29,7 @@ public class Pause : MonoBehaviour
         {
 
 
-            Time.timeScale = 0f;
+            //Time.timeScale = 0f;
             Debug.Log("Pausa");
             playerComponent.GetComponent<PlayerMovement>().enabled = false;
             panelPause.SetActive(true);
@@ -41,7 +41,7 @@ public class Pause : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Escape) && pause)
         {
-            Time.timeScale = 1f;
+            //Time.timeScale = 1f;
             playerComponent.GetComponent<PlayerMovement>().enabled = true;
 
             panelPause.SetActive(false);

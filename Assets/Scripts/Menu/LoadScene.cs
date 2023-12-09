@@ -6,11 +6,21 @@ using UnityEngine.SceneManagement;
 
 public class LoadScene : MonoBehaviour
 {
-    public MainMenu menuPanel;
-    
+    public GameObject panelPause;
+    public GameObject panelExit;
+    public PlayerMovement player;
     public void ButtonMenuActive()
     {
-        menuPanel.panelCredits.SetActive(false);
+        panelPause.SetActive(true);
+        
+    }
+    public void ButtonGoOut()
+    {
+        //player.turn = false;
+        //player.GetComponent<Rigidbody>().isKinematic = true;
+        panelExit.SetActive(true);
+        Time.timeScale = 1f;
+
     }
     public void loadScene(string sceneName)
     {

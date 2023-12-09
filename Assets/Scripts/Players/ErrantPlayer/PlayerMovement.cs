@@ -90,7 +90,11 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 break;
 
             default:
-                NormalMovement();
+                if(turn)
+                {
+                    NormalMovement();
+
+                }
                 break;
         }
     }

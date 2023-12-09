@@ -122,7 +122,7 @@ public class GameManager : MonoBehaviour
     public void ExitMenu()
     {
         Unpause();
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("MainMenu");
     }
 
 }
