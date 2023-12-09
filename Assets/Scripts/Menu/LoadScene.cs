@@ -8,7 +8,7 @@ public class LoadScene : MonoBehaviour
 {
     public GameObject panelPause;
     public GameObject panelExit;
-    public PlayerMovement player;
+    //public PlayerMovement player;
     public void ButtonMenuActive()
     {
         panelPause.SetActive(true);
