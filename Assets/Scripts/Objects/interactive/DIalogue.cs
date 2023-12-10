@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class DIalogue : MonoBehaviour
 {
     public GameObject dialogueIcon;
-    public GameObject dialogueIcon2;
+    //public GameObject dialogueIcon2;
     public GameObject dialoguePanelText;
     [SerializeField,TextArea(4,6)] private string[] dialogueTextBox;
     public TextMeshProUGUI textDialogue;
@@ -59,7 +59,7 @@ public class DIalogue : MonoBehaviour
         dialogueStart = true;
         dialoguePanelText.SetActive(true);
         dialogueIcon.SetActive(false);
-        dialogueIcon2.SetActive(true);
+        //dialogueIcon2.SetActive(true);
         index = 0;
         StartCoroutine(CountLineText());
 
@@ -80,7 +80,7 @@ public class DIalogue : MonoBehaviour
             dialogueStart = false;
             dialoguePanelText.SetActive(false);
             dialogueIcon.SetActive(true);
-            dialogueIcon2.SetActive(false);
+            //dialogueIcon2.SetActive(false);
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -89,7 +89,7 @@ public class DIalogue : MonoBehaviour
         {
             dialogueExist = true;
             dialogueIcon.SetActive(false);
-            dialogueIcon2.SetActive(true);
+            //dialogueIcon2.SetActive(true);
         }
      
     }
@@ -99,7 +99,7 @@ public class DIalogue : MonoBehaviour
         {
             dialogueExist = false;
             dialogueIcon.SetActive(true);
-            dialogueIcon2.SetActive(false);
+            //dialogueIcon2.SetActive(false);
             dialoguePanelText.SetActive(false);
 
         }
