@@ -29,8 +29,8 @@ public class PlayerHealth : MonoBehaviour, IDataPersistence
         if (health == 0)
         {
            
-           // anim.Play("dead");
-            anim.SetBool("dead", true);
+            anim.Play("dead");
+            //anim.SetBool("dead", true);
             panelDead.SetActive(true);
             player.GetComponent<PlayerMovement>().enabled = false;
             timer += Time.deltaTime;

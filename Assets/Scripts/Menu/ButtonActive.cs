@@ -4,7 +4,7 @@ using System.ComponentModel.Design;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LoadScene : MonoBehaviour
+public class ButtonActive : MonoBehaviour
 {
     public GameObject panelPause;
     public GameObject panelExit;
@@ -26,9 +26,9 @@ public class LoadScene : MonoBehaviour
     {
         player.DataManager();
     }*/
-    public void loadScene(string sceneName)
+    /*public void loadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
-    }
+    }*/
 
 }

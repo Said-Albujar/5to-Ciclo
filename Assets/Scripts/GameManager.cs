@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject panelOptions;
     [SerializeField] private string sceneName;
     public bool inPause;
-
+    public GameObject panelTransition;
     private void Awake()
     {
         if (instance == null)
@@ -29,11 +29,19 @@ public class GameManager : MonoBehaviour
     {
         Scene currentScene = SceneManager.GetActiveScene();
         sceneName = currentScene.name;
-        
 
     }
     void Update()
     {
+        PauseManager();
+    }
+    public void PauseActive()
+    {
+        inPause = false;
+    }
+    public void PauseManager()
+    {
+
         Scene currentScene = SceneManager.GetActiveScene();
         sceneName = currentScene.name;
 
@@ -90,7 +98,9 @@ public class GameManager : MonoBehaviour
 
     public void Restart()
     {
+
         Time.timeScale = 1f;
+        panelTransition.SetActive(true);
         if(File.Exists(string.Concat(Application.persistentDataPath, "/data.game")))
         {
             panelPause.SetActive(false);
