@@ -90,19 +90,19 @@ public class Enemy : MonoBehaviour
             navMeshAgent.speed = 4f;
         }
 
-        if (detecteEnemyLight)
-        {
-            timerStop += Time.deltaTime;
-            if (timerStop >= maxTimerStop)
-            {
-                detecteEnemyLight = false;
-            }
-            StopMove();
-        }
-        else
-        {
-            ResumeMove();
-        }
+        //if (detecteEnemyLight)
+        //{
+        //    timerStop += Time.deltaTime;
+        //    if (timerStop >= maxTimerStop)
+        //    {
+        //        detecteEnemyLight = false;
+        //    }
+        //    StopMove();
+        //}
+        //else
+        //{
+        //    ResumeMove();
+        //}
 
         TimerDetecSound();
 

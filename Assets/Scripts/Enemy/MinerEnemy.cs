@@ -8,70 +8,88 @@ using UnityEngine.AI;
 
 public class MinerEnemy : MonoBehaviour
 {
-    public float timerSound;
-
-    public EnemyAudioManager AudioMinerDetected;
-    public Transform playerPosition;
+    [Header("Movement")]
     public NavMeshAgent navMeshAgent;
-    private int indexActualDestiny = 0;
-    public Transform[] destinyPoints;
-    public bool patrolActive;
+    public GameObject playerPosition;
+    public bool patrullajeActivo = true;
     public float speedPlayerChange;
-    public Vector3 direction;
-    public float timer;
-    public float speed;
-    public bool onceShout;
-    [Header("FOV")]
-    public bool canSeePlayer;
+    public int nextStep = 0;
+    public List<Transform> positionPoint;
+    public float distanceMin;
+    [Header("Cono de vision")]
     public float radius;
     public float angle;
     public LayerMask targeMask;
     public LayerMask obstructionMask;
-    public float time;
+    public bool canSeePlayer;
+    private bool onceShout;
+    private float time;
     public Collider[] rangeChecks;
-    public bool detecteEnemyLight;
-    [HideInInspector] public float timerStop;
-    public float maxTimerStop;
-    public bool changeWait;
-    public MinerAnimationController minerAnimation;
-    bool once;
+    public bool once;
+    public float timer;
+    private Vector3 newDirection;
+
     private Vector3 firstPos;
-    private Vector3 firstPosModel;
     private Vector3 firstRotation;
+    private Vector3 firstPosModel;
     public Transform transformModel;
-    public enum EnemyState
-    {
-        patrol,
-        wait,
-        chase,
-    }
-    public EnemyState state;
+    public bool detecteEnemyLight;
+    public float maxTimerStop;
+    [HideInInspector] public float timerStop;
+    public EnemyAudioManager enemyAudioManager;
+    float timerSound;
 
-
-
+    // Start is called before the first frame update
     private void Awake()
     {
-        navMeshAgent = GetComponent<NavMeshAgent>();
-    }
-
-    void Start()
-    {
-        DataPersistenceManager.instance.OnLoad += LoadEnemy;
         firstPos = transform.position;
         firstRotation = transform.rotation.eulerAngles;
-        firstPosModel = new Vector3(0f, transformModel.localPosition.y, 0f);
+        navMeshAgent = GetComponent<NavMeshAgent>();
+        playerPosition = FindObjectOfType<PlayerMovement>().gameObject;
+    }
+    private void Start()
+    {
+        DataPersistenceManager.instance.OnLoad += LoadEnemy;
         StartCoroutine(FOVRoutine());
-       
+        firstPosModel = new Vector3(0f, transformModel.localPosition.y, 0f);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        TimerDetecSound();
-        if (state == EnemyState.chase && !canSeePlayer)
-        {
 
+
+    private void Update()
+    {
+        if (canSeePlayer)
+        {
+            if (playerPosition != null)
+            {
+                navMeshAgent.SetDestination(playerPosition.transform.position);
+                navMeshAgent.speed = speedPlayerChange;
+                patrullajeActivo = false;
+                once = true;
+                timer = 0f;
+                if (!onceShout)
+                {
+                    enemyAudioManager.DetecPlayer();
+                    onceShout = true;
+                }
+            }
+            else
+            {
+                Debug.Log("Referencia nula en playerPosition");
+            }
+
+        }
+
+        if (!canSeePlayer && once == true)
+        {
             RandomMove();
+        }
+
+        if (!canSeePlayer && once == false)
+        {
+            patrullajeActivo = true;
+            Patrol();
+            navMeshAgent.speed = 4f;
         }
 
         if (detecteEnemyLight)
@@ -88,49 +106,29 @@ public class MinerEnemy : MonoBehaviour
             ResumeMove();
         }
 
-        //
-        if (canSeePlayer && !detecteEnemyLight)
-        {
-
-            if (playerPosition != null)
-            {
-                state = EnemyState.chase;
-                navMeshAgent.SetDestination(playerPosition.transform.position);
-                navMeshAgent.speed = speedPlayerChange;
-                patrolActive = false;
-                
-                if (!onceShout)
-                {
-                    AudioMinerDetected.DetecPlayer();
-                    onceShout = true;
-                }
-            }
-
-        }
-        if (!canSeePlayer && state == EnemyState.patrol)
-        {
-            navMeshAgent.speed = 4f;
-            if (!navMeshAgent.pathPending && navMeshAgent.remainingDistance < 0.1f)
-            {
-                patrolActive = true;
-                state = EnemyState.patrol;
-                SetNextDestiny();
-            }
-        }
-
+        TimerDetecSound();
 
 
     }
     void StopMove()
     {
         navMeshAgent.isStopped = true;
-        //minerAnimation.anim.speed = 0;
     }
     void ResumeMove()
     {
         navMeshAgent.isStopped = false;
-        //minerAnimation.anim.speed = 1;
-
+    }
+    void Patrol()
+    {
+        navMeshAgent.SetDestination(positionPoint[nextStep].position);
+        if (Vector3.Distance(transform.position, positionPoint[nextStep].position) < distanceMin)
+        {
+            nextStep++;
+            if (nextStep >= positionPoint.Count)
+            {
+                nextStep = 0;
+            }
+        }
     }
 
     void RandomMove()
@@ -140,19 +138,18 @@ public class MinerEnemy : MonoBehaviour
         {
             if (!navMeshAgent.pathPending && navMeshAgent.remainingDistance < 0.1f)
             {
-                direction = new Vector3(Random.Range(-3f, 3f), 0f, Random.Range(-3f, 3f));
-                navMeshAgent.SetDestination(transform.position + direction);
+                newDirection = new Vector3(Random.Range(-5f, 5f), 0f, Random.Range(-5f, 5f));
+                navMeshAgent.SetDestination(transform.position + newDirection);
             }
         }
         else
         {
-            state = EnemyState.patrol;
             once = false;
-            navMeshAgent.ResetPath();
             timer = 0f;
         }
 
     }
+
     private void TimerDetecSound()
     {
         if (onceShout && !canSeePlayer)
@@ -167,16 +164,6 @@ public class MinerEnemy : MonoBehaviour
 
     }
 
-    void SetNextDestiny()
-    {
-
-        if (destinyPoints.Length == 0)
-            return;
-
-        navMeshAgent.destination = destinyPoints[indexActualDestiny].position;
-        indexActualDestiny = (indexActualDestiny + 1) % destinyPoints.Length;
-    }
-
     IEnumerator FOVRoutine()
     {
         while (true)
@@ -185,6 +172,34 @@ public class MinerEnemy : MonoBehaviour
             FieldOfViewCheck();
         }
     }
+    void FieldOfViewCheck()
+    {
+
+        rangeChecks = Physics.OverlapSphere(transform.position, radius, targeMask);
+        if (rangeChecks.Length != 0)
+        {
+            Transform target = rangeChecks[0].transform;
+            Vector3 directionTarget = (target.position - transform.position).normalized;
+            if (Vector3.Angle(transform.forward, directionTarget) < angle / 2)
+            {
+                float distanceToTarget = Vector3.Distance(transform.position, target.position);
+
+                if (!Physics.Raycast(transform.position, directionTarget, distanceToTarget, obstructionMask))
+                {
+                    canSeePlayer = true;
+
+                }
+
+                else
+                    canSeePlayer = false;
+            }
+            else
+                canSeePlayer = false;
+        }
+        else if (canSeePlayer)
+            canSeePlayer = false;
+    }
+
     void LoadEnemy()
     {
         if (canSeePlayer == true)
@@ -205,44 +220,5 @@ public class MinerEnemy : MonoBehaviour
         //Reiniciar posición, resetear ruta, etc
 
         navMeshAgent.enabled = true;
-    }
-    void FieldOfViewCheck()
-    {
-
-        rangeChecks = Physics.OverlapSphere(transform.position, radius, targeMask);
-        if (rangeChecks.Length != 0)
-        {
-            Transform target = rangeChecks[0].transform;
-            Vector3 directionTarget = (target.position - transform.position).normalized;
-            if (Vector3.Angle(transform.forward, directionTarget) < angle / 2)
-            {
-                float distanceToTarget = Vector3.Distance(transform.position, target.position);
-
-                if (!Physics.Raycast(transform.position, directionTarget, distanceToTarget, obstructionMask))
-                {
-                    if(!detecteEnemyLight)
-                    {
-                        canSeePlayer = true;
-
-                    }
-                    else
-                    {
-                        canSeePlayer = false;
-                    }
-                }
-
-                else
-
-                    canSeePlayer = false;
-
-
-
-
-            }
-            else
-                canSeePlayer = false;
-        }
-        else if (canSeePlayer)
-            canSeePlayer = false;
     }
 }
