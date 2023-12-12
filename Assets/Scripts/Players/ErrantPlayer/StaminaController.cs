@@ -16,6 +16,8 @@ public class StaminaController : MonoBehaviour
     public float staminaNeedle;
     public static bool canRun;
 
+    public bool mejora;
+
     [Header("Stamina Regen Parameters")]
     [Range(0, 50)] [SerializeField] float staminaDrain = 0.5f;
     [Range(0, 50)] [SerializeField] float staminaRegen = 0.5f;
@@ -65,11 +67,11 @@ public class StaminaController : MonoBehaviour
 
         IsRunning();
 
-        if(recolectar.botonPresionado == true)
+        if(recolectar.botonPresionado == true && !mejora)
         {
             staminaMax = 100;
             staminaRegen = 30f;
-            
+            mejora = true;
         }
 
     }
