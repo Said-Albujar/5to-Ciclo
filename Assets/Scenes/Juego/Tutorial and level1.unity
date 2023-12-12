@@ -9394,8 +9394,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6128001594037430643, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
       propertyPath: dialogueTextBox.Array.data[0]
-      value: Puedo cargar esta caja no parece tan pesada (Acercate a la caja y presiona
-        E para levantarla)  (E)
+      value: Esta caja no se ve tan pesada... puedo cargarla (Acercate a la caja
+        y presiona E para levantarla)  (E)
       objectReference: {fileID: 0}
     - target: {fileID: 6128001594037430643, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
       propertyPath: dialogueTextBox.Array.data[1]
@@ -10572,11 +10572,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6128001594037430643, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
       propertyPath: dialogueTextBox.Array.data[0]
-      value: Se parece a mi pero.... tiene algo diferente...    (E)
+      value: "\xBF\xA1Qu\xE9 es eso?! Se parece mi... pero a la vez no...   (E)"
       objectReference: {fileID: 0}
     - target: {fileID: 6128001594037430643, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
       propertyPath: dialogueTextBox.Array.data[1]
-      value: Sera mejor que tenga cuidado y que no me vea    (E)
+      value: Debo tener cuidado. No se ven amigables. No deben verme...   (E)
       objectReference: {fileID: 0}
     - target: {fileID: 6128001594037430643, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
       propertyPath: dialogueTextBox.Array.data[2]
@@ -12062,16 +12062,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6128001594037430643, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
       propertyPath: dialogueTextBox.Array.data[0]
-      value: Por ahi parece la salida pero esta llena de rocas, si fuera humano podria
-        pasar por encima    (E)
+      value: "Por all\xED parece la salida, pero est\xE1 llena de rocas. Ojala fuera
+        humano para pasar por encima. \xA1Odio este cuerpo!  (E)"
       objectReference: {fileID: 0}
     - target: {fileID: 6128001594037430643, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
       propertyPath: dialogueTextBox.Array.data[1]
-      value: Tal vez pueda romperlas con la herramienta adecuada  (E)
+      value: "Con un pico podr\xEDa destruir esas rocas...  (E)"
       objectReference: {fileID: 0}
     - target: {fileID: 6128001594037430643, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
       propertyPath: dialogueTextBox.Array.data[2]
-      value: Debo encontrarla si quiero salir de aca   (E)
+      value: "\xBFHabr\xE1 alguna por aqu\xED cerca...? (E)"
       objectReference: {fileID: 0}
     - target: {fileID: 6872699315415003436, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
       propertyPath: m_RootOrder
@@ -13125,7 +13125,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Pause
+  m_text: Pausa
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a546b04b560c8ff45a47f8f8d32ad598, type: 2}
   m_sharedMaterial: {fileID: 582462102760045496, guid: a546b04b560c8ff45a47f8f8d32ad598, type: 2}
@@ -15363,7 +15363,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6128001594037430643, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
       propertyPath: dialogueTextBox.Array.data[0]
-      value: Con esto puedo cortar aquella cuerda.  (E)
+      value: Con las tijeras puedo cortar la cuerda.  (E)
       objectReference: {fileID: 0}
     - target: {fileID: 6128001594037430643, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
       propertyPath: dialogueTextBox.Array.data[1]
@@ -19711,7 +19711,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Restaurar
+  m_text: Reanudar
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a62ad96adf202384d87981a05a206597, type: 2}
   m_sharedMaterial: {fileID: 1439836189494598896, guid: a62ad96adf202384d87981a05a206597, type: 2}
@@ -22988,11 +22988,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6128001594037430643, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
       propertyPath: dialogueTextBox.Array.data[0]
-      value: Creo poder llegar a treparlo.   (E)
+      value: Creo que puedo treparlo.   (E)
       objectReference: {fileID: 0}
     - target: {fileID: 6128001594037430643, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
       propertyPath: dialogueTextBox.Array.data[1]
-      value: "\"Tecla ESPACIO cuando el personaje se agarre de un borde\" \n    
+      value: "\"Tecla ESPACIO cuando el personaje se sostenga de un borde\" \n    
         (E)"
       objectReference: {fileID: 0}
     - target: {fileID: 6128001594037430643, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
@@ -27070,6 +27070,10 @@ PrefabInstance:
       value: Npc 1 (5)
       objectReference: {fileID: 0}
     - target: {fileID: 8931335210042851901, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8931335210042851901, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -27298,7 +27302,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6128001594037430643, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
       propertyPath: dialogueTextBox.Array.data[0]
-      value: "Ese mu\xF1eco parece paralizado cuando le cae la luz  (E)"
+      value: La luz lo paraliza... es bueno saberlo  (E)
       objectReference: {fileID: 0}
     - target: {fileID: 6128001594037430643, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
       propertyPath: dialogueTextBox.Array.data[1]
@@ -36616,12 +36620,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6128001594037430643, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
       propertyPath: dialogueTextBox.Array.data[0]
-      value: Estos botones me hacen sentir bien..     (E)
+      value: "Estos botones me hacen sentir extra\xF1amente bien     (E)"
       objectReference: {fileID: 0}
     - target: {fileID: 6128001594037430643, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
       propertyPath: dialogueTextBox.Array.data[1]
-      value: Creo que con los suficientes mi nuevo cuerpo reaccionaria funcionaria
-        mejor...        (E)
+      value: Creo que con los suficientes este cuerpo funcionaria mejor.      (E)
       objectReference: {fileID: 0}
     - target: {fileID: 6128001594037430643, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
       propertyPath: dialogueTextBox.Array.data[2]
@@ -40164,7 +40167,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6128001594037430643, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
       propertyPath: dialogueTextBox.Array.data[0]
-      value: Creo activar los dos para lograr abrir la puerta.  (E)
+      value: Debo activar los dos botones para activar la puerta.  (E)
       objectReference: {fileID: 0}
     - target: {fileID: 6128001594037430643, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
       propertyPath: dialogueTextBox.Array.data[1]
@@ -45755,7 +45758,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 119.99999, y: -13.85437}
+  m_AnchoredPosition: {x: 119.99999, y: -13.854385}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1044016109
@@ -49040,7 +49043,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6128001594037430643, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
       propertyPath: dialogueTextBox.Array.data[0]
-      value: "Eso azul de ahi parece un boton \xBFQue activara?    (E)"
+      value: "\xBFEso es un bot\xF3n? \xBFActivar\xE1 algo?    (E)"
       objectReference: {fileID: 0}
     - target: {fileID: 6128001594037430643, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
       propertyPath: dialogueTextBox.Array.data[1]
@@ -53284,11 +53287,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6128001594037430643, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
       propertyPath: dialogueTextBox.Array.data[1]
-      value: Esta parece ser la salida de este atico...  (E)
+      value: Esta parece ser la salida de este laberinto  (E)
       objectReference: {fileID: 0}
     - target: {fileID: 6128001594037430643, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
       propertyPath: dialogueTextBox.Array.data[2]
-      value: "\xBFTendre toda la contrase\xF1a?  (E)"
+      value: "\xBFTendr\xE9 toda la contrase\xF1a o me habr\xE9 dejado algo?  (E)"
       objectReference: {fileID: 0}
     - target: {fileID: 6872699315415003436, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
       propertyPath: m_RootOrder
@@ -71882,15 +71885,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6128001594037430643, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
       propertyPath: dialogueTextBox.Array.data[1]
-      value: Parece imcompleto....   (E)
+      value: Parece incompleto...   (E)
       objectReference: {fileID: 0}
     - target: {fileID: 6128001594037430643, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
       propertyPath: dialogueTextBox.Array.data[2]
-      value: "\xBFMe pregunto que significara esto?  (E)"
+      value: "\xBFMe pregunto que significar\xE1 esto?  (E)"
       objectReference: {fileID: 0}
     - target: {fileID: 6128001594037430643, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
       propertyPath: dialogueTextBox.Array.data[3]
-      value: '"En el menu de pausa puedes ver el numero que descubriste"  (E)'
+      value: "\"En el men\xFA de pausa puedes ver el n\xFAmero que descubriste\" 
+        (E)"
       objectReference: {fileID: 0}
     - target: {fileID: 6872699315415003436, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
       propertyPath: m_RootOrder
@@ -74290,8 +74294,8 @@ PrefabInstance:
       objectReference: {fileID: 6537781674850024925}
     - target: {fileID: 6128001594037430643, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
       propertyPath: dialogueTextBox.Array.data[0]
-      value: Se ve malograda quisas pueda repararlo con la herramienta que encontre 
-        (F cerca de la palanca para repararla)   (E)
+      value: "La palanca est\xE1 averiada. Deber\xEDa poder repararlo con las tenazas
+        que encontr\xE9  (E)"
       objectReference: {fileID: 0}
     - target: {fileID: 6872699315415003436, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
       propertyPath: m_RootOrder
@@ -83023,7 +83027,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6128001594037430643, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
       propertyPath: dialogueTextBox.Array.data[1]
-      value: "\xBFOtra m\xE1s? parecen de una contrase\xF1a  (E)"
+      value: "\xBFOtra m\xE1s? Parece una contrase\xF1a  (E)"
       objectReference: {fileID: 0}
     - target: {fileID: 6128001594037430643, guid: 97523bb611fd7604aa1cf5d69e474ed2, type: 3}
       propertyPath: dialogueTextBox.Array.data[2]
@@ -89519,6 +89523,11 @@ PrefabInstance:
       propertyPath: dialoguePanelText
       value: 
       objectReference: {fileID: 6537781674850024925}
+    - target: {fileID: 5375363586866825541, guid: ad9f9761042826e4884879a4113ab3df, type: 3}
+      propertyPath: dialogueTextBox.Array.data[0]
+      value: "Esas tenazas podr\xEDan servirme para m\xE1s adelante. Ser\xE1 mejor
+        que las agarre    (E para salir)"
+      objectReference: {fileID: 0}
     - target: {fileID: 7232871458315149835, guid: ad9f9761042826e4884879a4113ab3df, type: 3}
       propertyPath: m_Name
       value: Npc
@@ -89992,7 +90001,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1255026455157039857}
-  m_LocalRotation: {x: 0.114125445, y: 0.008669649, z: -0.0009959731, w: 0.99342805}
+  m_LocalRotation: {x: 0.114125445, y: 0.008669641, z: -0.0009959722, w: 0.99342805}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -90494,7 +90503,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6574288238785726874}
-  m_LocalRotation: {x: 0.16017616, y: 0.008613951, z: -0.001397852, w: 0.9870499}
+  m_LocalRotation: {x: 0.16017619, y: 0.008613983, z: -0.0013978573, w: 0.9870499}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
