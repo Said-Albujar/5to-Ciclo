@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 427013352}
-  m_IndirectSpecularColor: {r: 0.4526602, g: 0.40951335, b: 0.5049846, a: 1}
+  m_IndirectSpecularColor: {r: 0.21215841, g: 0.21215841, b: 0.21215841, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -692,6 +692,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: botella gorda
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8ea1e7a3996697040b5d4a53f143f21c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ea1e7a3996697040b5d4a53f143f21c, type: 3}
 --- !u!4 &28463288 stripped
@@ -1041,6 +1045,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: armario
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 31ebf3e2f26dd6a49b55fa2347ae8abb, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31ebf3e2f26dd6a49b55fa2347ae8abb, type: 3}
 --- !u!4 &33236988 stripped
@@ -1350,6 +1358,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2141556328}
     m_Modifications:
+    - target: {fileID: 1201824592737877719, guid: 2d7dc29fb83fd994b88dfd13cbbc4e03, type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 1.05e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 1201824592737877719, guid: 2d7dc29fb83fd994b88dfd13cbbc4e03, type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 1.0596762e-38
+      objectReference: {fileID: 0}
+    - target: {fileID: 1201824592737877719, guid: 2d7dc29fb83fd994b88dfd13cbbc4e03, type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 586
+      objectReference: {fileID: 0}
     - target: {fileID: 3588062048580939891, guid: 2d7dc29fb83fd994b88dfd13cbbc4e03, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -2487,7 +2507,7 @@ Transform:
   - {fileID: 244565328}
   - {fileID: 927757879}
   m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &78683825
 GameObject:
@@ -3921,7 +3941,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7114695892784488249, guid: 5420a11197d9bbf429ae525cfcf029de, type: 3}
       propertyPath: m_RootOrder
-      value: 20
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 7114695892784488249, guid: 5420a11197d9bbf429ae525cfcf029de, type: 3}
       propertyPath: m_LocalScale.x
@@ -4875,6 +4895,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: "libro peque\xF1o (13)"
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
 --- !u!4 &121297122 stripped
@@ -5575,7 +5599,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh77824
+  m_Name: pb_Mesh34728
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -11173,7 +11197,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22457152, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 22457152, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -15364,6 +15388,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: "libro peque\xF1o (16)"
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
 --- !u!4 &359352223 stripped
@@ -16104,7 +16132,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &374506896
 GameObject:
@@ -17288,7 +17316,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7114695892784488249, guid: 5420a11197d9bbf429ae525cfcf029de, type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 7114695892784488249, guid: 5420a11197d9bbf429ae525cfcf029de, type: 3}
       propertyPath: m_LocalScale.x
@@ -17486,7 +17514,7 @@ RectTransform:
   - {fileID: 1914534021}
   - {fileID: 1443031154}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -18674,7 +18702,7 @@ RectTransform:
   m_Children:
   - {fileID: 2047305497}
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -18756,7 +18784,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 7.55e-43, y: -5.088339e+32, z: 7.55e-43, w: -3.5438633e+32}
+  m_BoundingSphereOverride: {x: 7.390852e+22, y: 2.6785335e+20, z: 2.6027078e+11, w: 6.9731377e+22}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -18774,7 +18802,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: -261.579, y: -62.602997, z: -66.035}
 --- !u!114 &427013354
 MonoBehaviour:
@@ -20277,19 +20305,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1201824592737877719, guid: 2d7dc29fb83fd994b88dfd13cbbc4e03, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: NaN
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1201824592737877719, guid: 2d7dc29fb83fd994b88dfd13cbbc4e03, type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 9.1835e-41
+      value: 1.05e-43
       objectReference: {fileID: 0}
     - target: {fileID: 1201824592737877719, guid: 2d7dc29fb83fd994b88dfd13cbbc4e03, type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: NaN
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1201824592737877719, guid: 2d7dc29fb83fd994b88dfd13cbbc4e03, type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 9.78048e-39
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 3588062048580939891, guid: 2d7dc29fb83fd994b88dfd13cbbc4e03, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -21123,6 +21151,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
       propertyPath: m_Name
       value: "libro peque\xF1o (2)"
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
@@ -21964,7 +21996,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh75256
+  m_Name: pb_Mesh32156
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -22202,7 +22234,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 3ca9564b017d83141ae921e01db01771, type: 2}
     - target: {fileID: 6258221409018384573, guid: 8a73b8457c785a74bbe8fe6a0b9dff2b, type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 6258221409018384573, guid: 8a73b8457c785a74bbe8fe6a0b9dff2b, type: 3}
       propertyPath: m_LocalScale.x
@@ -23478,19 +23510,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1201824592737877719, guid: 2d7dc29fb83fd994b88dfd13cbbc4e03, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: -1.3625071e+20
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1201824592737877719, guid: 2d7dc29fb83fd994b88dfd13cbbc4e03, type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 1.02e-43
+      value: 1.05e-43
       objectReference: {fileID: 0}
     - target: {fileID: 1201824592737877719, guid: 2d7dc29fb83fd994b88dfd13cbbc4e03, type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 0
+      value: 1.0596762e-38
       objectReference: {fileID: 0}
     - target: {fileID: 1201824592737877719, guid: 2d7dc29fb83fd994b88dfd13cbbc4e03, type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 0
+      value: 12.000048
       objectReference: {fileID: 0}
     - target: {fileID: 3588062048580939891, guid: 2d7dc29fb83fd994b88dfd13cbbc4e03, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -23653,7 +23685,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &552498157
 GameObject:
@@ -23704,7 +23736,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7114695892784488249, guid: 5420a11197d9bbf429ae525cfcf029de, type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7114695892784488249, guid: 5420a11197d9bbf429ae525cfcf029de, type: 3}
       propertyPath: m_LocalScale.x
@@ -25309,6 +25341,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: "libro peque\xF1o (4)"
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
 --- !u!4 &602308510 stripped
@@ -25460,7 +25496,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 27
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &615838607 stripped
 Transform:
@@ -26834,7 +26870,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &665572571
 PrefabInstance:
@@ -27941,11 +27977,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8030980813197340046, guid: b41e0021e17a49a4eb025c888e0589b3, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.008767947
+      value: 0.008767995
       objectReference: {fileID: 0}
     - target: {fileID: 8030980813197340046, guid: b41e0021e17a49a4eb025c888e0589b3, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0012334501
+      value: -0.0012334569
       objectReference: {fileID: 0}
     - target: {fileID: 8030980813197340046, guid: b41e0021e17a49a4eb025c888e0589b3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -27995,37 +28031,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1338915548093761797}
   m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &691476072
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 691476073}
-  m_Layer: 0
-  m_Name: GameObject (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &691476073
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 691476072}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -350.16, y: 21.162344, z: -276.23984}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &696454771 stripped
 Transform:
@@ -28797,7 +28802,7 @@ Transform:
   - {fileID: 357043224}
   - {fileID: 2070551889}
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &712926848
 PrefabInstance:
@@ -30062,7 +30067,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &724625394
 GameObject:
@@ -30491,6 +30496,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: "libro peque\xF1o (6)"
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
 --- !u!4 &729424710 stripped
@@ -30741,7 +30750,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh75684
+  m_Name: pb_Mesh32584
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -31767,7 +31776,7 @@ Transform:
   m_Children:
   - {fileID: 936284396}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &768108932
 PrefabInstance:
@@ -34639,7 +34648,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh74974
+  m_Name: pb_Mesh31874
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -36466,7 +36475,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6823984601043139132, guid: b6f2a9335c34d244382c3b261e939e6b, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6823984601043139132, guid: b6f2a9335c34d244382c3b261e939e6b, type: 3}
       propertyPath: m_LocalScale.y
@@ -36680,6 +36689,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: -9154123335776984164, guid: 3dabaf5695b7a604e9f674c29ea3e262, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3dabaf5695b7a604e9f674c29ea3e262, type: 3}
       propertyPath: m_RootOrder
       value: 22
@@ -36740,9 +36753,17 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: -3022835720412156352, guid: 3dabaf5695b7a604e9f674c29ea3e262, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: -1271919943495577042, guid: 3dabaf5695b7a604e9f674c29ea3e262, type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -1271919943495577042, guid: 3dabaf5695b7a604e9f674c29ea3e262, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3dabaf5695b7a604e9f674c29ea3e262, type: 3}
       propertyPath: m_Name
@@ -36752,21 +36773,41 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3dabaf5695b7a604e9f674c29ea3e262, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1750407408946474450, guid: 3dabaf5695b7a604e9f674c29ea3e262, type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750407408946474450, guid: 3dabaf5695b7a604e9f674c29ea3e262, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 2679593942590498070, guid: 3dabaf5695b7a604e9f674c29ea3e262, type: 3}
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 2679593942590498070, guid: 3dabaf5695b7a604e9f674c29ea3e262, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 2719587880534364108, guid: 3dabaf5695b7a604e9f674c29ea3e262, type: 3}
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 2719587880534364108, guid: 3dabaf5695b7a604e9f674c29ea3e262, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 3496848851067355457, guid: 3dabaf5695b7a604e9f674c29ea3e262, type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3496848851067355457, guid: 3dabaf5695b7a604e9f674c29ea3e262, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4253280567622488715, guid: 3dabaf5695b7a604e9f674c29ea3e262, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -36812,6 +36853,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5096043624202941072, guid: 3dabaf5695b7a604e9f674c29ea3e262, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 5639405848544218604, guid: 3dabaf5695b7a604e9f674c29ea3e262, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.0099
@@ -36827,6 +36872,10 @@ PrefabInstance:
     - target: {fileID: 7750397243111347764, guid: 3dabaf5695b7a604e9f674c29ea3e262, type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7750397243111347764, guid: 3dabaf5695b7a604e9f674c29ea3e262, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3dabaf5695b7a604e9f674c29ea3e262, type: 3}
@@ -37279,6 +37328,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: "libro peque\xF1o (17)"
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
 --- !u!4 &876335159 stripped
@@ -37356,6 +37409,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
       propertyPath: m_Name
       value: "libro peque\xF1o (24)"
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
@@ -37550,6 +37607,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: botella grande (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e490280f0e707424e97c0215ea8d8c47, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e490280f0e707424e97c0215ea8d8c47, type: 3}
 --- !u!4 &886493932 stripped
@@ -37655,7 +37716,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh76098
+  m_Name: pb_Mesh32998
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -37883,6 +37944,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
       propertyPath: m_Name
       value: "libro peque\xF1o (9)"
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
@@ -38984,7 +39049,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh75992
+  m_Name: pb_Mesh32892
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -39274,7 +39339,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &907521395
 AudioSource:
@@ -39844,7 +39909,7 @@ RectTransform:
   m_Children:
   - {fileID: 707644292}
   m_Father: {fileID: 0}
-  m_RootOrder: 30
+  m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -40163,11 +40228,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1201824592737877719, guid: 2d7dc29fb83fd994b88dfd13cbbc4e03, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: -1.3625071e+20
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1201824592737877719, guid: 2d7dc29fb83fd994b88dfd13cbbc4e03, type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 1.02e-43
+      value: 1.05e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 1201824592737877719, guid: 2d7dc29fb83fd994b88dfd13cbbc4e03, type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 2.6562857e+20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1201824592737877719, guid: 2d7dc29fb83fd994b88dfd13cbbc4e03, type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 1.0691825e-38
       objectReference: {fileID: 0}
     - target: {fileID: 3588062048580939891, guid: 2d7dc29fb83fd994b88dfd13cbbc4e03, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -40424,19 +40497,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1201824592737877719, guid: 2d7dc29fb83fd994b88dfd13cbbc4e03, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 4.4194e-41
-      objectReference: {fileID: 0}
-    - target: {fileID: 1201824592737877719, guid: 2d7dc29fb83fd994b88dfd13cbbc4e03, type: 3}
-      propertyPath: m_BoundingSphereOverride.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1201824592737877719, guid: 2d7dc29fb83fd994b88dfd13cbbc4e03, type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 1.05e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 1201824592737877719, guid: 2d7dc29fb83fd994b88dfd13cbbc4e03, type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: -2.1562824e+29
+      value: 4.2105167e-11
       objectReference: {fileID: 0}
     - target: {fileID: 1201824592737877719, guid: 2d7dc29fb83fd994b88dfd13cbbc4e03, type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 7.58e-43
+      value: 1.0652986e-38
       objectReference: {fileID: 0}
     - target: {fileID: 3588062048580939891, guid: 2d7dc29fb83fd994b88dfd13cbbc4e03, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -40822,6 +40895,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2141556328}
     m_Modifications:
+    - target: {fileID: 1201824592737877719, guid: 2d7dc29fb83fd994b88dfd13cbbc4e03, type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 1.05e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 1201824592737877719, guid: 2d7dc29fb83fd994b88dfd13cbbc4e03, type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 4.051354e-11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1201824592737877719, guid: 2d7dc29fb83fd994b88dfd13cbbc4e03, type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 12.000048
+      objectReference: {fileID: 0}
     - target: {fileID: 3588062048580939891, guid: 2d7dc29fb83fd994b88dfd13cbbc4e03, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -43204,6 +43289,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: "libro peque\xF1o (22)"
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
 --- !u!4 &993169659 stripped
@@ -44393,6 +44482,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: "libro peque\xF1o (21)"
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
 --- !u!4 &1020082094 stripped
@@ -44463,7 +44556,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh72526
+  m_Name: pb_Mesh29422
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -44966,7 +45059,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1029316101
 MonoBehaviour:
@@ -45118,6 +45211,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
       propertyPath: m_Name
       value: "libro peque\xF1o (20)"
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
@@ -46023,19 +46120,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1201824592737877719, guid: 2d7dc29fb83fd994b88dfd13cbbc4e03, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: -1.3625071e+20
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1201824592737877719, guid: 2d7dc29fb83fd994b88dfd13cbbc4e03, type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 7.55e-43
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1201824592737877719, guid: 2d7dc29fb83fd994b88dfd13cbbc4e03, type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: -2.3109448e+29
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1201824592737877719, guid: 2d7dc29fb83fd994b88dfd13cbbc4e03, type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 7.55e-43
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3588062048580939891, guid: 2d7dc29fb83fd994b88dfd13cbbc4e03, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -47310,6 +47407,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: "libro peque\xF1o (29)"
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
 --- !u!4 &1091211298 stripped
@@ -47617,7 +47718,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &1104348441
 Transform:
@@ -48117,7 +48218,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1122522958
 Transform:
@@ -48638,6 +48739,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: botella grande (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e490280f0e707424e97c0215ea8d8c47, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e490280f0e707424e97c0215ea8d8c47, type: 3}
 --- !u!4 &1128346129 stripped
@@ -48757,7 +48862,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh74466
+  m_Name: pb_Mesh31366
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -50265,6 +50370,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: "libro peque\xF1o (5)"
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
 --- !u!4 &1165113325 stripped
@@ -50906,7 +51015,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7114695892784488249, guid: 5420a11197d9bbf429ae525cfcf029de, type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 7114695892784488249, guid: 5420a11197d9bbf429ae525cfcf029de, type: 3}
       propertyPath: m_LocalScale.x
@@ -51641,6 +51750,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: "libro peque\xF1o (12)"
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
 --- !u!4 &1210198064 stripped
@@ -51718,6 +51831,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
       propertyPath: m_Name
       value: "libro peque\xF1o (1)"
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
@@ -51890,7 +52007,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1213608503
 Transform:
@@ -52127,9 +52244,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1368692062}
     m_Modifications:
+    - target: {fileID: 429940030355110363, guid: cc271ff1d17c86d4caa2668eb3084834, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 803827891806320589, guid: cc271ff1d17c86d4caa2668eb3084834, type: 3}
       propertyPath: m_Name
       value: Helmet
+      objectReference: {fileID: 0}
+    - target: {fileID: 803827891806320589, guid: cc271ff1d17c86d4caa2668eb3084834, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 5613459100185512567, guid: cc271ff1d17c86d4caa2668eb3084834, type: 3}
       propertyPath: m_LocalPosition.x
@@ -52203,6 +52328,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8451144922092194402, guid: cc271ff1d17c86d4caa2668eb3084834, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc271ff1d17c86d4caa2668eb3084834, type: 3}
 --- !u!1001 &1227153092
@@ -52275,6 +52404,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
       propertyPath: m_Name
       value: "libro peque\xF1o (28)"
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
@@ -54448,6 +54581,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: "libro peque\xF1o"
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
 --- !u!4 &1264600167 stripped
@@ -54734,7 +54871,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6761354903757891104, guid: 1667a810ea2cb554cab0990c7836dbb4, type: 3}
       propertyPath: m_RootOrder
-      value: 21
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 6761354903757891104, guid: 1667a810ea2cb554cab0990c7836dbb4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -55182,7 +55319,7 @@ Transform:
   - {fileID: 34192777}
   - {fileID: 376800779}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1288267917
 PrefabInstance:
@@ -55191,6 +55328,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2141556328}
     m_Modifications:
+    - target: {fileID: 1201824592737877719, guid: 2d7dc29fb83fd994b88dfd13cbbc4e03, type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 1.02e-43
+      objectReference: {fileID: 0}
     - target: {fileID: 3588062048580939891, guid: 2d7dc29fb83fd994b88dfd13cbbc4e03, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -56300,6 +56441,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: "libro peque\xF1o (19)"
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
 --- !u!4 &1308888974 stripped
@@ -56960,6 +57105,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: "libro peque\xF1o (26)"
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
 --- !u!4 &1315277325 stripped
@@ -56973,7 +57122,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh73156
+  m_Name: pb_Mesh30052
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -57422,6 +57571,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
       propertyPath: m_Name
       value: "libro peque\xF1o (3)"
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
@@ -58456,7 +58609,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7114695892784488249, guid: 5420a11197d9bbf429ae525cfcf029de, type: 3}
       propertyPath: m_RootOrder
-      value: 19
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 7114695892784488249, guid: 5420a11197d9bbf429ae525cfcf029de, type: 3}
       propertyPath: m_LocalScale.x
@@ -59491,7 +59644,7 @@ Transform:
   - {fileID: 157828627}
   - {fileID: 1726739785}
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1380971270 stripped
 GameObject:
@@ -60853,7 +61006,7 @@ Transform:
   - {fileID: 1229876663}
   - {fileID: 865242398}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1400090566
 PrefabInstance:
@@ -62527,6 +62680,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: "libro peque\xF1o (27)"
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
 --- !u!4 &1473729344 stripped
@@ -63523,7 +63680,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh74452
+  m_Name: pb_Mesh31352
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -63752,6 +63909,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: "libro peque\xF1o (11)"
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
 --- !u!4 &1494747233 stripped
@@ -63899,6 +64060,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8ea1e7a3996697040b5d4a53f143f21c, type: 3}
       propertyPath: m_Name
       value: botella gorda (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8ea1e7a3996697040b5d4a53f143f21c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ea1e7a3996697040b5d4a53f143f21c, type: 3}
@@ -64219,6 +64384,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
       propertyPath: m_Name
       value: "libro peque\xF1o (23)"
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
@@ -65241,6 +65410,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: botella gorda (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8ea1e7a3996697040b5d4a53f143f21c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ea1e7a3996697040b5d4a53f143f21c, type: 3}
 --- !u!4 &1537330942 stripped
@@ -65524,6 +65697,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
       propertyPath: m_Name
       value: "libro peque\xF1o (25)"
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
@@ -65891,6 +66068,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 9be8f71c12952e3468d1b19893d55f45, type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9be8f71c12952e3468d1b19893d55f45, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9be8f71c12952e3468d1b19893d55f45, type: 3}
@@ -66689,7 +66870,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 24
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1584153242
 PrefabInstance:
@@ -67672,6 +67853,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: botella grande (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e490280f0e707424e97c0215ea8d8c47, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e490280f0e707424e97c0215ea8d8c47, type: 3}
 --- !u!4 &1615810251 stripped
@@ -67974,7 +68159,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7114695892784488249, guid: 5420a11197d9bbf429ae525cfcf029de, type: 3}
       propertyPath: m_RootOrder
-      value: 18
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 7114695892784488249, guid: 5420a11197d9bbf429ae525cfcf029de, type: 3}
       propertyPath: m_LocalScale.x
@@ -68438,6 +68623,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: "libro peque\xF1o (18)"
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
 --- !u!4 &1637807096 stripped
@@ -68549,7 +68738,7 @@ RectTransform:
   m_Children:
   - {fileID: 1665779811}
   m_Father: {fileID: 0}
-  m_RootOrder: 29
+  m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -70064,7 +70253,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 26
+  m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &1673978337
 GameObject:
@@ -70560,6 +70749,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
       propertyPath: m_Name
       value: "libro peque\xF1o (10)"
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
@@ -74342,7 +74535,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh74866
+  m_Name: pb_Mesh31766
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -75367,6 +75560,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: "libro peque\xF1o (8)"
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
 --- !u!4 &1822509694 stripped
@@ -76327,6 +76524,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
       propertyPath: m_Name
       value: "libro peque\xF1o (14)"
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
@@ -77744,7 +77945,7 @@ Transform:
   - {fileID: 1794031009}
   - {fileID: 2141556328}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1892011977
 PrefabInstance:
@@ -77808,6 +78009,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8ea1e7a3996697040b5d4a53f143f21c, type: 3}
       propertyPath: m_Name
       value: botella gorda (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8ea1e7a3996697040b5d4a53f143f21c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ea1e7a3996697040b5d4a53f143f21c, type: 3}
@@ -79421,7 +79626,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2462371746540577981, guid: 2968b5c85bfdb50419f887f7b8059a4b, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2462371746540577981, guid: 2968b5c85bfdb50419f887f7b8059a4b, type: 3}
       propertyPath: m_LocalScale.x
@@ -79666,6 +79871,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: -9154123335776984164, guid: 3dabaf5695b7a604e9f674c29ea3e262, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3dabaf5695b7a604e9f674c29ea3e262, type: 3}
       propertyPath: m_RootOrder
       value: 23
@@ -79726,9 +79935,17 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: -3022835720412156352, guid: 3dabaf5695b7a604e9f674c29ea3e262, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: -1271919943495577042, guid: 3dabaf5695b7a604e9f674c29ea3e262, type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -1271919943495577042, guid: 3dabaf5695b7a604e9f674c29ea3e262, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3dabaf5695b7a604e9f674c29ea3e262, type: 3}
       propertyPath: m_Name
@@ -79738,21 +79955,41 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3dabaf5695b7a604e9f674c29ea3e262, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1750407408946474450, guid: 3dabaf5695b7a604e9f674c29ea3e262, type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750407408946474450, guid: 3dabaf5695b7a604e9f674c29ea3e262, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 2679593942590498070, guid: 3dabaf5695b7a604e9f674c29ea3e262, type: 3}
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 2679593942590498070, guid: 3dabaf5695b7a604e9f674c29ea3e262, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 2719587880534364108, guid: 3dabaf5695b7a604e9f674c29ea3e262, type: 3}
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 2719587880534364108, guid: 3dabaf5695b7a604e9f674c29ea3e262, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 3496848851067355457, guid: 3dabaf5695b7a604e9f674c29ea3e262, type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3496848851067355457, guid: 3dabaf5695b7a604e9f674c29ea3e262, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4253280567622488715, guid: 3dabaf5695b7a604e9f674c29ea3e262, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -79798,6 +80035,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5096043624202941072, guid: 3dabaf5695b7a604e9f674c29ea3e262, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 5639405848544218604, guid: 3dabaf5695b7a604e9f674c29ea3e262, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.0101
@@ -79821,6 +80062,10 @@ PrefabInstance:
     - target: {fileID: 7750397243111347764, guid: 3dabaf5695b7a604e9f674c29ea3e262, type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7750397243111347764, guid: 3dabaf5695b7a604e9f674c29ea3e262, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3dabaf5695b7a604e9f674c29ea3e262, type: 3}
@@ -80173,7 +80418,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 5d08db8d22838a145927150ba3046a6d, type: 2}
     - target: {fileID: 6258221409018384573, guid: 8a73b8457c785a74bbe8fe6a0b9dff2b, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6258221409018384573, guid: 8a73b8457c785a74bbe8fe6a0b9dff2b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -80832,6 +81077,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
       propertyPath: m_Name
       value: "libro peque\xF1o (7)"
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
@@ -81897,6 +82146,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: e490280f0e707424e97c0215ea8d8c47, type: 3}
       propertyPath: m_Name
       value: botella grande
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e490280f0e707424e97c0215ea8d8c47, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e490280f0e707424e97c0215ea8d8c47, type: 3}
@@ -84630,6 +84883,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: "libro peque\xF1o (15)"
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2914fac0d0a59549a90bd147af1f196, type: 3}
 --- !u!4 &2071812826 stripped
@@ -84811,7 +85068,7 @@ RectTransform:
   - {fileID: 1061562286}
   - {fileID: 78683828}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -85667,7 +85924,7 @@ RectTransform:
   m_Children:
   - {fileID: 683119009}
   m_Father: {fileID: 0}
-  m_RootOrder: 28
+  m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -86295,7 +86552,7 @@ Transform:
   - {fileID: 543450652434791956}
   - {fileID: 6584520080163429708}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2126013420
 PrefabInstance:
@@ -87644,7 +87901,7 @@ Transform:
   - {fileID: 1278514025}
   - {fileID: 1821053375}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1530912662593265687
 GameObject:
@@ -88911,7 +89168,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1669980255948188595}
-  m_LocalRotation: {x: 0.13930005, y: 0.008767951, z: -0.0012334507, w: 0.99021065}
+  m_LocalRotation: {x: 0.13930005, y: 0.008767989, z: -0.0012334562, w: 0.99021065}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -89024,7 +89281,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1255026455157039857}
-  m_LocalRotation: {x: 0.116293944, y: 0.008794226, z: -0.0010297429, w: 0.9931754}
+  m_LocalRotation: {x: 0.116293944, y: 0.008794217, z: -0.0010297418, w: 0.9931754}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
