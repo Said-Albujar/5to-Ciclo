@@ -6,14 +6,14 @@ using UnityEngine.VFX;
 public class ActiveVFXFire : MonoBehaviour
 {
     public GameObject vfx;
-
+    public float distance;
     // Start is called before the first frame update
 
     // Update is called once per frame
     void Update()
     {
         
-        if ( CalculateDistance() < 200)
+        if ( CalculateDistance() < distance)
         {
             if (!vfx.activeSelf)
             {
