@@ -15,7 +15,7 @@ public class LabelMecanism : Mecanism
     public ParticleSystem fixVfx;
 
     public bool isNear;
-    private bool labelActive;
+    public bool labelActive;
 
 
     // Update is called once per frame
@@ -142,7 +142,7 @@ public class LabelMecanism : Mecanism
         {
             if (changeCharacter.IsEngineer)
             {
-                if (Input.GetKeyDown(KeyCode.F) && isLocked && !isBroken && isNear) // desbloquea el mecanismo si este no esta roto y se encuentra cerca
+                if (Input.GetKeyDown(KeyCode.F) && isLocked && !isBroken && isNear&&changeCharacter.HaveEngineer) // desbloquea el mecanismo si este no esta roto y se encuentra cerca
                 {
                     isLocked = false;
                     labelActive = true;
@@ -153,6 +153,8 @@ public class LabelMecanism : Mecanism
                         Debug.Log("Referencia nula en fixVfx");
 
                 }
+              
+                
                 if (Input.GetKeyDown(KeyCode.G) && !isBroken && canBroke && isNear) //Si no esta roto y puede romperse, se rompera
                 {
                     isBroken = true;
@@ -163,6 +165,12 @@ public class LabelMecanism : Mecanism
                         Debug.Log("Referencia nula en brokeVfx");
                 }
             }
+            if (Input.GetKeyDown(KeyCode.F) && isLocked && !isBroken && isNear && !changeCharacter.HaveEngineer)
+            {
+                AudioManager.Instance.PlaySFX("Failed");
+                Debug.Log("Ncecistas la lalve");
+            }
+
         }
     }
     private void RotateLabel(float rotation)
