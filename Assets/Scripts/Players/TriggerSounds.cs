@@ -12,6 +12,6 @@ public class TriggerSounds : MonoBehaviour
     }
     public void StepSound()
     {
-        AudioManager.Instance.PlaySFX("Steps");
+        AudioManager.Instance.PlaySFX("Walk");
     }
 }

@@ -24,7 +24,7 @@ public class EnemyAudioManager : MonoBehaviour
 
     public void PlayStepSound()
     {
-        PlaySound("Steps");
+        PlaySound("Walk");
     }
 
     public void PlaySound(string name)
