@@ -55,6 +55,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     [Header("Climb")]
     public LayerMask layerBorder;
     public float radius;
+    public float UpDistance;
 
     void Awake()
     {
@@ -86,7 +87,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 break;
 
             case state.climbMoving:
-                transform.position += Vector3.up * Time.deltaTime * 2f + transform.forward * 0.8f * Time.deltaTime;
+                transform.position += Vector3.up * Time.deltaTime * UpDistance + transform.forward * 0.8f * Time.deltaTime;
                 break;
 
             default:
