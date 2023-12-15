@@ -56,6 +56,8 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public LayerMask layerBorder;
     public float radius;
     public float UpDistance;
+    public float GreenDistance;
+    public float BlueDistance;
 
     void Awake()
     {
@@ -80,6 +82,8 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             case state.climbIdle:
                 rb.velocity = Vector3.zero;
                 rb.isKinematic = true;
+
+
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
                     currentstate = state.climbMoving;
@@ -318,8 +322,8 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     {
         if (!grounded)
         {
-            bool blueLine = Physics.Raycast(groundCheck.position, groundCheck.forward, radius, layerBorder);
-            bool greenLine = Physics.Raycast(groundCheck.position + (Vector3.up * 0.4f), groundCheck.forward, radius, layerBorder);
+            bool blueLine = Physics.Raycast(groundCheck.position + (Vector3.up * BlueDistance), groundCheck.forward, radius, layerBorder);
+            bool greenLine = Physics.Raycast(groundCheck.position + (Vector3.up * GreenDistance), groundCheck.forward, radius, layerBorder);
             if (blueLine && !greenLine)
             {
                 currentstate = state.climbIdle;
@@ -341,10 +345,10 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawLine(groundCheck.position, groundCheck.forward * radius + groundCheck.position);
+        Gizmos.DrawLine(groundCheck.position + (Vector3.up * BlueDistance), groundCheck.forward * radius + groundCheck.position + (Vector3.up * BlueDistance));
 
         Gizmos.color = Color.green;
-        Gizmos.DrawLine(groundCheck.position + (Vector3.up * 0.5f), groundCheck.forward * radius + groundCheck.position + (Vector3.up * 0.5f));
+        Gizmos.DrawLine(groundCheck.position + (Vector3.up * GreenDistance), groundCheck.forward * radius + groundCheck.position + (Vector3.up * GreenDistance));
     }
     public void LoadData(GameData data)
     {
