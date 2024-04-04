@@ -6,17 +6,12 @@ using UnityEngine.AI;
 
 public class CatEnemy : MonoBehaviour
 {
-    // Start is called before the first frame update
     [Header("Movement")]
     public NavMeshAgent navMeshAgent;
     public GameObject playerPosition;
-    public bool patrullajeActive;
-    public bool rotate = true;
     [Header("Cono de vision")]
     public bool canSeePlayer;
-    public Collider[] rangeChecks;
     public float radius;
-    public LayerMask targetMask;
     public LayerMask obstructionMask;
     public float angle;
     public bool rotating = true;
@@ -24,28 +19,23 @@ public class CatEnemy : MonoBehaviour
     public float rotationMaxTimer;
     public float rotationEnemy;
     public CatEnemyAnimation catAnimator;
-    public bool once;
-    private float time = 0.2f;
-
     private Vector3 firstPos;
     private Vector3 firstRotation;
-    private Vector3 firstPosModel;
-    public Transform transformModel;
-
-    public bool onceShout;
-    public float timerSound;
     float timer;
     EnemyAudioManager enemyAudioManager;
+    [SerializeField] CatArea catArea;
+    [SerializeField] float timeOutOfView;
+    bool inArea;
 
     private void Start()
     {
+        catArea.PlayerInTheArea += () => StartView();
+        catArea.PlayerOutTheArea += () => EndView();
+        
         enemyAudioManager = GetComponent<EnemyAudioManager>();
         firstPos = transform.position;
         firstRotation = transform.rotation.eulerAngles;
-        firstPosModel = new Vector3(0f, transformModel.localPosition.y, 0f);
         DataPersistenceManager.instance.OnLoad += LoadEnemy;
-
-        StartCoroutine(FOVRoutine());
     }
     private void Update()
     {
@@ -56,156 +46,138 @@ public class CatEnemy : MonoBehaviour
             //El enemigo sigue al jugador en su rango
             if (playerPosition != null)
             {
-                //catAnimator.anim.SetBool("run", true);
                 navMeshAgent.SetDestination(playerPosition.transform.localPosition);
                 rotating = false;
                 navMeshAgent.speed = 20f;
-                once = true;
-
-                timer = 0f;
-                if (!onceShout)
-                {
-                    enemyAudioManager.DetecPlayer();
-                    onceShout = true;
-                }
+                
             }
-
         }
-        if (!canSeePlayer && once)
+        else
         {
             catAnimator.anim.SetBool("run", false);
-
             navMeshAgent.SetDestination(firstPos);
-            if (!navMeshAgent.pathPending && navMeshAgent.remainingDistance < 0.1f)
-            {
-                once = false;
-            }
-        }
-
-        if (!canSeePlayer && !once)
-        {
+            
             flipMove();
-            navMeshAgent.isStopped = true ;
         }
-        TimerDetecSound();
     }
-   
 
     void flipMove()
     {
-        if (rotate)
+        if (rotating)
         {
-            if (rotating)
+            //rota
+            transform.rotation *= Quaternion.Euler(0f, (transform.rotation.y + rotationEnemy) * Time.deltaTime, 0f);
+            rotationTimer += Time.deltaTime;
+
+            // Si el temporizador alcanza la duraciï¿½n deseada, detener la rotaciï¿½n
+            if (rotationTimer >= rotationMaxTimer)
             {
-                //rota
-                transform.rotation *= Quaternion.Euler(0f, (transform.rotation.y + rotationEnemy) * Time.deltaTime, 0f);
-                rotationTimer += Time.deltaTime;
-
-                // Si el temporizador alcanza la duración deseada, detener la rotación
-                if (rotationTimer >= rotationMaxTimer)
-                {
-                    rotationTimer = 0f;
-                    rotating = false;
-                }
-
+                rotationTimer = 0f;
+                rotating = false;
             }
-            else
+
+        }
+        else
+        {
+            //detener la rotacion
+
+            rotationTimer += Time.deltaTime;
+
+            // Si el temporizador alcanza 2 segundos, reiniciar la rotaciï¿½n
+            if (rotationTimer >= rotationMaxTimer-1)
             {
-                //detener la rotacion
+                rotating = true;
 
-                rotationTimer += Time.deltaTime;
 
-                // Si el temporizador alcanza 2 segundos, reiniciar la rotación
-                if (rotationTimer >= rotationMaxTimer-1)
-                {
-                    rotating = true;
-                    //catAnimator.anim.SetBool("spin", rotating);
-
-                    rotationTimer = 0f;
-                }
+                rotationTimer = 0f;
             }
         }
-       
-    
     }
-  
+
     
-   
-   
+    void StartView()
+    { 
+        inArea = true;
+        StartCoroutine(FOVRoutine());
+    } 
+    void EndView()
+    { 
+        canSeePlayer = false;
+        inArea = false;
+    } 
+
     void FieldOfViewCheck()
     {
-        //El cono de vision 
-        rangeChecks = Physics.OverlapSphere(transform.position, radius, targetMask);
-        if (rangeChecks.Length != 0)
+        Vector3 posPlayer = playerPosition.transform.position - transform.position;
+        float distanceToTarget = Vector3.Distance(transform.position, playerPosition.transform.position);
+
+        if (Vector3.Angle(transform.forward, posPlayer) < angle / 2 && distanceToTarget < radius)
         {
-            Transform target = rangeChecks[0].transform;
-            Vector3 directionTarget = (target.position - transform.position).normalized;
-            if (Vector3.Angle(transform.forward, directionTarget) < angle / 2)
+            if (!Physics.Raycast(transform.position, posPlayer, distanceToTarget, obstructionMask))
             {
-                float distanceToTarget = Vector3.Distance(transform.position, target.position);
+                canSeePlayer = true;
+                inArea = false;
+                enemyAudioManager.DetecPlayer();
+            }
+        }
+    }
 
-                if (!Physics.Raycast(transform.position, directionTarget, distanceToTarget, obstructionMask))
-                {
-                    canSeePlayer = true;
+    IEnumerator CheckContinueInRangeView()
+    {
+        timer = 0;
+        while(canSeePlayer)
+        {
+            
+            Vector3 posPlayer = playerPosition.transform.position - transform.position;
+            float distanceToTarget = Vector3.Distance(transform.position, playerPosition.transform.position);
 
-                }
-
-                else
-                    canSeePlayer = false;
+            if (Vector3.Angle(transform.forward, posPlayer) > angle / 2 && distanceToTarget < radius || 
+            Physics.Raycast(transform.position, posPlayer, distanceToTarget, obstructionMask))
+            {
+                    yield return new WaitForSeconds(0.1f);
+                    timer += 0.1f;
+                    if(timer > timeOutOfView)
+                    {
+                        canSeePlayer = false;
+                        StartView();
+                    }
+                
+                
+                yield return null;
             }
             else
-                canSeePlayer = false;
+            {
+                yield return null;
+                timer = 0;
+            }
+            yield return null;
         }
-        else if (canSeePlayer)
-            canSeePlayer = false;
     }
 
     IEnumerator FOVRoutine()
     {
-        while (true)
+        while (inArea)
         {
-            yield return new WaitForSeconds(time);
+            yield return null;
             FieldOfViewCheck();
+            StartCoroutine(CheckContinueInRangeView());
         }
     }
 
     void LoadEnemy()
     {
+        catArea.OnTriggerEnter(playerPosition.GetComponent<Collider>());
         catAnimator.anim.SetBool("spin", true);
         if (canSeePlayer == true)
             canSeePlayer = false;
-
-        if (once == true)
-            once = false;
 
         transform.position = firstPos;
         transform.rotation = Quaternion.Euler(firstRotation);
 
         rotationTimer = 0f;
         rotating = true;
-        transformModel.localPosition = firstPosModel;
-        //navMeshAgent.destination = Vector3.zero;
-        //navMeshAgent.ResetPath();
-        //navMeshAgent.isStopped = true;
-        //navMeshAgent.speed = 0f;
         navMeshAgent.enabled = false;
-
-        //Reiniciar posición, resetear ruta, etc
-
         navMeshAgent.enabled = true;
 
-    }
-
-    private void TimerDetecSound()
-    {
-        if (onceShout && !canSeePlayer)
-        {
-            timerSound += Time.deltaTime;
-            if (timerSound >= 0.25f)
-            {
-                onceShout = false;
-                timerSound = 0f;
-            }
-        }
     }
 }

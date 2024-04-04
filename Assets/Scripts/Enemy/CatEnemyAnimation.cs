@@ -23,29 +23,7 @@ public class CatEnemyAnimation : MonoBehaviour
 
         /*anim.SetBool("spin", cat.rotating);
         anim.SetBool("spin", !cat.rotating&&!agent.hasPath&&!cat.canSeePlayer);*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         //anim.SetBool("run", !cat.canSeePlayer);
-
-
-
         //anim.SetBool("run", !cat.canSeePlayer);
 
 
@@ -58,12 +36,5 @@ public class CatEnemyAnimation : MonoBehaviour
             anim.SetBool("run", !cat.canSeePlayer);
 
         }*/
-
-
-
-
-
-
-
     }
 }
