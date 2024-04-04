@@ -28233,19 +28233,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8030980813197340046, guid: b41e0021e17a49a4eb025c888e0589b3, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9898917
+      value: 0.98989177
       objectReference: {fileID: 0}
     - target: {fileID: 8030980813197340046, guid: b41e0021e17a49a4eb025c888e0589b3, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.14154045
+      value: 0.14154044
       objectReference: {fileID: 0}
     - target: {fileID: 8030980813197340046, guid: b41e0021e17a49a4eb025c888e0589b3, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.008895265
+      value: 0.0088952435
       objectReference: {fileID: 0}
     - target: {fileID: 8030980813197340046, guid: b41e0021e17a49a4eb025c888e0589b3, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0012718964
+      value: -0.0012718932
       objectReference: {fileID: 0}
     - target: {fileID: 8030980813197340046, guid: b41e0021e17a49a4eb025c888e0589b3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -91405,6 +91405,7 @@ GameObject:
   - component: {fileID: 1864235383560082379}
   - component: {fileID: 7967610369595629269}
   - component: {fileID: 7967610369595629270}
+  - component: {fileID: 7967610369595629271}
   m_Layer: 6
   m_Name: Player
   m_TagString: Hair
@@ -92508,7 +92509,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1669980255948188595}
-  m_LocalRotation: {x: 0.14154042, y: 0.008895263, z: -0.001271896, w: 0.9898917}
+  m_LocalRotation: {x: 0.14154041, y: 0.008895248, z: -0.0012718939, w: 0.9898917}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -94920,6 +94921,27 @@ MonoBehaviour:
   monedasNecesarias: 100
   botonPresionado: 0
   buttonVfxPrefab: {fileID: 4346035977669741623, guid: c1b6939d09349d541aac52e508ec9882, type: 3}
+--- !u!114 &7967610369595629271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1864235383560082367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 757ff76cadac93c47b67b899fb71e55a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GliderEquipped: 0
+  status: STATUS BASE
+  maxAscendSpeed: 10
+  gravityScaleFactor: 6
+  ascendKey: 32
+  toggleGliderItem: 103
+  isAscending: 0
+  isSlowFalling: 1
+  ascendForce: 20
 --- !u!4 &7988945445809203307 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4679965507993276698, guid: ad9f9761042826e4884879a4113ab3df, type: 3}
