@@ -63,18 +63,10 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     [Header("Glide")]
     private bool isGliding = false;
-    public float gravityScaleFactor = 3f;
-    
+    //public float gravityScaleFactor = 3f;
+    public float MomentumKiller = 0.9f;
 
-    public void SlowFalling()
-    {
-        if (currentstate == state.gliding)
-        {
-            rb.useGravity = false;
-            rb.AddForce(Vector3.down * (Physics.gravity.magnitude / gravityScaleFactor), ForceMode.Acceleration);
-        }
-    }
-
+    public float contragravedad = 5.0f;
 
     void Awake()
     {
@@ -90,9 +82,25 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         cameraTransform = Camera.main.transform;
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
-        Cursor.lockState = CursorLockMode.Locked;
-    }
+        Cursor.lockState = CursorLockMode.Locked;        
 
+    }
+    public void SlowFalling()
+    {
+        //PLANEAAAAAAAAAAAAAARRRRRRR!!!!!!
+        if (currentstate == state.gliding)
+        {
+           // rb.useGravity = false;
+            //rb.velocity = Vector3.zero;
+            rb.velocity *= MomentumKiller;
+
+            //Vector3 reducedGravity = Physics.gravity / gravityScaleFactor;
+
+            // rb.AddForce(reducedGravity, ForceMode.Acceleration);
+            Vector3 verticalForce = new Vector3(0, contragravedad, 0);
+            rb.AddForce(verticalForce, ForceMode.Force);
+        }
+    }
     public string GetCurrentStateAsString()
     {
         return currentstate.ToString();
@@ -166,7 +174,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
                     RotatePlayer();
                 }
-                //rb.useGravity = !freeze;
+                rb.useGravity = !freeze;
                 break;
         }    
     }
@@ -210,7 +218,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 case true:
                     isGliding = false;
                     currentstate = state.idle;
-                    rb.useGravity = true;
+                    //rb.useGravity = true;
                     break;
                 case false:
                     isGliding = true;
