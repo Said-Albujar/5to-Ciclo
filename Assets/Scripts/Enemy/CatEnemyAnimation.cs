@@ -17,7 +17,7 @@ public class CatEnemyAnimation : MonoBehaviour
     void Update()
     {
         anim.SetBool("spin", cat.rotating);
-        anim.SetBool("run",cat.canSeePlayer);
+        anim.SetBool("run",cat.runAnimation);
 
 
 
