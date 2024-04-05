@@ -5,6 +5,7 @@ using Cinemachine;
 
 public class Activator : MonoBehaviour
 {
+    public InteractiveDoor interactiveDoor;
     public GameObject interactableCanvas;
     public GameObject objectToDeactivate;
     public CinemachineBrain cinemachineBrain;
@@ -30,6 +31,10 @@ public class Activator : MonoBehaviour
                 if (objectToDeactivate != null)
                 {
                     objectToDeactivate.SetActive(true);
+                    if (interactiveDoor != null)
+                    {
+                        objectToDeactivate.SetActive(false);
+                    }
                 }
             }
             else

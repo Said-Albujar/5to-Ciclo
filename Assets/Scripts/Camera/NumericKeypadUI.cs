@@ -46,8 +46,8 @@ public class NumericKeypadUI : MonoBehaviour
                     {
                         interactiveDoor.openDoor = true;
                     }
-
                     resultText.text = "Contraseña correcta";
+
                     Debug.Log("Contraseña correcta. ¡Puerta abierta!");
                 }
                 else
