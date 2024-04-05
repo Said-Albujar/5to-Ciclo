@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour, IDataPersistence
 {
+    public string ESTADOACTUAL = "status";
     public CapsuleCollider cap;
     public static PlayerMovement Instance;
     public enum state
@@ -13,7 +14,8 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         moving,
         jumping,
         climbIdle,
-        climbMoving
+        climbMoving,
+        gliding
     }
     public state currentstate;
 
@@ -59,6 +61,21 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public float GreenDistance;
     public float BlueDistance;
 
+    [Header("Glide")]
+    private bool isGliding = false;
+    public float gravityScaleFactor = 3f;
+    
+
+    public void SlowFalling()
+    {
+        if (currentstate == state.gliding)
+        {
+            rb.useGravity = false;
+            rb.AddForce(Vector3.down * (Physics.gravity.magnitude / gravityScaleFactor), ForceMode.Acceleration);
+        }
+    }
+
+
     void Awake()
     {
         Instance = this;
@@ -75,8 +92,32 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         rb.freezeRotation = true;
         Cursor.lockState = CursorLockMode.Locked;
     }
+
+    public string GetCurrentStateAsString()
+    {
+        return currentstate.ToString();
+    }
     void Update()
     {
+        ESTADOACTUAL = GetCurrentStateAsString();
+
+        if (grounded)
+        {
+            isGliding = false;
+            currentstate = state.idle;
+            rb.useGravity = true;
+
+
+        }
+        else
+        {
+            GroundCheck();
+        }
+
+
+
+        ActivateDesactivateGliding();
+
         switch (currentstate)
         {
             case state.climbIdle:
@@ -94,6 +135,10 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 transform.position += Vector3.up * Time.deltaTime * UpDistance + transform.forward * 0.8f * Time.deltaTime;
                 break;
 
+            case state.gliding:
+                SlowFalling();
+                break;
+
             default:
                 if(turn)
                 {
@@ -106,6 +151,8 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     void FixedUpdate()
     {
+        ESTADOACTUAL = GetCurrentStateAsString();
+
         switch (currentstate)
         {
             case state.climbIdle:
@@ -119,7 +166,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
                     RotatePlayer();
                 }
-                rb.useGravity = !freeze;
+                //rb.useGravity = !freeze;
                 break;
         }    
     }
@@ -133,6 +180,8 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             AudioManager.Instance.PlaySFX("Jump");
             grounded = false;
             isJump = true;
+
+            
         }
     }
     void ErrantInput()
@@ -149,6 +198,25 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             case false:
                 PressCrouch();
                 break;
+        }
+    }
+
+    void ActivateDesactivateGliding()
+    {
+        if (Input.GetKeyDown(jumpKey) && !grounded && !GameManager.instance.inPause)
+        {
+            switch (isGliding)
+            {
+                case true:
+                    isGliding = false;
+                    currentstate = state.idle;
+                    rb.useGravity = true;
+                    break;
+                case false:
+                    isGliding = true;
+                    currentstate = state.gliding;
+                    break;
+            }
         }
     }
     void JumpPlayer()
@@ -331,6 +399,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         }
     }
 
+   
     private void NormalMovement()
     {
         GroundCheck();
