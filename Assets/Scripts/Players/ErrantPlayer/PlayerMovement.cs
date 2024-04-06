@@ -62,11 +62,18 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public float BlueDistance;
 
     [Header("Glide")]
-    private bool isGliding = false;
-    //public float gravityScaleFactor = 3f;
     public float MomentumKiller = 0.9f;
+    public bool isGliding = false;
+    //public float gravityScaleFactor = 3f;
+    
 
     public float contragravedad = 5.0f;
+
+    public float planeonormal;
+    public float contadort = 0f;
+    float lastInterpolationTime = 0f;
+
+    public bool ascending = false;
 
     void Awake()
     {
@@ -75,6 +82,8 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     void Start()
     {
+        planeonormal = contragravedad;
+
         if (MusicScene.Instance != null)
         {
             Destroy(MusicScene.Instance.gameObject);
@@ -101,21 +110,36 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             rb.AddForce(verticalForce, ForceMode.Force);
         }
     }
-    public string GetCurrentStateAsString()
-    {
-        return currentstate.ToString();
-    }
+    
+
+    
     void Update()
     {
-        ESTADOACTUAL = GetCurrentStateAsString();
+        //while (contragravedad != planeonormal)
+        //{
+        //    if (Time.time - lastInterpolationTime >= 1f)
+        //    {
+        //        contragravedad = Mathf.Lerp(contragravedad, planeonormal, 1f);
+
+        //        lastInterpolationTime = Time.time;
+        //    }
+        //}
+
+        if (!ascending)
+        {
+            contragravedad = planeonormal;
+        }
+
+        //if (contragravedad == planeonormal)
+        //{
+        //    ascending = false;
+        //}
 
         if (grounded)
         {
             isGliding = false;
             currentstate = state.idle;
             rb.useGravity = true;
-
-
         }
         else
         {
@@ -159,8 +183,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     void FixedUpdate()
     {
-        ESTADOACTUAL = GetCurrentStateAsString();
-
+        
         switch (currentstate)
         {
             case state.climbIdle:
