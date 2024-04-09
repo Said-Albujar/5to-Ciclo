@@ -9,7 +9,7 @@ public class MovingPlatform1 : MonoBehaviour
     public float speed = 2.0f;
     public float waitTime = 1.0f; 
     private Vector3 target;
-    private bool isWaiting = false;
+    public bool isWaiting = false;
 
     void Start()
     {

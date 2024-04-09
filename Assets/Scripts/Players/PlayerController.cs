@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Transform originalParent; // Almacenar el padre original del jugador
-
+    public MovingPlatform1 movingPlataform;
     void Start()
     {
         originalParent = transform.parent; // Almacenar el padre original al inicio
@@ -28,4 +28,20 @@ public class PlayerController : MonoBehaviour
             transform.parent = originalParent;
         }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("detectedAlert"))
+        {
+            movingPlataform.isWaiting = true;
+        }
+
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("detectedAlert"))
+        {
+            movingPlataform.isWaiting = false;
+        }
+    }
+
 }

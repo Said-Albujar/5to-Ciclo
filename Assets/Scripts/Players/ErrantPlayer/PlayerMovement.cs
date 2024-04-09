@@ -58,7 +58,9 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public float UpDistance;
     public float GreenDistance;
     public float BlueDistance;
-
+    Vector3 scaleStart;
+    [SerializeField] bool greenLine;
+    [SerializeField] bool blueLine;
     void Awake()
     {
         Instance = this;
@@ -66,6 +68,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     void Start()
     {
+        scaleStart = transform.localScale;
         if (MusicScene.Instance != null)
         {
             Destroy(MusicScene.Instance.gameObject);
@@ -82,8 +85,8 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             case state.climbIdle:
                 rb.velocity = Vector3.zero;
                 rb.isKinematic = true;
-
-
+                rb.useGravity = false;
+                CheckBorder();
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
                     currentstate = state.climbMoving;
@@ -320,15 +323,36 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     }
     void CheckBorder()
     {
-        if (!grounded)
+        RaycastHit hit;
+        blueLine = Physics.Raycast(groundCheck.position + (Vector3.up * BlueDistance), groundCheck.forward, out hit, radius, layerBorder);
+        greenLine = Physics.Raycast(groundCheck.position + (Vector3.up * GreenDistance), groundCheck.forward, radius, layerBorder);
+        if (blueLine && !greenLine)
         {
-            bool blueLine = Physics.Raycast(groundCheck.position + (Vector3.up * BlueDistance), groundCheck.forward, radius, layerBorder);
-            bool greenLine = Physics.Raycast(groundCheck.position + (Vector3.up * GreenDistance), groundCheck.forward, radius, layerBorder);
+            transform.SetParent(hit.collider.transform);
+            currentstate = state.climbIdle;
+        }
+        if(currentstate==state.climbIdle&&!greenLine&&!blueLine)
+        {
+            currentstate = state.idle;
+            rb.isKinematic = true;
+            rb.useGravity = true;
+        }
+      
+        /* (!grounded)
+        {
+            blueLine = Physics.Raycast(groundCheck.position + (Vector3.up * BlueDistance), groundCheck.forward, out hit,radius, layerBorder);
+            greenLine = Physics.Raycast(groundCheck.position + (Vector3.up * GreenDistance), groundCheck.forward, radius, layerBorder);
             if (blueLine && !greenLine)
             {
+                transform.SetParent(hit.collider.transform);
+             
                 currentstate = state.climbIdle;
             }
-        }
+           
+
+        }*/
+
+
     }
 
     private void NormalMovement()
