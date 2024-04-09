@@ -336,8 +336,10 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             currentstate = state.idle;
             rb.isKinematic = true;
             rb.useGravity = true;
+            
         }
-      
+    
+
         /* (!grounded)
         {
             blueLine = Physics.Raycast(groundCheck.position + (Vector3.up * BlueDistance), groundCheck.forward, out hit,radius, layerBorder);

@@ -5,10 +5,44 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Transform originalParent; // Almacenar el padre original del jugador
-    public MovingPlatform1 movingPlataform;
+    public float radius;
+    public float distanceUp;
+    public MovingPlatform1 movingPlatform;
     void Start()
     {
         originalParent = transform.parent; // Almacenar el padre original al inicio
+    }
+    private void Update()
+    {
+        RaycastHit hit;
+        if(Physics.Raycast(transform.position+(Vector3.up *distanceUp), Vector3.up, out hit, radius))
+        {
+            if (hit.collider != null && hit.collider.gameObject.CompareTag("MovingPlatform"))
+            {
+                movingPlatform = hit.collider.gameObject.GetComponent<MovingPlatform1>();
+                movingPlatform.speed=0f;
+            }
+            else
+            {
+                if (movingPlatform != null)
+                {
+                    movingPlatform.speed = 2f;
+                }
+            }
+        }
+        else
+        {
+            if (movingPlatform != null)
+            {
+                movingPlatform.speed= 2f;
+            }
+        }
+       
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.white;
+        Gizmos.DrawRay(transform.position + (Vector3.up * distanceUp), Vector3.up * radius);
     }
 
     void OnCollisionEnter(Collision collision)
@@ -28,20 +62,6 @@ public class PlayerController : MonoBehaviour
             transform.parent = originalParent;
         }
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("detectedAlert"))
-        {
-            movingPlataform.isWaiting = true;
-        }
-
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("detectedAlert"))
-        {
-            movingPlataform.isWaiting = false;
-        }
-    }
+  
 
 }
