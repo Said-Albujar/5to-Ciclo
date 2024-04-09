@@ -77,6 +77,17 @@ public class PlayerHealth : MonoBehaviour, IDataPersistence
             }
         }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Projectile"))
+        {
+            health -= 1;
+            if (health <= 0)
+            {
+                health = 0;
+            }
+        }
+    }
 
     public void LoadData(GameData data)
     {
