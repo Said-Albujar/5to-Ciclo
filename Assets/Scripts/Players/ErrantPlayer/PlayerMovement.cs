@@ -328,8 +328,18 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         greenLine = Physics.Raycast(groundCheck.position + (Vector3.up * GreenDistance), groundCheck.forward, radius, layerBorder);
         if (blueLine && !greenLine)
         {
-            transform.SetParent(hit.collider.transform);
-            currentstate = state.climbIdle;
+            if(hit.collider.gameObject.CompareTag("MovingPlatform"))
+            {
+                transform.SetParent(hit.collider.transform);
+                Debug.Log("Plataforma");
+                currentstate = state.climbIdle;
+            }
+            else
+            {
+                currentstate = state.climbIdle;
+
+            }
+
         }
         if(currentstate==state.climbIdle&&!greenLine&&!blueLine)
         {

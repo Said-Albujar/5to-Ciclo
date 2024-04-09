@@ -21,7 +21,7 @@ public class PlayerAnimationController : MonoBehaviour
             anim.SetBool("jumped", playerMovement.isJump);
             anim.SetBool("isRunning", playerMovement.isRunning);
             anim.SetBool("isCrouching", playerMovement.isCrouching);
-
+            
 
             MoveAnim();
             JumpAnim();
