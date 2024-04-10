@@ -28,6 +28,8 @@ public class CatEnemy : MonoBehaviour
     bool inArea;
     Vector3 lastPosPlayer;
     [HideInInspector] public bool runAnimation;
+    [HideInInspector] public bool walkAnimation;
+
 
     private void Start()
     {
@@ -40,6 +42,7 @@ public class CatEnemy : MonoBehaviour
     {
         if (canSeePlayer)
         {
+            walkAnimation = false;
             rotationTimer = 0f;
             rotating = false;
             navMeshAgent.speed = 20f;
@@ -51,7 +54,7 @@ public class CatEnemy : MonoBehaviour
             if (Mathf.Abs(Vector3.Angle(transform.forward, posPlayer) - angle / 2) < 0.01f || 
             Physics.Raycast(eyes.position + transform.forward * -1f, posPlayer, distanceToTarget, obstructionMask))
             {
-                if(Vector3.Distance(lastPosPlayer,transform.position) <= 3)
+                if(Vector3.Distance(lastPosPlayer,transform.position) <= 2)
                 {
                     navMeshAgent.enabled = false;
                     runAnimation = false;
@@ -86,9 +89,19 @@ public class CatEnemy : MonoBehaviour
         {
             FieldOfViewCheck();
             navMeshAgent.enabled = true;
-            navMeshAgent.SetDestination(firstPos);
             
-            flipMove();
+            
+            if(Vector3.Distance(transform.position,firstPos) > 1)
+            {
+                walkAnimation = true;
+                navMeshAgent.SetDestination(firstPos);
+            }
+            else
+            {
+                walkAnimation = false;
+                flipMove();
+            }
+            
         }
     }
 
