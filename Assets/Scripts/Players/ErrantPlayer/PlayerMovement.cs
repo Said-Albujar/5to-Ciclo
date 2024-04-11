@@ -218,25 +218,12 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     void SpeedControl()
     {
         Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-        switch (isRunning)
-        {
-            case true:
-                if (flatVel.magnitude > runSpeed)
-                {
-                   
+        float speed = isRunning ? runSpeed : (isCrouching ? walkSpeed / 2 : walkSpeed);
 
-                    Vector3 limitedVel = flatVel.normalized * runSpeed;
-                    rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
-                }
-                break;
-            case false:
-                if (flatVel.magnitude > walkSpeed)
-                {
-                  
-                    Vector3 limitedVel = flatVel.normalized * walkSpeed;
-                    rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
-                }
-                break;
+        if (flatVel.magnitude > speed)
+        {
+            Vector3 limitedVel = flatVel.normalized * speed;
+            rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
         }
     }
 
