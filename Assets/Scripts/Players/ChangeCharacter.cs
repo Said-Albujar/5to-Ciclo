@@ -49,7 +49,7 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
 
     void Update()
     {
-
+        Vector3 offset = new Vector3(0F, 1f, 0f);
         if (CanChange)
         {
             if (Input.GetKeyDown(KeyCode.Alpha3) && HaveHairdress && !execute && !alpha1Pressed)
@@ -57,7 +57,7 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
                 alpha1Pressed = true; // Marcar que Alpha1 ha sido presionada.
                 alpha2Pressed = false;
                 alpha3Pressed = false;
-                GameObject obj = Instantiate(VFXchangeCharacter, transform.position + positionVFX, transform.rotation * rotationVFX);
+                GameObject obj = Instantiate(VFXchangeCharacter, transform.position + positionVFX + offset, transform.rotation * rotationVFX);
                 obj.transform.SetParent(transform);
                 Destroy(obj, 1.4f);
                 ChangeToHair();
@@ -68,7 +68,7 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
                 alpha2Pressed = true; // Marcar que Alpha2 ha sido presionada.
                 alpha1Pressed = false;
                 alpha3Pressed = false;
-                GameObject obj = Instantiate(VFXchangeCharacter, transform.position + positionVFX, transform.rotation * rotationVFX);
+                GameObject obj = Instantiate(VFXchangeCharacter, transform.position + positionVFX + offset, transform.rotation * rotationVFX);
                 obj.transform.SetParent(transform);
                 Destroy(obj, 1.4f);
                 ChangeToMiner();
@@ -79,7 +79,7 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
                 alpha3Pressed = true; // Marcar que Alpha3 ha sido presionada.
                 alpha2Pressed = false;
                 alpha1Pressed = false;
-                GameObject obj = Instantiate(VFXchangeCharacter, transform.position + positionVFX, transform.rotation * rotationVFX);
+                GameObject obj = Instantiate(VFXchangeCharacter, transform.position + positionVFX + offset, transform.rotation * rotationVFX);
                 obj.transform.SetParent(transform);
                 Destroy(obj, 1.4f);
                 ChangeToEngineer();

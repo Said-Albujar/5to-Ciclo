@@ -8,11 +8,15 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public PlayerMovement playerMovement;
+    public ChangeCharacter changeCharacter;
     [SerializeField] private GameObject panelPause;
     [SerializeField] private GameObject panelOptions;
     [SerializeField] private string sceneName;
     public bool inPause;
     public GameObject panelTransition;
+    public GameObject panelConsole;
+
+    public GameObject[] tps = new GameObject[9];
     private void Awake()
     {
         if (instance == null)
@@ -34,6 +38,9 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         PauseManager();
+
+        ConsoleMenu();
+        
     }
     public void PauseActive()
     {
@@ -45,14 +52,14 @@ public class GameManager : MonoBehaviour
         Scene currentScene = SceneManager.GetActiveScene();
         sceneName = currentScene.name;
 
-        if (Input.GetKeyDown(KeyCode.Keypad1))
-        {
-            DataPersistenceManager.instance.SaveGame();
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad2))
-        {
-            DataPersistenceManager.instance.LoadGame();
-        }
+        //if (Input.GetKeyDown(KeyCode.Keypad1))
+        //{
+        //    DataPersistenceManager.instance.SaveGame();
+        //}
+        //if (Input.GetKeyDown(KeyCode.Keypad2))
+        //{
+        //    DataPersistenceManager.instance.LoadGame();
+        //}
 
         if (Input.GetKeyDown(KeyCode.Escape) && !panelOptions.activeSelf)
         {
@@ -66,6 +73,8 @@ public class GameManager : MonoBehaviour
                     break;
             }
         }
+
+        
     }
 
     public  void ShowCursor()
@@ -137,5 +146,55 @@ public class GameManager : MonoBehaviour
         Unpause();
         SceneManager.LoadScene("MainMenu");
     }
+    public void ConsoleMenu()
+    {
+        if (Input.GetKeyDown(KeyCode.F1) && !panelOptions.activeSelf)
+        {
+            switch (panelConsole.activeSelf)
+            {
+                case true:
+                    panelConsole.SetActive(false);
+                    Time.timeScale = 1f;
+                    break;
+                case false:
+                    panelConsole.SetActive(true);
+                    Time.timeScale = 0f;
+                    break;
+            }
+        }
 
+        if (panelConsole.activeSelf)
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Alpha2) ||
+                Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Alpha4) ||
+                Input.GetKeyDown(KeyCode.Alpha5) || Input.GetKeyDown(KeyCode.Alpha6) ||
+                Input.GetKeyDown(KeyCode.Alpha7) || Input.GetKeyDown(KeyCode.Alpha8) ||
+                Input.GetKeyDown(KeyCode.Alpha9))
+            {
+                char keyPressed = Input.inputString[0];
+                int teleportIndex = int.Parse(keyPressed.ToString()) - 1;
+
+                if (teleportIndex >= 0 && teleportIndex < tps.Length)
+                {
+                    playerMovement.transform.position = tps[teleportIndex].transform.position;
+                    Time.timeScale = 1f;
+                    panelConsole.SetActive(false);
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.F5))
+            {
+                GiveAllTools();
+                Time.timeScale = 1f;
+                panelConsole.SetActive(false);
+            }
+        }
+    }
+
+    public void GiveAllTools()
+    {
+        changeCharacter.HaveEngineer = true;
+        changeCharacter.HaveHairdress = true;
+        changeCharacter.HaveMiner = true;
+    }
 }
