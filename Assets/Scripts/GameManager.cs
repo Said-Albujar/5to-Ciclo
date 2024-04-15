@@ -101,20 +101,23 @@ public class GameManager : MonoBehaviour
 
         Time.timeScale = 1f;
         panelTransition.SetActive(true);
-        if(File.Exists(string.Concat(Application.persistentDataPath, "/data.game")))
-        {
-            panelPause.SetActive(false);
-            HideCursor();
-            Debug.Log("Entro");
-            DataPersistenceManager.instance.LoadGame();
-
-        }
-        else
-        {
-            SceneManager.LoadScene(sceneName);
-            Debug.Log("Inicio");
-        }
+        SceneManager.LoadScene(sceneName);
+        Debug.Log("Inicio");
         inPause = false;
+
+        //if(File.Exists(string.Concat(Application.persistentDataPath, "/data.game")))
+        //{
+        //    panelPause.SetActive(false);
+        //    HideCursor();
+        //    Debug.Log("Entro");
+        //    DataPersistenceManager.instance.LoadGame();
+
+        //}
+        //else
+        //{
+        //    SceneManager.LoadScene(sceneName);
+        //    Debug.Log("Inicio");
+        //}
     }
     public void Restaurar()
     {
