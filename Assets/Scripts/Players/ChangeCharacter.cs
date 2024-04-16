@@ -17,6 +17,7 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
 
     [Header("Miner")]
     public GameObject MinerSkin;
+    public GameObject helmetSkin;
     public GameObject MinerBody;
     public bool isNearM;
     public bool IsMiner;
@@ -141,6 +142,7 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
 
         HairdresserSkin.SetActive(true);
         MinerSkin.SetActive(false);
+        helmetSkin.SetActive(false);
         EngineerSkin.SetActive(false);
 
         IsHairdress = true;
@@ -154,6 +156,8 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
 
         HairdresserSkin.SetActive(false);
         MinerSkin.SetActive(true);
+        helmetSkin.SetActive(true);
+
         EngineerSkin.SetActive(false);
 
         IsHairdress = false;
@@ -166,6 +170,7 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
 
         HairdresserSkin.SetActive(false);
         MinerSkin.SetActive(false);
+        helmetSkin.SetActive(false);
         EngineerSkin.SetActive(true);
 
         IsHairdress = false;
