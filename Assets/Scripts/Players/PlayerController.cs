@@ -50,7 +50,10 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("MovingPlatform"))
         {
             // Cuando el jugador colisiona con la plataforma, se convierte en hijo de la plataforma
-            transform.parent = collision.transform;
+            if(collision.transform.position.y < transform.position.y)
+            {
+                transform.parent = collision.transform;
+            }
         }
     }
 

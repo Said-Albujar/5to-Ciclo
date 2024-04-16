@@ -16,7 +16,7 @@ public class EnemyThrowerAnimationController : MonoBehaviour
 
     void Update()
     {
-        if (agent.hasPath && !enemy.canSeePlayer)
+        if (agent.velocity != Vector3.zero )
             anim.SetFloat("Speed", agent.velocity.magnitude);
         else
             anim.SetFloat("Speed", 0);

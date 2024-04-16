@@ -25,7 +25,6 @@ public class CatEnemy : MonoBehaviour
     float timer;
     EnemyAudioManager enemyAudioManager;
     [SerializeField] float timeOutOfView;
-    bool inArea;
     Vector3 lastPosPlayer;
     [HideInInspector] public bool runAnimation;
     [HideInInspector] public bool walkAnimation;
@@ -151,20 +150,8 @@ public class CatEnemy : MonoBehaviour
             {
                 timer = 0;
                 canSeePlayer = true;
-                inArea = false;
                 enemyAudioManager.DetecPlayer();
             }
-        }
-    }
-
-    
-
-    IEnumerator FOVRoutine()
-    {
-        while (inArea)
-        {
-            yield return null;
-            FieldOfViewCheck();
         }
     }
 

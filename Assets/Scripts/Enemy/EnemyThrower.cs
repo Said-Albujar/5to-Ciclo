@@ -8,13 +8,10 @@ public class EnemyThrower : MonoBehaviour
     [Header("Movement")]
     public NavMeshAgent navMeshAgent;
     public GameObject playerPosition;
-    public bool patrullajeActivo = true;
     public float speedPlayerChange;
     public int nextStep = 0;
     public List<Transform> positionPoint;
     public float distanceMin;
-
-    public GameObject points;
 
     [Header("Cono de vision")]
     public float radius;
@@ -31,6 +28,7 @@ public class EnemyThrower : MonoBehaviour
 
     [Header("Throw")]
     public GameObject projectilePrefab;
+    [SerializeField] float rangeAttack;
     public int startBullets = 10;
     [HideInInspector]public int currentBullets;
     public Transform shootPoint;
@@ -61,7 +59,7 @@ public class EnemyThrower : MonoBehaviour
         }
         currentBullets = startBullets;
         DataPersistenceManager.instance.OnLoad += LoadEnemy;
-        StartCoroutine(FOVRoutine());
+        
     }
 
 
@@ -72,20 +70,40 @@ public class EnemyThrower : MonoBehaviour
         {
             if (currentBullets>0)
             {
-                shootTimer += Time.deltaTime;
-
-                if (shootTimer >= shootCooldown)
+                if(CheckInRangeView())
                 {
-                    Shoot();
-                    currentBullets -= 1;
-                    shootTimer = 0f;
-                    Debug.Log("Disparo");
+                    canSeePlayer = true;
+                    Debug.Log("inrange");
+                    if(Vector3.Distance(transform.position,playerPosition.transform.position) < rangeAttack)
+                    {
+                        navMeshAgent.enabled = false;
+                        shootTimer += Time.deltaTime;
+
+                        if (shootTimer >= shootCooldown)
+                        {
+                            Shoot();
+                            currentBullets -= 1;
+                            shootTimer = 0f;
+                            Debug.Log("Disparo");
+                        }
+
+                        if (shootCooldown <= minshootCooldown)
+                            shootCooldown = minshootCooldown;
+
+                        RotateToPlayer();
+                    }
+                    else
+                    {
+                        navMeshAgent.enabled = true;
+                        navMeshAgent.SetDestination(playerPosition.transform.position);
+                    }
                 }
-
-                if (shootCooldown <= minshootCooldown)
-                    shootCooldown = minshootCooldown;
-
-                RotateToPlayer();
+                else
+                {
+                    navMeshAgent.enabled = true;
+                    canSeePlayer = false;
+                }
+                
             }
 
             else
@@ -94,14 +112,10 @@ public class EnemyThrower : MonoBehaviour
                 {
                     navMeshAgent.SetDestination(playerPosition.transform.position);
                     navMeshAgent.speed = speedPlayerChange;
-                    patrullajeActivo = false;
+                
                     once = true;
                     timer = 0f;
-                    if (!onceShout)
-                    {
-                        enemyAudioManager.DetecPlayer();
-                        onceShout = true;
-                    }
+                    
                 }
                 else
                 {
@@ -109,33 +123,22 @@ public class EnemyThrower : MonoBehaviour
                 }
             }
             
-
         }
-
-        if (!canSeePlayer && once == true)
+        else
         {
-            RandomMove();
+            FieldOfViewCheck();
+            if (once == true)
+            {
+                RandomMove();
+            }
+            else
+            {
+                Patrol();
+                navMeshAgent.speed = 4f;
+            }
         }
-
-        if (!canSeePlayer && once == false)
-        {
-            patrullajeActivo = true;
-            Patrol();
-            navMeshAgent.speed = 4f;
-        }
-
-        TimerDetecSound();
-
-
     }
-    void StopMove()
-    {
-        navMeshAgent.isStopped = true;
-    }
-    void ResumeMove()
-    {
-        navMeshAgent.isStopped = false;
-    }
+    
     void Patrol()
     {
         navMeshAgent.SetDestination(positionPoint[nextStep].position);
@@ -168,20 +171,6 @@ public class EnemyThrower : MonoBehaviour
 
     }
 
-    private void TimerDetecSound()
-    {
-        if (onceShout && !canSeePlayer)
-        {
-            timerSound += Time.deltaTime;
-            if (timerSound >= 0.25f)
-            {
-                onceShout = false;
-                timerSound = 0f;
-            }
-        }
-
-    }
-
     void Shoot()
     {
         Vector3 ofsset = new Vector3(0F, 0.25f, 0f);
@@ -204,40 +193,50 @@ public class EnemyThrower : MonoBehaviour
 
         transform.rotation = targetRotation;
     }
-    IEnumerator FOVRoutine()
+    /* IEnumerator FOVRoutine()
     {
         while (true)
         {
             yield return new WaitForSeconds(time);
             FieldOfViewCheck();
         }
+    } */
+
+    bool CheckInRangeView()
+    {
+        Vector3 player = new Vector3(playerPosition.transform.position.x,playerPosition.transform.position.y + 1f,playerPosition.transform.position.z);
+        Vector3 posPlayer = player - transform.position;
+        float distanceToTarget = Vector3.Distance(transform.position, playerPosition.transform.position);
+        Debug.DrawRay(transform.position,posPlayer);
+        if (Mathf.Abs(Vector3.Angle(transform.forward, posPlayer) - angle / 2) < 0.01f ||
+        Physics.Raycast(transform.position, posPlayer, distanceToTarget, obstructionMask))
+        {
+            
+            return false;
+        }
+        else
+        {
+            
+            return true;
+        }
     }
+
+
     void FieldOfViewCheck()
     {
 
-        rangeChecks = Physics.OverlapSphere(transform.position, radius, targeMask);
-        if (rangeChecks.Length != 0)
+        Vector3 player = new Vector3(playerPosition.transform.position.x,playerPosition.transform.position.y + 1f,playerPosition.transform.position.z);
+        Vector3 posPlayer = player - transform.position;
+        float distanceToTarget = Vector3.Distance(transform.position, playerPosition.transform.position);
+        Debug.DrawRay(transform.position,posPlayer);
+        if (Vector3.Angle(transform.forward, posPlayer) < angle / 2 && distanceToTarget < radius)
         {
-            Transform target = rangeChecks[0].transform;
-            Vector3 directionTarget = (target.position - transform.position).normalized;
-            if (Vector3.Angle(transform.forward, directionTarget) < angle / 2)
+            if (!Physics.Raycast(transform.position, posPlayer, distanceToTarget, obstructionMask))
             {
-                float distanceToTarget = Vector3.Distance(transform.position, target.position);
-
-                if (!Physics.Raycast(transform.position, directionTarget, distanceToTarget, obstructionMask))
-                {
-                    canSeePlayer = true;
-
-                }
-
-                else
-                    canSeePlayer = false;
+                canSeePlayer = true;
+                enemyAudioManager.DetecPlayer();
             }
-            else
-                canSeePlayer = false;
         }
-        else if (canSeePlayer)
-            canSeePlayer = false;
     }
 
     void LoadEnemy()
@@ -252,7 +251,7 @@ public class EnemyThrower : MonoBehaviour
 
         navMeshAgent.enabled = false;
 
-        //Reiniciar posición, resetear ruta, etc
+        //Reiniciar posiciï¿½n, resetear ruta, etc
 
         navMeshAgent.enabled = true;
     }

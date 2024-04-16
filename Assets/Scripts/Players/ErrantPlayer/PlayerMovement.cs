@@ -83,12 +83,11 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         switch (currentstate)
         {
             case state.climbIdle:
-                rb.velocity = Vector3.zero;
-                rb.isKinematic = true;
-                rb.useGravity = false;
+                
                 CheckBorder();
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
+                    
                     currentstate = state.climbMoving;
                 }
                 break;
@@ -310,32 +309,45 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     }
     void CheckBorder()
     {
-        RaycastHit hit;
-        blueLine = Physics.Raycast(groundCheck.position + (Vector3.up * BlueDistance), groundCheck.forward, out hit, radius, layerBorder);
-        greenLine = Physics.Raycast(groundCheck.position + (Vector3.up * GreenDistance), groundCheck.forward, radius, layerBorder);
-        if (blueLine && !greenLine)
+        if(!grounded)
         {
-            if(hit.collider.gameObject.CompareTag("MovingPlatform"))
+            RaycastHit hit;
+            blueLine = Physics.Raycast(groundCheck.position + (Vector3.up * BlueDistance), groundCheck.forward, out hit, radius, layerBorder);
+            greenLine = Physics.Raycast(groundCheck.position + (Vector3.up * GreenDistance), groundCheck.forward, radius, layerBorder);
+            
+            if (blueLine && !greenLine  )
             {
-                transform.SetParent(hit.collider.transform);
-                Debug.Log("Plataforma");
-                currentstate = state.climbIdle;
-            }
-            else
-            {
-                currentstate = state.climbIdle;
+                rb.velocity = Vector3.zero;
+                rb.isKinematic = true;
+                rb.useGravity = false;
+                Vector3 dir = -hit.normal;
+                dir.y = 0;
+                
+                Quaternion targetRotation = Quaternion.LookRotation(dir);
+                transform.rotation = Quaternion.LookRotation(dir);
+                if(hit.collider.gameObject.CompareTag("MovingPlatform"))
+                {
+                    transform.SetParent(hit.collider.transform);
+                    Debug.Log("Plataforma");
+                    currentstate = state.climbIdle;
+                }
+                else
+                {
+                    currentstate = state.climbIdle;
+
+                }
 
             }
-
+        
         }
+
         if(currentstate==state.climbIdle&&!greenLine&&!blueLine)
         {
             currentstate = state.idle;
-            rb.isKinematic = true;
+            rb.isKinematic = false;
             rb.useGravity = true;
             
         }
-    
 
         /* (!grounded)
         {
