@@ -13,7 +13,8 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         moving,
         jumping,
         climbIdle,
-        climbMoving
+        climbMoving,
+        gliding
     }
     public state currentstate;
 
@@ -61,6 +62,19 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     Vector3 scaleStart;
     [SerializeField] bool greenLine;
     [SerializeField] bool blueLine;
+
+    [Header("Glide")]
+    public float MomentumKiller = 0.9f;
+    public bool isGliding = false;
+
+    public float contragravedad = 5.0f;
+
+    public float planeonormal;
+    public float contadort = 0f; //no recuerdo si usé estos 3
+    //float lastInterpolationTime = 0f;
+
+    public bool ascending = false;
+
     void Awake()
     {
         Instance = this;
@@ -68,6 +82,8 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     void Start()
     {
+        planeonormal = contragravedad;
+
         scaleStart = transform.localScale;
         if (MusicScene.Instance != null)
         {
@@ -78,8 +94,45 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         rb.freezeRotation = true;
         Cursor.lockState = CursorLockMode.Locked;
     }
+
+    public void SlowFalling()
+    {
+        //PLANEAAAAAAAAAAAAAARRRRRRR!!!!!!
+        if (currentstate == state.gliding)
+        {
+            // rb.useGravity = false;
+            //rb.velocity = Vector3.zero;
+            rb.velocity *= MomentumKiller;
+
+            //Vector3 reducedGravity = Physics.gravity / gravityScaleFactor;
+
+            // rb.AddForce(reducedGravity, ForceMode.Acceleration);
+            Vector3 verticalForce = new Vector3(0, contragravedad, 0);
+            rb.AddForce(verticalForce, ForceMode.Force);
+        }
+    }
+
+
     void Update()
     {
+        if (!ascending)
+        {
+            contragravedad = planeonormal;
+        }
+
+        if (grounded)
+        {
+            isGliding = false;
+            currentstate = state.idle;
+            rb.useGravity = true;
+        }
+        else
+        {
+            GroundCheck();
+        }
+
+        ActivateDesactivateGliding();
+
         switch (currentstate)
         {
             case state.climbIdle:
@@ -94,6 +147,10 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
             case state.climbMoving:
                 transform.position += Vector3.up * Time.deltaTime * UpDistance + transform.forward * 0.8f * Time.deltaTime;
+                break;
+
+            case state.gliding:
+                SlowFalling();
                 break;
 
             default:
@@ -153,6 +210,27 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 break;
         }
     }
+
+    void ActivateDesactivateGliding()
+    {
+        if (Input.GetKeyDown(jumpKey) && !grounded && !GameManager.instance.inPause)
+        {
+            switch (isGliding)
+            {
+                case true:
+                    isGliding = false;
+                    currentstate = state.idle;
+                    //rb.useGravity = true;
+                    break;
+                case false:
+                    isGliding = true;
+                    currentstate = state.gliding;
+                    break;
+            }
+        }
+    }
+
+
     void JumpPlayer()
     {
         rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
