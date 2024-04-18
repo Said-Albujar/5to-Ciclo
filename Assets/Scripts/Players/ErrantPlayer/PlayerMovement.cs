@@ -120,16 +120,16 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             contragravedad = planeonormal;
         }
 
-        if (grounded)
-        {
-            isGliding = false;
-            currentstate = state.idle;
-            rb.useGravity = true;
-        }
-        else
-        {
-            GroundCheck();
-        }
+        //if (grounded)
+        //{
+        //    isGliding = false;
+        //    currentstate = state.idle;
+        //    rb.useGravity = true;
+        //}
+        //else
+        //{
+        //    GroundCheck();
+        //}
 
         ActivateDesactivateGliding();
 
@@ -213,7 +213,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     void ActivateDesactivateGliding()
     {
-        if (Input.GetKeyDown(jumpKey) && !grounded && !GameManager.instance.inPause)
+        if (Input.GetKeyDown(jumpKey) && !grounded && !GameManager.instance.inPause && currentstate != state.climbIdle)
         {
             switch (isGliding)
             {
