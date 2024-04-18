@@ -52,14 +52,14 @@ public class GameManager : MonoBehaviour
         Scene currentScene = SceneManager.GetActiveScene();
         sceneName = currentScene.name;
 
-        //if (Input.GetKeyDown(KeyCode.Keypad1))
-        //{
-        //    DataPersistenceManager.instance.SaveGame();
-        //}
-        //if (Input.GetKeyDown(KeyCode.Keypad2))
-        //{
-        //    DataPersistenceManager.instance.LoadGame();
-        //}
+        if (Input.GetKeyDown(KeyCode.Keypad1))
+        {
+            DataPersistenceManager.instance.SaveGame();
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad2))
+        {
+            DataPersistenceManager.instance.LoadGame();
+        }
 
         if (Input.GetKeyDown(KeyCode.Escape) && !panelOptions.activeSelf)
         {
@@ -113,20 +113,6 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(sceneName);
         Debug.Log("Inicio");
         inPause = false;
-
-        //if(File.Exists(string.Concat(Application.persistentDataPath, "/data.game")))
-        //{
-        //    panelPause.SetActive(false);
-        //    HideCursor();
-        //    Debug.Log("Entro");
-        //    DataPersistenceManager.instance.LoadGame();
-
-        //}
-        //else
-        //{
-        //    SceneManager.LoadScene(sceneName);
-        //    Debug.Log("Inicio");
-        //}
     }
     public void Restaurar()
     {
@@ -163,13 +149,13 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (panelConsole.activeSelf)
+        if (panelConsole.activeSelf )
         {
             if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Alpha2) ||
                 Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Alpha4) ||
                 Input.GetKeyDown(KeyCode.Alpha5) || Input.GetKeyDown(KeyCode.Alpha6) ||
                 Input.GetKeyDown(KeyCode.Alpha7) || Input.GetKeyDown(KeyCode.Alpha8) ||
-                Input.GetKeyDown(KeyCode.Alpha9))
+                Input.GetKeyDown(KeyCode.Alpha9) && sceneName == "Tutorial and level1")
             {
                 char keyPressed = Input.inputString[0];
                 int teleportIndex = int.Parse(keyPressed.ToString()) - 1;
