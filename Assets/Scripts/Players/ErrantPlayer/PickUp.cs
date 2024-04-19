@@ -30,11 +30,12 @@ public class PickUp : MonoBehaviour
         {
             PickedObject = hit.collider.gameObject;
         }
-        else
+        else if(!box && !haveObject)
         {
             PickedObject = null;
         }
-        if(haveObject)
+
+        if (haveObject)
         {
             float moveSpeed = 7.0f;
             Vector3 targetPosition = HandPoint.transform.position;
@@ -47,12 +48,16 @@ public class PickUp : MonoBehaviour
             }
             else
             {
-                PickedObject.transform.position = Vector3.Lerp(PickedObject.transform.position, HandPoint.transform.position, moveSpeed * Time.deltaTime);
-                if(PickedObject.transform.position==HandPoint.transform.position)
+                if (PickedObject)
                 {
-                    timer = 0f;
+                    PickedObject.transform.position = Vector3.Lerp(PickedObject.transform.position, HandPoint.transform.position, moveSpeed * Time.deltaTime);
+                    if (PickedObject.transform.position == HandPoint.transform.position)
+                    {
+                        timer = 0f;
 
+                    }
                 }
+                
               
             }
         }
