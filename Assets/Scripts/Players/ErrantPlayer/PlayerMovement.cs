@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public float actualSpeed;
     public float walkSpeed;
     public float runSpeed;
+    public float pickBoxSpeed;
     public float groundDrag;
     public float rotationSpeed;
     [SerializeField] public bool isRunning;
@@ -74,6 +75,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     //float lastInterpolationTime = 0f;
 
     public bool ascending = false;
+    public PickUp pick;
 
     void Awake()
     {
@@ -136,11 +138,11 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         switch (currentstate)
         {
             case state.climbIdle:
-                
+
                 CheckBorder();
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    
+
                     currentstate = state.climbMoving;
                 }
                 break;
@@ -154,7 +156,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 break;
 
             default:
-                if(turn)
+                if (turn)
                 {
                     NormalMovement();
 
@@ -180,13 +182,13 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 }
                 rb.useGravity = !freeze;
                 break;
-        }    
+        }
     }
     void Jump()
     {
         if (freeze) return;
 
-        if (Input.GetKeyDown(jumpKey) && grounded && !isCrouching&&!GameManager.instance.inPause)
+        if (Input.GetKeyDown(jumpKey) && grounded && !isCrouching && !GameManager.instance.inPause)
         {
             Invoke(nameof(JumpPlayer), cooldownJump);
             AudioManager.Instance.PlaySFX("Jump");
@@ -194,6 +196,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             isJump = true;
         }
     }
+ 
     void ErrantInput()
     {
         horInput = Input.GetAxisRaw("Horizontal");
@@ -238,7 +241,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     void Crouch()
     {
-        if(freeze) return;
+        if (freeze) return;
 
         if (isCrouching)
         {
@@ -254,7 +257,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     void MoveErrant()
     {
         if (freeze) return;
-        
+
         Vector3 forward = cameraTransform.forward;
         forward.y = 0;
         forward.Normalize();
@@ -264,8 +267,8 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         right.Normalize();
 
         moveDir = forward * verInput + right * horInput;
-      
-        if (Input.GetKey(KeyCode.LeftShift) && StaminaController.staminaActual >= 0 && StaminaController.canRun&&moveDir.magnitude>0)
+
+        if (Input.GetKey(KeyCode.LeftShift) && StaminaController.staminaActual >= 0 && StaminaController.canRun && moveDir.magnitude > 0)
         {
             isRunning = true;
         }
@@ -283,7 +286,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             case false:
                 rb.AddForce(moveDir.normalized * walkSpeed * 10f, ForceMode.Force);
                 break;
-        } 
+        }
     }
 
     void GroundCheck()
@@ -295,7 +298,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     void SpeedControl()
     {
         Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-        float speed = isRunning ? runSpeed : (isCrouching ? walkSpeed / 2 : walkSpeed);
+        float speed = isRunning ? runSpeed : (isCrouching ? walkSpeed / 2 : (pick.haveObject ? pickBoxSpeed : walkSpeed));
 
         if (flatVel.magnitude > speed)
         {

@@ -6,7 +6,7 @@ public class PlayerAnimationController : MonoBehaviour
 {
     public PlayerMovement playerMovement;
     public Animator anim;
-   
+    public PickUp picked; 
     void Awake()
     {
         playerMovement = FindObjectOfType<PlayerMovement>();
@@ -21,7 +21,7 @@ public class PlayerAnimationController : MonoBehaviour
             anim.SetBool("jumped", playerMovement.isJump);
             anim.SetBool("isRunning", playerMovement.isRunning);
             anim.SetBool("isCrouching", playerMovement.isCrouching);
-            
+            anim.SetBool("GetUp", picked.canPickUp);
 
             MoveAnim();
             JumpAnim();

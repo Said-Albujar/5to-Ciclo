@@ -7,15 +7,20 @@ public class PickUp : MonoBehaviour
     public GameObject HandPoint;
     public GameObject PickedObject = null;
     public bool canPickUp;
-    private bool haveObject;
+    public bool haveObject;
     public static PickUp instance;
     public float radius;
     public Collider[] hitColliders;
     public LayerMask maskBox;
+    public float moveSpeed = 3.0f;
+    public Vector3 targetPosition;
+
     void Awake()
     {
         instance = this;
+
     }
+    
     void Update()
     {
         if (haveObject == false)
@@ -31,11 +36,13 @@ public class PickUp : MonoBehaviour
         }
         else
         {
-            float moveSpeed = 20.0f;
+            float moveSpeed = 3.0f;
             Vector3 targetPosition = HandPoint.transform.position; 
 
-            PickedObject.transform.position = Vector3.MoveTowards(PickedObject.transform.position, targetPosition, moveSpeed * Time.deltaTime);
+            //PickedObject.transform.position = Vector3.MoveTowards(PickedObject.transform.position, targetPosition, moveSpeed * Time.deltaTime);
+            PickedObject.transform.position = Vector3.Lerp(PickedObject.transform.position, targetPosition, moveSpeed*Time.deltaTime);
         }
+        
 
         
 
