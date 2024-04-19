@@ -30,6 +30,10 @@ public class PickUp : MonoBehaviour
         {
             PickedObject = hit.collider.gameObject;
         }
+        else
+        {
+            PickedObject = null;
+        }
         if(haveObject)
         {
             float moveSpeed = 7.0f;
@@ -75,7 +79,7 @@ public class PickUp : MonoBehaviour
 
         
 
-        if (Input.GetKeyDown(KeyCode.E) && PickedObject != null && !canPickUp&&!box)
+        if (Input.GetKeyDown(KeyCode.E) && PickedObject != null && !canPickUp)
         {
             PickedObject.AddComponent<Rigidbody>();
             PickedObject.GetComponent<Rigidbody>().useGravity = true;
@@ -86,7 +90,7 @@ public class PickUp : MonoBehaviour
             haveObject = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.E) && PickedObject != null && canPickUp&&box)
+        if (Input.GetKeyDown(KeyCode.E) && PickedObject != null && canPickUp)
         {
             timer = 0f;
             if (PickedObject != null)
