@@ -272,8 +272,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 103039113974578749}
-  m_LocalRotation: {x: 3.5527137e-15, y: -0, z: 4.8849813e-15, w: 1}
-  m_LocalPosition: {x: -0.032007962, y: 0.9220008, z: 1.1679965}
+  m_LocalRotation: {x: 0.0000000074505815, y: -0.00000005960465, z: -0.0000000037252907, w: 1}
+  m_LocalPosition: {x: -0.031982422, y: 0.9219971, z: 1.1679993}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -309,11 +309,17 @@ MonoBehaviour:
   HandPoint: {fileID: 6808371729708832878}
   PickedObject: {fileID: 0}
   canPickUp: 1
+  haveObject: 0
   radius: 1
   hitColliders: []
   maskBox:
     serializedVersion: 2
     m_Bits: 512
+  moveSpeed: 3
+  targetPosition: {x: 0, y: 0, z: 0}
+  box: 0
+  timer: 0
+  maxTimer: 0
 --- !u!1 &149774462435579493
 GameObject:
   m_ObjectHideFlags: 0
@@ -1972,7 +1978,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1143137629940656399}
-  m_LocalRotation: {x: 0.0051663937, y: 0.008724854, z: -0.000045078355, w: 0.9999486}
+  m_LocalRotation: {x: 0.005244617, y: 0.00885766, z: -0.00004645748, w: 0.9999471}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6043,7 +6049,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3960836520841792220}
   m_LocalRotation: {x: 3.5527137e-15, y: -0, z: 4.8849813e-15, w: 1}
-  m_LocalPosition: {x: -0.15704346, y: 3, z: -8.998627}
+  m_LocalPosition: {x: -0.15710449, y: 3, z: -8.998627}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8840,8 +8846,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5825589478919461758}
-  m_LocalRotation: {x: 0.0051662857, y: 0.008726418, z: -0.000045085493, w: 0.9999486}
-  m_LocalPosition: {x: -0.15707166, y: 3, z: -8.99863}
+  m_LocalRotation: {x: 0.0052446174, y: 0.008857663, z: -0.0000464575, w: 0.9999471}
+  m_LocalPosition: {x: -581.97217, y: -193.57692, z: -290.2337}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9841,7 +9847,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6423644560558470345}
-  m_LocalRotation: {x: 0.067696564, y: 0.008704973, z: -0.00059067423, w: 0.99766785}
+  m_LocalRotation: {x: 0.069360234, y: 0.008838754, z: -0.00061456236, w: 0.99755234}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -11568,6 +11574,7 @@ MonoBehaviour:
   actualSpeed: 0
   walkSpeed: 6
   runSpeed: 9
+  pickBoxSpeed: 0
   groundDrag: 4
   rotationSpeed: 6
   isRunning: 0
@@ -11597,6 +11604,13 @@ MonoBehaviour:
   BlueDistance: 0.8
   greenLine: 0
   blueLine: 0
+  MomentumKiller: 0.9
+  isGliding: 0
+  contragravedad: 5
+  planeonormal: 0
+  contadort: 0
+  ascending: 0
+  pick: {fileID: 0}
 --- !u!114 &7400202593831202798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11751,6 +11765,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMovement: {fileID: 0}
   anim: {fileID: 224832969460843734}
+  picked: {fileID: 0}
 --- !u!95 &224832969460843734
 Animator:
   serializedVersion: 5
@@ -13165,7 +13180,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8539204032321109060}
-  m_LocalRotation: {x: 0.11399453, y: 0.008668074, z: -0.0009946349, w: 0.9934431}
+  m_LocalRotation: {x: 0.115651056, y: 0.008800655, z: -0.0010247212, w: 0.9932504}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

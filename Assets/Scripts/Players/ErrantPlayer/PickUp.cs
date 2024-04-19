@@ -14,7 +14,8 @@ public class PickUp : MonoBehaviour
     public LayerMask maskBox;
     public float moveSpeed = 3.0f;
     public Vector3 targetPosition;
-
+    public bool box;
+    public float timer, maxTimer;
     void Awake()
     {
         instance = this;
@@ -23,7 +24,35 @@ public class PickUp : MonoBehaviour
     
     void Update()
     {
-        if (haveObject == false)
+        RaycastHit hit;
+        box=Physics.Raycast(transform.position, transform.forward, out hit,radius, maskBox);
+        if(box)
+        {
+            PickedObject = hit.collider.gameObject;
+        }
+        if(haveObject)
+        {
+            float moveSpeed = 7.0f;
+            Vector3 targetPosition = HandPoint.transform.position;
+           
+            timer += Time.deltaTime;
+
+            if (timer<=maxTimer)
+            {
+               
+            }
+            else
+            {
+                PickedObject.transform.position = Vector3.Lerp(PickedObject.transform.position, HandPoint.transform.position, moveSpeed * Time.deltaTime);
+                if(PickedObject.transform.position==HandPoint.transform.position)
+                {
+                    timer = 0f;
+
+                }
+              
+            }
+        }
+        /*if (haveObject == false)
         {
             PickedObject = null;
             hitColliders = Physics.OverlapSphere(HandPoint.transform.position, radius, maskBox);
@@ -41,12 +70,12 @@ public class PickUp : MonoBehaviour
 
             //PickedObject.transform.position = Vector3.MoveTowards(PickedObject.transform.position, targetPosition, moveSpeed * Time.deltaTime);
             PickedObject.transform.position = Vector3.Lerp(PickedObject.transform.position, targetPosition, moveSpeed*Time.deltaTime);
-        }
+        }*/
         
 
         
 
-        if (Input.GetKeyDown(KeyCode.E) && PickedObject != null && !canPickUp)
+        if (Input.GetKeyDown(KeyCode.E) && PickedObject != null && !canPickUp&&!box)
         {
             PickedObject.AddComponent<Rigidbody>();
             PickedObject.GetComponent<Rigidbody>().useGravity = true;
@@ -57,9 +86,9 @@ public class PickUp : MonoBehaviour
             haveObject = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.E) && PickedObject != null && canPickUp)
+        if (Input.GetKeyDown(KeyCode.E) && PickedObject != null && canPickUp&&box)
         {
-
+            timer = 0f;
             if (PickedObject != null)
             {
                 Destroy(this.GetComponent<Rigidbody>());
@@ -78,7 +107,13 @@ public class PickUp : MonoBehaviour
 
 
         }
+        
 
 
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawRay(transform.position, transform.forward * radius);
     }
 }

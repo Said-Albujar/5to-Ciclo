@@ -184,6 +184,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 break;
         }
     }
+
     void Jump()
     {
         if (freeze) return;
