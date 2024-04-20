@@ -65,11 +65,19 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     [SerializeField] bool blueLine;
 
     [Header("Glide")]
-    public float antigravedad = 0.9f;
     public bool isGliding = false;
     public bool canGlide = true;
 
+   // public float glideSpeed = 1;
     public float planeo = 5f;
+    public float antigravedad = 0.9f;
+
+    public float actualGlideSpeed;
+    public float topGlideSpeed;
+    float perdidadeinercia = 1.0f; // Tasa de disminución de velocidad (ajustable)
+
+    public float gliderotationSpeed;
+    public float glidedraft = 0.5f;
 
     public float planeonormal;
     public float contadort = 0f; //no recuerdo si usé estos 3
@@ -142,7 +150,9 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
         if (canGlide)
         {
-            ActivateDesactivateGliding();
+            actualGlideSpeed = actualSpeed;
+            gliderotationSpeed = rotationSpeed * glidedraft;
+            ActivateDesactivateGliding();            
         }
 
         switch (currentstate)
@@ -165,8 +175,9 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
             case state.gliding:
                 SlowFalling();
-                NormalMovement();
-                
+                GlidingMovement();
+
+
                 break;
 
             default:
@@ -235,6 +246,8 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     {
         if (Input.GetKeyDown(jumpKey) && !grounded && !GameManager.instance.inPause && currentstate != state.climbIdle && isJump) //
         {
+            topGlideSpeed = actualSpeed;
+
             switch (isGliding)
             {
                 case true:
@@ -286,7 +299,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
         moveDir = forward * verInput + right * horInput;
 
-        if (Input.GetKey(KeyCode.LeftShift) && StaminaController.staminaActual >= 0 && StaminaController.canRun && moveDir.magnitude > 0)
+        if (Input.GetKey(KeyCode.LeftShift) && StaminaController.staminaActual >= 0 && StaminaController.canRun && moveDir.magnitude > 0 && !isGliding)
         {
             isRunning = true;
         }
@@ -325,6 +338,21 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         }
     }
 
+    void GlideHorizontalSpeedControl()
+    {
+        Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);            
+
+        
+        if (flatVel.magnitude > topGlideSpeed)
+        {
+            topGlideSpeed -= perdidadeinercia * Time.deltaTime;
+            topGlideSpeed = Mathf.Max(topGlideSpeed, 0f);
+
+            Vector3 limitedVel = flatVel.normalized * topGlideSpeed;
+            rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
+        }
+    }
+
     void Drag()
     {
         if (grounded)
@@ -346,6 +374,13 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             Quaternion targetRotation = Quaternion.LookRotation(moveDir);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
         }
+
+        else if (moveDir != Vector3.zero && isGliding)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(moveDir);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * gliderotationSpeed);
+        }
+
     }
 
     public Vector2 GetPlayerInput()
@@ -513,7 +548,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     private void GlidingMovement()
     {
         GroundCheck();
-      //  SpeedControl();
+        GlideHorizontalSpeedControl();
         ErrantInput();
         CheckBorder();
         Drag();
