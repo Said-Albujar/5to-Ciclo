@@ -67,7 +67,6 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     [Header("Glide")]
     public float MomentumKiller = 0.9f;
     public bool isGliding = false;
-    public bool CANGLIDE = true;
 
     public float contragravedad = 5.0f;
 
@@ -102,9 +101,14 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     {
         //PLANEAAAAAAAAAAAAAARRRRRRR!!!!!!
         if (currentstate == state.gliding)
-        {           
+        {
+            // rb.useGravity = false;
+            //rb.velocity = Vector3.zero;
             rb.velocity *= MomentumKiller;
 
+            //Vector3 reducedGravity = Physics.gravity / gravityScaleFactor;
+
+            // rb.AddForce(reducedGravity, ForceMode.Acceleration);
             Vector3 verticalForce = new Vector3(0, contragravedad, 0);
             rb.AddForce(verticalForce, ForceMode.Force);
         }
@@ -118,28 +122,23 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             contragravedad = planeonormal;
         }
 
-        if (grounded)
-        {
-            isGliding = false;
-            currentstate = state.idle;
+        //if (grounded)
+        //{
+        //    isGliding = false;
+        //    currentstate = state.idle;
+        //    rb.useGravity = true;
+        //}
+        //else
+        //{
+        //    GroundCheck();
+        //}
 
-        }
-        else
-        {
-            //CheckBorder();
-            GroundCheck();
-        }
-
-        if (CANGLIDE)
-        {
-            ActivateDesactivateGliding();
-        }
-        
+        ActivateDesactivateGliding();
 
         switch (currentstate)
         {
             case state.climbIdle:
-                //CANGLIDE = false;
+
                 CheckBorder();
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
@@ -150,7 +149,6 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
             case state.climbMoving:
                 transform.position += Vector3.up * Time.deltaTime * UpDistance + transform.forward * 0.8f * Time.deltaTime;
-                CANGLIDE = false;
                 break;
 
             case state.gliding:
@@ -161,7 +159,6 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 if (turn)
                 {
                     NormalMovement();
-                    CANGLIDE = true;
 
                 }
                 break;
@@ -191,14 +188,13 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     void Jump()
     {
         if (freeze) return;
-        
+
         if (Input.GetKeyDown(jumpKey) && grounded && !isCrouching && !GameManager.instance.inPause)
         {
             Invoke(nameof(JumpPlayer), cooldownJump);
             AudioManager.Instance.PlaySFX("Jump");
             grounded = false;
             isJump = true;
-            CANGLIDE = true;
         }
     }
  
@@ -221,7 +217,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     void ActivateDesactivateGliding()
     {
-        if (Input.GetKeyDown(jumpKey) && !grounded && !GameManager.instance.inPause && currentstate != state.climbIdle) //&& isJump
+        if (Input.GetKeyDown(jumpKey) && !grounded && !GameManager.instance.inPause && currentstate != state.climbIdle)
         {
             switch (isGliding)
             {
@@ -297,7 +293,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     void GroundCheck()
     {
         float radius = 0.25f;
-        grounded = Physics.SphereCast(groundCheck.position, radius, Vector3.down, out RaycastHit hitInfo, playerHeight * 0.5f + 0.1f, ground); 
+        grounded = Physics.SphereCast(groundCheck.position, radius, Vector3.down, out RaycastHit hitInfo, playerHeight * 0.5f + 0.1f, ground);
     }
 
     void SpeedControl()
@@ -392,15 +388,11 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     {
         rb.isKinematic = false;
         currentstate = state.idle;
-        CANGLIDE = true;
     }
     void CheckBorder()
     {
         if(!grounded)
         {
-            isGliding = false;
-            CANGLIDE = false;
-
             RaycastHit hit;
             blueLine = Physics.Raycast(groundCheck.position + (Vector3.up * BlueDistance), groundCheck.forward, out hit, radius, layerBorder);
             greenLine = Physics.Raycast(groundCheck.position + (Vector3.up * GreenDistance), groundCheck.forward, radius, layerBorder);
@@ -436,8 +428,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             currentstate = state.idle;
             rb.isKinematic = false;
             rb.useGravity = true;
-
-            CANGLIDE = false;
+            
         }
 
         /* (!grounded)
@@ -467,7 +458,6 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         actualSpeed = rb.velocity.magnitude;
         if (grounded)
             isJump = false;
-            CANGLIDE = false;
     }
     void OnDrawGizmos()
     {
