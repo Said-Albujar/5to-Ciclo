@@ -34,7 +34,7 @@ public class CorrienteViento : MonoBehaviour
         // Verificar si el collider que entró en contacto es el jugador
         if (other.CompareTag("Player"))
         {
-            player.contragravedad = FuerzaViento;
+            player.planeo = FuerzaViento;
             player.ascending = true;
         }
     }

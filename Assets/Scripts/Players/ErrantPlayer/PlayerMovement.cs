@@ -65,11 +65,11 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     [SerializeField] bool blueLine;
 
     [Header("Glide")]
-    public float MomentumKiller = 0.9f;
+    public float antigravedad = 0.9f;
     public bool isGliding = false;
     public bool canGlide = true;
 
-    public float contragravedad = 5.0f;
+    public float planeo = 5f;
 
     public float planeonormal;
     public float contadort = 0f; //no recuerdo si usé estos 3
@@ -85,7 +85,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     void Start()
     {
-        planeonormal = contragravedad;
+        planeonormal = planeo;
 
         scaleStart = transform.localScale;
         if (MusicScene.Instance != null)
@@ -110,9 +110,9 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             if (currentstate == state.gliding)
             {
 
-                rb.velocity *= MomentumKiller;
+                rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y * antigravedad, rb.velocity.z);
 
-                Vector3 verticalForce = new Vector3(0, contragravedad, 0);
+                Vector3 verticalForce = new Vector3(0, planeo, 0);
                 rb.AddForce(verticalForce, ForceMode.Force);
             }
             GroundCheck();
@@ -126,7 +126,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     {
         if (!ascending)
         {
-            contragravedad = planeonormal;
+            planeo = planeonormal;
         }
 
         //if (grounded)
@@ -513,13 +513,23 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     private void GlidingMovement()
     {
         GroundCheck();
-        SpeedControl();
+      //  SpeedControl();
         ErrantInput();
         CheckBorder();
         Drag();
-        actualSpeed = rb.velocity.magnitude;
+        actualSpeed = rb.velocity.magnitude;  // / 2  (reducir velocidad en el aire)
 
-        
+        if (grounded)
+        {
+            isJump = false;
+            canGlide = false;
+        }
+        else if (!grounded)
+        {
+            isJump = true;
+            canGlide = true;
+        }
+
     }
 
     void OnDrawGizmos()
