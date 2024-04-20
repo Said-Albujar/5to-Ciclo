@@ -69,7 +69,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public bool canGlide = true;
 
    // public float glideSpeed = 1;
-    public float planeo = 5f;
+    public float planeo = 2f;
     public float antigravedad = 0.9f;
 
     public float actualGlideSpeed;
