@@ -369,7 +369,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     void RotatePlayer()
     {
-        if (moveDir != Vector3.zero)
+        if (moveDir != Vector3.zero && !isGliding)
         {
             Quaternion targetRotation = Quaternion.LookRotation(moveDir);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
