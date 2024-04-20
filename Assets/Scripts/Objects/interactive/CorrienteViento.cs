@@ -43,7 +43,10 @@ public class CorrienteViento : MonoBehaviour
         // Verificar si el collider que entró en contacto es el jugador
         if (other.CompareTag("Player"))
         {
+            //player.FinalImpulse();
             player.ascending = false;
+            //player.impulsoInicial = Vector3.up * FuerzaViento;
+            player.FinalImpulse();
         }
     }
 }

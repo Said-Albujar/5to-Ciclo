@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -69,12 +70,14 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public bool canGlide = true;
 
    // public float glideSpeed = 1;
-    public float planeo = 2f;
+    public float planeo = 1f;
     public float antigravedad = 0.9f;
 
     public float actualGlideSpeed;
     public float topGlideSpeed;
-    float perdidadeinercia = 1.0f; // Tasa de disminución de velocidad (ajustable)
+    public float perdidadeinercia = 1f; // Tasa de disminución de velocidad (ajustable)
+    public float perdidadeviento = 21f;
+    public float perdidadeimpulso = 7f;
 
     public float gliderotationSpeed;
     public float glidedraft = 0.5f;
@@ -84,6 +87,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     //float lastInterpolationTime = 0f;
 
     public bool ascending = false;
+    public float limiteinerciaviento = 60f;
     public PickUp pick;
 
     void Awake()
@@ -94,6 +98,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     void Start()
     {
         planeonormal = planeo;
+        //impulsoInicial = Vector3.up * planeo;   stupíd
 
         scaleStart = transform.localScale;
         if (MusicScene.Instance != null)
@@ -105,6 +110,13 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         rb.freezeRotation = true;
         Cursor.lockState = CursorLockMode.Locked;
     }
+
+
+    private Vector3 CalcularImpulsoInicial()
+    {
+        return Vector3.up * planeo;
+    }
+
 
     public void SlowFalling()
     {
@@ -126,16 +138,68 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             GroundCheck();
         }
         //PLANEAAAAAAAAAAAAAARRRRRRR!!!!!!
-        
+
+
     }
 
+    public void FinalImpulse()
+    {
+        rb.velocity *= Time.deltaTime*planeo/ perdidadeimpulso;
+        //transform.Translate(Vector3.forward * planeo * Time.deltaTime);
+
+        // rb.AddForce(Vector3.up * planeo, ForceMode.Impulse);
+
+        //Vector3 impulse = new Vector3(0f, planeo, planeo);
+        //rb.AddForce(impulse, ForceMode.Impulse);
+
+
+        //if (impulsoInicial != Vector3.zero)
+        //{
+        //    // Obtiene la magnitud de la velocidad actual del objeto
+        //    float magnitudVelocidad = rb.velocity.magnitude;
+
+        //    // Aplica un impulso decreciente
+        //    Vector3 impulsoDecreciente = impulsoInicial * magnitudVelocidad * Time.deltaTime;
+
+        //    // Aplica la fuerza al rigidbody
+        //    rb.AddForce(impulsoDecreciente, ForceMode.Impulse);
+        //}
+
+        //planeo -= Time.deltaTime * 100f; 
+        //planeo = Mathf.Max(planeo, 0f); 
+    }
 
     void Update()
     {
-        if (!ascending)
+        
+
+        if (!ascending && planeo > planeonormal)
+        {
+
+            planeo -= Time.deltaTime * perdidadeviento;
+            planeo = Mathf.Max(planeo, 0f); 
+            
+           // planeo = planeonormal;
+        }
+
+        if (!ascending && planeo > limiteinerciaviento)
+        {
+            planeo = limiteinerciaviento;
+        }
+
+        if (!ascending && planeo < planeonormal)
         {
             planeo = planeonormal;
         }
+
+        //if (!isGliding)
+        //{
+        //    planeo = planeonormal;
+        //}
+        //else if (ascending)
+        //{
+        //    impulsoInicial = Vector3.up * planeo;
+        //}
 
         //if (grounded)
         //{
@@ -153,6 +217,10 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             actualGlideSpeed = actualSpeed;
             gliderotationSpeed = rotationSpeed * glidedraft;
             ActivateDesactivateGliding();            
+        }
+        else
+        {
+            planeo = planeonormal;
         }
 
         switch (currentstate)

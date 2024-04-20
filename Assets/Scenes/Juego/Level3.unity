@@ -352,7 +352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 863186f7fdc8d254ca3ba4705ae70294, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FuerzaViento: 555
+  FuerzaViento: 200
   player: {fileID: 1911357746}
 --- !u!65 &39486247
 BoxCollider:
@@ -657,7 +657,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 863186f7fdc8d254ca3ba4705ae70294, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FuerzaViento: 50
+  FuerzaViento: 100
   player: {fileID: 1911357746}
 --- !u!65 &89157580
 BoxCollider:
@@ -3700,7 +3700,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 863186f7fdc8d254ca3ba4705ae70294, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FuerzaViento: 555
+  FuerzaViento: 200
   player: {fileID: 1911357746}
 --- !u!65 &825614018
 BoxCollider:
@@ -5776,7 +5776,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 863186f7fdc8d254ca3ba4705ae70294, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FuerzaViento: 222
+  FuerzaViento: 50
   player: {fileID: 1911357746}
 --- !u!65 &1116274746
 BoxCollider:
@@ -5888,7 +5888,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 863186f7fdc8d254ca3ba4705ae70294, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FuerzaViento: 400
+  FuerzaViento: 100
   player: {fileID: 1911357746}
 --- !u!65 &1130363604
 BoxCollider:
@@ -6043,7 +6043,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 863186f7fdc8d254ca3ba4705ae70294, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FuerzaViento: 150
+  FuerzaViento: 100
   player: {fileID: 1911357746}
 --- !u!65 &1140124656
 BoxCollider:
@@ -6331,7 +6331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 863186f7fdc8d254ca3ba4705ae70294, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FuerzaViento: 222
+  FuerzaViento: 100
   player: {fileID: 1911357746}
 --- !u!65 &1173877582
 BoxCollider:
@@ -6543,7 +6543,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 863186f7fdc8d254ca3ba4705ae70294, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FuerzaViento: 222
+  FuerzaViento: 50
   player: {fileID: 1911357746}
 --- !u!65 &1240634382
 BoxCollider:
@@ -6956,6 +6956,18 @@ PrefabInstance:
     - target: {fileID: 5014615300034817679, guid: a7f0c8aa367beef4ebc07c335aa1c051, type: 3}
       propertyPath: pickBoxSpeed
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5014615300034817679, guid: a7f0c8aa367beef4ebc07c335aa1c051, type: 3}
+      propertyPath: perdidadeviento
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 5014615300034817679, guid: a7f0c8aa367beef4ebc07c335aa1c051, type: 3}
+      propertyPath: perdidadeimpulso
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5014615300034817679, guid: a7f0c8aa367beef4ebc07c335aa1c051, type: 3}
+      propertyPath: limiteinerciaviento
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 5275052604135366970, guid: a7f0c8aa367beef4ebc07c335aa1c051, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7718,7 +7730,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh29384
+  m_Name: pb_Mesh283244
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -8297,7 +8309,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 863186f7fdc8d254ca3ba4705ae70294, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FuerzaViento: 50
+  FuerzaViento: 100
   player: {fileID: 1911357746}
 --- !u!65 &1516117245
 BoxCollider:
@@ -9772,7 +9784,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 863186f7fdc8d254ca3ba4705ae70294, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FuerzaViento: 300
+  FuerzaViento: 100
   player: {fileID: 1911357746}
 --- !u!65 &1766623942
 BoxCollider:
