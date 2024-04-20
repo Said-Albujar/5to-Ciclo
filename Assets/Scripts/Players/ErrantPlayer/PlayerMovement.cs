@@ -67,6 +67,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     [Header("Glide")]
     public float MomentumKiller = 0.9f;
     public bool isGliding = false;
+    public bool CANGLIDE = true;
 
     public float contragravedad = 5.0f;
 
@@ -99,19 +100,25 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     public void SlowFalling()
     {
-        //PLANEAAAAAAAAAAAAAARRRRRRR!!!!!!
-        if (currentstate == state.gliding)
+        if (grounded)
         {
-            // rb.useGravity = false;
-            //rb.velocity = Vector3.zero;
-            rb.velocity *= MomentumKiller;
-
-            //Vector3 reducedGravity = Physics.gravity / gravityScaleFactor;
-
-            // rb.AddForce(reducedGravity, ForceMode.Acceleration);
-            Vector3 verticalForce = new Vector3(0, contragravedad, 0);
-            rb.AddForce(verticalForce, ForceMode.Force);
+            isGliding = false;
+            currentstate = state.idle;
         }
+        else
+        {
+            if (currentstate == state.gliding)
+            {
+
+                rb.velocity *= MomentumKiller;
+
+                Vector3 verticalForce = new Vector3(0, contragravedad, 0);
+                rb.AddForce(verticalForce, ForceMode.Force);
+            }
+            GroundCheck();
+        }
+        //PLANEAAAAAAAAAAAAAARRRRRRR!!!!!!
+        
     }
 
 
@@ -133,12 +140,15 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         //    GroundCheck();
         //}
 
-        ActivateDesactivateGliding();
+        if (CANGLIDE)
+        {
+            ActivateDesactivateGliding();
+        }
 
         switch (currentstate)
         {
             case state.climbIdle:
-
+                CANGLIDE = false;
                 CheckBorder();
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
@@ -148,18 +158,22 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 break;
 
             case state.climbMoving:
+                
                 transform.position += Vector3.up * Time.deltaTime * UpDistance + transform.forward * 0.8f * Time.deltaTime;
+                CANGLIDE = false;
                 break;
 
             case state.gliding:
                 SlowFalling();
+                NormalMovement();
+                
                 break;
 
             default:
                 if (turn)
                 {
                     NormalMovement();
-
+                    
                 }
                 break;
         }
@@ -195,7 +209,9 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             AudioManager.Instance.PlaySFX("Jump");
             grounded = false;
             isJump = true;
+            
         }
+        CANGLIDE = true;
     }
  
     void ErrantInput()
@@ -217,7 +233,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     void ActivateDesactivateGliding()
     {
-        if (Input.GetKeyDown(jumpKey) && !grounded && !GameManager.instance.inPause && currentstate != state.climbIdle)
+        if (Input.GetKeyDown(jumpKey) && !grounded && !GameManager.instance.inPause && currentstate != state.climbIdle && isJump) //
         {
             switch (isGliding)
             {
@@ -232,6 +248,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     break;
             }
         }
+
     }
 
 
@@ -388,11 +405,16 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     {
         rb.isKinematic = false;
         currentstate = state.idle;
+        CANGLIDE = true;
     }
     void CheckBorder()
     {
         if(!grounded)
         {
+            //isGliding = false;
+            //CANGLIDE = false;
+            //PUEDE QEU ESTOS F ALLEN Y DEBAN IR DEBAJO DENTRO DE LA LINES
+
             RaycastHit hit;
             blueLine = Physics.Raycast(groundCheck.position + (Vector3.up * BlueDistance), groundCheck.forward, out hit, radius, layerBorder);
             greenLine = Physics.Raycast(groundCheck.position + (Vector3.up * GreenDistance), groundCheck.forward, radius, layerBorder);
@@ -412,10 +434,12 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     transform.SetParent(hit.collider.transform);
                     Debug.Log("Plataforma");
                     currentstate = state.climbIdle;
+                    CANGLIDE = false;
                 }
                 else
                 {
                     currentstate = state.climbIdle;
+                    CANGLIDE = false;
 
                 }
 
@@ -428,7 +452,9 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             currentstate = state.idle;
             rb.isKinematic = false;
             rb.useGravity = true;
-            
+
+            CANGLIDE = false;
+            //nosesiesredundante
         }
 
         /* (!grounded)
@@ -456,9 +482,46 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         CheckBorder();
         Drag();
         actualSpeed = rb.velocity.magnitude;
+
         if (grounded)
+        {
             isJump = false;
+            CANGLIDE = false;
+        }
+        else if (!grounded)
+        {
+            isJump = true;
+            CANGLIDE = true;
+        }
+
+
+        //if (grounded)
+        //{
+        //    isJump = false;
+        //    CANGLIDE = false;
+        //}
+
+        //else
+        //{
+        //    if (!isJump)
+        //    {
+        //        CANGLIDE = false;
+        //    }
+        //}
     }
+
+    private void GlidingMovement()
+    {
+        GroundCheck();
+        SpeedControl();
+        ErrantInput();
+        CheckBorder();
+        Drag();
+        actualSpeed = rb.velocity.magnitude;
+
+        
+    }
+
     void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
