@@ -22,6 +22,7 @@ public class PlayerAnimationController : MonoBehaviour
             anim.SetBool("isRunning", playerMovement.isRunning);
             anim.SetBool("isCrouching", playerMovement.isCrouching);
             anim.SetBool("GetUp", picked.canPickUp);
+            anim.SetBool("jumpedBox", playerMovement.isJump);
 
             MoveAnim();
             JumpAnim();
