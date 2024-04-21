@@ -16,6 +16,7 @@ public class PickUp : MonoBehaviour
     public Vector3 targetPosition;
     public bool box;
     public float timer, maxTimer;
+    public PlayerMovement playerMovement;
     void Awake()
     {
         instance = this;
@@ -24,66 +25,46 @@ public class PickUp : MonoBehaviour
     
     void Update()
     {
-        RaycastHit hit;
-        box=Physics.Raycast(transform.position, transform.forward, out hit,radius, maskBox);
-        if(box)
+        if(playerMovement.grounded)
         {
-            PickedObject = hit.collider.gameObject;
-        }
-        else if(!box && !haveObject)
-        {
-            PickedObject = null;
-        }
-
-        if (haveObject)
-        {
-            float moveSpeed = 7.0f;
-            Vector3 targetPosition = HandPoint.transform.position;
-           
-            timer += Time.deltaTime;
-
-            if (timer<=maxTimer)
+            RaycastHit hit;
+            box = Physics.Raycast(transform.position, transform.forward, out hit, radius, maskBox);
+            if (box)
             {
-               
+                PickedObject = hit.collider.gameObject;
             }
-            else
+            else if (!box && !haveObject)
             {
-                if (PickedObject)
+                PickedObject = null;
+            }
+
+            if (haveObject)
+            {
+                float moveSpeed = 7.0f;
+                Vector3 targetPosition = HandPoint.transform.position;
+
+                timer += Time.deltaTime;
+
+                if (timer <= maxTimer)
                 {
-                    PickedObject.transform.position = Vector3.Lerp(PickedObject.transform.position, HandPoint.transform.position, moveSpeed * Time.deltaTime);
-                    if (PickedObject.transform.position == HandPoint.transform.position)
-                    {
-                        timer = 0f;
 
-                    }
                 }
-                
-              
+                else
+                {
+                    if (PickedObject)
+                    {
+                        PickedObject.transform.position = Vector3.Lerp(PickedObject.transform.position, HandPoint.transform.position, moveSpeed * Time.deltaTime);
+                        if (PickedObject.transform.position == HandPoint.transform.position)
+                        {
+                            timer = 0f;
+
+                        }
+                    }
+
+
+                }
             }
         }
-        /*if (haveObject == false)
-        {
-            PickedObject = null;
-            hitColliders = Physics.OverlapSphere(HandPoint.transform.position, radius, maskBox);
-            foreach (var hitCollider in hitColliders)
-            {
-
-                PickedObject = hitColliders[hitColliders.Length - 1].gameObject;
-                break;
-            }
-        }
-        else
-        {
-            float moveSpeed = 3.0f;
-            Vector3 targetPosition = HandPoint.transform.position; 
-
-            //PickedObject.transform.position = Vector3.MoveTowards(PickedObject.transform.position, targetPosition, moveSpeed * Time.deltaTime);
-            PickedObject.transform.position = Vector3.Lerp(PickedObject.transform.position, targetPosition, moveSpeed*Time.deltaTime);
-        }*/
-        
-
-        
-
         if (Input.GetKeyDown(KeyCode.E) && PickedObject != null && !canPickUp)
         {
             PickedObject.AddComponent<Rigidbody>();
@@ -116,8 +97,31 @@ public class PickUp : MonoBehaviour
 
 
         }
-        
 
+        /*if (haveObject == false)
+        {
+            PickedObject = null;
+            hitColliders = Physics.OverlapSphere(HandPoint.transform.position, radius, maskBox);
+            foreach (var hitCollider in hitColliders)
+            {
+
+                PickedObject = hitColliders[hitColliders.Length - 1].gameObject;
+                break;
+            }
+        }
+        else
+        {
+            float moveSpeed = 3.0f;
+            Vector3 targetPosition = HandPoint.transform.position; 
+
+            //PickedObject.transform.position = Vector3.MoveTowards(PickedObject.transform.position, targetPosition, moveSpeed * Time.deltaTime);
+            PickedObject.transform.position = Vector3.Lerp(PickedObject.transform.position, targetPosition, moveSpeed*Time.deltaTime);
+        }*/
+
+
+
+
+       
 
     }
     private void OnDrawGizmos()
