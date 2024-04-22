@@ -13,12 +13,11 @@ public class GoToPlayer : MonoBehaviour
     }
     public PointState state;
     Rigidbody rb;
-    Transform player;
+    public Transform player;
     float currentDrag;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        player = GameObject.FindGameObjectWithTag("Hair").transform;
         currentDrag = rb.drag;
 
         float randomX = Random.Range(-1f, 1f);
@@ -34,21 +33,27 @@ public class GoToPlayer : MonoBehaviour
 
     void Update()
     {
-        switch (state)
+        if(player== null)
         {
-            case PointState.scatter:
-                rb.velocity = Vector3.MoveTowards(rb.velocity, Vector3.zero, Time.deltaTime * 5);
-                Invoke("CheckForNext", 0.5f);
-                break;
-            case PointState.go:
-                //Vector3 goToPlayer = transform.position - player.position;
-                //rb.position = Vector3.MoveTowards(transform.position, player.position, 60 *   Time.smoothDeltaTime);
-                var dir = (player.position - transform.position).normalized;
-
-                rb.velocity = dir * 40f;
-                break;
+            player = GameObject.FindGameObjectWithTag("Hair").transform;
         }
+        if(player!=null)
+        { 
+             switch (state)
+            {
+                case PointState.scatter:
+                    rb.velocity = Vector3.MoveTowards(rb.velocity, Vector3.zero, Time.deltaTime * 5);
+                    Invoke("CheckForNext", 0.5f);
+                    break;
+                case PointState.go:
+                    //Vector3 goToPlayer = transform.position - player.position;
+                    //rb.position = Vector3.MoveTowards(transform.position, player.position, 60 *   Time.smoothDeltaTime);
+                    var dir = (player.position - transform.position).normalized;
 
+                    rb.velocity = dir * 40f;
+                    break;
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)

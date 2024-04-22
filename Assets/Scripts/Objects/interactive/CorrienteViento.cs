@@ -32,7 +32,7 @@ public class CorrienteViento : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         // Verificar si el collider que entró en contacto es el jugador
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Hair"))
         {
             player.planeo = FuerzaViento;
             player.ascending = true;
@@ -41,7 +41,7 @@ public class CorrienteViento : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         // Verificar si el collider que entró en contacto es el jugador
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Hair"))
         {
             //player.FinalImpulse();
             player.ascending = false;
