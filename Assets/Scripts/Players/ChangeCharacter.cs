@@ -7,7 +7,7 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
     public bool CanChange = true;
     public float TimeLeft = 0f;
     public float WaitTime = 5f;
-
+    public PickUp pickUp;
     [Header("Hairdresser")]
     public GameObject HairdresserSkin;
     public GameObject HairdresserBody;
@@ -50,6 +50,33 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
 
     void Update()
     {
+        
+        if(pickUp.haveObject)
+        {
+            StopChange();
+           
+        }
+        else
+        {
+            if (IsHairdress)
+            {
+                HairdresserSkin.SetActive(true);
+                MinerSkin.SetActive(false);
+                EngineerSkin.SetActive(false);
+            }
+            if (IsEngineer)
+            {
+                HairdresserSkin.SetActive(false);
+                MinerSkin.SetActive(false);
+                EngineerSkin.SetActive(true);
+            }
+            if (IsMiner)
+            {
+                HairdresserSkin.SetActive(false);
+                MinerSkin.SetActive(true);
+                EngineerSkin.SetActive(false);
+            }
+        }
         Vector3 offset = new Vector3(0F, 1f, 0f);
         if (CanChange)
         {
@@ -176,6 +203,12 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
         IsHairdress = false;
         IsMiner = false;
         IsEngineer = true;
+    }
+    void StopChange()
+    {
+        HairdresserSkin.SetActive(false);
+        MinerSkin.SetActive(false);
+        EngineerSkin.SetActive(false);
     }
 
     void StartTimer()
