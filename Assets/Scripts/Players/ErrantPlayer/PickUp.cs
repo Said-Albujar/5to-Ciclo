@@ -17,6 +17,7 @@ public class PickUp : MonoBehaviour
     public bool box;
     public float timer, maxTimer;
     public PlayerMovement playerMovement;
+    public PlayerHealth playerHealth;
     void Awake()
     {
         instance = this;
@@ -25,6 +26,11 @@ public class PickUp : MonoBehaviour
     
     void Update()
     {
+        if (playerHealth.health <= 0)
+        {
+            DropBox();
+        }
+
         if(playerMovement.grounded)
         {
             RaycastHit hit;
@@ -67,37 +73,14 @@ public class PickUp : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.E) && PickedObject != null && !canPickUp)
         {
-            PickedObject.AddComponent<Rigidbody>();
-            PickedObject.GetComponent<Rigidbody>().useGravity = true;
-            PickedObject.GetComponent<Rigidbody>().isKinematic = false;
-            PickedObject.gameObject.transform.SetParent(null);
-            canPickUp = true;
-            PickedObject = null;
-            haveObject = false;
+            DropBox();
         }
 
         if (Input.GetKeyDown(KeyCode.E) && PickedObject != null && canPickUp)
         {
-            timer = 0f;
-            if (PickedObject != null)
-            {
-                Destroy(this.GetComponent<Rigidbody>());
-                Destroy(PickedObject.GetComponent<Rigidbody>());
-                Vector3 originalScale = PickedObject.transform.localScale;
 
-                PickedObject.gameObject.transform.SetParent(this.gameObject.transform);
-
-                //PickedObject.transform.localScale = originalScale;
-
-                //PickedObject.transform.position = HandPoint.transform.position;
-                canPickUp = false;
-                haveObject = true;
-            }
-
-
-
+            PickBox();
         }
-
         /*if (haveObject == false)
         {
             PickedObject = null;
@@ -117,12 +100,40 @@ public class PickUp : MonoBehaviour
             //PickedObject.transform.position = Vector3.MoveTowards(PickedObject.transform.position, targetPosition, moveSpeed * Time.deltaTime);
             PickedObject.transform.position = Vector3.Lerp(PickedObject.transform.position, targetPosition, moveSpeed*Time.deltaTime);
         }*/
+    }
 
+    private void DropBox()
+    {
+        if (PickedObject != null)
+        {
+            PickedObject.AddComponent<Rigidbody>();
+            PickedObject.GetComponent<Rigidbody>().useGravity = true;
+            PickedObject.GetComponent<Rigidbody>().isKinematic = false;
+            PickedObject.gameObject.transform.SetParent(null);
+            canPickUp = true;
+            PickedObject = null;
+            haveObject = false;
+        }
+        
+    }
 
+    private void PickBox()
+    {
+        timer = 0f;
+        if (PickedObject != null)
+        {
+            Destroy(this.GetComponent<Rigidbody>());
+            Destroy(PickedObject.GetComponent<Rigidbody>());
+            Vector3 originalScale = PickedObject.transform.localScale;
 
+            PickedObject.gameObject.transform.SetParent(this.gameObject.transform);
 
-       
+            //PickedObject.transform.localScale = originalScale;
 
+            //PickedObject.transform.position = HandPoint.transform.position;
+            canPickUp = false;
+            haveObject = true;
+        }
     }
     private void OnDrawGizmos()
     {

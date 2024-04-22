@@ -320,6 +320,7 @@ MonoBehaviour:
   timer: 0
   maxTimer: 0.7
   playerMovement: {fileID: 5014615300034817679}
+  playerHealth: {fileID: 7611905962013508489}
 --- !u!1 &149774462435579493
 GameObject:
   m_ObjectHideFlags: 0
@@ -5180,8 +5181,6 @@ MonoBehaviour:
   fileName: data.game
   gameData:
     playerPosition: {x: 0, y: 0, z: 0}
-    health: 1
-    maxHearts: 1
     haveMiner: 0
     haveEngineer: 0
     haveHairdress: 0

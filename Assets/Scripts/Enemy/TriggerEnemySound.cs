@@ -7,7 +7,7 @@ public class TriggerEnemySound : MonoBehaviour
     public EnemyAudioManager enemyAudioManager;
     public void PlayStepSound()
     {
-        enemyAudioManager.PlaySound("Steps");
+        //enemyAudioManager.PlaySound("Steps");
     }
     
 }
