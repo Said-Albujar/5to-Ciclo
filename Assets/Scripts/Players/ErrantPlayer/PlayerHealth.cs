@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class PlayerHealth : MonoBehaviour, IDataPersistence
+public class PlayerHealth : MonoBehaviour
 {
     public int health;
     public int maxHearts;
@@ -20,12 +20,7 @@ public class PlayerHealth : MonoBehaviour, IDataPersistence
     public PlayerMovement player;
     private void Update()
     {
-        /*if (health > maxHearts)
-        {
-            health = maxHearts;
-        }*/
 
-        // CheckHearts();
         if (health == 0)
         {
            
@@ -89,15 +84,5 @@ public class PlayerHealth : MonoBehaviour, IDataPersistence
         }
     }
 
-    public void LoadData(GameData data)
-    {
-        this.health = data.health;
-        this.maxHearts = data.maxHearts;
-    }
 
-    public void SaveData(ref GameData data)
-    {
-        data.health = this.health;
-        data.maxHearts = this.maxHearts;
-    }
 }
