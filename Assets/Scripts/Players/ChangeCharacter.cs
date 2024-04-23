@@ -126,10 +126,12 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
 
         if (isNearM && Input.GetKeyDown(KeyCode.F))
         {
+            
             isNearM = false;
             HaveMiner = true;
             ChangeToMiner();
             Destroy(MinerBody);
+            DataPersistenceManager.instance.SaveGame();
         }
 
         if (isNearE && Input.GetKeyDown(KeyCode.F))
@@ -138,6 +140,8 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
             HaveEngineer = true;
             ChangeToEngineer();
             Destroy(EngineerBody);
+            DataPersistenceManager.instance.SaveGame();
+
         }
         if (isNearH && Input.GetKeyDown(KeyCode.F))
         {
@@ -145,6 +149,8 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
             HaveHairdress = true;
             ChangeToHair();
             Destroy(HairdresserBody);
+            DataPersistenceManager.instance.SaveGame();
+
         }
 
         if (HaveMiner)

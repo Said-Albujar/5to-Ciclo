@@ -170,7 +170,9 @@ public class GameManager : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.F5))
             {
+
                 GiveAllTools();
+                DataPersistenceManager.instance.SaveGame();
                 Time.timeScale = 1f;
                 panelConsole.SetActive(false);
             }
