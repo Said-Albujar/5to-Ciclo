@@ -226,6 +226,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         switch (currentstate)
         {
             case state.climbIdle:
+                isGliding = false;
                 canGlide = false;
                 CheckBorder();
                 if (Input.GetKeyDown(KeyCode.Space))
@@ -312,7 +313,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     void ActivateDesactivateGliding()
     {
-        if (Input.GetKeyDown(jumpKey) && !grounded && !GameManager.instance.inPause && currentstate != state.climbIdle && isJump) //
+        if (Input.GetKeyDown(jumpKey) && !grounded && !GameManager.instance.inPause && currentstate != state.climbIdle && isJump && !pick.haveObject) //
         {
             topGlideSpeed = actualSpeed;
 
