@@ -80,8 +80,8 @@ public class CatEnemy : MonoBehaviour
             {
                 navMeshAgent.enabled = true;
                 runAnimation = true;
-                lastPosPlayer = playerPosition.transform.localPosition;
-                navMeshAgent.SetDestination(playerPosition.transform.localPosition);
+                lastPosPlayer = playerPosition.transform.position;
+                navMeshAgent.SetDestination(playerPosition.transform.position);
             }
         }
         else
