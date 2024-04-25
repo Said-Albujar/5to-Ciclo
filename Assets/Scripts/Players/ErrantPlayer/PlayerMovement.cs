@@ -313,7 +313,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     void ActivateDesactivateGliding()
     {
-        if (Input.GetKeyDown(jumpKey) && !grounded && !GameManager.instance.inPause && currentstate != state.climbIdle && isJump && !pick.haveObject) //
+        if (Input.GetKeyDown(jumpKey) && !grounded && !GameManager.instance.inPause && currentstate != state.climbIdle && isJump) //
         {
             topGlideSpeed = actualSpeed;
 
