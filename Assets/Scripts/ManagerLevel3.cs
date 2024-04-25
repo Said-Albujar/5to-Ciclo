@@ -15,6 +15,7 @@ public class ManagerLevel3 : MonoBehaviour
             {
                 DataPersistenceManager.instance.LoadGame();
                 PlayerMovement.Instance.transform.position = initialPos.position;
+                PlayerMovement.Instance.transform.rotation = initialPos.rotation;
                 DataPersistenceManager.instance.SaveGame();
                 once = true;
             }
