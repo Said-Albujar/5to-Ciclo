@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class Rope : MonoBehaviour
 {
-    public List<GameObject> chainList;
     public ChangeCharacter changeMecanic;
     public bool isInsideCollider = false;
-    public GameObject Plataforma;
+    [SerializeField] CharacterJoint jointToCut;
+    [SerializeField] GameObject box;
+    [SerializeField] float force;
+    [SerializeField] Rigidbody rb;
+    [SerializeField] Collider localCollider;
 
     //Se cambio el fixed por update ya que daba demasiados problemas a la hora de cortar
-    //Se añandio un bool que detecta la collider, si no esta dentro del colider no se destruye la cuerda.
-    //Se añadio una lista,los objetos dentro de la lista se destruyen(cadenas).
+    //Se aï¿½andio un bool que detecta la collider, si no esta dentro del colider no se destruye la cuerda.
+    //Se aï¿½adio una lista,los objetos dentro de la lista se destruyen(cadenas).
 
     private void Start()
     {
@@ -28,8 +31,8 @@ public class Rope : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.F))
             {
                 
-                Debug.Log("SonidoCortar");
-                DeactivateChain();
+                
+                ExecuteCut();
             }
         }
     }
@@ -49,17 +52,19 @@ public class Rope : MonoBehaviour
         }
     }
 
-    private void DeactivateChain()
+    [ContextMenu("EXECUTECUT")]
+    public void ExecuteCut()
     {
-        foreach (GameObject chain in chainList)
-        {
-            chain.SetActive(false);
-            
-            AudioManager.Instance.PlaySFX("cortar");
-
-            
-        }
-        Vector3 force = new Vector3(0,-5,0);
-        Plataforma.GetComponent<Rigidbody>().AddForce(force, ForceMode.Impulse);
+        Vector3 directionFonce = transform.forward;
+        directionFonce.y = 1;
+        
+        box.GetComponent<Rigidbody>().isKinematic = false;
+        box.GetComponent<Rigidbody>().useGravity = true;
+        box.transform.parent = null;
+        rb.useGravity = true;
+        rb.isKinematic = false;
+        localCollider.isTrigger = false;
+        jointToCut.connectedBody = rb;
+        rb.velocity = directionFonce * force;
     }
 }
