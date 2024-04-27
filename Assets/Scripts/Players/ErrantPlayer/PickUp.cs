@@ -71,7 +71,7 @@ public class PickUp : MonoBehaviour
                 }
             }
         }
-        if (Input.GetKeyDown(KeyCode.E) && PickedObject != null && !canPickUp)
+        if (Input.GetKeyDown(KeyCode.E) && PickedObject != null && !canPickUp && timer >= maxTimer)
         {
             DropBox();
         }
@@ -122,6 +122,7 @@ public class PickUp : MonoBehaviour
         timer = 0f;
         if (PickedObject != null)
         {
+            haveObject = true;
             Destroy(this.GetComponent<Rigidbody>());
             Destroy(PickedObject.GetComponent<Rigidbody>());
             Vector3 originalScale = PickedObject.transform.localScale;
@@ -132,7 +133,7 @@ public class PickUp : MonoBehaviour
 
             //PickedObject.transform.position = HandPoint.transform.position;
             canPickUp = false;
-            haveObject = true;
+            
         }
     }
     private void OnDrawGizmos()
