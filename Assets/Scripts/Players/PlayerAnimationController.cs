@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class PlayerAnimationController : MonoBehaviour
 {
-    public PlayerMovement playerMovement;
+    [HideInInspector]public PlayerMovement playerMovement;
     public Animator anim;
     public PickUp picked; 
     void Awake()
     {
-        playerMovement = FindObjectOfType<PlayerMovement>();
+        playerMovement = GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
@@ -29,19 +29,16 @@ public class PlayerAnimationController : MonoBehaviour
             JumpAnim();
             anim.SetBool("grounded", playerMovement.grounded);
             anim.SetBool("inBorder", playerMovement.currentstate == PlayerMovement.state.climbIdle);
-
-            if (playerMovement.currentstate == PlayerMovement.state.climbIdle && Input.GetKeyDown(KeyCode.Space))
-            {
-                anim.Play("ClimbUp");
-                anim.SetBool("inBorder", false);
-            }
         }
-       
 
     }
 
 
-
+    public void ClimbUpAnim()
+    {
+        anim.Play("ClimbUp");
+        anim.SetBool("inBorder", false);
+    }
     private void MoveAnim()
     {
         if (playerMovement.actualSpeed <= 0.1f)

@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 {
     public CapsuleCollider cap;
     public static PlayerMovement Instance;
+    public PlayerAnimationController playerAnimationController;
     public enum state
     {
         idle,
@@ -89,7 +90,6 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public bool ascending = false;
     public float limiteinerciaviento = 60f;
     public PickUp pick;
-
     void Awake()
     {
         Instance = this;
@@ -237,7 +237,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 CheckBorder();
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
-
+                    playerAnimationController.ClimbUpAnim();
                     currentstate = state.climbMoving;
                 }
                 break;

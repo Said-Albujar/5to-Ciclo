@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class StaminaController : MonoBehaviour
 {
-    public PlayerMovement errantMovement;
-    public CollectObject recolectar;
+    private PlayerMovement errantMovement;
+    private CollectObject recolectar;
 
 
     [Header("Stamina Main Parameters")]

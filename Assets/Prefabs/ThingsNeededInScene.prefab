@@ -11494,6 +11494,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cap: {fileID: 658259723506519715}
+  playerAnimationController: {fileID: 6988980691452962639}
   currentstate: 0
   actualSpeed: 0
   walkSpeed: 6
@@ -11557,8 +11558,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b761b8af34bd2e41929828ba7951c1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  errantMovement: {fileID: 0}
-  recolectar: {fileID: 0}
   staminaMax: 50
   regenTimer: 0
   staminaNeedle: 25
@@ -11605,7 +11604,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lightActive: {fileID: 3094227748383291856}
   flashLight: {fileID: 97657011570347468}
-  rb: {fileID: 0}
 --- !u!114 &6190096009686073528
 MonoBehaviour:
   m_ObjectHideFlags: 0
