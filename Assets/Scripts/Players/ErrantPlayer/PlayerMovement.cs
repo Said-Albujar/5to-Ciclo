@@ -68,7 +68,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     [Header("Glide")]
     public bool isGliding = false;
     public bool canGlide = true;
-
+    public bool gliderActive;
    // public float glideSpeed = 1;
     public float planeo = 1f;
     public float antigravedad = 0.9f;
@@ -212,17 +212,20 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         //    GroundCheck();
         //}
 
-        if (canGlide)
+        if(gliderActive)
         {
-            actualGlideSpeed = actualSpeed;
-            gliderotationSpeed = rotationSpeed * glidedraft;
-            ActivateDesactivateGliding();            
+            if (canGlide)
+            {
+                actualGlideSpeed = actualSpeed;
+                gliderotationSpeed = rotationSpeed * glidedraft;
+                ActivateDesactivateGliding();
+            }
+            else
+            {
+                planeo = planeonormal;
+            }
         }
-        else
-        {
-            planeo = planeonormal;
-        }
-
+       
         switch (currentstate)
         {
             case state.climbIdle:
@@ -313,6 +316,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     void ActivateDesactivateGliding()
     {
+       
         if (Input.GetKeyDown(jumpKey) && !grounded && !GameManager.instance.inPause && currentstate != state.climbIdle && isJump) //
         {
             topGlideSpeed = actualSpeed;
