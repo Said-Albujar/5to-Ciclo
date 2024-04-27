@@ -212,20 +212,23 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         //    GroundCheck();
         //}
 
-        if(gliderActive)
+
+        if (canGlide)
         {
-            if (canGlide)
+            actualGlideSpeed = actualSpeed;
+            gliderotationSpeed = rotationSpeed * glidedraft;
+            if(gliderActive)
             {
-                actualGlideSpeed = actualSpeed;
-                gliderotationSpeed = rotationSpeed * glidedraft;
                 ActivateDesactivateGliding();
-            }
-            else
-            {
-                planeo = planeonormal;
+
             }
         }
-       
+        else
+        {
+            planeo = planeonormal;
+        }
+
+
         switch (currentstate)
         {
             case state.climbIdle:
@@ -246,6 +249,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 break;
 
             case state.gliding:
+                
                 SlowFalling();
                 GlidingMovement();
 
