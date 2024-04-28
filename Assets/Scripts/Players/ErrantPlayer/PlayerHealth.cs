@@ -39,6 +39,8 @@ public class PlayerHealth : MonoBehaviour
                 health = maxHearts;
                 DataPersistenceManager.instance.LoadGame();
                 timer = 0f;
+                player.currentstate = PlayerMovement.state.idle;
+                
             }
         }
         else

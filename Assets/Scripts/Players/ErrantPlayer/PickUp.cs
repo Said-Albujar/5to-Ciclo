@@ -43,34 +43,35 @@ public class PickUp : MonoBehaviour
             {
                 PickedObject = null;
             }
+        }
 
-            if (haveObject)
+        if (haveObject)
+        {
+            float moveSpeed = 7.0f;
+            Vector3 targetPosition = HandPoint.transform.position;
+
+            timer += Time.deltaTime;
+
+            if (timer <= maxTimer)
             {
-                float moveSpeed = 7.0f;
-                Vector3 targetPosition = HandPoint.transform.position;
 
-                timer += Time.deltaTime;
-
-                if (timer <= maxTimer)
+            }
+            else
+            {
+                if (PickedObject)
                 {
-
-                }
-                else
-                {
-                    if (PickedObject)
+                    PickedObject.transform.position = Vector3.Lerp(PickedObject.transform.position, HandPoint.transform.position, moveSpeed * Time.deltaTime);
+                    if (PickedObject.transform.position == HandPoint.transform.position)
                     {
-                        PickedObject.transform.position = Vector3.Lerp(PickedObject.transform.position, HandPoint.transform.position, moveSpeed * Time.deltaTime);
-                        if (PickedObject.transform.position == HandPoint.transform.position)
-                        {
-                            timer = 0f;
+                        timer = 0f;
 
-                        }
                     }
-
-
                 }
+
+
             }
         }
+
         if (Input.GetKeyDown(KeyCode.E) && PickedObject != null && !canPickUp && timer >= maxTimer)
         {
             

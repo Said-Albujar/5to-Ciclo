@@ -110,6 +110,7 @@ public class EnemyThrower : MonoBehaviour
             {
                 if (playerPosition != null)
                 {
+                    navMeshAgent.enabled = true;
                     navMeshAgent.SetDestination(playerPosition.transform.position);
                     navMeshAgent.speed = speedPlayerChange;
                 
