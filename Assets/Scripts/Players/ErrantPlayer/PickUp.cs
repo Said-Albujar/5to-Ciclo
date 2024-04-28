@@ -73,10 +73,12 @@ public class PickUp : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.E) && PickedObject != null && !canPickUp && timer >= maxTimer)
         {
-            DropBox();
+            
+             DropBox();
+            
         }
 
-        if (Input.GetKeyDown(KeyCode.E) && PickedObject != null && canPickUp)
+        if (Input.GetKeyDown(KeyCode.E) && PickedObject != null && canPickUp&& !playerMovement.isCrouching)
         {
 
             PickBox();

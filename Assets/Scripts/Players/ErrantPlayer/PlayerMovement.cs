@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     {
         idle,
         moving,
+        crouching,
         jumping,
         climbIdle,
         climbMoving,
@@ -125,6 +126,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             isGliding = false;
             currentstate = state.idle;
         }
+       
         else
         {
             if (currentstate == state.gliding)
@@ -172,7 +174,6 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     void Update()
     {
         
-
         if (!ascending && planeo > planeonormal)
         {
 
@@ -353,11 +354,14 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
         if (isCrouching)
         {
+            currentstate = state.crouching;
             cap.height = crouchHeight;
             cap.center = new Vector3(cap.center.x, CrouchY, cap.center.z);
         }
         else
         {
+            currentstate = state.idle;
+
             cap.height = standHeight;
             cap.center = new Vector3(cap.center.x, standY, cap.center.z);
         }
@@ -495,6 +499,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     {
         if (Input.GetKeyDown(KeyCode.LeftControl) && grounded)
         {
+            
             switch (isCrouching)
             {
                 case true:
