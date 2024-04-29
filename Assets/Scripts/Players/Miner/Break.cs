@@ -20,12 +20,11 @@ public class Break : MonoBehaviour
     {
         if (CanBreak == true && Input.GetKeyDown(KeyCode.F) && Change.IsMiner == true)
         {
+            Change.anim.UsingToolAnim(1);//0.alicate, 1.pico, 2.tijeras
             if (!spawnedPoints) SpawnPoints();
             AudioManager.Instance.PlaySFX("DestroyRock");
             Destroy(Rock);
             InstantiateVFX();
-
-
         }
     }
 

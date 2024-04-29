@@ -42,8 +42,11 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
     public bool alpha2Pressed = false;
     public bool alpha3Pressed = false;
 
+    [HideInInspector]public PlayerAnimationController anim;
+
     void Start()
     {
+        anim = GetComponent<PlayerAnimationController>();
         /* ChangeToHair();
          characterHair.SetActive(true);*/
     }

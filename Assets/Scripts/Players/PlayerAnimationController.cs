@@ -6,12 +6,19 @@ public class PlayerAnimationController : MonoBehaviour
 {
     [HideInInspector]public PlayerMovement playerMovement;
     public Animator anim;
+    public AnimationClip[] usingToolsAnims; //0.alicate, 1.pico, 2.tijeras
+    private AnimatorOverrideController animatorOverrideController;
     public PickUp picked; 
     void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();
     }
 
+    private void Start()
+    {
+        animatorOverrideController = new AnimatorOverrideController(anim.runtimeAnimatorController);
+        anim.runtimeAnimatorController = animatorOverrideController;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -30,7 +37,6 @@ public class PlayerAnimationController : MonoBehaviour
             anim.SetBool("grounded", playerMovement.grounded);
             anim.SetBool("inBorder", playerMovement.currentstate == PlayerMovement.state.climbIdle);
         }
-
     }
 
 
@@ -75,9 +81,19 @@ public class PlayerAnimationController : MonoBehaviour
         anim.SetBool("grounded", false);
         anim.SetBool("jumped", false);
     }
-
     public void StepSound()
     {
         //AudioManager.Instance.PlaySFX("Walk");
+    }
+
+    public void UsingToolAnim(int index)
+    {
+        anim.SetBool("usingTool", true);
+        animatorOverrideController["UsingPickage"] = usingToolsAnims[index];
+    }
+
+    public void ExitToolAnim()
+    {
+        anim.SetBool("usingTool", false);
     }
 }

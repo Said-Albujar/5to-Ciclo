@@ -11692,6 +11692,7 @@ MonoBehaviour:
   alpha1Pressed: 0
   alpha2Pressed: 0
   alpha3Pressed: 0
+  anim: {fileID: 0}
 --- !u!114 &8503565980242190832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11729,6 +11730,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMovement: {fileID: 0}
   anim: {fileID: 224832969460843734}
+  usingToolsAnims:
+  - {fileID: 7400000, guid: b1c59ba0157ccd141a31b5d54c91109e, type: 2}
+  - {fileID: 7400000, guid: bb266b2765bd9594388c21d6c574fa5b, type: 2}
+  - {fileID: 7400000, guid: 9f0928797337c8441b5b50f8ed25e79f, type: 2}
   picked: {fileID: 3597977040904073943}
 --- !u!95 &224832969460843734
 Animator:
