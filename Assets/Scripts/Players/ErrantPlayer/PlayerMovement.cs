@@ -130,8 +130,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
             case state.climbMoving:
                 
-                transform.position += Vector3.up * Time.deltaTime * UpDistance + transform.forward * 0.8f * Time.deltaTime;
-                canGlide = false;
+                
                 break;
 
             case state.gliding:
@@ -157,6 +156,8 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             case state.climbIdle:
                 break;
             case state.climbMoving:
+                transform.position += Vector3.up * Time.deltaTime * UpDistance + transform.forward * 0.8f * Time.deltaTime;
+                canGlide = false;
                 break;
             default:
                 if (turn)
