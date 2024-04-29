@@ -7,17 +7,12 @@ public class PlayerAnimationController : MonoBehaviour
     [HideInInspector]public PlayerMovement playerMovement;
     public Animator anim;
     public AnimationClip[] usingToolsAnims; //0.alicate, 1.pico, 2.tijeras
-    private AnimatorOverrideController animatorOverrideController;
-    public PickUp picked; 
+    public AnimatorOverrideController animatorOverrideController;
+    public PickUp picked;
+    bool once = false;
     void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();
-    }
-
-    private void Start()
-    {
-        animatorOverrideController = new AnimatorOverrideController(anim.runtimeAnimatorController);
-        anim.runtimeAnimatorController = animatorOverrideController;
     }
     // Update is called once per frame
     void Update()
