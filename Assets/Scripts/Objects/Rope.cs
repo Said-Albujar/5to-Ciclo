@@ -30,8 +30,8 @@ public class Rope : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.F))
             {
-                
-                
+
+                changeMecanic.anim.UsingToolAnim(2);
                 ExecuteCut();
             }
         }
@@ -66,5 +66,6 @@ public class Rope : MonoBehaviour
         localCollider.isTrigger = false;
         jointToCut.connectedBody = rb;
         rb.velocity = directionFonce * force;
+        Destroy(gameObject);
     }
 }
