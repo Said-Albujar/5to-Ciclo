@@ -66,8 +66,8 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public float GreenDistance;
     public float BlueDistance;
     Vector3 scaleStart;
-    [SerializeField] bool greenLine;
-    [SerializeField] bool blueLine;
+    public bool greenLine;
+    public bool blueLine;
 
     [Header("Glide")]
     public bool isGliding = false;

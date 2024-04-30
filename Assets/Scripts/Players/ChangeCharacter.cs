@@ -43,7 +43,7 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
     public bool alpha3Pressed = false;
 
     [HideInInspector]public PlayerAnimationController anim;
-
+    public PlayerMovement playerMovement;
     void Start()
     {
         anim = GetComponent<PlayerAnimationController>();
@@ -53,33 +53,36 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
 
     void Update()
     {
-        
-        if(pickUp.haveObject)
+        if(playerMovement!=null)
         {
-            StopChange();
-           
+            if (pickUp.haveObject || playerMovement.currentstate==PlayerMovement.state.climbIdle || playerMovement.currentstate == PlayerMovement.state.climbMoving)
+            {
+                StopChange();
+
+            }
+            else
+            {
+                if (IsHairdress)
+                {
+                    HairdresserSkin.SetActive(true);
+                    MinerSkin.SetActive(false);
+                    EngineerSkin.SetActive(false);
+                }
+                if (IsEngineer)
+                {
+                    HairdresserSkin.SetActive(false);
+                    MinerSkin.SetActive(false);
+                    EngineerSkin.SetActive(true);
+                }
+                if (IsMiner)
+                {
+                    HairdresserSkin.SetActive(false);
+                    MinerSkin.SetActive(true);
+                    EngineerSkin.SetActive(false);
+                }
+            }
         }
-        else
-        {
-            if (IsHairdress)
-            {
-                HairdresserSkin.SetActive(true);
-                MinerSkin.SetActive(false);
-                EngineerSkin.SetActive(false);
-            }
-            if (IsEngineer)
-            {
-                HairdresserSkin.SetActive(false);
-                MinerSkin.SetActive(false);
-                EngineerSkin.SetActive(true);
-            }
-            if (IsMiner)
-            {
-                HairdresserSkin.SetActive(false);
-                MinerSkin.SetActive(true);
-                EngineerSkin.SetActive(false);
-            }
-        }
+      
         Vector3 offset = new Vector3(0F, 1f, 0f);
         if (CanChange)
         {

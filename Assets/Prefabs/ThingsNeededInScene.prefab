@@ -5018,6 +5018,7 @@ MonoBehaviour:
     haveEngineer: 0
     haveHairdress: 0
     hold: 0
+    numCheckpoint: 0
 --- !u!1 &3010424379927359896
 GameObject:
   m_ObjectHideFlags: 0
@@ -11578,6 +11579,9 @@ MonoBehaviour:
   ascending: 0
   limiteinerciaviento: 60
   pick: {fileID: 3597977040904073943}
+  lights: []
+  allLight: []
+  numCheckpoint: 0
 --- !u!114 &7400202593831202798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11694,6 +11698,7 @@ MonoBehaviour:
   alpha2Pressed: 0
   alpha3Pressed: 0
   anim: {fileID: 0}
+  playerMovement: {fileID: 5014615300034817679}
 --- !u!114 &8503565980242190832
 MonoBehaviour:
   m_ObjectHideFlags: 0
