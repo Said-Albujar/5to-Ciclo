@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class PlayerMovement : MonoBehaviour, IDataPersistence
 {
@@ -77,7 +78,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     public float actualGlideSpeed;
     public float topGlideSpeed;
-    public float perdidadeinercia = 1f; // Tasa de disminución de velocidad (ajustable)
+    public float perdidadeinercia = 1f; // Tasa de disminuciï¿½n de velocidad (ajustable)
     public float perdidadeviento = 21f;
     public float perdidadeimpulso = 7f;
 
@@ -89,6 +90,10 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public bool ascending = false;
     public float limiteinerciaviento = 60f;
     public PickUp pick;
+    [SerializeField] LightList[] lights;
+    [SerializeField] GameObject[] allLight;
+    public int numCheckpoint;
+
     void Awake()
     {
         Instance = this;
@@ -96,6 +101,10 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     void Start()
     {
+        if(lights.Length > 0)
+        {
+            EnabledLigth(0);
+        }
         planeonormal = planeo;
 
         scaleStart = transform.localScale;
@@ -576,13 +585,74 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     }
     public void LoadData(GameData data)
     {
+        if(lights.Length > 0)
+        {
+            EnabledLigth(data.numCheckpoint);
+        }
         this.transform.position = data.playerPosition;
         this.hold = data.hold;
     }
 
     public void SaveData(ref GameData data)
     {
+        data.numCheckpoint = this.numCheckpoint;
         data.playerPosition = this.transform.position;
         data.hold = this.hold;
+    }
+
+    void EnabledLigth(int zone)
+    {
+        if(allLight.Length > 0)
+        {
+            foreach (var item in allLight)
+            {
+                item.SetActive(false);
+            }
+        }
+
+        switch(zone)
+        {
+            case 0 :
+                foreach (var item in lights[0].listLight)
+                {
+                    item.SetActive(true);
+                }
+            break;
+
+            case 1 :
+                foreach (var item in lights[1].listLight)
+                {
+                    item.SetActive(true);
+                }
+            break;
+
+            case 2 :
+                foreach (var item in lights[2].listLight)
+                {
+                    item.SetActive(true);
+                }
+            break;
+
+            case 3 :
+                foreach (var item in lights[3].listLight)
+                {
+                    item.SetActive(true);
+                }
+            break;
+
+            case 4 :
+                foreach (var item in lights[4].listLight)
+                {
+                    item.SetActive(true);
+                }
+            break;
+
+            case 5 :
+                foreach (var item in lights[5].listLight)
+                {
+                    item.SetActive(true);
+                }
+            break;
+        }
     }
 }

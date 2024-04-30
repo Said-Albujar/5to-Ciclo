@@ -8,8 +8,8 @@ public class CutRope : MonoBehaviour
     [SerializeField] CharacterJoint jointToCut;
     [SerializeField] GameObject box;
     [SerializeField] float force;
-    Rigidbody rb;
-    Collider localCollider;
+    [SerializeField] Rigidbody rb;
+    [SerializeField] Collider localCollider;
 
     void Start()
     {
@@ -18,10 +18,10 @@ public class CutRope : MonoBehaviour
     }
 
     [ContextMenu("EXECUTECUT")]
-    void ExecuteCut()
+    public void ExecuteCut(Transform dir)
     {
-        Vector3 dir = transform.forward;
-        dir.y = 1;
+        Vector3 directionFonce = dir.forward;
+        directionFonce.y = 1;
         
         box.GetComponent<Rigidbody>().isKinematic = false;
         box.GetComponent<Rigidbody>().useGravity = true;
@@ -30,6 +30,6 @@ public class CutRope : MonoBehaviour
         rb.isKinematic = false;
         localCollider.isTrigger = false;
         jointToCut.connectedBody = rb;
-        rb.velocity = dir * force;
+        rb.velocity = directionFonce * force;
     }
 }
