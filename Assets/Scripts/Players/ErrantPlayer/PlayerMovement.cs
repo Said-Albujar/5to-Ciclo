@@ -7,6 +7,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour, IDataPersistence
 {
     public CapsuleCollider cap;
+    public GameObject cap1;
     public static PlayerMovement Instance;
     public PlayerAnimationController playerAnimationController;
     public enum state
@@ -238,12 +239,15 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
         if (isCrouching)
         {
+            cap1.SetActive(true);
             currentstate = state.crouching;
             cap.height = crouchHeight;
             cap.center = new Vector3(cap.center.x, CrouchY, cap.center.z);
         }
         else
         {
+            cap1.SetActive(false);
+
             currentstate = state.idle;
 
             cap.height = standHeight;
