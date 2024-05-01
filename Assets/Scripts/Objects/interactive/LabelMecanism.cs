@@ -144,6 +144,7 @@ public class LabelMecanism : Mecanism
             {
                 if (Input.GetKeyDown(KeyCode.F) && isLocked && !isBroken && isNear&&changeCharacter.HaveEngineer) // desbloquea el mecanismo si este no esta roto y se encuentra cerca
                 {
+                    changeCharacter.anim.UsingToolAnim(0);//0.alicate, 1.pico, 2.tijeras
                     isLocked = false;
                     labelActive = true;
                     AudioManager.Instance.PlaySFX("FixLabel");
