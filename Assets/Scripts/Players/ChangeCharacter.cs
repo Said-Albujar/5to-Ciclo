@@ -55,7 +55,7 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
     {
         if(playerMovement!=null)
         {
-            if (pickUp.haveObject || playerMovement.currentstate==PlayerMovement.state.climbIdle || playerMovement.currentstate == PlayerMovement.state.climbMoving)
+            if (pickUp.haveObject || playerMovement.currentstate==PlayerMovement.state.climbIdle || playerMovement.currentstate == PlayerMovement.state.climbMoving ||playerMovement.currentstate==PlayerMovement.state.crouching)
             {
                 StopChange();
 
