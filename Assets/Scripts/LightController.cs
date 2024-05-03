@@ -21,6 +21,7 @@ public class LightController : MonoBehaviour
                     if(light1 != null)
                     foreach (var item in light1)
                     {
+                        if(item != null)
                         item.SetActive(false);
                     }
                     
@@ -28,6 +29,7 @@ public class LightController : MonoBehaviour
                     if(light2 != null)
                     foreach (var item in light2)
                     {
+                        if(item != null)
                         item.SetActive(true);
                     }
                 }
@@ -36,6 +38,7 @@ public class LightController : MonoBehaviour
                     if(light1 != null)
                     foreach (var item in light1)
                     {
+                        if(item != null)
                         item.SetActive(true);
                     }
                     
@@ -43,6 +46,7 @@ public class LightController : MonoBehaviour
                     if(light2 != null)
                     foreach (var item in light2)
                     {
+                        if(item != null)
                         item.SetActive(false);
                     }
                 }
@@ -54,6 +58,7 @@ public class LightController : MonoBehaviour
                     if(light1 != null)
                     foreach (var item in light1)
                     {
+                        if(item != null)
                         item.SetActive(false);
                     }
                     
@@ -61,6 +66,7 @@ public class LightController : MonoBehaviour
                     if(light2 != null)
                     foreach (var item in light2)
                     {
+                        if(item != null)
                         item.SetActive(true);
                     }
                 }
@@ -69,6 +75,7 @@ public class LightController : MonoBehaviour
                     if(light1 != null)
                     foreach (var item in light1)
                     {
+                        if(item != null)
                         item.SetActive(true);
                     }
                     
@@ -76,6 +83,7 @@ public class LightController : MonoBehaviour
                     if(light2 != null)
                     foreach (var item in light2)
                     {
+                        if(item != null)
                         item.SetActive(false);
                     }
                 }

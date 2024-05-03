@@ -615,6 +615,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             case 0 :
                 foreach (var item in lights[0].listLight)
                 {
+                    if(item != null)
                     item.SetActive(true);
                 }
             break;
@@ -622,6 +623,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             case 1 :
                 foreach (var item in lights[1].listLight)
                 {
+                    if(item != null)
                     item.SetActive(true);
                 }
             break;
@@ -629,6 +631,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             case 2 :
                 foreach (var item in lights[2].listLight)
                 {
+                    if(item != null)
                     item.SetActive(true);
                 }
             break;
@@ -636,6 +639,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             case 3 :
                 foreach (var item in lights[3].listLight)
                 {
+                    if(item != null)
                     item.SetActive(true);
                 }
             break;
@@ -643,6 +647,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             case 4 :
                 foreach (var item in lights[4].listLight)
                 {
+                    if(item != null)
                     item.SetActive(true);
                 }
             break;
@@ -650,6 +655,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             case 5 :
                 foreach (var item in lights[5].listLight)
                 {
+                    if(item != null)
                     item.SetActive(true);
                 }
             break;
