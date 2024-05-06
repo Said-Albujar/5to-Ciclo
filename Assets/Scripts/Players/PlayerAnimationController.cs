@@ -29,6 +29,7 @@ public class PlayerAnimationController : MonoBehaviour
 
             MoveAnim();
             JumpAnim();
+            MoveAnimCrouch();
             anim.SetBool("grounded", playerMovement.grounded);
             anim.SetBool("inBorder", playerMovement.currentstate == PlayerMovement.state.climbIdle);
         }
@@ -50,6 +51,22 @@ public class PlayerAnimationController : MonoBehaviour
         {
             anim.SetFloat("Move", playerMovement.actualSpeed);
         }
+
+    }
+    private void MoveAnimCrouch()
+    {
+        if(playerMovement.currentstate==PlayerMovement.state.crouching)
+        {
+            if (playerMovement.actualSpeed <= 0.1f)
+            {
+                anim.SetFloat("MoveCrouch", 0f);
+            }
+            else
+            {
+                anim.SetFloat("MoveCrouch", playerMovement.actualSpeed);
+            }
+        }
+      
 
     }
 

@@ -848,6 +848,9 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: -1192976669166994014}
     m_Position: {x: 1070, y: 90, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 6598712762560093803}
+    m_Position: {x: 1376.6232, y: 355.1281, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -1075,7 +1078,7 @@ BlendTree:
   m_Name: Crouch BlendTree
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: 1827226128182048838, guid: 84499b2bbb313d1469e12fb985dd3bab, type: 3}
+    m_Motion: {fileID: 7400000, guid: 2a6f5fadeca44384494f33acd1471d64, type: 2}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -1083,7 +1086,7 @@ BlendTree:
     m_DirectBlendParameter: Move
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 1827226128182048838, guid: 67486fc84dbe17146a480c6a38b93d2a, type: 3}
+    m_Motion: {fileID: 7400000, guid: 067fb5bbf70a34b4fa3fcda4c6a6e53b, type: 2}
     m_Threshold: 1
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -1429,6 +1432,32 @@ AnimatorState:
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 5609788697382478841}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
+--- !u!1102 &6598712762560093803
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: crouchMove
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: 067fb5bbf70a34b4fa3fcda4c6a6e53b, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
