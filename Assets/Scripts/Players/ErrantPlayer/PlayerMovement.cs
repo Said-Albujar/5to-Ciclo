@@ -70,25 +70,10 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public bool blueLine;
 
     [Header("Glide")]
-    public bool isGliding = false;
-    public bool canGlide = true;
-    public bool gliderActive;
-    public float planeo = 1f;
-    public float antigravedad = 0.9f;
+    [SerializeField] float glideSpeed = 14f;
+    [SerializeField] float glideDrag = 3f;
+    public bool glideDeployed;
 
-    public float actualGlideSpeed;
-    public float topGlideSpeed;
-    public float perdidadeinercia = 1f; // Tasa de disminuci�n de velocidad (ajustable)
-    public float perdidadeviento = 21f;
-    public float perdidadeimpulso = 7f;
-
-    public float gliderotationSpeed;
-    public float glidedraft = 0.5f;
-
-    public float planeonormal;
-
-    public bool ascending = false;
-    public float limiteinerciaviento = 60f;
     public PickUp pick;
     [SerializeField] LightList[] lights;
     [SerializeField] GameObject[] allLight;
@@ -105,7 +90,6 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         {
             EnabledLigth(0);
         }
-        planeonormal = planeo;
 
         scaleStart = transform.localScale;
         if (MusicScene.Instance != null)
@@ -123,13 +107,9 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     void Update()
     {
-        GlideControl();
-
         switch (currentstate)
         {
             case state.climbIdle:
-                isGliding = false;
-                canGlide = false;
                 CheckBorder();
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
@@ -144,9 +124,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 break;
 
             case state.gliding:
-                
-                SlowFalling();
-                GlidingMovement();
+                NormalMovement();
                 break;
 
             default:
@@ -156,6 +134,12 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     NormalMovement();
                 }
                 break;
+        }
+        CanGlide(); //Verifica si se puede planear o no;
+        ActivateDesactivateGliding();
+        if (grounded)
+        {
+            RetractGlide();
         }
     }
 
@@ -167,7 +151,6 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 break;
             case state.climbMoving:
                 transform.position += Vector3.up * Time.deltaTime * UpDistance + transform.forward * 0.8f * Time.deltaTime;
-                canGlide = false;
                 break;
             default:
                 if (turn)
@@ -193,7 +176,6 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             isJump = true;
             
         }
-        canGlide = true;
     }
  
     void ErrantInput()
@@ -212,30 +194,6 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 break;
         }
     }
-
-    void ActivateDesactivateGliding()
-    {
-       
-        if (Input.GetKeyDown(jumpKey) && !grounded && !GameManager.instance.inPause && currentstate != state.climbIdle && isJump) //
-        {
-            topGlideSpeed = actualSpeed;
-
-            switch (isGliding)
-            {
-                case true:
-                    isGliding = false;
-                    currentstate = state.idle;
-                    //rb.useGravity = true;
-                    break;
-                case false:
-                    isGliding = true;
-                    currentstate = state.gliding;
-                    break;
-            }
-        }
-
-    }
-
 
     void JumpPlayer()
     {
@@ -277,7 +235,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
         moveDir = forward * verInput + right * horInput;
 
-        if (Input.GetKey(KeyCode.LeftShift) && StaminaController.staminaActual >= 0 && StaminaController.canRun && moveDir.magnitude > 0 && !isGliding)
+        if (Input.GetKey(KeyCode.LeftShift) && StaminaController.staminaActual >= 0 && StaminaController.canRun && moveDir.magnitude > 0 && !glideDeployed)
         {
             isRunning = true;
         }
@@ -307,7 +265,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     void SpeedControl()
     {
         Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-        float speed = isRunning ? runSpeed : (isCrouching ? walkSpeed / 2 : (pick.haveObject ? pickBoxSpeed : walkSpeed));
+        float speed = isRunning ? runSpeed : glideDeployed ? glideSpeed :(isCrouching ? walkSpeed / 2 : (pick.haveObject ? pickBoxSpeed : walkSpeed));
 
         if (flatVel.magnitude > speed)
         {
@@ -316,84 +274,34 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         }
     }
 
-    void GlideHorizontalSpeedControl()
-    {
-        Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);            
-
-        
-        if (flatVel.magnitude > topGlideSpeed)
-        {
-            topGlideSpeed -= perdidadeinercia * Time.deltaTime;
-            topGlideSpeed = Mathf.Max(topGlideSpeed, 0f);
-
-            Vector3 limitedVel = flatVel.normalized * topGlideSpeed;
-            rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
-        }
-    }
-
     void Drag()
     {
-        if (grounded)
+        if (!glideDeployed)
         {
-            rb.constraints &= ~RigidbodyConstraints.FreezePositionX;
-            turn = true;
-            rb.drag = groundDrag;
+            if (grounded)
+            {
+                rb.constraints &= ~RigidbodyConstraints.FreezePositionX;
+                turn = true;
+                rb.drag = groundDrag;
+            }
+            else if (!grounded)
+            {
+                rb.drag = 0;
+            }
         }
-        else if (!grounded)
-        {
-            rb.drag = 0;
-        }
+        
     }
 
     void RotatePlayer()
     {
-        if (moveDir != Vector3.zero && !isGliding)
+        if (moveDir != Vector3.zero)
         {
             Quaternion targetRotation = Quaternion.LookRotation(moveDir);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
         }
 
-        else if (moveDir != Vector3.zero && isGliding)
-        {
-            Quaternion targetRotation = Quaternion.LookRotation(moveDir);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * gliderotationSpeed);
-        }
-
     }
-    void GlideControl()
-    {
-        if (!ascending && planeo > planeonormal)
-        {
 
-            planeo -= Time.deltaTime * perdidadeviento;
-            planeo = Mathf.Max(planeo, 0f);
-        }
-
-        if (!ascending && planeo > limiteinerciaviento)
-        {
-            planeo = limiteinerciaviento;
-        }
-
-        if (!ascending && planeo < planeonormal)
-        {
-            planeo = planeonormal;
-        }
-
-        if (canGlide)
-        {
-            actualGlideSpeed = actualSpeed;
-            gliderotationSpeed = rotationSpeed * glidedraft;
-            if (gliderActive)
-            {
-                ActivateDesactivateGliding();
-
-            }
-        }
-        else
-        {
-            planeo = planeonormal;
-        }
-    }
     public Vector2 GetPlayerInput()
     {
         return new Vector2(horInput, verInput);
@@ -452,7 +360,6 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     {
         rb.isKinematic = false;
         currentstate = state.idle;
-        canGlide = true;
     }
     void CheckBorder()
     {
@@ -477,12 +384,10 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                     transform.SetParent(hit.collider.transform);
                     Debug.Log("Plataforma");
                     currentstate = state.climbIdle;
-                    canGlide = false;
                 }
                 else
                 {
                     currentstate = state.climbIdle;
-                    canGlide = false;
 
                 }
 
@@ -495,8 +400,6 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             currentstate = state.idle;
             rb.isKinematic = false;
             rb.useGravity = true;
-
-            canGlide = false;
         }
     }
 
@@ -512,69 +415,49 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         if (grounded)
         {
             isJump = false;
-            canGlide = false;
         }
         else if (!grounded)
         {
             isJump = true;
-            canGlide = true;
         }
     }
-
-    private void GlidingMovement()
+    void ActivateDesactivateGliding()
     {
-        GroundCheck();
-        GlideHorizontalSpeedControl();
-        ErrantInput();
-        CheckBorder();
-        Drag();
-        actualSpeed = rb.velocity.magnitude;  // / 2  (reducir velocidad en el aire)
-
-        if (grounded)
+        if (Input.GetKey(jumpKey) && CanGlide() && !GameManager.instance.inPause)
         {
-            isJump = false;
-            canGlide = false;
-        }
-        else if (!grounded)
-        {
-            isJump = true;
-            canGlide = true;
-        }
-
-    }
-    private Vector3 CalcularImpulsoInicial()
-    {
-        return Vector3.up * planeo;
-    }
-
-
-    public void SlowFalling()
-    {
-        if (grounded)
-        {
-            isGliding = false;
-            currentstate = state.idle;
+            DeployGlide();
         }
 
         else
         {
-            if (currentstate == state.gliding)
-            {
-
-                rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y * antigravedad, rb.velocity.z);
-
-                Vector3 verticalForce = new Vector3(0, planeo, 0);
-                rb.AddForce(verticalForce, ForceMode.Force);
-            }
-            GroundCheck();
+            RetractGlide();
         }
-    }
 
-    public void FinalImpulse()
+    }
+    private bool CanGlide()
     {
-        rb.velocity *= Time.deltaTime * planeo / perdidadeimpulso;
+        if (!grounded && currentstate != state.climbIdle || currentstate != state.climbMoving)
+            return true;
+
+        else
+            return false;
+    }
+    void DeployGlide()
+    {
+        glideDeployed = true;
+        rb.drag = glideDrag;
+    }
+    void RetractGlide()
+    {
+        glideDeployed = false;
     }
 
+    public void ImpulseWithAir(float airForce)
+    {
+        Vector3 upwardForce = Vector3.up * airForce;
+
+        rb.AddForce(upwardForce, ForceMode.Impulse);
+    }
     void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
