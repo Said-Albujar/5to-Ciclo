@@ -243,17 +243,8 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         {
             isRunning = false;
         }
-
-        switch (isRunning)
-        {
-            case true:
-                rb.AddForce(moveDir.normalized * runSpeed * 10f, ForceMode.Force);
-
-                break;
-            case false:
-                rb.AddForce(moveDir.normalized * walkSpeed * 10f, ForceMode.Force);
-                break;
-        }
+        float speed = isRunning ? runSpeed : glideDeployed ? glideSpeed : (isCrouching ? walkSpeed / 2 : (pick.haveObject ? pickBoxSpeed : walkSpeed));
+        rb.AddForce(moveDir.normalized * speed * 10f, ForceMode.Force);
     }
 
     void GroundCheck()
@@ -266,6 +257,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     {
         Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         float speed = isRunning ? runSpeed : glideDeployed ? glideSpeed :(isCrouching ? walkSpeed / 2 : (pick.haveObject ? pickBoxSpeed : walkSpeed));
+        Debug.Log(speed);
 
         if (flatVel.magnitude > speed)
         {
@@ -446,10 +438,12 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     {
         glideDeployed = true;
         rb.drag = glideDrag;
+        currentstate = state.gliding;
     }
     void RetractGlide()
     {
         glideDeployed = false;
+        currentstate = state.idle;
     }
 
     public void ImpulseWithAir(float airForce)
