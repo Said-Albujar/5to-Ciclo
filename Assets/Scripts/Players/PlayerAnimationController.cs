@@ -55,7 +55,7 @@ public class PlayerAnimationController : MonoBehaviour
     }
     private void MoveAnimCrouch()
     {
-        if(playerMovement.currentstate==PlayerMovement.state.crouching)
+        if(playerMovement.isCrouching)
         {
             if (playerMovement.actualSpeed <= 0.1f)
             {

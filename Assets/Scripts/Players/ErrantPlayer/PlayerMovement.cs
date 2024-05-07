@@ -215,7 +215,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         {
             cap1.SetActive(false);
 
-            currentstate = state.idle;
+            //currentstate = state.idle;
 
             cap.height = standHeight;
             cap.center = new Vector3(cap.center.x, standY, cap.center.z);
@@ -309,6 +309,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     {
         if (Input.GetKey(KeyCode.LeftControl) && grounded)
         {
+
             if (!isCrouching)
             {
                 isCrouching = true;
