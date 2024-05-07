@@ -257,7 +257,6 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     {
         Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         float speed = isRunning ? runSpeed : glideDeployed ? glideSpeed :(isCrouching ? walkSpeed / 2 : (pick.haveObject ? pickBoxSpeed : walkSpeed));
-        Debug.Log(speed);
 
         if (flatVel.magnitude > speed)
         {
