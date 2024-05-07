@@ -6,7 +6,7 @@ using UnityEngine;
 public class GameData
 {
     public Vector3 playerPosition;
-    public bool haveMiner, haveEngineer, haveHairdress;
+    public bool haveMiner, haveEngineer, haveHairdress,haveGlider;
     public bool hold;
     public int numCheckpoint;
 

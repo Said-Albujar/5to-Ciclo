@@ -42,6 +42,11 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
     public bool alpha2Pressed = false;
     public bool alpha3Pressed = false;
 
+    [Header("Glider")]
+    public GameObject gliderObject;
+    bool isNearGlider;
+    public bool haveGlider;
+
     [HideInInspector]public PlayerAnimationController anim;
     public PlayerMovement playerMovement;
     void Start()
@@ -159,6 +164,17 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
 
         }
 
+        if (isNearGlider && Input.GetKeyDown(KeyCode.F))
+        {
+            isNearGlider = false;
+            haveGlider = true;
+            playerMovement.canGlide = true;
+            //ChangeToHair();
+            Destroy(gliderObject);
+            DataPersistenceManager.instance.SaveGame();
+
+        }
+
         if (HaveMiner)
         {
             characterMiner.SetActive(true);
@@ -247,6 +263,11 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
         {
             isNearH = true;
         }
+
+        if (other.CompareTag("Glider"))
+        {
+            isNearGlider = true;
+        }
     }
 
     public void OnTriggerExit(Collider other)
@@ -265,10 +286,16 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
         {
             isNearH = false;
         }
+
+        if (other.CompareTag("Glider"))
+        {
+            isNearGlider = false;
+        }
     }
 
     public void LoadData(GameData data)
     {
+        this.haveGlider = data.haveGlider;
         this.HaveMiner = data.haveMiner;
         this.HaveEngineer = data.haveEngineer;
         this.HaveHairdress = data.haveHairdress;
@@ -276,6 +303,7 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
 
     public void SaveData(ref GameData data)
     {
+        data.haveGlider = this.haveGlider;
         data.haveMiner = this.HaveMiner;
         data.haveEngineer = this.HaveEngineer;
         data.haveHairdress = this.HaveHairdress;

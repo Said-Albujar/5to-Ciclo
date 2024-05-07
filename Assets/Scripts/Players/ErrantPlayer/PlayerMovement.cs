@@ -73,6 +73,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     [SerializeField] float glideSpeed = 14f;
     [SerializeField] float glideDrag = 3f;
     public bool glideDeployed;
+    public bool canGlide;
 
     public PickUp pick;
     [SerializeField] LightList[] lights;
@@ -415,6 +416,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     }
     void ActivateDesactivateGliding()
     {
+        if(canGlide)
         if (Input.GetKey(jumpKey) && CanGlide() && !GameManager.instance.inPause)
         {
             DeployGlide();
