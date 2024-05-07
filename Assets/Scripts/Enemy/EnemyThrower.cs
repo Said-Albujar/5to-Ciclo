@@ -174,7 +174,7 @@ public class EnemyThrower : MonoBehaviour
 
     void Shoot()
     {
-        Vector3 ofsset = new Vector3(0F, 0.25f, 0f);
+        Vector3 ofsset = new Vector3(0F, 0.15f, 0f);
         Vector3 directionToPlayer = (playerPosition.transform.position - shootPoint.position).normalized + ofsset;
 
         GameObject projectile = GameObject.Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
