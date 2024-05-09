@@ -11,7 +11,6 @@ public class CorrienteViento : MonoBehaviour
     {
         if (other.CompareTag("Hair") && player.glideDeployed)
         {
-            Debug.Log(airForce);
             player.ImpulseWithAir(airForce);
         }
     }

@@ -416,16 +416,20 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     }
     void ActivateDesactivateGliding()
     {
-        if(canGlide)
-        if (Input.GetKey(jumpKey) && CanGlide() && !GameManager.instance.inPause)
+        if (!blueLine)
         {
-            DeployGlide();
-        }
+            if (Input.GetKey(jumpKey) && CanGlide() && !GameManager.instance.inPause)
+            {
+                DeployGlide();
+            }
 
-        else
-        {
-            RetractGlide();
+            else
+            {
+                RetractGlide();
+            }
         }
+            
+      
 
     }
     private bool CanGlide()

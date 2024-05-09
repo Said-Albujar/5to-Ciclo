@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public PlayerMovement playerMovement;
     public ChangeCharacter changeCharacter;
     [SerializeField] private GameObject panelPause;
+    [SerializeField] private GameObject panelUpgrades;
     [SerializeField] private GameObject panelOptions;
     [SerializeField] private string sceneName;
     public bool inPause;
@@ -102,6 +103,7 @@ public class GameManager : MonoBehaviour
         HideCursor();
         Time.timeScale = 1f;
         panelPause.SetActive(false);
+        panelUpgrades.SetActive(false);
         inPause = false;
     }
 
@@ -132,6 +134,7 @@ public class GameManager : MonoBehaviour
         Unpause();
         SceneManager.LoadScene("MainMenu");
     }
+
     public void ConsoleMenu()
     {
         if (Input.GetKeyDown(KeyCode.F1) && !panelOptions.activeSelf)
