@@ -168,7 +168,7 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
         {
             isNearGlider = false;
             haveGlider = true;
-            playerMovement.canGlide = true;
+            playerMovement.haveItemGlide = true;
             //ChangeToHair();
             Destroy(gliderObject);
             DataPersistenceManager.instance.SaveGame();

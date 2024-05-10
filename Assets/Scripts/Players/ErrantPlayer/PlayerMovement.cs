@@ -68,12 +68,13 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     Vector3 scaleStart;
     public bool greenLine;
     public bool blueLine;
+    bool climbForward;
 
     [Header("Glide")]
     [SerializeField] float glideSpeed = 14f;
     [SerializeField] float glideDrag = 3f;
     public bool glideDeployed;
-    public bool canGlide;
+    public bool haveItemGlide;
 
     public PickUp pick;
     [SerializeField] LightList[] lights;
@@ -151,7 +152,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             case state.climbIdle:
                 break;
             case state.climbMoving:
-                transform.position += Vector3.up * Time.deltaTime * UpDistance + transform.forward * 0.8f * Time.deltaTime;
+                Climb();
                 break;
             default:
                 if (turn)
@@ -163,6 +164,26 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 rb.useGravity = !freeze;
                 break;
         }
+    }
+
+
+    void Climb()
+    {
+        
+
+        if(climbForward)
+        {
+            transform.position += transform.forward * 2f * Time.fixedDeltaTime;
+        }
+        else
+        {
+            transform.position += Vector3.up * UpDistance * Time.fixedDeltaTime;
+        }
+    }
+    
+    public void EnableClimbForward()
+    {
+        climbForward = true;
     }
 
     void Jump()
@@ -351,6 +372,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     }
     public void FinishClimb()
     {
+        climbForward = false;
         rb.isKinematic = false;
         currentstate = state.idle;
     }
@@ -416,6 +438,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     }
     void ActivateDesactivateGliding()
     {
+        if(haveItemGlide)
         if (!blueLine)
         {
             if (Input.GetKey(jumpKey) && CanGlide() && !GameManager.instance.inPause)
@@ -429,11 +452,10 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             }
         }
             
-      
-
     }
     private bool CanGlide()
     {
+        
         if (!grounded && currentstate != state.climbIdle || currentstate != state.climbMoving)
             return true;
 
