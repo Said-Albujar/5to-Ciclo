@@ -18,6 +18,8 @@ public class PlayerHealth : MonoBehaviour
     public float timer, maxTimer;
     public Animator anim;
     public PlayerMovement player;
+    public bool uiActive;
+
     private void Update()
     {
 
@@ -48,6 +50,7 @@ public class PlayerHealth : MonoBehaviour
             anim.SetBool("dead", false);
             //anim.SetBool("dead", true);
 
+            if(uiActive == false)
             player.GetComponent<PlayerMovement>().enabled = true;
 
             panelDead.SetActive(false);

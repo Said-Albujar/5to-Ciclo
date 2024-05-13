@@ -5,6 +5,10 @@ using Cinemachine;
 
 public class Activator : MonoBehaviour
 {
+    Animator animator;
+    PlayerAnimationController anim;
+    PlayerMovement movement;
+    PlayerHealth health;
     public InteractiveDoor interactiveDoor;
     public GameObject interactableCanvas;
     public GameObject objectToDeactivate;
@@ -16,6 +20,10 @@ public class Activator : MonoBehaviour
 
     void Start()
     {
+        health = GetComponent<PlayerHealth>();
+        animator = GetComponent<Animator>();
+        anim = GetComponent<PlayerAnimationController>();
+        movement = GetComponent<PlayerMovement>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -26,6 +34,10 @@ public class Activator : MonoBehaviour
         {
             if (isCanvasActive)
             {
+                health.uiActive = false;
+                animator.enabled = true;
+                anim.enabled = true;
+                movement.enabled = true;
                 interactableCanvas.SetActive(false);
                 isCameraLocked = true;
                 if (objectToDeactivate != null)
@@ -39,6 +51,10 @@ public class Activator : MonoBehaviour
             }
             else
             {
+                health.uiActive = true;
+                animator.enabled = false;
+                anim.enabled = false;
+                movement.enabled = false;
                 interactableCanvas.SetActive(true);
                 isCameraLocked = false;
                 if (objectToDeactivate != null)
@@ -65,7 +81,7 @@ public class Activator : MonoBehaviour
 
             isCanvasActive = !isCanvasActive;
             isGamePaused = !isGamePaused;
-            Time.timeScale = isGamePaused ? 0f : 0.5f;
+            //Time.timeScale = isGamePaused ? 0f : 0.5f;
         }
     }
 
@@ -81,6 +97,11 @@ public class Activator : MonoBehaviour
     {
         if (other.CompareTag("Interactuable"))
         {
+            health.uiActive = false;
+            animator.enabled = true;
+            objectToDeactivate.SetActive(true);
+            anim.enabled = true;
+            movement.enabled = true;
             isInsideTrigger = false;
             interactableCanvas.SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;
@@ -89,6 +110,26 @@ public class Activator : MonoBehaviour
             isGamePaused = false;
             isCameraLocked = false;
             Time.timeScale = 1f;
+            cinemachineBrain.enabled = true;
         }
+    }
+
+    public void ContinueGame()
+    {
+        health.uiActive = false;
+        animator.enabled = true;
+        objectToDeactivate.SetActive(true);
+        anim.enabled = true;
+        isCameraLocked = true;
+        movement.enabled = true;
+        isInsideTrigger = false;
+        interactableCanvas.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        isCanvasActive = false;
+        isGamePaused = false;
+        isCameraLocked = false;
+        Time.timeScale = 1f;
+        cinemachineBrain.enabled = true;
     }
 }
