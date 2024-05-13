@@ -15,8 +15,9 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         RaycastHit hit;
-        if(Physics.Raycast(transform.position+(Vector3.up *distanceUp), Vector3.up, out hit, radius))
+        if(Physics.Raycast(transform.position+(Vector3.up *distanceUp), Vector3.up, out hit,radius))
         {
+            Debug.Log(hit.collider.name);
             if (hit.collider != null && hit.collider.gameObject.CompareTag("MovingPlatform"))
             {
                 movingPlatform = hit.collider.gameObject.GetComponent<MovingPlatform1>();
