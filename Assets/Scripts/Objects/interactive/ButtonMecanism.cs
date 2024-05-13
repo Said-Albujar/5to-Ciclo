@@ -69,13 +69,24 @@ public class ButtonMecanism : Mecanism
                             foreach (GameObject item in scriptToActive)
                             {
                                 item.GetComponent<InteractiveDoor>().openDoor = active;
-                            }
+                                if (item.GetComponent<MovingPlatform1>() != null)
+                                {
+                                    item.GetComponent<MovingPlatform1>().enabled = active;
+
+                                }
+                            }                            
                         }
                         else
                         {
                             foreach (GameObject item in scriptToActive)
                             {
                                 item.GetComponent<InteractiveDoor>().openDoor = false;
+                                if (item.GetComponent<MovingPlatform1>() != null)
+                                {
+                                    item.GetComponent<MovingPlatform1>().enabled = false;
+
+                                }
+
                             }
                         }
                     }
@@ -85,6 +96,7 @@ public class ButtonMecanism : Mecanism
                     foreach (GameObject item in scriptToActive)
                     {
                         item.GetComponent<InteractiveDoor>().openDoor = active;
+                       
                     }
                 }
             }
