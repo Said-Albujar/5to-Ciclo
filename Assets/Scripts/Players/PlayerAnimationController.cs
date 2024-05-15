@@ -9,7 +9,6 @@ public class PlayerAnimationController : MonoBehaviour
     public AnimationClip[] usingToolsAnims; //0.alicate, 1.pico, 2.tijeras
     public AnimatorOverrideController animatorOverrideController;
     public PickUp picked;
-    bool once = false;
     void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();
@@ -30,6 +29,7 @@ public class PlayerAnimationController : MonoBehaviour
             MoveAnim();
             JumpAnim();
             MoveAnimCrouch();
+            anim.SetBool("ActiveGlider", playerMovement.currentstate == PlayerMovement.state.gliding);
             anim.SetBool("grounded", playerMovement.grounded);
             anim.SetBool("inBorder", playerMovement.currentstate == PlayerMovement.state.climbIdle);
         }
