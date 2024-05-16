@@ -9,8 +9,12 @@ public class TriggerBoss : MonoBehaviour
     public int indexPoint;
     private void OnTriggerEnter(Collider other)
     {
-        boss.active = true;
-        boss.actualPhase = indexPhase;
-        boss.indexPoint = indexPoint;
+        if (other.CompareTag("Hair"))
+        {
+            boss.active = true;
+            boss.actualPhase = indexPhase;
+            boss.indexPoint = indexPoint;
+        }
+        
     }
 }

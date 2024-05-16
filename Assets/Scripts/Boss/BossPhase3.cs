@@ -15,17 +15,25 @@ public class BossPhase3 : IBossPhase
     }
     public void Execute()
     {
-        if (!boss.fov.canSeePlayer)
+        if (boss.playerInGround)
+        {
+            boss.ChasePlayer();
+        }
+        else
         {
             agent.SetDestination(boss.phase3points[index - 1].position);
             if (Vector3.Distance(boss.transform.position, boss.phase3points[index - 1].position) < 0.2f)
             {
-                boss.LookAround();
+                boss.RotateBodyToDesk(180);
+                boss.isAttacking = true;
+                boss.Attack(index);
+            }
+            else
+            {
+                boss.DesactiveArms();
+                boss.isAttacking = false;
             }
         }
-        else
-        {
-            boss.RotateToPlayer();
-        }
+        
     }
 }

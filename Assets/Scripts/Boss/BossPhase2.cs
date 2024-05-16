@@ -16,17 +16,29 @@ public class BossPhase2 : IBossPhase
     }
     public void Execute()
     {
-        if (!boss.fov.canSeePlayer)
+        if (boss.playerInGround)
         {
-            agent.SetDestination(boss.phase2points[index - 1].position);
-            if (Vector3.Distance(boss.transform.position, boss.phase2points[index - 1].position) < 0.2f)
-            {
-                boss.LookAround();
-            }
+            boss.ChasePlayer();
         }
         else
         {
-            boss.RotateToPlayer();
+            if (!boss.fov.canSeePlayer)
+            {
+                boss.timer = 0;
+                agent.SetDestination(boss.phase2points[index - 1].position);
+                if (Vector3.Distance(boss.transform.position, boss.phase2points[index - 1].position) < 0.2f)
+                {
+                    boss.RotateBodyToDesk(90);
+                    boss.LookAround();
+                }
+            }
+            else
+            {
+                boss.KillPlayer();
+                boss.RotateHeadToPlayer();
+
+            }
         }
+        
     }
 }

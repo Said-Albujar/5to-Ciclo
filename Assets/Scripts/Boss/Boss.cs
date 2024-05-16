@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine.AI;
 
 public class Boss : MonoBehaviour
 {
+    public static Boss instance;
     private IBossPhase currentPhase;
     [HideInInspector]public int actualPhase = 1;
     private NavMeshAgent agent;
@@ -12,6 +14,8 @@ public class Boss : MonoBehaviour
     public Transform player;
     public FieldOfView fov;
     public bool active;
+    public bool playerInGround;
+
 
     [Header("HeadRotation")]
     public Transform baseHead;
@@ -27,14 +31,25 @@ public class Boss : MonoBehaviour
     public Transform[] phase2points;
     public Transform[] phase3points;
 
+    [Header("Attack")]
+    public GameObject[] arms= new GameObject[2];
+    public Animator animator;
+    public PlayerHealth playerHealth;
+    [HideInInspector]public bool isAttacking;
+    [HideInInspector]public float timer;
+
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
+        instance = this;
+        playerHealth = player.GetComponent<PlayerHealth>();
     }
     void Update()
     {
         if (active)
         {
+            animator.SetBool("isAttacking", isAttacking);
             switch (actualPhase)
             {
                 case 1:
@@ -79,10 +94,15 @@ public class Boss : MonoBehaviour
         {
             float targetAngle = isLookingRight ? maxRotationAngle : -maxRotationAngle;
 
-            Quaternion targetRotation = Quaternion.Euler(0f, targetAngle, 0f);
-            baseHead.rotation = Quaternion.Lerp(baseHead.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+            Vector3 currentLocalEulerAngles = baseHead.localRotation.eulerAngles;
 
-            if (Quaternion.Angle(baseHead.rotation, targetRotation) < 0.1f)
+            Vector3 targetLocalEulerAngles = new Vector3(currentLocalEulerAngles.x, targetAngle, currentLocalEulerAngles.z);
+
+            Quaternion targetRotation = Quaternion.Euler(targetLocalEulerAngles);
+
+            baseHead.localRotation = Quaternion.Lerp(baseHead.localRotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+            if (Quaternion.Angle(baseHead.localRotation, targetRotation) < 0.1f)
             {
                 isLookingRight = !isLookingRight;
                 timeSinceDirectionChange = 0f;
@@ -92,9 +112,10 @@ public class Boss : MonoBehaviour
         {
             timeSinceDirectionChange += Time.deltaTime;
         }
+
     }
 
-    public void RotateToPlayer()
+    public void RotateHeadToPlayer()
     {
         Vector3 direction = player.position - baseHead.position;
         Quaternion playerRotation = Quaternion.LookRotation(direction);
@@ -102,5 +123,65 @@ public class Boss : MonoBehaviour
             baseHead.rotation = Quaternion.Lerp(baseHead.rotation, playerRotation, 40 * Time.deltaTime);
 
             
+    }
+    public void RotateBodyToDesk(float yRotation)
+    {
+        Vector3 currentEulerAngles = transform.rotation.eulerAngles;
+
+        Vector3 targetEulerAngles = new Vector3(currentEulerAngles.x, yRotation, currentEulerAngles.z);
+
+        Quaternion targetRotation = Quaternion.Euler(targetEulerAngles);
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 40 * Time.deltaTime);
+    }
+
+    public void Attack(int attackId)
+    {
+        if (!arms[0].activeSelf)
+        {
+            foreach (GameObject arm in arms)
+            {
+                arm.SetActive(true);
+            }
+        }
+        
+        switch (attackId)
+        {
+            case 1:
+                animator.Play("BossAttack1");
+                break;
+            case 2:
+                animator.Play("BossAttack2");
+                break;
+            case 3:
+                animator.Play("BossAttack3");
+                break;
+
+        }
+    }
+
+    public void ChasePlayer()
+    {
+        agent.SetDestination(player.transform.position);
+    }
+    public void KillPlayer()
+    {
+        if (timer <= 1.5f)
+        {
+            Debug.Log(timer);
+            timer += Time.deltaTime;
+        }
+        else
+        {
+            playerHealth.health = 0;
+        }
+    }
+
+    public void DesactiveArms()
+    {
+
+        foreach (GameObject arm in arms)
+        {
+            arm.SetActive(false);
+        }
     }
 }

@@ -42,6 +42,10 @@ public class PlayerHealth : MonoBehaviour
                 DataPersistenceManager.instance.LoadGame();
                 timer = 0f;
                 player.currentstate = PlayerMovement.state.idle;
+                if (Boss.instance!= null)
+                {
+                    Boss.instance.playerInGround = false;
+                }
                 
             }
         }
@@ -76,6 +80,14 @@ public class PlayerHealth : MonoBehaviour
                 health = 0;
             }
         }
+        if (collision.gameObject.CompareTag("Boss"))
+        {
+            health -= 1;
+            if (health <= 0)
+            {
+                health = 0;
+            }
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -87,7 +99,13 @@ public class PlayerHealth : MonoBehaviour
                 health = 0;
             }
         }
+        if (other.CompareTag("Boss"))
+        {
+            health -= 1;
+            if (health <= 0)
+            {
+                health = 0;
+            }
+        }
     }
-
-
 }
