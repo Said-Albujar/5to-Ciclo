@@ -73,8 +73,10 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     [Header("Glide")]
     [SerializeField] float glideSpeed = 14f;
     [SerializeField] float glideDrag = 3f;
+    [SerializeField] float minDisGlide = 3f;
     public bool glideDeployed;
     public bool haveItemGlide;
+
 
     public PickUp pick;
     [SerializeField] LightList[] lights;
@@ -438,14 +440,23 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     }
     void ActivateDesactivateGliding()
     {
+        Debug.DrawRay(transform.position,transform.up * -minDisGlide,Color.black);
         if(haveItemGlide)
         if (!blueLine)
         {
-            if (Input.GetKey(jumpKey) && CanGlide() && !GameManager.instance.inPause)
+            
+            if(!Physics.Raycast(transform.position,transform.up * -1,minDisGlide,ground))
             {
-                DeployGlide();
-            }
+                if (Input.GetKey(jumpKey) && CanGlide() && !GameManager.instance.inPause)
+                {
+                    DeployGlide();
+                }
 
+                else
+                {
+                    RetractGlide();
+                }
+            }
             else
             {
                 RetractGlide();

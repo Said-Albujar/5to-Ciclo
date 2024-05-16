@@ -109,6 +109,7 @@ public class PickUp : MonoBehaviour
     {
         if (PickedObject != null)
         {
+            PickedObject.layer = 9;
             PickedObject.AddComponent<Rigidbody>();
             PickedObject.GetComponent<Rigidbody>().useGravity = true;
             PickedObject.GetComponent<Rigidbody>().isKinematic = false;
@@ -125,12 +126,15 @@ public class PickUp : MonoBehaviour
         timer = 0f;
         if (PickedObject != null)
         {
+
             haveObject = true;
             Destroy(this.GetComponent<Rigidbody>());
             Destroy(PickedObject.GetComponent<Rigidbody>());
             Vector3 originalScale = PickedObject.transform.localScale;
 
             PickedObject.gameObject.transform.SetParent(this.gameObject.transform);
+            PickedObject.layer = default;
+            
 
             //PickedObject.transform.localScale = originalScale;
 

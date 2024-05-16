@@ -12083,8 +12083,9 @@ MonoBehaviour:
   blueLine: 0
   glideSpeed: 12.5
   glideDrag: 3
+  minDisGlide: 1.5
   glideDeployed: 0
-  canGlide: 0
+  haveItemGlide: 0
   pick: {fileID: 3597977040904073943}
   lights: []
   allLight: []
@@ -12133,6 +12134,7 @@ MonoBehaviour:
   maxTimer: 2.5
   anim: {fileID: 224832969460843734}
   player: {fileID: 5014615300034817679}
+  uiActive: 0
 --- !u!114 &7013281160270362901
 MonoBehaviour:
   m_ObjectHideFlags: 0
