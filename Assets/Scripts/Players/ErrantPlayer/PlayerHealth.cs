@@ -22,6 +22,8 @@ public class PlayerHealth : MonoBehaviour
     public bool uiActive;
 
     public VisualEffect playerDeathByBossVfx;
+    [HideInInspector] public bool activateVfx;
+    private bool onceVfx = false;
     private void Update()
     {
 
@@ -63,6 +65,12 @@ public class PlayerHealth : MonoBehaviour
             once = false;
 
         
+        }
+        if (activateVfx && !onceVfx)
+        {
+            Debug.Log("entra");
+            EnableVfxDeathByBoss();
+            onceVfx = true;
         }
        
     }
@@ -115,19 +123,13 @@ public class PlayerHealth : MonoBehaviour
 
     public void EnableVfxDeathByBoss()
     {
-        if (playerDeathByBossVfx.enabled != true)
-        {
-            playerDeathByBossVfx.enabled = true;
-            playerDeathByBossVfx.Play();
-        }
-        
+        playerDeathByBossVfx.SendEvent("OnPlay");
+
     }
     public void DisableVfxDeathByBoss()
     {
-        if(playerDeathByBossVfx.enabled != false)
-        {
-            playerDeathByBossVfx.enabled = false;
-        }
-        
+        activateVfx = false;
+        onceVfx = false;
+        playerDeathByBossVfx.SendEvent("OnStop");
     }
 }

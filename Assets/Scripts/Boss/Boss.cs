@@ -170,13 +170,13 @@ public class Boss : MonoBehaviour
     {
         if (timer <= 1.5f)
         {
-            playerHealth.EnableVfxDeathByBoss();
+            playerHealth.activateVfx = true;
             Debug.Log(timer);
             timer += Time.deltaTime;
         }
         else
         {
-            playerHealth.DisableVfxDeathByBoss();
+            playerHealth.activateVfx = false;
             playerHealth.health = 0;
         }
     }

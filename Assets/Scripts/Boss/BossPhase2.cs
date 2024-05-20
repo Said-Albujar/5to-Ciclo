@@ -24,10 +24,6 @@ public class BossPhase2 : IBossPhase
         {
             if (!boss.fov.canSeePlayer)
             {
-
-                boss.StopVfxPlayer();
-
-
                 boss.StopVfxPlayer();
                 boss.timer = 0;
                 agent.SetDestination(boss.phase2points[index - 1].position);
