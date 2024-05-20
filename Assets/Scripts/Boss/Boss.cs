@@ -37,7 +37,6 @@ public class Boss : MonoBehaviour
     public PlayerHealth playerHealth;
     [HideInInspector]public bool isAttacking;
     [HideInInspector]public float timer;
-
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -47,25 +46,29 @@ public class Boss : MonoBehaviour
     }
     void Update()
     {
-        if (active)
+        if (playerHealth.health>0)
         {
-            animator.SetBool("isAttacking", isAttacking);
-            switch (actualPhase)
+            if (active)
             {
-                case 1:
-                    currentPhase = new BossPhase1(this, agent, indexPoint);
-                    break;
-                case 2:
-                    currentPhase = new BossPhase2(this, agent, indexPoint);
-                    break;
-                case 3:
-                    currentPhase = new BossPhase3(this, agent, indexPoint);
-                    break;
-                default:
-                    break;
+                animator.SetBool("isAttacking", isAttacking);
+                switch (actualPhase)
+                {
+                    case 1:
+                        currentPhase = new BossPhase1(this, agent, indexPoint);
+                        break;
+                    case 2:
+                        currentPhase = new BossPhase2(this, agent, indexPoint);
+                        break;
+                    case 3:
+                        currentPhase = new BossPhase3(this, agent, indexPoint);
+                        break;
+                    default:
+                        break;
+                }
+                currentPhase.Execute();
             }
-            currentPhase.Execute();
         }
+       
         
     }
 
@@ -167,15 +170,21 @@ public class Boss : MonoBehaviour
     {
         if (timer <= 1.5f)
         {
+            playerHealth.EnableVfxDeathByBoss();
             Debug.Log(timer);
             timer += Time.deltaTime;
         }
         else
         {
+            playerHealth.DisableVfxDeathByBoss();
             playerHealth.health = 0;
         }
     }
 
+    public void StopVfxPlayer()
+    {
+        playerHealth.DisableVfxDeathByBoss();
+    }
     public void DesactiveArms()
     {
 

@@ -24,6 +24,11 @@ public class BossPhase2 : IBossPhase
         {
             if (!boss.fov.canSeePlayer)
             {
+
+                boss.StopVfxPlayer();
+
+
+                boss.StopVfxPlayer();
                 boss.timer = 0;
                 agent.SetDestination(boss.phase2points[index - 1].position);
                 if (Vector3.Distance(boss.transform.position, boss.phase2points[index - 1].position) < 0.2f)

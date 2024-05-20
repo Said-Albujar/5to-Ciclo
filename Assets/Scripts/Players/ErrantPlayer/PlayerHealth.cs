@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.VFX;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class PlayerHealth : MonoBehaviour
     public PlayerMovement player;
     public bool uiActive;
 
+    public VisualEffect playerDeathByBossVfx;
     private void Update()
     {
 
@@ -107,5 +109,25 @@ public class PlayerHealth : MonoBehaviour
                 health = 0;
             }
         }
+    }
+
+
+
+    public void EnableVfxDeathByBoss()
+    {
+        if (playerDeathByBossVfx.enabled != true)
+        {
+            playerDeathByBossVfx.enabled = true;
+            playerDeathByBossVfx.Play();
+        }
+        
+    }
+    public void DisableVfxDeathByBoss()
+    {
+        if(playerDeathByBossVfx.enabled != false)
+        {
+            playerDeathByBossVfx.enabled = false;
+        }
+        
     }
 }
