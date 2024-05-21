@@ -35,8 +35,11 @@ public class PlayerController : MonoBehaviour
         else
         {
            
+            if(hit.collider!=null)
+            {
+                movingPlatform.speed = 2f;
 
-            movingPlatform.speed= 2f;
+            }
             
         }
        
