@@ -17,8 +17,9 @@ public class PlayerController : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(transform.position+(Vector3.up *distanceUp), Vector3.up, out hit,radius))
         {
-            if (hit.collider != null && hit.collider.gameObject.CompareTag("MovingPlatform"))
+            if (hit.collider.gameObject.CompareTag("MovingPlatform"))
             {
+                Debug.Log("DETECTEC PALTAFORM");
                 movingPlatform = hit.collider.gameObject.GetComponent<MovingPlatform1>();
                 movingPlatform.speed=0f;
             }
@@ -26,16 +27,17 @@ public class PlayerController : MonoBehaviour
             {
                 if (movingPlatform != null)
                 {
+
                     movingPlatform.speed = 2f;
                 }
             }
         }
         else
         {
-            if (movingPlatform != null)
-            {
-                movingPlatform.speed= 2f;
-            }
+           
+
+            movingPlatform.speed= 2f;
+            
         }
        
     }
