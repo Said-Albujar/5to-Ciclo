@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public bool inPause;
     public GameObject panelTransition;
     public GameObject panelConsole;
+    [SerializeField] LightManager lightManager;
 
     public GameObject[] tps = new GameObject[9];
     private void Awake()
@@ -162,9 +163,10 @@ public class GameManager : MonoBehaviour
             {
                 char keyPressed = Input.inputString[0];
                 int teleportIndex = int.Parse(keyPressed.ToString()) - 1;
-
+                
                 if (teleportIndex >= 0 && teleportIndex < tps.Length)
                 {
+                    lightManager.EnabledLigth(teleportIndex);
                     playerMovement.transform.position = tps[teleportIndex].transform.position;
                     Time.timeScale = 1f;
                     panelConsole.SetActive(false);

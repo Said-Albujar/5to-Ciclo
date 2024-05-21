@@ -8,20 +8,19 @@ public class Candado : MonoBehaviour
     public int currenNumber = 1;
     bool canRotate = true;
 
-    public void Execute()
+    public void Execute(int direction)
     {
         if(canRotate)
         {
-            if(currenNumber < 9)
-            {
-                currenNumber++;
-            }
-            else
-            {
-                currenNumber = 1;
-            }
+            currenNumber += direction;
+
+            if(currenNumber < 1)
+            currenNumber = 9;
+            else if(currenNumber > 9)
+            currenNumber = 1;
+            
             canRotate = false;
-            Quaternion rotacionObjetivo = transform.rotation * Quaternion.Euler(0, 0, 40);
+            Quaternion rotacionObjetivo = transform.rotation * Quaternion.Euler(0, 0, 40 * -direction);
 
             StartCoroutine(Rotate(rotacionObjetivo));
         }
