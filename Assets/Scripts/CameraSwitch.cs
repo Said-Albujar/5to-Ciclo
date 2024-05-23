@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class CameraSwitch : MonoBehaviour
 {
-    public GameObject mainCamera; 
-    public GameObject firstTransitionCamera; 
+    public GameObject mainCamera;
+    public GameObject firstTransitionCamera;
     public GameObject secondTransitionCamera;
     public GameObject finalCamera;
     public GameObject Collider;
-    public Image fadeInImage; 
+    public Image fadeInImage;
     public Image fadeOutImage;
 
     private bool isTransitioning = false;
@@ -49,6 +49,8 @@ public class CameraSwitch : MonoBehaviour
 
         mainCamera.SetActive(true);
         finalCamera.SetActive(false);
+        firstTransitionCamera.SetActive(false);
+        secondTransitionCamera.SetActive(false);
 
         yield return new WaitForSeconds(1f);
 
