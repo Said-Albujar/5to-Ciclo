@@ -166,7 +166,11 @@ public class GameManager : MonoBehaviour
                 
                 if (teleportIndex >= 0 && teleportIndex < tps.Length)
                 {
-                    lightManager.EnabledLigth(teleportIndex);
+                    if (lightManager != null)
+                    {
+                        lightManager.EnabledLigth(teleportIndex);
+                    }
+                    
                     playerMovement.transform.position = tps[teleportIndex].transform.position;
                     Time.timeScale = 1f;
                     panelConsole.SetActive(false);
