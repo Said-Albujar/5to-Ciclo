@@ -70,37 +70,44 @@ public class EnemyThrower : MonoBehaviour
         {
             if (currentBullets>0)
             {
-                if(CheckInRangeView())
+                if(Vector3.Distance(transform.position,playerPosition.transform.position) < radius)
                 {
-                    canSeePlayer = true;
-                    Debug.Log("inrange");
-                    if(Vector3.Distance(transform.position,playerPosition.transform.position) < rangeAttack)
+                    if(CheckInRangeView())
                     {
-                        navMeshAgent.enabled = false;
-                        shootTimer += Time.deltaTime;
-
-                        if (shootTimer >= shootCooldown)
+                        canSeePlayer = true;
+                        Debug.Log("inrange");
+                        if(Vector3.Distance(transform.position,playerPosition.transform.position) < rangeAttack)
                         {
-                            Shoot();
-                            currentBullets -= 1;
-                            shootTimer = 0f;
-                            Debug.Log("Disparo");
+                            navMeshAgent.enabled = false;
+                            shootTimer += Time.deltaTime;
+
+                            if (shootTimer >= shootCooldown)
+                            {
+                                Shoot();
+                                currentBullets -= 1;
+                                shootTimer = 0f;
+                                Debug.Log("Disparo");
+                            }
+
+                            if (shootCooldown <= minshootCooldown)
+                                shootCooldown = minshootCooldown;
+
+                            RotateToPlayer();
                         }
-
-                        if (shootCooldown <= minshootCooldown)
-                            shootCooldown = minshootCooldown;
-
-                        RotateToPlayer();
+                        else
+                        {
+                            navMeshAgent.enabled = true;
+                            navMeshAgent.SetDestination(playerPosition.transform.position);
+                        }
                     }
                     else
                     {
                         navMeshAgent.enabled = true;
-                        navMeshAgent.SetDestination(playerPosition.transform.position);
+                        canSeePlayer = false;
                     }
                 }
                 else
                 {
-                    navMeshAgent.enabled = true;
                     canSeePlayer = false;
                 }
                 
@@ -194,14 +201,6 @@ public class EnemyThrower : MonoBehaviour
 
         transform.rotation = targetRotation;
     }
-    /* IEnumerator FOVRoutine()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(time);
-            FieldOfViewCheck();
-        }
-    } */
 
     bool CheckInRangeView()
     {
