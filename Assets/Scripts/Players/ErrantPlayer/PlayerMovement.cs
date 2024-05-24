@@ -76,6 +76,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     [SerializeField] float minDisGlide = 3f;
     public bool glideDeployed;
     public bool haveItemGlide;
+    public GameObject glidingObject;
 
 
     public PickUp pick;
@@ -111,6 +112,15 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     void Update()
     {
+        if(glideDeployed)
+        {
+            glidingObject.SetActive(true);
+        }
+        else
+        {
+            glidingObject.SetActive(false);
+
+        }
         switch (currentstate)
         {
             case state.climbIdle:
