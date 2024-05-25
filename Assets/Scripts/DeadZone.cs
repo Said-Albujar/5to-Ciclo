@@ -9,6 +9,10 @@ public class DeadZone : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        boss.playerInGround = true;
+        if (boss.active)
+        {
+            boss.playerInGround = true;
+        }
+        
     }
 }
