@@ -77,6 +77,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public bool glideDeployed;
     public bool haveItemGlide;
     public GameObject glidingObject;
+    public GameObject glidingCloseObject;
 
 
     public PickUp pick;
@@ -120,6 +121,15 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         {
             glidingObject.SetActive(false);
 
+        }
+
+        if(haveItemGlide&&!glideDeployed)
+        {
+            glidingCloseObject.SetActive(true);
+        }
+        if (haveItemGlide && glideDeployed)
+        {
+            glidingCloseObject.SetActive(false);
         }
         switch (currentstate)
         {
