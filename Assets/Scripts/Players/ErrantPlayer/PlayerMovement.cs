@@ -78,7 +78,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public bool haveItemGlide;
     public GameObject glidingObject;
     public GameObject glidingCloseObject;
-
+    public GameObject glidinObjectBox;
 
     public PickUp pick;
     [SerializeField] LightList[] lights;
@@ -107,13 +107,25 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         rb.freezeRotation = true;
         Cursor.lockState = CursorLockMode.Locked;
     }
+    public void ActiveGlidingPickBox()
+    {
+        glidinObjectBox.SetActive(true);
+        glidingCloseObject.SetActive(false);
+
+    }
+    public void ActiveGliding()
+    {
+        glidingObject.SetActive(true);
+        glidingCloseObject.SetActive(false);
+
+    }
 
 
-   
+
 
     void Update()
     {
-        if(glideDeployed)
+        /*if(glideDeployed)
         {
             glidingObject.SetActive(true);
         }
@@ -121,19 +133,22 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         {
             glidingObject.SetActive(false);
 
-        }
+        }*/
 
         if(haveItemGlide&&!glideDeployed)
         {
             glidingCloseObject.SetActive(true);
         }
-        if (haveItemGlide && glideDeployed)
+        else if (haveItemGlide && glideDeployed)
         {
             glidingCloseObject.SetActive(false);
         }
         switch (currentstate)
         {
             case state.climbIdle:
+                glidingObject.SetActive(false);
+                glidinObjectBox.SetActive(false);
+
                 CheckBorder();
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
@@ -152,6 +167,9 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 break;
 
             default:
+                glidinObjectBox.SetActive(false);
+                glidingObject.SetActive(false);
+
                 if (turn)
                 {
                     rb.isKinematic = false;
