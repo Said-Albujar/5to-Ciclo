@@ -16169,6 +16169,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 332122227}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &332193461 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8251225883017660602, guid: a7f0c8aa367beef4ebc07c335aa1c051, type: 3}
+  m_PrefabInstance: {fileID: 8218914976364958265}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &333989233
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26763,6 +26768,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 567599514}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &568237551 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3398962052626475457, guid: a7f0c8aa367beef4ebc07c335aa1c051, type: 3}
+  m_PrefabInstance: {fileID: 8218914976364958265}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &568419022
 GameObject:
   m_ObjectHideFlags: 0
@@ -105229,15 +105239,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2839032284506769105, guid: a7f0c8aa367beef4ebc07c335aa1c051, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.07216732
+      value: 0.072167315
       objectReference: {fileID: 0}
     - target: {fileID: 2839032284506769105, guid: a7f0c8aa367beef4ebc07c335aa1c051, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.009062711
+      value: 0.009062697
       objectReference: {fileID: 0}
     - target: {fileID: 2839032284506769105, guid: a7f0c8aa367beef4ebc07c335aa1c051, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0006557686
+      value: -0.00065576757
       objectReference: {fileID: 0}
     - target: {fileID: 2933442508918714340, guid: a7f0c8aa367beef4ebc07c335aa1c051, type: 3}
       propertyPath: m_IsActive
@@ -105360,9 +105370,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5014615300034817679, guid: a7f0c8aa367beef4ebc07c335aa1c051, type: 3}
+      propertyPath: glidingObject
+      value: 
+      objectReference: {fileID: 568237551}
+    - target: {fileID: 5014615300034817679, guid: a7f0c8aa367beef4ebc07c335aa1c051, type: 3}
       propertyPath: lights.Array.size
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 5014615300034817679, guid: a7f0c8aa367beef4ebc07c335aa1c051, type: 3}
+      propertyPath: glidingCloseObject
+      value: 
+      objectReference: {fileID: 332193461}
     - target: {fileID: 5014615300034817679, guid: a7f0c8aa367beef4ebc07c335aa1c051, type: 3}
       propertyPath: allLight.Array.size
       value: 28
@@ -105681,11 +105699,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5275052604135366970, guid: a7f0c8aa367beef4ebc07c335aa1c051, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.0090224305
+      value: 0.009022439
       objectReference: {fileID: 0}
     - target: {fileID: 5275052604135366970, guid: a7f0c8aa367beef4ebc07c335aa1c051, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0010762897
+      value: -0.0010762907
       objectReference: {fileID: 0}
     - target: {fileID: 5385218753985091604, guid: a7f0c8aa367beef4ebc07c335aa1c051, type: 3}
       propertyPath: m_IsActive
