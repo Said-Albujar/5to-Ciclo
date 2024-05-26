@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 172723765261771405}
   - component: {fileID: 931811566709301300}
   - component: {fileID: 8691647043717369147}
+  - component: {fileID: 3853388837300478107}
   m_Layer: 0
   m_Name: Impact
   m_TagString: Untagged
@@ -42,7 +43,7 @@ VisualEffect:
   m_GameObject: {fileID: 607592102771081080}
   m_Enabled: 1
   m_Asset: {fileID: 8926484042661614526, guid: b720c53e33a219a4d9dae30d97d8718a, type: 3}
-  m_InitialEventName: OnPlay
+  m_InitialEventName: 
   m_InitialEventNameOverriden: 0
   m_StartSeed: 0
   m_ResetSeedOnPlay: 1
@@ -110,3 +111,15 @@ VFXRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &3853388837300478107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 607592102771081080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89c00f7871835fb439e9ba649cab5238, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

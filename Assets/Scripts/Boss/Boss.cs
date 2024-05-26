@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 using UnityEngine.AI;
 
 public class Boss : MonoBehaviour
@@ -33,10 +34,12 @@ public class Boss : MonoBehaviour
 
     [Header("Attack")]
     public GameObject[] arms= new GameObject[2];
-    public Animator animator;
-    public PlayerHealth playerHealth;
+    private Animator animator;
+    private PlayerHealth playerHealth;
     [HideInInspector]public bool isAttacking;
     [HideInInspector]public float timer;
+    public GameObject prefabVfx;
+    public GameObject[] vfxsPoint = new GameObject[2];
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -192,5 +195,15 @@ public class Boss : MonoBehaviour
         {
             arm.SetActive(false);
         }
+    }
+    
+    public void PlayLeftVfx()
+    {
+        Instantiate(prefabVfx, vfxsPoint[0].transform.position, Quaternion.identity);
+    }
+
+    public void PlayRightVfx()
+    {
+        Instantiate(prefabVfx, vfxsPoint[1].transform.position, Quaternion.identity);
     }
 }
