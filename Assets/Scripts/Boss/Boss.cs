@@ -102,11 +102,14 @@ public class Boss : MonoBehaviour
 
             Vector3 currentLocalEulerAngles = baseHead.localRotation.eulerAngles;
 
-            Vector3 targetLocalEulerAngles = new Vector3(currentLocalEulerAngles.x, targetAngle, currentLocalEulerAngles.z);
+            Vector3 targetLocalEulerAngles = new Vector3(0, targetAngle, currentLocalEulerAngles.z);
 
             Quaternion targetRotation = Quaternion.Euler(targetLocalEulerAngles);
 
-            baseHead.localRotation = Quaternion.Lerp(baseHead.localRotation, targetRotation, rotationSpeed * Time.deltaTime);
+            Quaternion interpolatedRotation = Quaternion.Lerp(baseHead.localRotation, targetRotation, rotationSpeed * Time.deltaTime);
+            Vector3 interpolatedEulerAngles = interpolatedRotation.eulerAngles;
+            interpolatedEulerAngles.x = 0;
+            baseHead.localRotation = Quaternion.Euler(interpolatedEulerAngles);
 
             if (Quaternion.Angle(baseHead.localRotation, targetRotation) < 0.1f)
             {
@@ -118,6 +121,7 @@ public class Boss : MonoBehaviour
         {
             timeSinceDirectionChange += Time.deltaTime;
         }
+
 
     }
 
