@@ -16,6 +16,8 @@ public class BossPhase2 : IBossPhase
     }
     public void Execute()
     {
+        boss.isAttacking = false;
+        boss.DesactiveArms();
         if (boss.playerInGround)
         {
             boss.ChasePlayer();

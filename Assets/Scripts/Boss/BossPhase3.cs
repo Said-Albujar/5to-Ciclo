@@ -33,6 +33,22 @@ public class BossPhase3 : IBossPhase
                 boss.DesactiveArms();
                 boss.isAttacking = false;
             }
+
+            if (!boss.fov.canSeePlayer)
+            {
+                boss.StopVfxPlayer();
+                boss.timer = 0;
+                if (Vector3.Distance(boss.transform.position, boss.phase3points[index - 1].position) < 0.2f)
+                {
+                    boss.LookAround();
+                }
+            }
+            else
+            {
+                boss.KillPlayer();
+                boss.RotateHeadToPlayer();
+
+            }
         }
         
     }
