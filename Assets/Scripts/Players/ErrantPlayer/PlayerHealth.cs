@@ -29,7 +29,7 @@ public class PlayerHealth : MonoBehaviour
 
         if (health == 0)
         {
-           
+            DisableVfxDeathByBoss();
             anim.Play("dead");
             //anim.SetBool("dead", true);
             panelDead.SetActive(true);

@@ -40,6 +40,8 @@ public class Boss : MonoBehaviour
     [HideInInspector]public float timer;
     public GameObject prefabVfx;
     public GameObject[] vfxsPoint = new GameObject[2];
+    public GameObject prefabLighting;
+    public Transform lightingPoint;
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -183,6 +185,7 @@ public class Boss : MonoBehaviour
         }
         else
         {
+            InstantiateLighting();
             playerHealth.activateVfx = false;
             playerHealth.health = 0;
         }
@@ -200,7 +203,10 @@ public class Boss : MonoBehaviour
             arm.SetActive(false);
         }
     }
-    
+    public void InstantiateLighting()
+    {
+        Instantiate(prefabLighting, lightingPoint.position, Quaternion.identity);
+    }
     public void PlayLeftVfx()
     {
         Instantiate(prefabVfx, vfxsPoint[0].transform.position, Quaternion.identity);
