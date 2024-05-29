@@ -485,7 +485,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             
             if(!Physics.Raycast(transform.position,transform.up * -1,minDisGlide,ground))
             {
-                if (Input.GetKey(jumpKey) && CanGlide() && !GameManager.instance.inPause)
+                if (Input.GetKey(jumpKey) && CanGlide() && !GameManager.instance.inPause && StaminaController.staminaActual >=0)
                 {
                     DeployGlide();
                 }
@@ -502,7 +502,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         }
             
     }
-    private bool CanGlide()
+    public  bool CanGlide()
     {
         
         if (!grounded && currentstate != state.climbIdle || currentstate != state.climbMoving)

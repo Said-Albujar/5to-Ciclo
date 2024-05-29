@@ -66,14 +66,26 @@ public class StaminaController : MonoBehaviour
         }
 
         IsRunning();
-
-        if(recolectar.botonPresionado == true && !mejora)
+        isGliding();
+        if (recolectar.botonPresionado == true && !mejora)
         {
             staminaMax = 100;
             staminaRegen = 30f;
             mejora = true;
         }
 
+    }
+    public void isGliding()
+    {
+        if(errantMovement.currentstate==PlayerMovement.state.gliding)
+        {
+            staminaActual -= staminaDrain * Time.deltaTime;
+            CheckStamina(1);
+            if (staminaActual <= 0)
+            {
+                errantMovement.CanGlide();
+            }
+        }
     }
 
     public void IsRunning()
@@ -114,15 +126,18 @@ public class StaminaController : MonoBehaviour
         if (staminaActual >= staminaNeedle) 
         {
             canRun = true;
+
             if (!once)
             {
                 once = true;
+
             }
         }
 
         else
         {
             once = false;
+
         }
 
     }
