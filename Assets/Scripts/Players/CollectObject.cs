@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System;
 
 public class CollectObject : MonoBehaviour
 {
@@ -10,10 +11,18 @@ public class CollectObject : MonoBehaviour
     public int contador = 0;
 
     public Button miBoton; 
+    [SerializeField] Button coinUpgrade;
+    [SerializeField] int costUpgradeCoin;
     public int monedasNecesarias = 100;
     public bool botonPresionado = false;
+    public bool botonCoin = false;
 
     public GameObject buttonVfxPrefab;
+
+    bool regenerateStamina = false;
+    public Action OnCollectCoin;
+    [SerializeField] float amountStamina; 
+
 
     private void Start()
     {
@@ -36,6 +45,11 @@ public class CollectObject : MonoBehaviour
             AudioManager.Instance.PlaySFX("Coins");
             ActualizarEstadoBoton();
             InstanstiateVFX();
+
+            if(regenerateStamina == true)
+            {
+                StaminaController.staminaActual += amountStamina;
+            }
         }
     }
 
@@ -63,15 +77,28 @@ public class CollectObject : MonoBehaviour
         {
             miBoton.interactable = contador >= monedasNecesarias && !botonPresionado;
         }
+
+        if (coinUpgrade != null)
+        {
+            coinUpgrade.interactable = contador >= costUpgradeCoin && !botonCoin;
+        }
     }
 
     public void OnBotonPresionado()
     {
-        Debug.Log("¡Botón presionado!");
+        Debug.Log("ï¿½Botï¿½n presionado!");
         botonPresionado = true;
         contador -= monedasNecesarias;
         ActualizarEstadoBoton();
         
+    }
+
+    public void CoinButton()
+    {
+        regenerateStamina = true;
+        botonCoin = true;
+        contador -= costUpgradeCoin;
+        ActualizarEstadoBoton();
     }
 
     private void InstanstiateVFX()
