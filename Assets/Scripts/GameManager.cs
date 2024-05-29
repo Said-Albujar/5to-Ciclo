@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     public GameObject panelTransition;
     public GameObject panelConsole;
     [SerializeField] LightManager lightManager;
-
+    public GameObject canvaStamina;
     public GameObject[] tps = new GameObject[9];
     private void Awake()
     {
@@ -95,14 +95,19 @@ public class GameManager : MonoBehaviour
     {
         ShowCursor();
         Time.timeScale = 0f;
+        canvaStamina.SetActive(false);
+
         panelPause.SetActive(true);
         inPause = true;
     }
 
     public void Unpause()
     {
+
         HideCursor();
         Time.timeScale = 1f;
+        canvaStamina.SetActive(true);
+
         panelPause.SetActive(false);
         panelUpgrades.SetActive(false);
         inPause = false;
