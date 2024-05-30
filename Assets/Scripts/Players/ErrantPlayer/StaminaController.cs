@@ -79,7 +79,7 @@ public class StaminaController : MonoBehaviour
     {
         if(errantMovement.currentstate==PlayerMovement.state.gliding)
         {
-            staminaActual -= staminaDrain * Time.deltaTime;
+            staminaActual -= (staminaDrain-2f) * Time.deltaTime;
             CheckStamina(1);
             if (staminaActual <= 0)
             {
