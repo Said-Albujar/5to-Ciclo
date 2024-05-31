@@ -217,7 +217,7 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 19.85
   m_BaseOffset: 9.78
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 8
   m_ObstacleAvoidanceType: 4
 --- !u!114 &3510558386014603752
 MonoBehaviour:
@@ -259,6 +259,8 @@ MonoBehaviour:
   vfxsPoint:
   - {fileID: 1292649102269889239}
   - {fileID: 2604769450391392991}
+  prefabLighting: {fileID: 0}
+  lightingPoint: {fileID: 0}
 --- !u!95 &1453956897925679954
 Animator:
   serializedVersion: 5
