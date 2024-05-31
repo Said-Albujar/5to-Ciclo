@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
             DataPersistenceManager.instance.LoadGame();
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape) && !panelOptions.activeSelf)
+        if (Input.GetKeyDown(KeyCode.Escape) && !panelOptions.activeSelf && !Activator.codeIsActive)
         {
             switch (GetInPause())
             {

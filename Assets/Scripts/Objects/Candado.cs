@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Candado : MonoBehaviour
 {
+    [SerializeField] AudioClip sfx;
+    [SerializeField] AudioSource audioSource;
     [SerializeField] float velocityRitate;
     public int currenNumber = 1;
     bool canRotate = true;
@@ -28,6 +30,7 @@ public class Candado : MonoBehaviour
 
     private IEnumerator Rotate(Quaternion rotacionObjetivo)
     {
+        audioSource.PlayOneShot(sfx);
         float t = 0f;
         while (t < 1f)
         {

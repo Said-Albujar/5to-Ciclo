@@ -17,6 +17,7 @@ public class Activator : MonoBehaviour
     private bool isCanvasActive = false;
     private bool isGamePaused = false;
     private bool isCameraLocked = false;
+    static public bool codeIsActive;
 
     void Start()
     {
@@ -39,6 +40,7 @@ public class Activator : MonoBehaviour
                 anim.enabled = true;
                 movement.enabled = true;
                 interactableCanvas.SetActive(false);
+                codeIsActive = false;
                 isCameraLocked = true;
                 if (objectToDeactivate != null)
                 {
@@ -56,6 +58,7 @@ public class Activator : MonoBehaviour
                 anim.enabled = false;
                 movement.enabled = false;
                 interactableCanvas.SetActive(true);
+                codeIsActive = true;
                 isCameraLocked = false;
                 if (objectToDeactivate != null)
                 {
@@ -97,20 +100,7 @@ public class Activator : MonoBehaviour
     {
         if (other.CompareTag("Interactuable"))
         {
-            health.uiActive = false;
-            animator.enabled = true;
-            objectToDeactivate.SetActive(true);
-            anim.enabled = true;
-            movement.enabled = true;
-            isInsideTrigger = false;
-            interactableCanvas.SetActive(false);
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-            isCanvasActive = false;
-            isGamePaused = false;
-            isCameraLocked = false;
-            Time.timeScale = 1f;
-            cinemachineBrain.enabled = true;
+            ContinueGame();
         }
     }
 
@@ -119,6 +109,7 @@ public class Activator : MonoBehaviour
         health.uiActive = false;
         animator.enabled = true;
         objectToDeactivate.SetActive(true);
+        codeIsActive = false;
         anim.enabled = true;
         isCameraLocked = true;
         movement.enabled = true;
@@ -128,7 +119,24 @@ public class Activator : MonoBehaviour
         Cursor.visible = false;
         isCanvasActive = false;
         isGamePaused = false;
-        isCameraLocked = false;
+        Time.timeScale = 1f;
+        cinemachineBrain.enabled = true;
+    }
+
+    public void BackButton()
+    {
+        health.uiActive = false;
+        animator.enabled = true;
+        objectToDeactivate.SetActive(true);
+        codeIsActive = false;
+        anim.enabled = true;
+        isCameraLocked = true;
+        movement.enabled = true;
+        interactableCanvas.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        isCanvasActive = false;
+        isGamePaused = false;
         Time.timeScale = 1f;
         cinemachineBrain.enabled = true;
     }
