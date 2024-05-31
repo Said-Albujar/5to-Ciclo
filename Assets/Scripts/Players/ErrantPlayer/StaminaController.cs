@@ -20,6 +20,7 @@ public class StaminaController : MonoBehaviour
 
     [Header("Stamina Regen Parameters")]
     [Range(0, 50)] [SerializeField] float staminaDrain = 0.5f;
+    [Range(0, 50)][SerializeField] float staminaGlidingDrain = 0.5f;
     [Range(0, 50)] [SerializeField] float staminaRegen = 0.5f;
 
     [Header("Stamina UI Elements")]
@@ -79,7 +80,7 @@ public class StaminaController : MonoBehaviour
     {
         if(errantMovement.currentstate==PlayerMovement.state.gliding)
         {
-            staminaActual -= (staminaDrain-2f) * Time.deltaTime;
+            staminaActual -= (staminaGlidingDrain) * Time.deltaTime;
             CheckStamina(1);
             if (staminaActual <= 0)
             {
@@ -115,7 +116,7 @@ public class StaminaController : MonoBehaviour
     void Test()
     {
         regenTimer += Time.fixedDeltaTime;
-        if (regenTimer >= 2f)
+        if (regenTimer >= 0.75f)
         {
             staminaActual += staminaRegen * Time.deltaTime;
             CheckStamina(1);
