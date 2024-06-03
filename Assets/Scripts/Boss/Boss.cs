@@ -42,6 +42,7 @@ public class Boss : MonoBehaviour
     public GameObject[] vfxsPoint = new GameObject[2];
     public GameObject prefabLighting;
     public Transform lightingPoint;
+    public float timeLightingAttack;
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -177,7 +178,7 @@ public class Boss : MonoBehaviour
     }
     public void KillPlayer()
     {
-        if (timer <= 1.5f)
+        if (timer <= timeLightingAttack)
         {
             playerHealth.activateVfx = true;
             Debug.Log(timer);
