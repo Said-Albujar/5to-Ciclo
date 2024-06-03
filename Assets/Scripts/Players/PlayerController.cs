@@ -15,34 +15,30 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         RaycastHit hit;
-        if(Physics.Raycast(transform.position+(Vector3.up *distanceUp), Vector3.up, out hit,radius))
+        if (Physics.Raycast(transform.position + (Vector3.up * distanceUp), Vector3.up, out hit, radius))
         {
             if (hit.collider.gameObject.CompareTag("MovingPlatform"))
             {
                 Debug.Log("DETECTEC PALTAFORM");
                 movingPlatform = hit.collider.gameObject.GetComponent<MovingPlatform1>();
-                movingPlatform.speed=0f;
+                movingPlatform.speed = 0f;
             }
-            else
-            {
-                if (movingPlatform != null)
-                {
 
-                    movingPlatform.speed = 2f;
-                }
-            }
+
         }
         else
         {
-           
-            if(hit.collider!=null)
+            if (movingPlatform != null)
             {
-                movingPlatform.speed = 2f;
+                movingPlatform.speed = 4f;
 
             }
+        
             
+
         }
-       
+
+
     }
     private void OnDrawGizmos()
     {
