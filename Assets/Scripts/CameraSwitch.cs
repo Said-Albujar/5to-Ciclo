@@ -12,7 +12,8 @@ public class CameraSwitch : MonoBehaviour
     public GameObject Collider;
     public Image fadeInImage;
     public Image fadeOutImage;
-
+    public GameObject box;
+    public Transform positionBox;
     private bool isTransitioning = false;
 
     void OnTriggerEnter(Collider other)
@@ -53,7 +54,7 @@ public class CameraSwitch : MonoBehaviour
         secondTransitionCamera.SetActive(false);
 
         yield return new WaitForSeconds(1f);
-
+        box.transform.position = positionBox.transform.position;
         isTransitioning = false;
     }
 
