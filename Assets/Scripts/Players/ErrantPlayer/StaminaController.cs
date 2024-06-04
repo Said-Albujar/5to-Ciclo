@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class StaminaController : MonoBehaviour
 {
@@ -141,6 +142,13 @@ public class StaminaController : MonoBehaviour
 
         }
 
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("Finish"))
+        {
+            SceneManager.LoadScene("Victory");
+        }
     }
 
 }
