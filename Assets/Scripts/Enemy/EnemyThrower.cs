@@ -12,6 +12,7 @@ public class EnemyThrower : MonoBehaviour
     public int nextStep = 0;
     public List<Transform> positionPoint;
     public float distanceMin;
+    public Animator anim;
 
     [Header("Cono de vision")]
     public float radius;
@@ -30,7 +31,7 @@ public class EnemyThrower : MonoBehaviour
     public GameObject projectilePrefab;
     [SerializeField] float rangeAttack;
     public int startBullets = 10;
-    [HideInInspector]public int currentBullets;
+    public int currentBullets;
     public Transform shootPoint;
     public float projectileSpeed;
     private float shootTimer;
@@ -41,13 +42,11 @@ public class EnemyThrower : MonoBehaviour
     private Vector3 firstRotation;
     EnemyAudioManager enemyAudioManager;
     float timerSound;
-
     // Start is called before the first frame update
     private void Awake()
     {
         firstPos = transform.position;
         firstRotation = transform.rotation.eulerAngles;
-        navMeshAgent = GetComponent<NavMeshAgent>();
         playerPosition = FindObjectOfType<PlayerMovement>().gameObject;
         enemyAudioManager = GetComponent<EnemyAudioManager>();
     }
@@ -78,19 +77,28 @@ public class EnemyThrower : MonoBehaviour
                         Debug.Log("inrange");
                         if(Vector3.Distance(transform.position,playerPosition.transform.position) < rangeAttack)
                         {
+
                             navMeshAgent.enabled = false;
                             shootTimer += Time.deltaTime;
 
                             if (shootTimer >= shootCooldown)
                             {
-                                Shoot();
+                                anim.Play("Shoot");
+                                //Shoot();
                                 currentBullets -= 1;
                                 shootTimer = 0f;
                                 Debug.Log("Disparo");
                             }
+                          
 
                             if (shootCooldown <= minshootCooldown)
+                            {
+
                                 shootCooldown = minshootCooldown;
+
+                            }
+                          
+
 
                             RotateToPlayer();
                         }
@@ -98,6 +106,7 @@ public class EnemyThrower : MonoBehaviour
                         {
                             navMeshAgent.enabled = true;
                             navMeshAgent.SetDestination(playerPosition.transform.position);
+                            
                         }
                     }
                     else
@@ -179,7 +188,7 @@ public class EnemyThrower : MonoBehaviour
 
     }
 
-    void Shoot()
+    public void Shoot()
     {
         Vector3 ofsset = new Vector3(0F, 0.15f, 0f);
         Vector3 directionToPlayer = (playerPosition.transform.position - shootPoint.position).normalized + ofsset;

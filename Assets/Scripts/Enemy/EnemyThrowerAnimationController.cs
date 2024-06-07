@@ -16,6 +16,8 @@ public class EnemyThrowerAnimationController : MonoBehaviour
 
     void Update()
     {
+
+
         if (agent.velocity != Vector3.zero )
             anim.SetFloat("Speed", agent.velocity.magnitude);
         else
@@ -29,7 +31,10 @@ public class EnemyThrowerAnimationController : MonoBehaviour
         {
             anim.SetBool("Run", false);
         }
-       
+
+        
+
+
 
 
     }
