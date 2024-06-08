@@ -772,7 +772,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6560436425553786437}
   - component: {fileID: 597051600597671434}
-  - component: {fileID: 4154391067993474174}
+  - component: {fileID: 2415458400485055667}
   m_Layer: 0
   m_Name: enemidotiradorIdle
   m_TagString: Untagged
@@ -818,7 +818,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4154391067993474174
+--- !u!114 &2415458400485055667
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -827,38 +827,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5782774234071362815}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65cb8a55ec9804e4499d50be1cd744b2, type: 3}
+  m_Script: {fileID: 11500000, guid: d1fd2b2ef86f6ff408e82a94d7523726, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  navMeshAgent: {fileID: 8317629178463002485}
-  playerPosition: {fileID: 0}
-  speedPlayerChange: 10
-  nextStep: 0
-  positionPoint:
-  - {fileID: 5342390645458774029}
-  - {fileID: 4846268880421673194}
-  distanceMin: 1
-  anim: {fileID: 597051600597671434}
-  radius: 20
-  angle: 120
-  targeMask:
-    serializedVersion: 2
-    m_Bits: 64
-  obstructionMask:
-    serializedVersion: 2
-    m_Bits: 392
-  canSeePlayer: 0
-  rangeChecks: []
-  once: 1
-  timer: 0
-  projectilePrefab: {fileID: 1877353022480666278, guid: 081e132425431ae4d899503bc19444e3, type: 3}
-  rangeAttack: 10
-  startBullets: 5
-  currentBullets: 0
-  shootPoint: {fileID: 4304239957286917238}
-  projectileSpeed: 12
-  shootCooldown: 2
-  shoot: 0
+  enemyAudioManager: {fileID: 0}
+  enemyThrower: {fileID: 8423654433139920724}
 --- !u!1 &6278994968082256538
 GameObject:
   m_ObjectHideFlags: 0
@@ -1167,7 +1140,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8317629178463001743}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 65cb8a55ec9804e4499d50be1cd744b2, type: 3}
   m_Name: 
@@ -1195,12 +1168,11 @@ MonoBehaviour:
   timer: 0
   projectilePrefab: {fileID: 1877353022480666278, guid: 081e132425431ae4d899503bc19444e3, type: 3}
   rangeAttack: 10
-  startBullets: 15
+  startBullets: 5
   currentBullets: 0
   shootPoint: {fileID: 4304239957286917238}
   projectileSpeed: 12
   shootCooldown: 2
-  shoot: 0
 --- !u!114 &4980797999891121386
 MonoBehaviour:
   m_ObjectHideFlags: 0
