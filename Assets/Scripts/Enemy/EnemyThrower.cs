@@ -42,6 +42,7 @@ public class EnemyThrower : MonoBehaviour
     private Vector3 firstRotation;
     EnemyAudioManager enemyAudioManager;
     float timerSound;
+    public GameObject[] needleObject;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -88,6 +89,11 @@ public class EnemyThrower : MonoBehaviour
                                 currentBullets -= 1;
                                 shootTimer = 0f;
                                 Debug.Log("Disparo");
+                                for (int i = 0; i < needleObject.Length; i++)
+                                {
+                                    needleObject[i] = needleObject[currentBullets];
+                                    Destroy(needleObject[i]);
+                                }
                             }
                           
 
