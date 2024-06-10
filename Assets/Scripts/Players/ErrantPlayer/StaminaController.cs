@@ -116,12 +116,16 @@ public class StaminaController : MonoBehaviour
 
     void Test()
     {
-        regenTimer += Time.fixedDeltaTime;
-        if (regenTimer >= 0.75f)
+        if(errantMovement.currentstate != PlayerMovement.state.gliding)
         {
-            staminaActual += staminaRegen * Time.deltaTime;
-            CheckStamina(1);
+            regenTimer += Time.fixedDeltaTime;
+            if (regenTimer >= 0.75f)
+            {
+                staminaActual += staminaRegen * Time.deltaTime;
+                CheckStamina(1);
+            }
         }
+      
     }
     void StaminaNeedle()
     {
