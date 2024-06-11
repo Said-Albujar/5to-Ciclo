@@ -19,8 +19,7 @@ public class CollectObject : MonoBehaviour
 
     public GameObject buttonVfxPrefab;
 
-    bool regenerateStamina = false;
-    public Action OnCollectCoin;
+    static bool regenerateStamina = false;
     [SerializeField] float amountStamina; 
 
 
