@@ -86,8 +86,8 @@ public class EnemyThrower : MonoBehaviour
                             {
                                 anim.Play("Shoot");
                                 //Shoot();
-                                Destroy(needleObject[currentBullets-1]);
-                                currentBullets -= 1;
+                                /*Destroy(needleObject[currentBullets-1]);
+                                currentBullets -= 1;*/
                                 shootTimer = 0f;
                                 Debug.Log("Disparo");
                            
@@ -202,6 +202,11 @@ public class EnemyThrower : MonoBehaviour
         if (rb != null)
         {
             rb.velocity = directionToPlayer * projectileSpeed;
+        }
+        if(currentBullets>0)
+        {
+            Destroy(needleObject[currentBullets - 1]);
+            currentBullets -= 1;
         }
     }
 
