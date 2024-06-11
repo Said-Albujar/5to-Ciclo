@@ -9,6 +9,10 @@ public class PlayerAnimationController : MonoBehaviour
     public AnimationClip[] usingToolsAnims; //0.alicate, 1.pico, 2.tijeras
     public AnimatorOverrideController animatorOverrideController;
     public PickUp picked;
+
+    private float timer;
+    private float timeNeedle = 0.5f;
+    public bool canUse = true;
     void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();
@@ -32,6 +36,16 @@ public class PlayerAnimationController : MonoBehaviour
             anim.SetBool("ActiveGlider", playerMovement.currentstate == PlayerMovement.state.gliding);
             anim.SetBool("grounded", playerMovement.grounded);
             anim.SetBool("inBorder", playerMovement.currentstate == PlayerMovement.state.climbIdle);
+
+            if (!canUse)
+            {
+                timer += Time.deltaTime;
+                if (timer > timeNeedle)
+                {
+                    canUse = true;
+                    timer = 0;
+                }
+            }
         }
     }
 
@@ -100,8 +114,13 @@ public class PlayerAnimationController : MonoBehaviour
 
     public void UsingToolAnim(int index)
     {
-        anim.SetBool("usingTool", true);
-        animatorOverrideController["UsingPickage"] = usingToolsAnims[index];
+        if (canUse)
+        {
+            anim.SetBool("usingTool", true);
+            animatorOverrideController["UsingPickage"] = usingToolsAnims[index];
+            canUse = false;
+        }
+        
     }
 
     public void ExitToolAnim()
