@@ -86,15 +86,11 @@ public class EnemyThrower : MonoBehaviour
                             {
                                 anim.Play("Shoot");
                                 //Shoot();
-                                Destroy(needleObject[currentBullets - 1]);
+                                Destroy(needleObject[currentBullets-1]);
                                 currentBullets -= 1;
                                 shootTimer = 0f;
                                 Debug.Log("Disparo");
-                                for (int i = 0; i < needleObject.Length; i++)
-                                {
-                                    needleObject[i] = needleObject[currentBullets];
-                                    Destroy(needleObject[i]);
-                                }
+                           
                             }
                           
 
