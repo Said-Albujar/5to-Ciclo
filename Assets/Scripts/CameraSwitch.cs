@@ -14,10 +14,22 @@ public class CameraSwitch : MonoBehaviour
     public Image fadeOutImage;
     public GameObject box;
     public Transform positionBox;
-    private bool isTransitioning = false;
+    [SerializeField]private bool isTransitioning = false;
+    [SerializeField] private bool isTransitioning1 = true;
+    [SerializeField] private bool isTransitioning2 = true;
+    [SerializeField] private bool isTransitioning3 = true;
+
     public ButtonMecanism buttonMecanism;
+    public ButtonMecanism buttonMecanis1;
+    public ButtonMecanism buttonMecanis2;
+
     public GameObject cameraTransition;
     public GameObject cameraTransition1;
+    public GameObject cameraTransition2;
+    public GameObject cameraTransition3;
+    public GameObject cameraTransition4;
+    public GameObject cameraTransition5;
+
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("TriggerZone") && !isTransitioning)
@@ -61,17 +73,54 @@ public class CameraSwitch : MonoBehaviour
     }
     IEnumerator SwitchCamera2()
     {
-        isTransitioning = true;
         mainCamera.SetActive(false);
         cameraTransition.SetActive(true);
+        cameraTransition1.SetActive(true);
 
         yield return StartCoroutine(MoveCamera(cameraTransition.transform, cameraTransition1.transform.position, 3.5f));
         mainCamera.SetActive(true);
         cameraTransition.SetActive(false);
         cameraTransition1.SetActive(false);
 
-        yield return new WaitForSeconds(1f);
-        isTransitioning = false;
+        yield return new WaitForSeconds(3f);
+        //box.transform.position = positionBox.transform.position;
+
+        isTransitioning1 = false;
+
+    }
+    IEnumerator SwitchCamera3()
+    {
+        mainCamera.SetActive(false);
+        cameraTransition1.SetActive(true);
+        cameraTransition2.SetActive(true);
+
+        yield return StartCoroutine(MoveCamera(cameraTransition3.transform, cameraTransition2.transform.position, 3.5f));
+        mainCamera.SetActive(true);
+        cameraTransition1.SetActive(false);
+        cameraTransition2.SetActive(false);
+
+        yield return new WaitForSeconds(3f);
+        //box.transform.position = positionBox.transform.position;
+
+        isTransitioning2 = false;
+
+    }
+    IEnumerator SwitchCamera4()
+    {
+        mainCamera.SetActive(false);
+        cameraTransition4.SetActive(true);
+        cameraTransition5.SetActive(true);
+
+        yield return StartCoroutine(MoveCamera(cameraTransition3.transform, cameraTransition2.transform.position, 3.5f));
+        mainCamera.SetActive(true);
+        cameraTransition4.SetActive(false);
+        cameraTransition5.SetActive(false);
+
+        yield return new WaitForSeconds(3f);
+        //box.transform.position = positionBox.transform.position;
+
+        isTransitioning3 = false;
+
     }
 
 
@@ -146,10 +195,30 @@ public class CameraSwitch : MonoBehaviour
     }
     public void TransitionCamera()
     {
-        if(buttonMecanism.buttonPressed)
+        if(buttonMecanism!=null)
         {
-            StartCoroutine(SwitchCamera2());
+            if (buttonMecanism.buttonPressed&&isTransitioning1)
+            {
+                StartCoroutine(SwitchCamera2());
 
+            }
+            if (buttonMecanis1.buttonPressed && isTransitioning2)
+            {
+                StartCoroutine(SwitchCamera3());
+
+            }
+            if (buttonMecanis2.buttonPressed && isTransitioning3)
+            {
+                StartCoroutine(SwitchCamera4());
+
+            }
+            if(buttonMecanism.buttonPressed&&buttonMecanis1.buttonPressed)
+            {
+                StopCoroutine(SwitchCamera2());
+                StopCoroutine(SwitchCamera3());
+
+            }
         }
+       
     }
 }

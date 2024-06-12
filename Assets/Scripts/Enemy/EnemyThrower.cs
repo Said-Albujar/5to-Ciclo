@@ -85,7 +85,10 @@ public class EnemyThrower : MonoBehaviour
 
                             if (shootTimer >= shootCooldown)
                             {
-                                anim.Play("Shoot");
+                                if (anim != null)
+                                {
+                                    anim.Play("Shoot");
+                                }
                                 //Shoot();
                                 /*Destroy(needleObject[currentBullets-1]);
                                 currentBullets -= 1;*/
