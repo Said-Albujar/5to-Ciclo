@@ -15,7 +15,9 @@ public class CameraSwitch : MonoBehaviour
     public GameObject box;
     public Transform positionBox;
     private bool isTransitioning = false;
-
+    public ButtonMecanism buttonMecanism;
+    public GameObject cameraTransition;
+    public GameObject cameraTransition1;
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("TriggerZone") && !isTransitioning)
@@ -57,6 +59,21 @@ public class CameraSwitch : MonoBehaviour
         box.transform.position = positionBox.transform.position;
         isTransitioning = false;
     }
+    IEnumerator SwitchCamera2()
+    {
+        isTransitioning = true;
+        mainCamera.SetActive(false);
+        cameraTransition.SetActive(true);
+
+        yield return StartCoroutine(MoveCamera(cameraTransition.transform, cameraTransition1.transform.position, 3.5f));
+        mainCamera.SetActive(true);
+        cameraTransition.SetActive(false);
+        cameraTransition1.SetActive(false);
+
+        yield return new WaitForSeconds(1f);
+        isTransitioning = false;
+    }
+
 
     IEnumerator MoveCamera(Transform cameraTransform, Vector3 targetPosition, float duration)
     {
@@ -121,6 +138,18 @@ public class CameraSwitch : MonoBehaviour
         if (endAlpha == 0)
         {
             image.gameObject.SetActive(false);
+        }
+    }
+    private void LateUpdate()
+    {
+        TransitionCamera();
+    }
+    public void TransitionCamera()
+    {
+        if(buttonMecanism.buttonPressed)
+        {
+            StartCoroutine(SwitchCamera2());
+
         }
     }
 }

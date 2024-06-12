@@ -53,6 +53,7 @@ public class EnemyThrower : MonoBehaviour
     }
     private void Start()
     {
+        StartCoroutine(FOVRoutine());
         foreach (Transform points in positionPoint)
         {
             points.parent = null;
@@ -146,7 +147,6 @@ public class EnemyThrower : MonoBehaviour
         }
         else
         {
-            FieldOfViewCheck();
             if (once == true)
             {
                 RandomMove();
@@ -242,17 +242,36 @@ public class EnemyThrower : MonoBehaviour
     void FieldOfViewCheck()
     {
 
-        Vector3 player = new Vector3(playerPosition.transform.position.x,playerPosition.transform.position.y + 1f,playerPosition.transform.position.z);
-        Vector3 posPlayer = player - transform.position;
-        float distanceToTarget = Vector3.Distance(transform.position, playerPosition.transform.position);
-        Debug.DrawRay(transform.position,posPlayer);
-        if (Vector3.Angle(transform.forward, posPlayer) < angle / 2 && distanceToTarget < radius)
+        rangeChecks = Physics.OverlapSphere(transform.position, radius, targeMask);
+        if (rangeChecks.Length != 0)
         {
-            if (!Physics.Raycast(transform.position, posPlayer, distanceToTarget, obstructionMask))
+            Transform target = rangeChecks[0].transform;
+            Vector3 directionTarget = (target.position - transform.position).normalized;
+            if (Vector3.Angle(transform.forward, directionTarget) < angle / 2)
             {
-                canSeePlayer = true;
-                enemyAudioManager.DetecPlayer();
+                float distanceToTarget = Vector3.Distance(transform.position, target.position);
+
+                if (!Physics.Raycast(transform.position, directionTarget, distanceToTarget, obstructionMask))
+                {
+                    canSeePlayer = true;
+
+                }
+
+                else
+                    canSeePlayer = false;
             }
+            else
+                canSeePlayer = false;
+        }
+        else if (canSeePlayer)
+            canSeePlayer = false;
+    }
+    IEnumerator FOVRoutine()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(0.1f);
+            FieldOfViewCheck();
         }
     }
 
