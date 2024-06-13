@@ -11,7 +11,8 @@ public class Rope : MonoBehaviour
     [SerializeField] float force;
     [SerializeField] Rigidbody rb;
     [SerializeField] Collider localCollider;
-
+    public GameObject cutVfxPrefab;
+    public Transform cutPos;
     //Se cambio el fixed por update ya que daba demasiados problemas a la hora de cortar
     //Se a�andio un bool que detecta la collider, si no esta dentro del colider no se destruye la cuerda.
     //Se a�adio una lista,los objetos dentro de la lista se destruyen(cadenas).
@@ -66,6 +67,13 @@ public class Rope : MonoBehaviour
         localCollider.isTrigger = false;
         jointToCut.connectedBody = rb;
         rb.velocity = directionFonce * force;
+        InstanstiateVFX();
         Destroy(gameObject);
+    }
+
+    private void InstanstiateVFX()
+    {
+
+        Instantiate(cutVfxPrefab, cutPos.position, Quaternion.identity);
     }
 }
