@@ -62,7 +62,7 @@ public class CameraSwitch : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
         box.transform.position = positionBox.transform.position;
-        isTransitioning = false;
+        //isTransitioning = false;
     }
    
 
