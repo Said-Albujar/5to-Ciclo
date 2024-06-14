@@ -11,6 +11,7 @@ public class ButtonActive : MonoBehaviour
     //public PlayerHealth player;
     public void ButtonMenuActive()
     {
+        CollectObject.regenerateStamina = false;
         panelPause.SetActive(true);
         
     }

@@ -19,7 +19,7 @@ public class CollectObject : MonoBehaviour
 
     public GameObject buttonVfxPrefab;
 
-    static bool regenerateStamina = false;
+    static public  bool regenerateStamina = false;
     [SerializeField] float amountStamina; 
 
 
@@ -45,7 +45,7 @@ public class CollectObject : MonoBehaviour
             ActualizarEstadoBoton();
             InstanstiateVFX();
 
-            if(regenerateStamina == true)
+            if(regenerateStamina)
             {
                 StaminaController.staminaActual += amountStamina;
             }

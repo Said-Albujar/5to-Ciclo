@@ -115,7 +115,9 @@ public class GameManager : MonoBehaviour
 
     public void Restart()
     {
-
+        if(SceneManager.GetActiveScene().name == "Tutorial and level1")
+        CollectObject.regenerateStamina = false;
+        
         Time.timeScale = 1f;
         panelTransition.SetActive(true);
         SceneManager.LoadScene(sceneName);
