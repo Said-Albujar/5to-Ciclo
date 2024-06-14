@@ -51,7 +51,7 @@ public class DIalogue : MonoBehaviour
         foreach(char character in dialogueTextBox[index])
         {
             textDialogue.text += character;
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.02f);
         }
     }
     void StartDialogue()
@@ -97,6 +97,8 @@ public class DIalogue : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("TargetPlayer"))
         {
+            dialogueStart = false;
+            index = 0;
             dialogueExist = false;
             dialogueIcon.SetActive(true);
             //dialogueIcon2.SetActive(false);
