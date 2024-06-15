@@ -164,7 +164,9 @@ public class EnemyThrower : MonoBehaviour
     
     void Patrol()
     {
+        if(navMeshAgent.enabled)
         navMeshAgent.SetDestination(positionPoint[nextStep].position);
+        
         if (Vector3.Distance(transform.position, positionPoint[nextStep].position) < distanceMin)
         {
             nextStep++;
