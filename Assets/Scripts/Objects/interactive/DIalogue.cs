@@ -4,12 +4,11 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class DIalogue : MonoBehaviour
+public class DIalogue: MonoBehaviour
 {
     public GameObject dialogueIcon;
-    //public GameObject dialogueIcon2;
     public GameObject dialoguePanelText;
-    [SerializeField,TextArea(4,6)] private string[] dialogueTextBox;
+    [SerializeField, TextArea(4, 6)] private string[] dialogueTextBox;
     public TextMeshProUGUI textDialogue;
     public bool dialogueExist;
     public bool dialogueStart;
@@ -17,24 +16,22 @@ public class DIalogue : MonoBehaviour
 
     public bool HavePass;
     public GameObject PassText;
-    // Start is called before the first frame update
+    private bool dialogueIconDeactivated;
+
     void Start()
     {
-       // dialogueIcon.SetActive(false);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(dialogueExist&&Input.GetKeyDown(KeyCode.E))
+        if (dialogueExist && Input.GetKeyDown(KeyCode.E))
         {
             AudioManager.Instance.PlaySFX("Dialogue");
-            if(!dialogueStart)
+            if (!dialogueStart)
             {
                 StartDialogue();
-
             }
-            else if(textDialogue.text==dialogueTextBox[index])
+            else if (textDialogue.text == dialogueTextBox[index])
             {
                 NextDialogue();
             }
@@ -45,21 +42,28 @@ public class DIalogue : MonoBehaviour
             }
         }
     }
+
     private IEnumerator CountLineText()
     {
         textDialogue.text = string.Empty;
-        foreach(char character in dialogueTextBox[index])
+        foreach (char character in dialogueTextBox[index])
         {
             textDialogue.text += character;
             yield return new WaitForSeconds(0.02f);
         }
     }
+
     void StartDialogue()
     {
         dialogueStart = true;
         dialoguePanelText.SetActive(true);
-        dialogueIcon.SetActive(false);
-        //dialogueIcon2.SetActive(true);
+
+        if (!dialogueIconDeactivated)
+        {
+            dialogueIcon.SetActive(false);
+            dialogueIconDeactivated = true;
+        }
+
         index = 0;
         StartCoroutine(CountLineText());
 
@@ -68,6 +72,7 @@ public class DIalogue : MonoBehaviour
             PassText.SetActive(true);
         }
     }
+
     private void NextDialogue()
     {
         index++;
@@ -79,20 +84,25 @@ public class DIalogue : MonoBehaviour
         {
             dialogueStart = false;
             dialoguePanelText.SetActive(false);
-            dialogueIcon.SetActive(true);
-            //dialogueIcon2.SetActive(false);
+            if (!dialogueIconDeactivated)
+            {
+                dialogueIcon.SetActive(true);
+            }
         }
     }
+
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.layer==LayerMask.NameToLayer("TargetPlayer"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("TargetPlayer"))
         {
             dialogueExist = true;
-            dialogueIcon.SetActive(false);
-            //dialogueIcon2.SetActive(true);
+            if (!dialogueIconDeactivated)
+            {
+                dialogueIcon.SetActive(true);
+            }
         }
-     
     }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("TargetPlayer"))
@@ -100,10 +110,11 @@ public class DIalogue : MonoBehaviour
             dialogueStart = false;
             index = 0;
             dialogueExist = false;
-            dialogueIcon.SetActive(true);
-            //dialogueIcon2.SetActive(false);
+            if (!dialogueIconDeactivated)
+            {
+                dialogueIcon.SetActive(true);
+            }
             dialoguePanelText.SetActive(false);
-
         }
     }
 }

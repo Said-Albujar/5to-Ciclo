@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7a0dbe4f19d91941b561e90cde567ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueIcon: {fileID: 7855749224319830460}
+  dialogueIcon: {fileID: 7246402108958100108}
   dialoguePanelText: {fileID: 0}
   dialogueTextBox:
   - Tal vez pueda usar eso para salir de aqui     (E para salir)
@@ -303,7 +303,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3146163287517446029
 Transform:
   m_ObjectHideFlags: 0
@@ -379,6 +379,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6872699315415003436}
+  - component: {fileID: 3363427698201311319}
   m_Layer: 0
   m_Name: Npc
   m_TagString: Untagged
@@ -405,6 +406,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &3363427698201311319
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8931335210042851901}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bb92372602e1a6849a81d6b6155dbfe7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &9180879854616639070
 GameObject:
   m_ObjectHideFlags: 0
