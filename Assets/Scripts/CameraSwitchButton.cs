@@ -10,11 +10,7 @@ public class CameraSwitchButton : MonoBehaviour
 {
     public GameObject mainCamera;
 
-    [SerializeField] private bool isTransitioning1 = true;
-    [SerializeField] private bool isTransitioning2 = true;
-    [SerializeField] private bool isTransitioning3 = true;
-    [SerializeField] private bool isTransitioning4 = true;
-    [SerializeField] private bool isTransitioning5 = true;
+   
 
 
     public ButtonMecanism buttonMecanism;
@@ -31,6 +27,12 @@ public class CameraSwitchButton : MonoBehaviour
     public GameObject cameraTransition7;
     public GameObject cameraTransition8;
     public GameObject cameraTransition9;
+    public  bool isTransitioning1 = true;
+    public  bool isTransitioning2 = true;
+    public  bool isTransitioning3 = true;
+    public  bool isTransitioning4 = true;
+    public  bool isTransitioning5 = true;
+
 
     private void LateUpdate()
     {

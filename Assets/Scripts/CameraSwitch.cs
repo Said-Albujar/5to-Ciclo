@@ -14,7 +14,6 @@ public class CameraSwitch : MonoBehaviour
     public Image fadeOutImage;
     public GameObject box;
     public Transform positionBox;
-    [SerializeField]private bool isTransitioning = false;
 
 
 
@@ -25,7 +24,7 @@ public class CameraSwitch : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("TriggerZone") && !isTransitioning)
+        if (other.CompareTag("TriggerZone") && GlobalStaticCamera.isTransitioning)
         {
             StartCoroutine(SwitchCamera());
         }
@@ -33,7 +32,6 @@ public class CameraSwitch : MonoBehaviour
 
     IEnumerator SwitchCamera()
     {
-        isTransitioning = true;
         Collider.SetActive(false);
         mainCamera.SetActive(false);
         firstTransitionCamera.SetActive(true);
@@ -62,9 +60,11 @@ public class CameraSwitch : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
         box.transform.position = positionBox.transform.position;
+        GlobalStaticCamera.isTransitioning = false;
+
         //isTransitioning = false;
     }
-   
+
 
     IEnumerator MoveCamera(Transform cameraTransform, Vector3 targetPosition, float duration)
     {
