@@ -31,7 +31,7 @@ public class PickUp : MonoBehaviour
             DropBox();
         }
 
-        if(playerMovement.grounded)
+        /*if(playerMovement.grounded)
         {
             RaycastHit hit;
             box = Physics.Raycast(transform.position, transform.forward, out hit, radius, maskBox);
@@ -43,7 +43,7 @@ public class PickUp : MonoBehaviour
             {
                 PickedObject = null;
             }
-        }
+        }*/
 
         if (haveObject)
         {
@@ -84,7 +84,7 @@ public class PickUp : MonoBehaviour
 
             PickBox();
         }
-        /*if (haveObject == false)
+        if (haveObject == false)
         {
             PickedObject = null;
             hitColliders = Physics.OverlapSphere(HandPoint.transform.position, radius, maskBox);
@@ -95,7 +95,7 @@ public class PickUp : MonoBehaviour
                 break;
             }
         }
-        else
+        /*else
         {
             float moveSpeed = 3.0f;
             Vector3 targetPosition = HandPoint.transform.position; 
