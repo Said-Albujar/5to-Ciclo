@@ -59,12 +59,12 @@ public class CameraSwitchButton : MonoBehaviour
             cameraTransition.SetActive(true);
             cameraTransition1.SetActive(true);
 
-            yield return StartCoroutine(MoveCamera(cameraTransition.transform, cameraTransition1.transform.position, 3.5f));
+            yield return StartCoroutine(MoveCamera(cameraTransition.transform, cameraTransition1.transform.position, 1.5f));
             mainCamera.SetActive(true);
             cameraTransition.SetActive(false);
             cameraTransition1.SetActive(false);
 
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(1.5f);
             //box.transform.position = positionBox.transform.position;
 
             isTransitioning1 = false;
@@ -81,12 +81,12 @@ public class CameraSwitchButton : MonoBehaviour
             cameraTransition1.SetActive(true);
             cameraTransition2.SetActive(true);
 
-            yield return StartCoroutine(MoveCamera(cameraTransition3.transform, cameraTransition2.transform.position, 3.5f));
+            yield return StartCoroutine(MoveCamera(cameraTransition3.transform, cameraTransition2.transform.position, 1.5f));
             mainCamera.SetActive(true);
             cameraTransition1.SetActive(false);
             cameraTransition2.SetActive(false);
 
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(1.5f);
             //box.transform.position = positionBox.transform.position;
 
             isTransitioning2 = false;
@@ -100,12 +100,12 @@ public class CameraSwitchButton : MonoBehaviour
         cameraTransition4.SetActive(true);
         cameraTransition5.SetActive(true);
 
-        yield return StartCoroutine(MoveCamera(cameraTransition3.transform, cameraTransition2.transform.position, 3.5f));
+        yield return StartCoroutine(MoveCamera(cameraTransition3.transform, cameraTransition2.transform.position, 1.5f));
         mainCamera.SetActive(true);
         cameraTransition4.SetActive(false);
         cameraTransition5.SetActive(false);
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1.5f);
         //box.transform.position = positionBox.transform.position;
 
         isTransitioning3 = false;
@@ -117,12 +117,12 @@ public class CameraSwitchButton : MonoBehaviour
         cameraTransition6.SetActive(true);
         cameraTransition7.SetActive(true);
 
-        yield return StartCoroutine(MoveCamera(cameraTransition6.transform, cameraTransition7.transform.position, 3.5f));
+        yield return StartCoroutine(MoveCamera(cameraTransition6.transform, cameraTransition7.transform.position, 1.5f));
         mainCamera.SetActive(true);
         cameraTransition6.SetActive(false);
         cameraTransition7.SetActive(false);
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1.5f);
         //box.transform.position = positionBox.transform.position;
         isTransitioning4 = false;
 
@@ -133,12 +133,12 @@ public class CameraSwitchButton : MonoBehaviour
         cameraTransition8.SetActive(true);
         cameraTransition9.SetActive(true);
 
-        yield return StartCoroutine(MoveCamera(cameraTransition8.transform, cameraTransition9.transform.position, 3.5f));
+        yield return StartCoroutine(MoveCamera(cameraTransition8.transform, cameraTransition9.transform.position, 1.5f));
         mainCamera.SetActive(true);
         cameraTransition7.SetActive(false);
         cameraTransition9.SetActive(false);
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1.5f);
         //box.transform.position = positionBox.transform.position;
         isTransitioning5 = false;
 
