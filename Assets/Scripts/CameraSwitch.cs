@@ -5,42 +5,35 @@ using UnityEngine;
 
 public class CameraSwitch : MonoBehaviour
 {
-    public GameObject mainCamera;
+    public GameObject player;
     public GameObject firstTransitionCamera;
     public GameObject secondTransitionCamera;
     public GameObject finalCamera;
-    public GameObject Collider;
     public Image fadeInImage;
     public Image fadeOutImage;
     public GameObject box;
     public Transform positionBox;
 
-
-
-
-
-
-
-
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("TriggerZone") && GlobalStaticCamera.isTransitioning)
+        if (other.CompareTag("Hair") && GlobalStaticCamera.isTransitioning)
         {
+            GlobalStaticCamera.isTransitioning = false;
             StartCoroutine(SwitchCamera());
         }
     }
 
     IEnumerator SwitchCamera()
     {
-        Collider.SetActive(false);
-        mainCamera.SetActive(false);
+        
+        
         firstTransitionCamera.SetActive(true);
 
         yield return StartCoroutine(MoveCamera(firstTransitionCamera.transform, secondTransitionCamera.transform.position, 3.5f));
 
         firstTransitionCamera.SetActive(false);
         secondTransitionCamera.SetActive(true);
-
+        player.SetActive(false);
         yield return StartCoroutine(MoveCamera(secondTransitionCamera.transform, finalCamera.transform.position, 3.5f));
 
         secondTransitionCamera.SetActive(false);
@@ -50,18 +43,18 @@ public class CameraSwitch : MonoBehaviour
         yield return StartCoroutine(FadeImageToBlack(fadeInImage, 2f));
 
         yield return new WaitForSeconds(2f);
-
+        box.transform.position = positionBox.transform.position;
         StartCoroutine(FadeImageToTransparent(fadeOutImage, 5f));
 
-        mainCamera.SetActive(true);
+        player.SetActive(true);
         finalCamera.SetActive(false);
         firstTransitionCamera.SetActive(false);
         secondTransitionCamera.SetActive(false);
 
         yield return new WaitForSeconds(1f);
         box.transform.position = positionBox.transform.position;
-        GlobalStaticCamera.isTransitioning = false;
-
+        
+        
         //isTransitioning = false;
     }
 
@@ -126,10 +119,9 @@ public class CameraSwitch : MonoBehaviour
         color.a = endAlpha;
         image.color = color;
 
-        if (endAlpha == 0)
-        {
-            image.gameObject.SetActive(false);
-        }
+        
+        image.gameObject.SetActive(false);
+        this.gameObject.SetActive(false);
     }
    
   
