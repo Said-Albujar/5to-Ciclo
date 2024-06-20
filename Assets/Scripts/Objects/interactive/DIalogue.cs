@@ -1,10 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
 
-public class DIalogue: MonoBehaviour
+public class DIalogue : MonoBehaviour
 {
     public GameObject dialogueIcon;
     public GameObject dialoguePanelText;
@@ -12,7 +10,7 @@ public class DIalogue: MonoBehaviour
     public TextMeshProUGUI textDialogue;
     public bool dialogueExist;
     public bool dialogueStart;
-    int index;
+    public int index;
 
     public bool HavePass;
     public GameObject PassText;
@@ -20,6 +18,9 @@ public class DIalogue: MonoBehaviour
 
     void Start()
     {
+        dialoguePanelText.SetActive(false);
+        if (dialogueIcon != null) dialogueIcon.SetActive(false);
+        if (PassText != null) PassText.SetActive(false);
     }
 
     void Update()
@@ -49,7 +50,7 @@ public class DIalogue: MonoBehaviour
         foreach (char character in dialogueTextBox[index])
         {
             textDialogue.text += character;
-            yield return new WaitForSeconds(0.02f);
+            yield return new WaitForSeconds(0.04f);
         }
     }
 
@@ -91,6 +92,8 @@ public class DIalogue: MonoBehaviour
         }
     }
 
+ 
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("TargetPlayer"))
@@ -107,13 +110,11 @@ public class DIalogue: MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("TargetPlayer"))
         {
+            dialogueExist = false;
+            StopAllCoroutines();  
             dialogueStart = false;
             index = 0;
-            dialogueExist = false;
-            if (!dialogueIconDeactivated)
-            {
-                dialogueIcon.SetActive(true);
-            }
+            textDialogue.text = string.Empty;
             dialoguePanelText.SetActive(false);
         }
     }
