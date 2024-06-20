@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class CorrienteViento : MonoBehaviour
 {
-    float airForce = 1.5f;
+    public float airForce = 1.5f;
     public PlayerMovement player;
-
+    public Vector3 direction;
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Hair") && player.glideDeployed)
         {
-            player.ImpulseWithAir(airForce);
+            player.ImpulseWithAir(airForce,direction);
         }
     }
     //private void OnTriggerExit(Collider other)

@@ -523,9 +523,9 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         currentstate = state.idle;
     }
 
-    public void ImpulseWithAir(float airForce)
+    public void ImpulseWithAir(float airForce,Vector3 directionForce)
     {
-        Vector3 upwardForce = Vector3.up * airForce;
+        Vector3 upwardForce = directionForce * airForce;
 
         rb.AddForce(upwardForce, ForceMode.Impulse);
     }
