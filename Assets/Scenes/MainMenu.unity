@@ -188,8 +188,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Franz Pe\xF1a \nLuis Salvador\nLorenzo Vega\n\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a546b04b560c8ff45a47f8f8d32ad598, type: 2}
-  m_sharedMaterial: {fileID: 582462102760045496, guid: a546b04b560c8ff45a47f8f8d32ad598, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fd2603641af7681428fdde09bdb5b14e, type: 2}
+  m_sharedMaterial: {fileID: -7867418709544335655, guid: fd2603641af7681428fdde09bdb5b14e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -219,7 +219,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -363,6 +363,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1358571221}
+  - {fileID: 1152421423}
   m_Father: {fileID: 211244729}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -558,7 +559,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 73339598}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 4.809}
+  m_LocalPosition: {x: 0, y: 0, z: 3.976}
   m_LocalScale: {x: 0.0038899998, y: 0.00389, z: 0.0038899998}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -567,8 +568,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4.192, y: 2.458}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 4.192, y: 2.164}
+  m_SizeDelta: {x: 629.7073, y: 359.0147}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &73339600
 MonoBehaviour:
@@ -590,10 +591,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\nGeorge Jimy \nMirko Lima\nSaid Albujar\nBrady Melendez"
+  m_text: "George Huam\xE1n\nMirko Lima\nSaid Albujar\nBrady Melendez"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a546b04b560c8ff45a47f8f8d32ad598, type: 2}
-  m_sharedMaterial: {fileID: 582462102760045496, guid: a546b04b560c8ff45a47f8f8d32ad598, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fd2603641af7681428fdde09bdb5b14e, type: 2}
+  m_sharedMaterial: {fileID: -7867418709544335655, guid: fd2603641af7681428fdde09bdb5b14e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -623,7 +624,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -653,7 +654,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: -30.195578, z: -402.00607, w: -4.947151}
+  m_margin: {x: 0, y: 1.9068394, z: -1.0992126, w: -4.821228}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -782,10 +783,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectsToActivate:
-  - {fileID: 1358571220}
-  objectsToDeactivate:
   - {fileID: 481889310}
   - {fileID: 1102269753}
+  objectsToDeactivate:
+  - {fileID: 1358571220}
+  - {fileID: 1152421422}
 --- !u!4 &132911242
 Transform:
   m_ObjectHideFlags: 0
@@ -861,8 +863,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: VOODOO
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a546b04b560c8ff45a47f8f8d32ad598, type: 2}
-  m_sharedMaterial: {fileID: 582462102760045496, guid: a546b04b560c8ff45a47f8f8d32ad598, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fd2603641af7681428fdde09bdb5b14e, type: 2}
+  m_sharedMaterial: {fileID: -7867418709544335655, guid: fd2603641af7681428fdde09bdb5b14e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -892,7 +894,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 19
+  m_fontStyle: 2
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -2215,7 +2217,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &632225684
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2293,7 +2295,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1898518820}
+      - m_Target: {fileID: 1978853459}
         m_TargetAssemblyTypeName: AyDButons, Assembly-CSharp
         m_MethodName: ActivateObjects
         m_Mode: 1
@@ -2305,7 +2307,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1898518820}
+      - m_Target: {fileID: 1978853459}
         m_TargetAssemblyTypeName: AyDButons, Assembly-CSharp
         m_MethodName: DeactivateObjects
         m_Mode: 1
@@ -2733,7 +2735,7 @@ MonoBehaviour:
         m_MethodName: UpdateCamera
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 982285882}
+          m_ObjectArgument: {fileID: 1064240634}
           m_ObjectArgumentAssemblyTypeName: Cinemachine.CinemachineVirtualCamera,
             Cinemachine
           m_IntArgument: 0
@@ -3031,8 +3033,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Cr\xE9ditos"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a546b04b560c8ff45a47f8f8d32ad598, type: 2}
-  m_sharedMaterial: {fileID: 582462102760045496, guid: a546b04b560c8ff45a47f8f8d32ad598, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fd2603641af7681428fdde09bdb5b14e, type: 2}
+  m_sharedMaterial: {fileID: -7867418709544335655, guid: fd2603641af7681428fdde09bdb5b14e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3166,8 +3168,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "PROGRAMACI\xD3N"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a546b04b560c8ff45a47f8f8d32ad598, type: 2}
-  m_sharedMaterial: {fileID: 582462102760045496, guid: a546b04b560c8ff45a47f8f8d32ad598, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fd2603641af7681428fdde09bdb5b14e, type: 2}
+  m_sharedMaterial: {fileID: -7867418709544335655, guid: fd2603641af7681428fdde09bdb5b14e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3197,7 +3199,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 4
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -4596,7 +4598,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 132911241}
+      - m_Target: {fileID: 1898518820}
         m_TargetAssemblyTypeName: AyDButons, Assembly-CSharp
         m_MethodName: ActivateObjects
         m_Mode: 1
@@ -4608,7 +4610,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 132911241}
+      - m_Target: {fileID: 1898518820}
         m_TargetAssemblyTypeName: AyDButons, Assembly-CSharp
         m_MethodName: DeactivateObjects
         m_Mode: 1
@@ -4801,7 +4803,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectsToActivate:
   - {fileID: 632225683}
-  - {fileID: 1152421422}
   objectsToDeactivate:
   - {fileID: 481889310}
   - {fileID: 1102269753}
@@ -4937,17 +4938,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1152421422}
-  m_LocalRotation: {x: -0, y: -0, z: -0.29245728, w: 0.9562786}
-  m_LocalPosition: {x: 0, y: 0, z: 3.6399975}
-  m_LocalScale: {x: 0.0022104133, y: 0.0022104138, z: 0.0022104133}
+  m_LocalRotation: {x: -0.9556859, y: -0.29227442, z: 0.010299101, w: -0.03367699}
+  m_LocalPosition: {x: 0, y: 0, z: -0.6789998}
+  m_LocalScale: {x: 0.0022104133, y: 0.0022104136, z: 0.0022104129}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2015881573}
+  m_Father: {fileID: 48970689}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 360, z: 325.99}
+  m_LocalEulerAnglesHint: {x: 175.964, y: 0, z: 325.99}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.671, y: -0.39}
+  m_AnchoredPosition: {x: -0.779, y: -0.48700017}
   m_SizeDelta: {x: 366.6322, y: 219.0896}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1152421424
@@ -5007,9 +5008,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1978853459}
+      - m_Target: {fileID: 1862070528}
         m_TargetAssemblyTypeName: AyDButons, Assembly-CSharp
-        m_MethodName: ActivateObjects
+        m_MethodName: DeactivateObjects
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5019,9 +5020,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1978853459}
+      - m_Target: {fileID: 1862070528}
         m_TargetAssemblyTypeName: AyDButons, Assembly-CSharp
-        m_MethodName: DeactivateObjects
+        m_MethodName: ActivateObjects
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5256,8 +5257,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "DISE\xD1O"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a546b04b560c8ff45a47f8f8d32ad598, type: 2}
-  m_sharedMaterial: {fileID: 582462102760045496, guid: a546b04b560c8ff45a47f8f8d32ad598, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fd2603641af7681428fdde09bdb5b14e, type: 2}
+  m_sharedMaterial: {fileID: -7867418709544335655, guid: fd2603641af7681428fdde09bdb5b14e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5287,7 +5288,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 4
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -5872,7 +5873,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1358571221
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5950,9 +5951,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1862070528}
+      - m_Target: {fileID: 132911241}
         m_TargetAssemblyTypeName: AyDButons, Assembly-CSharp
-        m_MethodName: DeactivateObjects
+        m_MethodName: ActivateObjects
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5962,9 +5963,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1862070528}
+      - m_Target: {fileID: 132911241}
         m_TargetAssemblyTypeName: AyDButons, Assembly-CSharp
-        m_MethodName: ActivateObjects
+        m_MethodName: DeactivateObjects
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7503,8 +7504,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Salir
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a546b04b560c8ff45a47f8f8d32ad598, type: 2}
-  m_sharedMaterial: {fileID: 582462102760045496, guid: a546b04b560c8ff45a47f8f8d32ad598, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fd2603641af7681428fdde09bdb5b14e, type: 2}
+  m_sharedMaterial: {fileID: -7867418709544335655, guid: fd2603641af7681428fdde09bdb5b14e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -8060,10 +8061,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectsToActivate:
-  - {fileID: 481889310}
-  - {fileID: 1102269753}
+  - {fileID: 632225683}
   objectsToDeactivate:
   - {fileID: 1358571220}
+  - {fileID: 1152421422}
 --- !u!4 &1862070529
 Transform:
   m_ObjectHideFlags: 0
@@ -8257,11 +8258,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectsToActivate:
+  - {fileID: 1358571220}
+  - {fileID: 1152421422}
+  objectsToDeactivate:
   - {fileID: 481889310}
   - {fileID: 1102269753}
-  objectsToDeactivate:
-  - {fileID: 632225683}
-  - {fileID: 1152421422}
 --- !u!4 &1898518821
 Transform:
   m_ObjectHideFlags: 0
@@ -8566,8 +8567,8 @@ MonoBehaviour:
 
     Leonardo Colan '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a546b04b560c8ff45a47f8f8d32ad598, type: 2}
-  m_sharedMaterial: {fileID: 582462102760045496, guid: a546b04b560c8ff45a47f8f8d32ad598, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fd2603641af7681428fdde09bdb5b14e, type: 2}
+  m_sharedMaterial: {fileID: -7867418709544335655, guid: fd2603641af7681428fdde09bdb5b14e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -8597,7 +8598,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -8703,8 +8704,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a546b04b560c8ff45a47f8f8d32ad598, type: 2}
-  m_sharedMaterial: {fileID: 582462102760045496, guid: a546b04b560c8ff45a47f8f8d32ad598, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fd2603641af7681428fdde09bdb5b14e, type: 2}
+  m_sharedMaterial: {fileID: -7867418709544335655, guid: fd2603641af7681428fdde09bdb5b14e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -8734,7 +8735,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 4
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -9036,10 +9037,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectsToActivate:
-  - {fileID: 1358571220}
+  - {fileID: 481889310}
+  - {fileID: 1102269753}
   objectsToDeactivate:
   - {fileID: 632225683}
-  - {fileID: 1152421422}
 --- !u!4 &1978853460
 Transform:
   m_ObjectHideFlags: 0
@@ -9169,7 +9170,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 632225684}
-  - {fileID: 1152421423}
   m_Father: {fileID: 1603837089}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9289,8 +9289,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Jugar
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a546b04b560c8ff45a47f8f8d32ad598, type: 2}
-  m_sharedMaterial: {fileID: 582462102760045496, guid: a546b04b560c8ff45a47f8f8d32ad598, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fd2603641af7681428fdde09bdb5b14e, type: 2}
+  m_sharedMaterial: {fileID: -7867418709544335655, guid: fd2603641af7681428fdde09bdb5b14e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
