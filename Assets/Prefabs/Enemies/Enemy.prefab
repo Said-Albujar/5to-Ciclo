@@ -463,10 +463,10 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 392
+    m_Bits: 456
   m_RenderingLayerMask: 1
   m_Lightmapping: 1
   m_LightShadowCasterMode: 0
@@ -493,7 +493,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Version: 1
   m_UsePipelineSettings: 1
-  m_AdditionalLightsShadowResolutionTier: 2
+  m_AdditionalLightsShadowResolutionTier: 1
   m_LightLayerMask: 1
   m_CustomShadowLayers: 0
   m_ShadowLayerMask: 1
@@ -1656,4 +1656,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1fd2b2ef86f6ff408e82a94d7523726, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyAudioManager: {fileID: 7938377684272908474}
+  enemyThrower: {fileID: 0}

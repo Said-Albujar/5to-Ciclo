@@ -209,14 +209,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   navMeshAgent: {fileID: 2092503860098865086}
   playerPosition: {fileID: 0}
-  patrullajeActive: 0
-  rotate: 1
+  eyes: {fileID: 0}
   canSeePlayer: 0
-  rangeChecks: []
   radius: 5
-  targetMask:
-    serializedVersion: 2
-    m_Bits: 64
   obstructionMask:
     serializedVersion: 2
     m_Bits: 128
@@ -226,10 +221,9 @@ MonoBehaviour:
   rotationMaxTimer: 3
   rotationEnemy: 90
   catAnimator: {fileID: 0}
-  once: 0
-  transformModel: {fileID: 5509622441635526681}
-  onceShout: 0
-  timerSound: 0
+  timeOutOfView: 0
+  runAnimation: 0
+  walkAnimation: 0
 --- !u!114 &3843741860312729887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1050,10 +1044,10 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 392
+    m_Bits: 456
   m_RenderingLayerMask: 1
   m_Lightmapping: 1
   m_LightShadowCasterMode: 0
@@ -1080,7 +1074,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Version: 1
   m_UsePipelineSettings: 1
-  m_AdditionalLightsShadowResolutionTier: 2
+  m_AdditionalLightsShadowResolutionTier: 1
   m_LightLayerMask: 1
   m_CustomShadowLayers: 0
   m_ShadowLayerMask: 1
@@ -1154,7 +1148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1fd2b2ef86f6ff408e82a94d7523726, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyAudioManager: {fileID: 3107395683481572373}
+  enemyThrower: {fileID: 0}
 --- !u!1 &5324248089892003252
 GameObject:
   m_ObjectHideFlags: 0
