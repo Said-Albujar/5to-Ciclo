@@ -66,6 +66,7 @@ public class PlayerController : MonoBehaviour
             transform.parent = originalParent;
         }
     }
-  
+ 
+
 
 }
