@@ -98,10 +98,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         }
 
         scaleStart = transform.localScale;
-        if (MusicScene.Instance != null)
-        {
-            Destroy(MusicScene.Instance.gameObject);
-        }
+        
         cameraTransform = Camera.main.transform;
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
