@@ -25,10 +25,12 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
+        PlayMusic("MusicGamePlay");
+
         if (Instance == null)
         {
             Instance = this;
-            //DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(gameObject);
         }
         else
         {

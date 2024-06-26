@@ -9215,7 +9215,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh47448
+  m_Name: pb_Mesh854530
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -9626,7 +9626,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh50548
+  m_Name: pb_Mesh857636
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -29884,6 +29884,64 @@ Transform:
   m_Father: {fileID: 1168109412}
   m_RootOrder: 78
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!1 &680733119
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 680733121}
+  - component: {fileID: 680733120}
+  - component: {fileID: 680733122}
+  m_Layer: 0
+  m_Name: TriggerZoneMusicBoss
+  m_TagString: ZoneBossMusic
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &680733120
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 680733119}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 12.05, y: 2.6, z: 2.16}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &680733121
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 680733119}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 110.6482, y: 62.084198, z: -51.828197}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 53
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &680733122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 680733119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff5ea28d654f4e14eb1f909d738e720a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &680844808
 GameObject:
   m_ObjectHideFlags: 0
@@ -59954,6 +60012,18 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 840581476933469400, guid: a7f0c8aa367beef4ebc07c335aa1c051, type: 3}
+      propertyPath: musicSounds.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 840581476933469400, guid: a7f0c8aa367beef4ebc07c335aa1c051, type: 3}
+      propertyPath: musicSounds.Array.data[1].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: d5c18afc212ac394a90864a795133c55, type: 3}
+    - target: {fileID: 840581476933469400, guid: a7f0c8aa367beef4ebc07c335aa1c051, type: 3}
+      propertyPath: musicSounds.Array.data[1].name
+      value: MusicGamePlay
+      objectReference: {fileID: 0}
     - target: {fileID: 856792836369353676, guid: a7f0c8aa367beef4ebc07c335aa1c051, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.887
@@ -60628,7 +60698,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5275052604135366970, guid: a7f0c8aa367beef4ebc07c335aa1c051, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.030887965
+      value: 0.030887973
       objectReference: {fileID: 0}
     - target: {fileID: 5275052604135366970, guid: a7f0c8aa367beef4ebc07c335aa1c051, type: 3}
       propertyPath: m_LocalRotation.y
@@ -60636,7 +60706,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5275052604135366970, guid: a7f0c8aa367beef4ebc07c335aa1c051, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.109734535
+      value: -0.10973455
       objectReference: {fileID: 0}
     - target: {fileID: 5614865841778363367, guid: a7f0c8aa367beef4ebc07c335aa1c051, type: 3}
       propertyPath: m_fontSize
@@ -60738,6 +60808,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6190096009686073528, guid: a7f0c8aa367beef4ebc07c335aa1c051, type: 3}
+      propertyPath: triggerMusicBoss
+      value: 
+      objectReference: {fileID: 680733119}
     - target: {fileID: 6274154383929815632, guid: a7f0c8aa367beef4ebc07c335aa1c051, type: 3}
       propertyPath: tps.Array.data[0]
       value: 
