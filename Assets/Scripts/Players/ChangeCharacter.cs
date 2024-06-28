@@ -135,7 +135,7 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
             }
         }
 
-        if (isNearM && Input.GetKeyDown(KeyCode.F))
+        if (isNearM && Input.GetKeyDown(KeyCode.E))
         {
             
             isNearM = false;
@@ -145,7 +145,7 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
             DataPersistenceManager.instance.SaveGame();
         }
 
-        if (isNearE && Input.GetKeyDown(KeyCode.F))
+        if (isNearE && Input.GetKeyDown(KeyCode.E))
         {
             isNearE = false;
             HaveEngineer = true;
@@ -154,7 +154,7 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
             DataPersistenceManager.instance.SaveGame();
 
         }
-        if (isNearH && Input.GetKeyDown(KeyCode.F))
+        if (isNearH && Input.GetKeyDown(KeyCode.E))
         {
             isNearH = false;
             HaveHairdress = true;
@@ -164,7 +164,7 @@ public class ChangeCharacter : MonoBehaviour, IDataPersistence
 
         }
 
-        if (isNearGlider && Input.GetKeyDown(KeyCode.F))
+        if (isNearGlider && Input.GetKeyDown(KeyCode.E))
         {
             isNearGlider = false;
             haveGlider = true;

@@ -14,8 +14,8 @@ public class Rope : MonoBehaviour
     public GameObject cutVfxPrefab;
     public Transform cutPos;
     //Se cambio el fixed por update ya que daba demasiados problemas a la hora de cortar
-    //Se a�andio un bool que detecta la collider, si no esta dentro del colider no se destruye la cuerda.
-    //Se a�adio una lista,los objetos dentro de la lista se destruyen(cadenas).
+    //Se añandio un bool que detecta la collider, si no esta dentro del colider no se destruye la cuerda.
+    //Se añadio una lista,los objetos dentro de la lista se destruyen(cadenas).
 
     private void Start()
     {
@@ -23,13 +23,9 @@ public class Rope : MonoBehaviour
     }
     void Update()
     {
-        
-
-        
-
         if (changeMecanic.IsHairdress && isInsideCollider)
         {
-            if (Input.GetKeyDown(KeyCode.F))
+            if (Input.GetKeyDown(KeyCode.E))
             {
 
                 changeMecanic.anim.UsingToolAnim(2);

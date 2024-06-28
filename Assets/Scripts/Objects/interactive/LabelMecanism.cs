@@ -142,7 +142,7 @@ public class LabelMecanism : Mecanism
         {
             if (changeCharacter.IsEngineer)
             {
-                if (Input.GetKeyDown(KeyCode.F) && isLocked && !isBroken && isNear&&changeCharacter.HaveEngineer) // desbloquea el mecanismo si este no esta roto y se encuentra cerca
+                if (Input.GetKeyDown(KeyCode.E) && isLocked && !isBroken && isNear&&changeCharacter.HaveEngineer) // desbloquea el mecanismo si este no esta roto y se encuentra cerca
                 {
                     changeCharacter.anim.UsingToolAnim(0);//0.alicate, 1.pico, 2.tijeras
                     isLocked = false;
@@ -166,7 +166,7 @@ public class LabelMecanism : Mecanism
                         Debug.Log("Referencia nula en brokeVfx");
                 }
             }
-            if (Input.GetKeyDown(KeyCode.F) && isLocked && !isBroken && isNear && !changeCharacter.HaveEngineer)
+            if (Input.GetKeyDown(KeyCode.E) && isLocked && !isBroken && isNear && !changeCharacter.HaveEngineer)
             {
                 AudioManager.Instance.PlaySFX("Failed");
                 Debug.Log("Ncecistas la lalve");

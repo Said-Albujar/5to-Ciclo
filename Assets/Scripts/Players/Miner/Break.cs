@@ -18,7 +18,7 @@ public class Break : MonoBehaviour
     }
     void Update()
     {
-        if (CanBreak == true && Input.GetKeyDown(KeyCode.F) && Change.IsMiner == true && Change.anim.canUse)
+        if (CanBreak == true && Input.GetKeyDown(KeyCode.E) && Change.IsMiner == true && Change.anim.canUse)
         {
             Change.anim.UsingToolAnim(1);//0.alicate, 1.pico, 2.tijeras
             if (!spawnedPoints) SpawnPoints();
