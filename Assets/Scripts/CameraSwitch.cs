@@ -1,4 +1,4 @@
-using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
@@ -6,9 +6,7 @@ using UnityEngine;
 public class CameraSwitch : MonoBehaviour
 {
     public GameObject player;
-    public GameObject firstTransitionCamera;
-    public GameObject secondTransitionCamera;
-    public GameObject finalCamera;
+    [SerializeField] GameObject camera;
     public Image fadeInImage;
     public Image fadeOutImage;
     public GameObject box;
@@ -25,53 +23,21 @@ public class CameraSwitch : MonoBehaviour
 
     IEnumerator SwitchCamera()
     {
-        
-        
-        firstTransitionCamera.SetActive(true);
+        camera.SetActive(true);
+        yield return new WaitForSeconds(8f);
 
-        yield return StartCoroutine(MoveCamera(firstTransitionCamera.transform, secondTransitionCamera.transform.position, 3.5f));
-
-        firstTransitionCamera.SetActive(false);
-        secondTransitionCamera.SetActive(true);
-        player.SetActive(false);
-        yield return StartCoroutine(MoveCamera(secondTransitionCamera.transform, finalCamera.transform.position, 3.5f));
-
-        secondTransitionCamera.SetActive(false);
-        finalCamera.SetActive(true);
-
-        yield return new WaitForSeconds(3f);
         yield return StartCoroutine(FadeImageToBlack(fadeInImage, 2f));
-
-        yield return new WaitForSeconds(2f);
-        box.transform.position = positionBox.transform.position;
-        StartCoroutine(FadeImageToTransparent(fadeOutImage, 5f));
-
-        player.SetActive(true);
-        finalCamera.SetActive(false);
-        firstTransitionCamera.SetActive(false);
-        secondTransitionCamera.SetActive(false);
-
-        yield return new WaitForSeconds(1f);
-        box.transform.position = positionBox.transform.position;
         
+        camera.SetActive(false);
+        box.transform.position = positionBox.transform.position;
+        yield return new WaitForSeconds(1f);
+        fadeInImage.gameObject.SetActive(false);
+        yield return StartCoroutine(FadeImageToTransparent(fadeOutImage, 3f));
+        
+        box.transform.position = positionBox.transform.position;
+        player.SetActive(true);
         
         //isTransitioning = false;
-    }
-
-
-    IEnumerator MoveCamera(Transform cameraTransform, Vector3 targetPosition, float duration)
-    {
-        Vector3 startPosition = cameraTransform.position;
-        float elapsedTime = 0;
-
-        while (elapsedTime < duration)
-        {
-            cameraTransform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / duration);
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        cameraTransform.position = targetPosition;
     }
 
     IEnumerator FadeImageToBlack(Image image, float duration)
