@@ -8,7 +8,7 @@ public class TriggerDown : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("TargetPlayer"))
+        if (collision.gameObject.CompareTag("Hair"))
         {
             bool coll = collision.transform.position.y < transform.position.y;
             if (coll)
