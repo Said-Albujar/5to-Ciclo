@@ -14,7 +14,9 @@ public class PassWordUI : MonoBehaviour
         {
             Debug.Log("asdasdasasd");
             // Cambiar a la nueva escena
+            DataPersistenceManager.instance.SaveGame();
             SceneManager.LoadScene(nombreDeLaNuevaEscena);
+            
         }
     }
 }

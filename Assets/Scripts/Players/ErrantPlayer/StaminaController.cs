@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class StaminaController : MonoBehaviour
+public class StaminaController : MonoBehaviour, IDataPersistence
 {
     private PlayerMovement errantMovement;
     private CollectObject recolectar;
@@ -155,4 +155,15 @@ public class StaminaController : MonoBehaviour
         }
     }
 
+    public void LoadData(GameData data)
+    {
+        this.recolectar.botonPresionado = data.buttonPressed;
+        this.staminaMax = data.staminaMax;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.buttonPressed = this.recolectar.botonPresionado;
+        data.staminaMax = this.staminaMax;
+    }
 }

@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 using System;
 
-public class CollectObject : MonoBehaviour
+public class CollectObject : MonoBehaviour, IDataPersistence
 {
     public TextMeshProUGUI contadorTexto;
     public int contador = 0;
@@ -108,5 +108,15 @@ public class CollectObject : MonoBehaviour
         currentPosition.y += offset;
 
         Instantiate(buttonVfxPrefab, currentPosition, Quaternion.identity);
+    }
+
+    public void LoadData(GameData data)
+    {
+        this.contador = data.recolectedButtons;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.recolectedButtons = contador;
     }
 }
