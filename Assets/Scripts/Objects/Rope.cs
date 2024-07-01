@@ -54,7 +54,7 @@ public class Rope : MonoBehaviour
     {
         Vector3 directionFonce = transform.forward;
         directionFonce.y = 1;
-        
+        AudioManager.Instance.PlaySFX("cortar");
         box.GetComponent<Rigidbody>().isKinematic = false;
         box.GetComponent<Rigidbody>().useGravity = true;
         box.transform.parent = null;
