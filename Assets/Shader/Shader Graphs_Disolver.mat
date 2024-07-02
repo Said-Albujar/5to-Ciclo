@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-1558777378994172323
+--- !u!114 &-1979467193600105592
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,25 +20,31 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Scissord 1
-  m_Shader: {fileID: -6465566751694194690, guid: a16a00a468a293f47a3dda7611f88c82, type: 3}
-  m_ValidKeywords: []
+  m_Name: Shader Graphs_Disolver
+  m_Shader: {fileID: -6465566751694194690, guid: b2f7abcb66cff344baec2a00c62f1676, type: 3}
+  m_ValidKeywords:
+  - _ALPHATEST_ON
   m_InvalidKeywords: []
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap: {}
+  stringTagMap:
+    RenderType: TransparentCutout
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _BaseColor:
-        m_Texture: {fileID: 2800000, guid: 4071c6ba9aa1f2c4cb0dce3709a7abcd, type: 3}
+    - _BossTexture:
+        m_Texture: {fileID: 2800000, guid: d9ed30f3bb8efa444907538cc84d1df9, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _SecundaryColor:
-        m_Texture: {fileID: 2800000, guid: c11a5b7e0e6025b40b79a85b0868a82c, type: 3}
+    - _SampleTexture2D_28ae5b68e1c8464d98686f8cb376d7cb_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 6b11f01db5e6ef74b8fb0b7e881fe5ce, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_aaef4cf7424546e8a8d233d079e8ea2b_Texture_1:
+        m_Texture: {fileID: 2800000, guid: d9ed30f3bb8efa444907538cc84d1df9, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -55,9 +61,21 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _AlphaClip: 1
+    - _Blend: 0
+    - _CastShadows: 1
+    - _Cull: 2
+    - _DstBlend: 0
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Scroll: 1
+    - _ReceiveShadows: 1
+    - _SrcBlend: 1
+    - _Surface: 0
+    - _WorkflowMode: 1
+    - _ZTest: 4
+    - _ZWrite: 1
+    - _ZWriteControl: 0
     m_Colors:
-    - _Emission: {r: 0.33117062, g: 0.33117062, b: 0.33117062, a: 1}
+    - _Edge_Color: {r: 0, g: 14.83167, b: 19.69831, a: 1}
+    - _Edge_Width: {r: 30, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
