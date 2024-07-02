@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public GameObject[] tps = new GameObject[9];
     public CollectObject contador;
     public bool hasIncrementedBy100 = false;
+    public bool hasIncrementedBy150 = false;
 
     private void Awake()
     {
@@ -204,17 +205,20 @@ public class GameManager : MonoBehaviour
                 }
                 Time.timeScale = 1f;
                 panelConsole.SetActive(false);
+                contador.ActualizarEstadoBoton();
             }
 
             if (Input.GetKeyDown(KeyCode.F7))
             {
-                if (!hasIncrementedBy100)
+                if (!hasIncrementedBy150)
                 {
                     contador.contador += 150;
-                    hasIncrementedBy100 = true; 
+                    hasIncrementedBy150 = true; 
                 }
                 Time.timeScale = 1f;
                 panelConsole.SetActive(false);
+                contador.ActualizarEstadoBoton();
+                
             }
         }
     }
