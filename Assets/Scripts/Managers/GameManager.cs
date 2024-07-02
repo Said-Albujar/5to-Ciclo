@@ -19,6 +19,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] LightManager lightManager;
     public GameObject canvaStamina;
     public GameObject[] tps = new GameObject[9];
+    public CollectObject contador;
+    public bool hasIncrementedBy100 = false;
+
     private void Awake()
     {
         if (instance == null)
@@ -189,6 +192,27 @@ public class GameManager : MonoBehaviour
 
                 GiveAllTools();
                 DataPersistenceManager.instance.SaveGame();
+                Time.timeScale = 1f;
+                panelConsole.SetActive(false);
+            }
+            if (Input.GetKeyDown(KeyCode.F6))
+            {
+                if (!hasIncrementedBy100)
+                {
+                    contador.contador += 100;
+                    hasIncrementedBy100 = true; 
+                }
+                Time.timeScale = 1f;
+                panelConsole.SetActive(false);
+            }
+
+            if (Input.GetKeyDown(KeyCode.F7))
+            {
+                if (!hasIncrementedBy100)
+                {
+                    contador.contador += 150;
+                    hasIncrementedBy100 = true; 
+                }
                 Time.timeScale = 1f;
                 panelConsole.SetActive(false);
             }

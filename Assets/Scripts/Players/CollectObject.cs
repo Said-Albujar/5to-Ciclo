@@ -20,9 +20,10 @@ public class CollectObject : MonoBehaviour, IDataPersistence
     public GameObject buttonVfxPrefab;
 
     static public  bool regenerateStamina = false;
-    [SerializeField] float amountStamina; 
-
-
+    [SerializeField] float amountStamina;
+    public GameObject vfxMejora;
+    public GameObject panelUpgrade;
+    public GameManager gameManager;
     private void Start()
     {
         ActualizarContadorTexto();
@@ -32,6 +33,7 @@ public class CollectObject : MonoBehaviour, IDataPersistence
     public void Update()
     {
         ActualizarContadorTexto();
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -70,7 +72,7 @@ public class CollectObject : MonoBehaviour, IDataPersistence
         }
     }
 
-    void ActualizarEstadoBoton()
+    public void ActualizarEstadoBoton()
     {
         if (miBoton != null)
         {
@@ -85,6 +87,15 @@ public class CollectObject : MonoBehaviour, IDataPersistence
 
     public void OnBotonPresionado()
     {
+        gameManager.Unpause();
+        GameObject vfx=Instantiate(vfxMejora);
+        AudioManager.Instance.PlaySFX("Improve");
+        vfx.transform.position = transform.position;
+        vfx.transform.rotation = transform.rotation;
+
+        vfx.transform.SetParent(transform);
+
+
         Debug.Log("�Bot�n presionado!");
         botonPresionado = true;
         contador -= monedasNecesarias;
@@ -94,6 +105,16 @@ public class CollectObject : MonoBehaviour, IDataPersistence
 
     public void CoinButton()
     {
+        gameManager.Unpause();
+        GameObject vfx = Instantiate(vfxMejora);
+        AudioManager.Instance.PlaySFX("Improve");
+
+        vfx.transform.position = transform.position;
+        vfx.transform.rotation = transform.rotation;
+
+        vfx.transform.SetParent(transform);
+
+
         regenerateStamina = true;
         botonCoin = true;
         contador -= costUpgradeCoin;

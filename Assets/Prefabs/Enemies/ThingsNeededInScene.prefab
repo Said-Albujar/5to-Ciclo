@@ -5393,6 +5393,9 @@ MonoBehaviour:
     haveGlider: 0
     hold: 0
     numCheckpoint: 0
+    recolectedButtons: 0
+    staminaMax: 50
+    buttonPressed: 0
 --- !u!1 &3010424379927359896
 GameObject:
   m_ObjectHideFlags: 0
@@ -14154,6 +14157,9 @@ MonoBehaviour:
   botonCoin: 0
   buttonVfxPrefab: {fileID: 4346035977669741623, guid: c1b6939d09349d541aac52e508ec9882, type: 3}
   amountStamina: 5
+  vfxMejora: {fileID: 106092108644684983, guid: de8dca91217f2bd45a9bdfb6b61fa768, type: 3}
+  panelUpgrade: {fileID: 4558729668960573851}
+  gameManager: {fileID: 6274154383929815632}
 --- !u!1 &7797275243084280490
 GameObject:
   m_ObjectHideFlags: 0
