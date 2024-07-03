@@ -6,16 +6,15 @@ using System;
 
 public class PassWordUI : MonoBehaviour
 {
-    public string nombreDeLaNuevaEscena;
+    public GameObject panelTransition;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer==LayerMask.NameToLayer("TargetPlayer"))
         {
             Debug.Log("asdasdasasd");
-            // Cambiar a la nueva escena
+            panelTransition.SetActive(true);
             DataPersistenceManager.instance.SaveGame();
-            SceneManager.LoadScene(nombreDeLaNuevaEscena);
             
         }
     }
