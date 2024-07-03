@@ -151,7 +151,7 @@ public class StaminaController : MonoBehaviour, IDataPersistence
     {
         if(other.gameObject.CompareTag("Finish"))
         {
-            SceneManager.LoadScene("Victory");
+            SceneManager.LoadScene("FinalCinematica");
         }
     }
 
