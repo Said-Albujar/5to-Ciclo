@@ -5,7 +5,24 @@ using UnityEngine;
 public class TriggerDown : MonoBehaviour
 {
     public MovingPlatform1 movingPlatform;
+    public PlayerMovement player;
 
+    private void FixedUpdate()
+    {
+        if(movingPlatform!=null)
+        {
+            if (player.currentstate == PlayerMovement.state.climbIdle&&movingPlatform.down)
+            {
+                movingPlatform.distance = 0.5f;
+            }
+            else if(player.currentstate == PlayerMovement.state.climbIdle && movingPlatform.up)
+            {
+                movingPlatform.distance = 0.01f;
+
+            }
+        }
+      
+    }
     private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.CompareTag("Hair") || collision.gameObject.CompareTag("Box"))
