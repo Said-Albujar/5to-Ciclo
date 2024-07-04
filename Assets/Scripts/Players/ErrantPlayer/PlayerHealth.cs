@@ -30,6 +30,7 @@ public class PlayerHealth : MonoBehaviour
         if (health == 0)
         {
             DisableVfxDeathByBoss();
+            player.actualSpeed = 0;
             anim.Play("dead");
             //anim.SetBool("dead", true);
             panelDead.SetActive(true);
