@@ -26,6 +26,10 @@ public class SceneLoad : MonoBehaviour
     {
         SceneManager.LoadScene("Tutorial and level1");
     }
+    public void loadScene4()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
     public void PanelDeactivate()
     {
         this.gameObject.SetActive(false);
