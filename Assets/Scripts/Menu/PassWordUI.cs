@@ -18,4 +18,9 @@ public class PassWordUI : MonoBehaviour
             
         }
     }
+    public void SceneFadeIn()
+    {
+        panelTransition.SetActive(true);
+
+    }
 }

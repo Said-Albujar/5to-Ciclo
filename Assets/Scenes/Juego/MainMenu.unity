@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731715, g: 0.13414735, b: 0.121078536, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -385,6 +385,7 @@ GameObject:
   - component: {fileID: 62993153}
   - component: {fileID: 62993152}
   - component: {fileID: 62993151}
+  - component: {fileID: 62993155}
   m_Layer: 5
   m_Name: 'PlayButton '
   m_TagString: Untagged
@@ -457,9 +458,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1336378817}
-        m_TargetAssemblyTypeName: LoadScene, Assembly-CSharp
-        m_MethodName: ButtonMenuActive
+      - m_Target: {fileID: 62993155}
+        m_TargetAssemblyTypeName: PassWordUI, Assembly-CSharp
+        m_MethodName: SceneFadeIn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -533,6 +534,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 62993149}
   m_CullTransparentMesh: 1
+--- !u!114 &62993155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 62993149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05f21a61d94a16d458267fc150fd2049, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panelTransition: {fileID: 1336378815}
 --- !u!1 &73339598
 GameObject:
   m_ObjectHideFlags: 0
@@ -5114,7 +5128,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1183237044
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5634,7 +5648,6 @@ GameObject:
   - component: {fileID: 1336378820}
   - component: {fileID: 1336378819}
   - component: {fileID: 1336378818}
-  - component: {fileID: 1336378817}
   - component: {fileID: 1336378821}
   m_Layer: 0
   m_Name: PanelGameplay
@@ -5642,7 +5655,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1336378816
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5663,20 +5676,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1336378817
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1336378815}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 382ce3bea03765140bf674d256aa05ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  panelPause: {fileID: 1183237043}
-  panelExit: {fileID: 1183237043}
 --- !u!95 &1336378818
 Animator:
   serializedVersion: 5
@@ -7339,7 +7338,7 @@ GameObject:
   - component: {fileID: 1715976505}
   - component: {fileID: 1715976504}
   - component: {fileID: 1715976503}
-  - component: {fileID: 1715976502}
+  - component: {fileID: 1715976506}
   m_Layer: 5
   m_Name: panelTransition
   m_TagString: Untagged
@@ -7367,19 +7366,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1715976502
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1715976500}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bce5d336f8973d4c883a97ba19469fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  active: 0
 --- !u!95 &1715976503
 Animator:
   serializedVersion: 5
@@ -7439,6 +7425,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1715976500}
   m_CullTransparentMesh: 1
+--- !u!114 &1715976506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1715976500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 382ce3bea03765140bf674d256aa05ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panelExit: {fileID: 1715976500}
 --- !u!4 &1720036620 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 719981c13c8cd8c4e92970e1b5b8d5f3, type: 3}
@@ -8797,7 +8796,7 @@ GameObject:
   - component: {fileID: 1964682574}
   - component: {fileID: 1964682573}
   m_Layer: 5
-  m_Name: Fade Out Canvas
+  m_Name: FadeInStart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

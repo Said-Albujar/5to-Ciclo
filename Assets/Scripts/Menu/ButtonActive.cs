@@ -6,21 +6,21 @@ using UnityEngine.SceneManagement;
 
 public class ButtonActive : MonoBehaviour
 {
-    public GameObject panelPause;
+    //public GameObject panelPause;
     public GameObject panelExit;
     //public PlayerHealth player;
     public void ButtonMenuActive()
     {
         CollectObject.regenerateStamina = false;
-        panelPause.SetActive(true);
+        //panelPause.SetActive(true);
         
     }
     public void ButtonGoOut()
     {
         //player.turn = false;
         //player.GetComponent<Rigidbody>().isKinematic = true;
-        panelExit.SetActive(true);
-        Time.timeScale = 1f;
+        panelExit.SetActive(false);
+        //Time.timeScale = 1f;
 
     }
     /*public void DataManagerEvent()
