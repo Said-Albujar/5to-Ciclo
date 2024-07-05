@@ -23,6 +23,13 @@ public class ButtonActive : MonoBehaviour
         //Time.timeScale = 1f;
 
     }
+
+    public void Exit()
+    {
+        panelExit.SetActive(true);
+        Time.timeScale = 1f;
+    }
+
     /*public void DataManagerEvent()
     {
         player.DataManager();
