@@ -21,10 +21,10 @@ public class MinerAnimationController : MonoBehaviour
     {
         if (agent.hasPath && !miner.canSeePlayer)
             anim.SetFloat("speed", agent.velocity.magnitude);
-        else
+        else if(miner.detecteEnemyLight&&miner.canSeePlayer)
             anim.SetFloat("speed", 0);
 
-        anim.SetBool("run", miner.canSeePlayer);
+        anim.SetBool("run", miner.canSeePlayer&&!miner.detecteEnemyLight);
 
     }
 }

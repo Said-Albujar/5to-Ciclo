@@ -113,10 +113,12 @@ public class MinerEnemy : MonoBehaviour
     void StopMove()
     {
         navMeshAgent.isStopped = true;
+       
     }
     void ResumeMove()
     {
         navMeshAgent.isStopped = false;
+       
     }
     void Patrol()
     {
