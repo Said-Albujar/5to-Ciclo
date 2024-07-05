@@ -75,6 +75,10 @@ public class SceneLoad : MonoBehaviour
     {
         AudioManager.Instance.PlaySFX("SonidoSuspiro");
     }
+    public void MusicPlay()
+    {
+        AudioManager.Instance.PlayMusic("MusicGameplay");
+    }
     public void PanelDeactivate()
     {
         this.gameObject.SetActive(false);

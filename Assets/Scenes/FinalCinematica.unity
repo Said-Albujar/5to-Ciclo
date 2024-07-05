@@ -1723,6 +1723,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: candelabroPared (44)
       objectReference: {fileID: 0}
+    - target: {fileID: 7812634870311165791, guid: 2d7dc29fb83fd994b88dfd13cbbc4e03, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d7dc29fb83fd994b88dfd13cbbc4e03, type: 3}
 --- !u!4 &154319653 stripped
@@ -6728,6 +6732,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: candelabroPared (43)
       objectReference: {fileID: 0}
+    - target: {fileID: 7812634870311165791, guid: 2d7dc29fb83fd994b88dfd13cbbc4e03, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d7dc29fb83fd994b88dfd13cbbc4e03, type: 3}
 --- !u!1 &666016805
@@ -7775,7 +7783,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82084e166f4ef9847bc9133fddc97234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicSounds: []
+  musicSounds:
+  - name: MusicGameplay
+    clip: {fileID: 8300000, guid: d5c18afc212ac394a90864a795133c55, type: 3}
   sfxSounds:
   - name: SonidoDolor
     clip: {fileID: 8300000, guid: a75ccbd670b644945a0f1b228acf51f7, type: 3}
@@ -11910,6 +11920,10 @@ PrefabInstance:
     - target: {fileID: 5518804435827109588, guid: 2d7dc29fb83fd994b88dfd13cbbc4e03, type: 3}
       propertyPath: m_Name
       value: candelabroPared (45)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7812634870311165791, guid: 2d7dc29fb83fd994b88dfd13cbbc4e03, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d7dc29fb83fd994b88dfd13cbbc4e03, type: 3}
@@ -17139,6 +17153,10 @@ PrefabInstance:
     - target: {fileID: 5518804435827109588, guid: 2d7dc29fb83fd994b88dfd13cbbc4e03, type: 3}
       propertyPath: m_Name
       value: candelabroPared (46)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7812634870311165791, guid: 2d7dc29fb83fd994b88dfd13cbbc4e03, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d7dc29fb83fd994b88dfd13cbbc4e03, type: 3}
