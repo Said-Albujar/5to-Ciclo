@@ -45,6 +45,11 @@ public class SceneLoad : MonoBehaviour
         activeDissolve = true;
     
     }
+
+    public void Cinematica()
+    {
+        SceneManager.LoadScene("Cinematica");
+    }
  
     public void loadScene1()
     {
