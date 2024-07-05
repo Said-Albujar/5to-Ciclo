@@ -3,29 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAudioManager : MonoBehaviour
+public class SoundCInematicaController : MonoBehaviour
 {
     public Sounds[] sounds;
     public AudioSource audioSource;
-    void Start()
-    {
-
-    }
+  
 
     // Update is called once per frame
-    void Update()
-    {
-       
-            AudioManager audioManager = AudioManager.Instance;
-            if (audioSource.volume != audioManager.sliderMaster.value)
-            {
-                audioSource.volume = audioManager.sliderMaster.value;
-            }
-       
-      
-    }
+ 
 
-  
+    public void PlayStepSound()
+    {
+        //PlaySound("Walk");
+    }
 
     public void PlaySound(string name)
     {
@@ -45,6 +35,13 @@ public class EnemyAudioManager : MonoBehaviour
     {
         PlaySound("DetecPlayer");
     }
+    public void SoundBossPain()
+    {
+        PlaySound("SonidoDolor");
+    }
+    public void SoundPlayerSorcerer()
+    {
+        PlaySound("SonidoSuspiro");
 
-
+    }
 }

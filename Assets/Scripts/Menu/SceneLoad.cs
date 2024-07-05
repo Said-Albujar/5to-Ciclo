@@ -67,6 +67,14 @@ public class SceneLoad : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
     }
+    public void SoundBossPain()
+    {
+        AudioManager.Instance.PlaySFX("SonidoDolor");
+    }
+    public void SoundPlayerScocerer()
+    {
+        AudioManager.Instance.PlaySFX("SonidoSuspiro");
+    }
     public void PanelDeactivate()
     {
         this.gameObject.SetActive(false);
