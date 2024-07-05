@@ -45,6 +45,11 @@ public class EnemyAudioManager : MonoBehaviour
     {
         PlaySound("DetecPlayer");
     }
+    public void PlayStepSound()
+    {
+        PlaySound("Steps");
+
+    }
 
 
 }
