@@ -86,6 +86,8 @@ public class CatEnemy : MonoBehaviour
         }
         else
         {
+            
+            runAnimation = false;
             FieldOfViewCheck();
             navMeshAgent.enabled = true;
             

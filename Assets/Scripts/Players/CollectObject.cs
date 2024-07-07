@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
@@ -30,10 +28,10 @@ public class CollectObject : MonoBehaviour, IDataPersistence
         ActualizarEstadoBoton();
     }
 
-    public void Update()
+    void Update()
     {
         ActualizarContadorTexto();
-
+        ActualizarEstadoBoton();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -44,7 +42,6 @@ public class CollectObject : MonoBehaviour, IDataPersistence
             ActualizarContadorTexto();
             other.gameObject.SetActive(false);
             AudioManager.Instance.PlaySFX("Coins");
-            ActualizarEstadoBoton();
             InstanstiateVFX();
 
             if(regenerateStamina)
@@ -60,7 +57,6 @@ public class CollectObject : MonoBehaviour, IDataPersistence
         {
             contador = Mathf.Max(0, contador);
             ActualizarContadorTexto();
-            ActualizarEstadoBoton();
         }
     }
 
@@ -79,10 +75,13 @@ public class CollectObject : MonoBehaviour, IDataPersistence
             miBoton.interactable = contador >= monedasNecesarias && !botonPresionado;
         }
 
-        if (coinUpgrade != null)
+        if (!regenerateStamina && contador >= costUpgradeCoin)
         {
-            coinUpgrade.interactable = contador >= costUpgradeCoin && !botonCoin;
+            coinUpgrade.interactable = true;
         }
+        else
+        coinUpgrade.interactable = false;
+        
     }
 
     public void OnBotonPresionado()
@@ -105,6 +104,9 @@ public class CollectObject : MonoBehaviour, IDataPersistence
 
     public void CoinButton()
     {
+        if(contador <= costUpgradeCoin)
+        return;
+
         gameManager.Unpause();
         GameObject vfx = Instantiate(vfxMejora);
         AudioManager.Instance.PlaySFX("Improve");
