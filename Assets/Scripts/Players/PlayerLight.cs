@@ -64,11 +64,8 @@ public class PlayerLight : MonoBehaviour
 
                 }
 
-                else
-                    enemy.detecteEnemyLight = false;
             }
-            else
-                enemy.detecteEnemyLight = false;
+            
         }
         if (canSeeEnemy)
             canSeeEnemy = false;

@@ -35,7 +35,7 @@ public class MinerEnemy : MonoBehaviour
     public Transform transformModel;
     public bool detecteEnemyLight;
     public float maxTimerStop;
-    [HideInInspector] public float timerStop;
+     public float timerStop;
     public EnemyAudioManager enemyAudioManager;
     float timerSound;
 
@@ -219,7 +219,7 @@ public class MinerEnemy : MonoBehaviour
         //navMeshAgent.Stop();
         navMeshAgent.enabled = false;
 
-        //Reiniciar posición, resetear ruta, etc
+        //Reiniciar posiciï¿½n, resetear ruta, etc
 
         navMeshAgent.enabled = true;
     }
