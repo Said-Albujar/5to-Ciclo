@@ -21,6 +21,7 @@ public class CheckPoint : MonoBehaviour
                 player.numCheckpoint = numCheckpoint;
             }
 
+            player.PosCheckPoint(this.transform.position);
             AudioManager.Instance.PlaySFX("Checkpoint");
             DataPersistenceManager.instance.SaveGame();
             Destroy(this.gameObject);

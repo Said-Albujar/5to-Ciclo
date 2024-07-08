@@ -84,6 +84,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     [SerializeField] LightList[] lights;
     [SerializeField] GameObject[] allLight;
     public int numCheckpoint;
+    Vector3 posCheck;
 
     void Awake()
     {
@@ -547,8 +548,13 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public void SaveData(ref GameData data)
     {
         data.numCheckpoint = this.numCheckpoint;
-        data.playerPosition = this.transform.position;
+        data.playerPosition = posCheck;
         data.hold = this.hold;
+    }
+
+    public void PosCheckPoint(Vector3 pos)
+    {
+        posCheck = pos;
     }
 
     void EnabledLigth(int zone)
