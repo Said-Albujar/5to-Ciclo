@@ -93,6 +93,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
 
     void Start()
     {
+        PosCheckPoint(this.transform.position);
         if(lights.Length > 0)
         {
             EnabledLigth(0);
