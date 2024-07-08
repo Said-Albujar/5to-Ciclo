@@ -79,7 +79,7 @@ public class PickUp : MonoBehaviour
             
         }
 
-        if (Input.GetKeyDown(KeyCode.E) && PickedObject != null && canPickUp&& !playerMovement.isCrouching)
+        if (Input.GetKeyDown(KeyCode.E) && PickedObject != null && canPickUp&& !playerMovement.isCrouching&&!playerMovement.isJump)
         {
 
             PickBox();

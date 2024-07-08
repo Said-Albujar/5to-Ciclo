@@ -6,7 +6,7 @@ public class CheckPoint : MonoBehaviour
 {
     [SerializeField] int numCheckpoint;
     [SerializeField] PlayerMovement player;
-
+    public Animator checkpointAnimator;
     void Start()
     {
         player = Transform.FindAnyObjectByType<PlayerMovement>();
@@ -16,6 +16,7 @@ public class CheckPoint : MonoBehaviour
     {
         if (other.CompareTag("Hair") || other.CompareTag("Miner") || other.CompareTag("Engi"))
         {
+            checkpointAnimator.Play("checkpoint");
             if(player != null)
             {
                 player.numCheckpoint = numCheckpoint;
