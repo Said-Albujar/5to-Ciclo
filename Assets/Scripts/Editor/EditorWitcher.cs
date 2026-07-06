@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(EnemyWitcher))]
+[CustomEditor(typeof(EnemyThrower))]
 public class EditorWitcher : Editor
 {
     private void OnSceneGUI()
     {
-        EnemyWitcher fov = (EnemyWitcher)target;
+        EnemyThrower fov = (EnemyThrower)target;
         Handles.color = Color.white;
         Handles.DrawWireArc(fov.transform.position, Vector3.up, Vector3.forward, 360, fov.radius);
 

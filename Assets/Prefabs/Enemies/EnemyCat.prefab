@@ -224,6 +224,7 @@ MonoBehaviour:
   timeOutOfView: 0
   runAnimation: 0
   walkAnimation: 0
+  distanceToTarget: 0
 --- !u!114 &3843741860312729887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -775,7 +776,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3984889684352979012}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.018, y: -0.601, z: 1.1}
+  m_LocalPosition: {x: 0.018, y: 4.81, z: 1.1}
   m_LocalScale: {x: 0.32970658, y: 0.32970658, z: 0.32970658}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1010,7 +1011,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Intensity: 9
+  m_Intensity: 500
   m_Range: 40
   m_SpotAngle: 82
   m_InnerSpotAngle: 1

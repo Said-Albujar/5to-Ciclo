@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
 using System.IO;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -95,15 +96,14 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    public void Pause()
-    {
-        ShowCursor();
-        Time.timeScale = 0f;
-        canvaStamina.SetActive(false);
+    public void Pause() 
+    { 
+        ShowCursor(); Time.timeScale = 0f; 
+        canvaStamina.SetActive(false); 
+        panelPause.SetActive(true); 
+        EventSystem.current.SetSelectedGameObject(null); 
+        inPause = true; }
 
-        panelPause.SetActive(true);
-        inPause = true;
-    }
 
     public void Unpause()
     {

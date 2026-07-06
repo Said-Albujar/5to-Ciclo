@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class InteractiveDoor : MonoBehaviour
 {
     public bool openDoor;
@@ -13,11 +12,13 @@ public class InteractiveDoor : MonoBehaviour
     private bool wasOpen=false;
     public float rotationCloseX, rotationCloseY, rotationCloseZ;
     public float time;
+   
     void Update()
     {
         if (openDoor)
         {
             speedRotation = 90f;
+
             Rotate(rotationOpenX, rotationOpenY, rotationOpenZ);
             if(!wasOpen)
             {
@@ -28,6 +29,7 @@ public class InteractiveDoor : MonoBehaviour
         else
         {
             speedRotation = 300f;
+
             Rotate(rotationCloseX, rotationCloseY, rotationCloseZ);
             if (wasOpen)
             {

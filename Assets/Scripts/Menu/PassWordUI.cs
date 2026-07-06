@@ -7,10 +7,10 @@ using System;
 public class PassWordUI : MonoBehaviour
 {
     public GameObject panelTransition;
-
+    public PlayerHealth player;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer==LayerMask.NameToLayer("TargetPlayer"))
+        if (other.gameObject.layer==LayerMask.NameToLayer("TargetPlayer")&&player.health>0)
         {
             Debug.Log("asdasdasasd");
             panelTransition.SetActive(true);

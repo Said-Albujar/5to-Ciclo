@@ -99,6 +99,7 @@ public class PlayerHealth : MonoBehaviour
                 health = 0;
             }
         }
+      
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -118,8 +119,20 @@ public class PlayerHealth : MonoBehaviour
                 health = 0;
             }
         }
-    }
+        if (other.CompareTag("Next"))
+        {
+            Debug.Log("Sato");
+            panelDead.SetActive(true);
+           // Invoke("SceneLevel3", 0.5f);
 
+        }
+
+    }
+    private void SceneLevel3()
+    {
+        SceneManager.LoadScene("Level3");
+
+    }
 
 
     public void EnableVfxDeathByBoss()

@@ -9,9 +9,7 @@ public class CameraSwitchButton : MonoBehaviour
 
 {
     public GameObject mainCamera;
-
-   
-
+    public Rigidbody player;
 
     public ButtonMecanism buttonMecanism;
     public ButtonMecanism buttonMecanis1;
@@ -57,6 +55,10 @@ public class CameraSwitchButton : MonoBehaviour
     {
         if (isTransitioning1)
         {
+            player.constraints = RigidbodyConstraints.FreezePositionX |
+                       RigidbodyConstraints.FreezePositionZ |
+                       RigidbodyConstraints.FreezeRotation;
+
             mainCamera.SetActive(false);
             cameraTransition.SetActive(true);
             cameraTransition1.SetActive(true);
@@ -68,6 +70,7 @@ public class CameraSwitchButton : MonoBehaviour
 
             yield return new WaitForSeconds(1.5f);
             //box.transform.position = positionBox.transform.position;
+            player.constraints = RigidbodyConstraints.FreezeRotation;
 
             isTransitioning1 = false;
 
@@ -79,6 +82,10 @@ public class CameraSwitchButton : MonoBehaviour
     {
         if (isTransitioning2)
         {
+            player.constraints = RigidbodyConstraints.FreezePositionX |
+                      RigidbodyConstraints.FreezePositionZ |
+                      RigidbodyConstraints.FreezeRotation;
+
             mainCamera.SetActive(false);
             cameraTransition1.SetActive(true);
             cameraTransition2.SetActive(true);
@@ -90,6 +97,7 @@ public class CameraSwitchButton : MonoBehaviour
 
             yield return new WaitForSeconds(1.5f);
             //box.transform.position = positionBox.transform.position;
+            player.constraints = RigidbodyConstraints.FreezeRotation;
 
             isTransitioning2 = false;
         }
@@ -98,6 +106,10 @@ public class CameraSwitchButton : MonoBehaviour
     }
     IEnumerator SwitchCamera4()
     {
+        player.constraints = RigidbodyConstraints.FreezePositionX |
+                     RigidbodyConstraints.FreezePositionZ |
+                     RigidbodyConstraints.FreezeRotation;
+
         mainCamera.SetActive(false);
         cameraTransition4.SetActive(true);
         cameraTransition5.SetActive(true);
@@ -109,6 +121,7 @@ public class CameraSwitchButton : MonoBehaviour
 
         yield return new WaitForSeconds(1.5f);
         //box.transform.position = positionBox.transform.position;
+        player.constraints = RigidbodyConstraints.FreezeRotation;
 
         isTransitioning3 = false;
 

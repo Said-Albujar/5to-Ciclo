@@ -770,7 +770,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4110453524495926399}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.782, z: -2.24}
+  m_LocalPosition: {x: 0, y: 0.63, z: -2.24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -789,8 +789,8 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Intensity: 10
-  m_Range: 11.03
+  m_Intensity: 350
+  m_Range: 15
   m_SpotAngle: 116.1
   m_InnerSpotAngle: 1
   m_CookieSize: 10
@@ -1503,12 +1503,12 @@ MonoBehaviour:
   once: 1
   timer: 0
   projectilePrefab: {fileID: 1877353022480666278, guid: 081e132425431ae4d899503bc19444e3, type: 3}
-  rangeAttack: 10
+  rangeAttack: 17
   startBullets: 5
   currentBullets: 0
   shootPoint: {fileID: 4304239957286917238}
   projectileSpeed: 12
-  shootCooldown: 2
+  shootCooldown: 1
   needleObject:
   - {fileID: 7249324808400974837}
   - {fileID: 2806876477301360808}
